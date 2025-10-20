@@ -1,0 +1,9 @@
+[
+	{
+		"name": "abre",
+		"type": "videoscrollytelling",
+		"imagePrefix": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/a-trama-do-golpe/frames/desktop/abre/frame_",
+		"imagePrefixMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/a-trama-do-golpe/frames/mobile/abre/frame_",
+		"totalFrames": 181
+	}
+]

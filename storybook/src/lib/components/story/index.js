@@ -1,0 +1,37 @@
+export { default as Header } from './Header.svelte';
+export { default as HeaderCaotico } from './HeaderCaotico.svelte';
+export { default as ScrollyTelling } from './ScrollyTelling.svelte';
+export { default as ScrollyFrames } from './ScrollyFrames.svelte';
+export { default as ScrollyFramesStable } from './ScrollyFramesStable.svelte';
+export { default as FlourishScrolly } from './FlourishScrolly.svelte';
+export { default as FlourishEmbed } from './FlourishEmbed.svelte';
+export { default as FlourishScrollyAdvanced } from './FlourishScrollyAdvanced.svelte';
+export { default as PhotoWithCaption } from './PhotoWithCaption.svelte';
+export { default as VideoPlayer } from './VideoPlayer.svelte';
+export { default as GloboPlayer } from './GloboPlayer.svelte';
+export { default as GloboPlayerCarousel } from './GloboPlayerCarousel.svelte';
+export { default as GloboPlayerGridSlider } from './GloboPlayerGridSlider.svelte';
+export { default as DebugGloboPlayer } from './DebugGloboPlayer.svelte';
+export { default as SectionTitle } from './SectionTitle.svelte';
+export { default as SplitTitle } from './SplitTitle.svelte';
+export { default as PhotoGallery } from './PhotoGallery.svelte';
+export { default as Carousel } from './Carousel.svelte';
+export { default as StoryText } from './StoryText.svelte';
+export { default as AnchorPoint } from './AnchorPoint.svelte';
+export { default as StickyNavigationMenu } from './StickyNavigationMenu.svelte';
+export { default as DocumentViewer } from './DocumentViewer.svelte';
+export { default as BeforeAfter } from './BeforeAfter.svelte';
+export { default as Parallax } from './Parallax.svelte';
+export { default as CharacterPresentation } from './CharacterPresentation.svelte';
+export { default as CrimeExplainer } from './CrimeExplainer.svelte';
+export { default as TimelineInteractive } from './TimelineInteractive.svelte';
+export { default as RecommendedItems } from './RecommendedItems.svelte';
+export { default as SectionWrapper } from './SectionWrapper.svelte';
+export { default as FreeCanvas } from './FreeCanvas.svelte';
+export { default as ResponsiveMediaLayout } from './ResponsiveMediaLayout.svelte';
+export { default as FlexibleLayout } from './FlexibleLayout.svelte';
+export { default as ContentGrid } from './ContentGrid.svelte';
+export { default as MediaTextLayout } from './MediaTextLayout.svelte';
+export { default as Curiosidades } from './Curiosidades.svelte';
+
+// Add other component exports here

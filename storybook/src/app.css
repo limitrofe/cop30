@@ -1,0 +1,276 @@
+/* src/app.css */
+
+/* --- Globotipo Font Family --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Thin - 100 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 100;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-th-lt.woff2')
+		format('woff2');
+}
+
+/* Thin - 200 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 200;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-th.woff2')
+		format('woff2');
+}
+
+/* Light - 300 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 300;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-lt-lt.woff2')
+		format('woff2');
+}
+
+/* Regular - 400 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 400;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-lt.woff2')
+		format('woff2');
+}
+
+/* Medium - 500 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 500;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-rg-lt.woff2')
+		format('woff2');
+}
+
+/* Medium - 600 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 600;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-rg.woff2')
+		format('woff2');
+}
+
+/* Bold - 700 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 700;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bd-lt.woff2')
+		format('woff2');
+}
+
+/* Bold - 800 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 800;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bd.woff2')
+		format('woff2');
+}
+
+/* Black - 900 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 900;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bk-lt.woff2')
+		format('woff2');
+}
+
+/* Black - 1000 (mapeado para 900, que é o máximo padrão) */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 950; /* Usando um valor próximo a 900 */
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bk.woff2')
+		format('woff2');
+}
+
+/* --- Estilos Globais --- */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Globotipo', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-wrap: balance;
+	background: var(--color-background, #0b0d17);
+	color: var(--color-text, #f8fafc);
+}
+
+#svelte,
+#svelte > * {
+	width: 100%;
+	min-height: 100%;
+}
+
+/* src/app.css */
+
+/* --- Globotipo Font Family (mantido como fallback) --- */
+
+/* Thin - 100 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 100;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-th-lt.woff2')
+		format('woff2');
+}
+
+/* Thin - 200 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 200;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-th.woff2')
+		format('woff2');
+}
+
+/* Light - 300 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 300;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-lt-lt.woff2')
+		format('woff2');
+}
+
+/* Regular - 400 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 400;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-lt.woff2')
+		format('woff2');
+}
+
+/* Medium - 500 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 500;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-rg-lt.woff2')
+		format('woff2');
+}
+
+/* Medium - 600 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 600;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-rg.woff2')
+		format('woff2');
+}
+
+/* Bold - 700 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 700;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bd-lt.woff2')
+		format('woff2');
+}
+
+/* Bold - 800 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 800;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bd.woff2')
+		format('woff2');
+}
+
+/* Black - 900 */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 900;
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bk-lt.woff2')
+		format('woff2');
+}
+
+/* Black - 1000 (mapeado para 900, que é o máximo padrão) */
+@font-face {
+	font-family: 'Globotipo';
+	font-style: normal;
+	font-weight: 950; /* Usando um valor próximo a 900 */
+	src: url('https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/fonts/globo-bk.woff2')
+		format('woff2');
+}
+
+/* --- 🎨 OBVIOUSLY TYPOGRAPHY UTILITIES --- */
+
+/* Utility classes para usar Obviously facilmente */
+.font-obviously {
+	font-family: 'obviously', sans-serif;
+}
+.font-obviously-compressed {
+	font-family: 'obviously-compressed', sans-serif;
+}
+.font-obviously-condensed {
+	font-family: 'obviously-condensed', sans-serif;
+}
+.font-obviously-narrow {
+	font-family: 'obviously-narrow', sans-serif;
+}
+.font-obviously-wide {
+	font-family: 'obviously-wide', sans-serif;
+}
+.font-obviously-extended {
+	font-family: 'obviously-extended', sans-serif;
+}
+
+/* Weight utilities para Obviously */
+.font-weight-regular {
+	font-weight: 400;
+}
+.font-weight-bold {
+	font-weight: 700;
+}
+
+/* --- Estilos Globais ATUALIZADOS --- */
+body {
+	/* 🎨 MUDANÇA: Obviously como fonte principal, Globotipo como fallback */
+	font-family: 'obviously', 'Globotipo', sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-wrap: balance;
+}
+
+/* --- 🎭 PERSONAGENS COMPONENT FONT OVERRIDE --- */
+.character-name {
+	/* Use Obviously Compressed para os nomes dos personagens */
+	font-family: 'obviously-compressed', sans-serif !important;
+}
+
+.character-name h2 {
+	/* Nome principal: Obviously Compressed Bold */
+	font-family: 'obviously-compressed', sans-serif;
+	font-weight: 700;
+}
+
+.character-name h5 {
+	/* Sobrenome: Obviously regular mais leve */
+	font-family: 'obviously', sans-serif;
+	font-weight: 400;
+}

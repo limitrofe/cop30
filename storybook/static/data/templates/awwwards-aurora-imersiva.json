@@ -1,0 +1,329 @@
+{
+  "title": "Aurora Imersiva",
+  "subtitle": "Template editorial com hero em vídeo, blocos híbridos e narrativa scrolly.",
+  "description": "Estrutura inspirada em cases do Awwwards para matérias especiais com ritmo cinematográfico.",
+  "author": "",
+  "date": "",
+  "slug": "template-aurora-imersiva",
+  "theme": "dark",
+  "tags": [
+    "template",
+    "awwwards",
+    "imersivo"
+  ],
+  "share": {
+    "title": "Template Aurora Imersiva",
+    "description": "Hero em vídeo com narrativa scrolly para especiais jornalísticos."
+  },
+  "appearance": {
+    "colorScheme": "dark",
+    "backgroundColor": "#030712",
+    "backgroundColorMobile": "#030712",
+    "surfaceColor": "rgba(6, 11, 25, 0.85)",
+    "textColor": "#F8FAFC",
+    "accentColor": "#7C3AED",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "linear-gradient(180deg, #020617 0%, #111827 100%)"
+  },
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "<span style=\"color:#7C3AED\">Aurora</span> Imersiva",
+      "subtitle": "Narrativa audiovisual com foco em jornalismo profundo.",
+      "backgroundVideo": "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
+      "backgroundVideoMobile": "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
+      "poster": "https://images.unsplash.com/photo-1526481280695-3c4693f687a1?auto=format&fit=crop&w=1600&q=80",
+      "posterMobile": "https://images.unsplash.com/photo-1526481280695-3c4693f687a1?auto=format&fit=crop&w=1200&q=60",
+      "variant": "hero",
+      "overlay": true,
+      "overlayGradient": "linear-gradient(120deg, rgba(2,6,23,0.92) 20%, rgba(17,24,39,0.35) 85%)",
+      "verticalAlign": "center",
+      "horizontalAlign": "center",
+      "titleColor": "#F8FAFC",
+      "subtitleColor": "rgba(248, 250, 252, 0.82)",
+      "titleShadow": {
+        "enabled": true,
+        "offsetX": "0px",
+        "offsetY": "8px",
+        "blur": "32px",
+        "spread": "0px",
+        "color": "rgba(2, 6, 23, 0.65)"
+      },
+      "section": {
+        "backgroundSource": "video",
+        "paddingTop": "0",
+        "paddingBottom": "0"
+      },
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "animations": [
+          {
+            "id": "anim-aurora-hero-fade",
+            "label": "Fade hero in",
+            "once": true,
+            "immediate": false,
+            "duration": 1.2,
+            "delay": 0.2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "from": {
+              "autoAlpha": 0,
+              "y": 60
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "lead",
+      "align": "left",
+      "text": "<p>Este modelo prioriza uma abertura cinematográfica, seguida de blocos modulados para conduzir o leitor por uma narrativa investigativa com ritmo e respiro visual.</p>",
+      "maxWidth": "720px",
+      "horizontalPosition": "center",
+      "verticalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "4rem",
+        "paddingBottom": "3.5rem"
+      },
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "animations": [
+          {
+            "id": "anim-aurora-lead",
+            "label": "Lead fade",
+            "once": true,
+            "immediate": false,
+            "duration": 1,
+            "delay": 0.1,
+            "ease": "power2.out",
+            "preset": "fade-up",
+            "from": {
+              "autoAlpha": 0,
+              "y": 32
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "media-text",
+      "mediaType": "image",
+      "mediaSrcDesktop": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+      "mediaSrcMobile": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=60",
+      "mediaAlt": "Cidade à noite com neblina violeta",
+      "mediaBorderRadius": "1.5rem",
+      "mediaBackground": "linear-gradient(135deg, rgba(124,58,237,0.35), rgba(76,29,149,0.15))",
+      "mediaCaption": "Foto: Unsplash / MJ Tangonan",
+      "pretitle": "Contexto",
+      "title": "Bloco híbrido para contextualizar dados complexos",
+      "subtitle": "Combine imagem, títulos e texto longo em um layout responsivo.",
+      "text": "<p>Use este bloco para trazer informações-chave logo após a abertura. A imagem amplia a atmosfera cinematográfica enquanto o texto se mantém legível em qualquer dispositivo.</p>",
+      "textAlign": "left",
+      "textColor": "rgba(248, 250, 252, 0.92)",
+      "textSpacing": "1.4rem",
+      "textMaxWidth": "560px",
+      "mediaPosition": "right",
+      "verticalAlign": "center",
+      "gapDesktop": "3rem",
+      "gapMobile": "1.75rem",
+      "backgroundColor": "rgba(8, 11, 21, 0.65)",
+      "paddingDesktop": "4rem 1.5rem",
+      "paddingMobile": "3rem 1.25rem",
+      "containerMaxWidth": "1200px",
+      "shadow": "0 32px 80px rgba(4, 7, 17, 0.45)",
+      "fullWidthOnMobile": true,
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "animations": [
+          {
+            "id": "anim-aurora-media-text",
+            "label": "Media-text slide",
+            "once": false,
+            "immediate": false,
+            "duration": 1.1,
+            "ease": "power3.out",
+            "preset": "fade-right",
+            "from": {
+              "autoAlpha": 0,
+              "x": -80
+            },
+            "to": {
+              "autoAlpha": 1,
+              "x": 0
+            },
+            "scrollTrigger": {
+              "trigger": ".story-section:nth-of-type(3)",
+              "start": "top 80%",
+              "end": "bottom 50%",
+              "toggleActions": "play none none reverse"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "scrolly",
+      "fullWidth": true,
+      "steps": [
+        {
+          "title": "01 • Abertura",
+          "text": "<p>Introduza o primeiro grande momento da apuração com frases curtas e impactantes.</p>",
+          "position": "right",
+          "variant": "glass",
+          "backgroundColor": "rgba(8, 11, 21, 0.78)",
+          "overlayColor": "rgba(3, 7, 18, 0.55)",
+          "textColor": "#F8FAFC",
+          "accentColor": "#7C3AED",
+          "borderColor": "rgba(124, 58, 237, 0.25)",
+          "padding": "2.25rem",
+          "maxWidth": "460px",
+          "maxWidthMobile": "92%",
+          "image": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1800&q=80",
+          "imageMobile": "https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=900&q=60",
+          "caption": "Cenário imersivo para iniciar o scrolly"
+        },
+        {
+          "title": "02 • Contraponto",
+          "text": "<p>Adicione contexto humano com aspas ou dados que reforcem a urgência do tema.</p>",
+          "position": "left",
+          "variant": "default",
+          "backgroundColor": "rgba(15, 23, 42, 0.8)",
+          "overlayColor": "rgba(2, 6, 23, 0.45)",
+          "textColor": "#E2E8F0",
+          "accentColor": "#38BDF8",
+          "borderColor": "rgba(56, 189, 248, 0.25)",
+          "padding": "2.25rem",
+          "maxWidth": "440px",
+          "maxWidthMobile": "92%",
+          "image": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1800&q=80",
+          "imageMobile": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=60",
+          "caption": "Use imagens contrastantes para marcar ritmo"
+        },
+        {
+          "title": "03 • Reviravolta",
+          "text": "<p>Arremate com um elemento surpresa: uma descoberta inédita, o documento que muda a história ou uma leitura de contexto.</p>",
+          "position": "right",
+          "variant": "minimal",
+          "backgroundColor": "rgba(17, 24, 39, 0.72)",
+          "overlayColor": "rgba(12, 3, 35, 0.35)",
+          "textColor": "#F8FAFC",
+          "accentColor": "#F472B6",
+          "borderColor": "rgba(244, 114, 182, 0.4)",
+          "padding": "2.25rem",
+          "maxWidth": "440px",
+          "maxWidthMobile": "92%",
+          "image": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=1800&q=80",
+          "imageMobile": "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?auto=format&fit=crop&w=900&q=60",
+          "caption": "Finalize o passo com chamada para o próximo bloco"
+        }
+      ],
+      "section": {
+        "backgroundSource": "image",
+        "backgroundImageDesktop": "https://images.unsplash.com/photo-1482192597420-4817fdd7e8b0?auto=format&fit=crop&w=2000&q=80",
+        "backgroundImageMobile": "https://images.unsplash.com/photo-1482192597420-4817fdd7e8b0?auto=format&fit=crop&w=1200&q=60",
+        "paddingTop": "8rem",
+        "paddingBottom": "8rem"
+      }
+    },
+    {
+      "type": "parallax",
+      "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=80",
+      "imageMobile": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60",
+      "height": "75vh",
+      "speed": 0.38,
+      "overlay": true,
+      "backgroundPosition": "center center",
+      "backgroundSize": "cover",
+      "content": "<div class=\"parallax-caption\">Use esta faixa para destacar uma frase-chave ou dado-quadro que precisa de impacto visual.</div>",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(6, 11, 25, 0.35)",
+        "paddingTop": "0",
+        "paddingBottom": "0"
+      }
+    },
+    {
+      "type": "section-title",
+      "title": "Checklist editorial",
+      "subtitle": "Planeje entrevistas, dados estruturados e respiros visuais antes de avançar.",
+      "variant": "centered",
+      "size": "large",
+      "textColor": "#E2E8F0",
+      "backgroundColor": "transparent",
+      "titleShadow": {
+        "enabled": true,
+        "offsetX": "0px",
+        "offsetY": "6px",
+        "blur": "18px",
+        "color": "rgba(3, 7, 18, 0.6)"
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "5rem",
+        "paddingBottom": "2rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "body",
+      "align": "left",
+      "text": "<ul><li>Adapte cores no painel de aparência para combinar com a identidade da reportagem.</li><li>Substitua imagens por frames próprios e ajuste os cards do scrolly para contar cada ato.</li><li>Inclua blocos adicionais como Free Canvas ou GloboPlayer para capítulos especiais.</li></ul>",
+      "maxWidth": "820px",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(4,7,17,0.35)",
+        "paddingTop": "2rem",
+        "paddingBottom": "6rem"
+      }
+    }
+  ],
+  "credits": {
+    "enabled": true,
+    "title": "Créditos editoriais",
+    "backgroundColor": "rgba(6, 11, 25, 0.92)",
+    "textColor": "#F8FAFC",
+    "titleColor": "#7C3AED",
+    "borderColor": "rgba(124, 58, 237, 0.35)",
+    "paddingDesktop": "4rem 1.5rem",
+    "paddingMobile": "3rem 1.25rem",
+    "maxWidth": "960px",
+    "groups": [
+      {
+        "title": "Edição",
+        "items": [
+          "Editor(a)-chefe / Substituir",
+          "Repórter responsável / Substituir"
+        ]
+      },
+      {
+        "title": "Visual & Interatividade",
+        "items": [
+          "Direção de arte / Substituir",
+          "Desenvolvimento / Substituir"
+        ]
+      }
+    ],
+    "notes": "Substitua as entradas pelos créditos reais da reportagem."
+  }
+}

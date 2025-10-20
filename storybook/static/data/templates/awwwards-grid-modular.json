@@ -1,0 +1,302 @@
+{
+  "title": "Grid Modular Editorial",
+  "subtitle": "Template modular inspirado no design clean do Awwwards para matérias multi-capítulos.",
+  "description": "Combinação de hero minimalista, grid responsivo e blocos multimídia prontos para matérias especiais.",
+  "slug": "template-grid-modular",
+  "theme": "default",
+  "tags": [
+    "template",
+    "awwwards",
+    "modular"
+  ],
+  "share": {
+    "title": "Template Grid Modular Editorial",
+    "description": "Hero minimalista com grid responsivo e carrossel visual."
+  },
+  "appearance": {
+    "colorScheme": "default",
+    "backgroundColor": "#f8fafc",
+    "backgroundColorMobile": "#f8fafc",
+    "surfaceColor": "#ffffff",
+    "textColor": "#0f172a",
+    "accentColor": "#0ea5e9",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "linear-gradient(180deg, #f8fafc 0%, #e0f2fe 100%)"
+  },
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "Grid Modular Editorial",
+      "subtitle": "Hero minimalista com foco em tipografia e sinalização clara.",
+      "variant": "minimal",
+      "backgroundImage": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92eee?auto=format&fit=crop&w=2000&q=80",
+      "backgroundImageMobile": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92eee?auto=format&fit=crop&w=1200&q=60",
+      "overlay": true,
+      "overlayGradient": "linear-gradient(135deg, rgba(248, 250, 252, 0.92) 40%, rgba(224, 242, 254, 0.6) 100%)",
+      "titleColor": "#0f172a",
+      "subtitleColor": "rgba(15, 23, 42, 0.7)",
+      "verticalAlign": "center",
+      "horizontalAlign": "left",
+      "section": {
+        "backgroundSource": "image",
+        "paddingTop": "6rem",
+        "paddingBottom": "6rem"
+      },
+      "gsap": {
+        "enabled": true,
+        "animations": [
+          {
+            "id": "anim-grid-hero-title",
+            "label": "Hero reveal",
+            "once": true,
+            "duration": 1,
+            "ease": "power3.out",
+            "preset": "fade-left",
+            "from": {
+              "autoAlpha": 0,
+              "x": -60
+            },
+            "to": {
+              "autoAlpha": 1,
+              "x": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "lead",
+      "align": "left",
+      "text": "<p>Use esta base para construir matérias segmentadas em capítulos com dados, entrevistas e infográficos leves. O layout modular dá liberdade para reorganizar blocos sem perder a hierarquia visual.</p>",
+      "maxWidth": "740px",
+      "horizontalPosition": "left",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#ffffff",
+        "paddingTop": "2rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "flexible-layout",
+      "text": "<span style=\"font-weight:700;\">Capítulo 1:</span><br>Introdução com fotos em camadas",
+      "textAlign": "left",
+      "textPosition": "left",
+      "backgroundColor": "#0f172a",
+      "textColor": "#f8fafc",
+      "fontSize": "clamp(2.6rem, 5vw, 4.2rem)",
+      "fontSizeMobile": "clamp(2rem, 8vw, 3rem)",
+      "minHeight": "80vh",
+      "minHeightMobile": "70vh",
+      "padding": "4rem",
+      "paddingMobile": "2rem",
+      "image1Desktop": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=900&q=80",
+      "image1Mobile": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=60",
+      "image1Width": "340px",
+      "image1WidthMobile": "220px",
+      "image1X": "8%",
+      "image1Y": "18%",
+      "image1XMobile": "12%",
+      "image1YMobile": "12%",
+      "image1ZIndex": "10",
+      "image2Desktop": "https://images.unsplash.com/photo-1452457750107-cd084dce177d?auto=format&fit=crop&w=1400&q=80",
+      "image2Mobile": "https://images.unsplash.com/photo-1452457750107-cd084dce177d?auto=format&fit=crop&w=800&q=60",
+      "image2Width": "540px",
+      "image2WidthMobile": "320px",
+      "image2X": "58%",
+      "image2Y": "38%",
+      "image2XMobile": "52%",
+      "image2YMobile": "52%",
+      "image2ZIndex": "4",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "4rem",
+        "paddingBottom": "4rem"
+      }
+    },
+    {
+      "type": "content-grid",
+      "columnsDesktop": 3,
+      "gapDesktop": "2rem",
+      "gapMobile": "1.25rem",
+      "backgroundColor": "rgba(15, 23, 42, 0.04)",
+      "paddingDesktop": "4rem 1.5rem",
+      "paddingMobile": "3rem 1rem",
+      "borderRadius": "24px",
+      "itemBackground": "#ffffff",
+      "itemPadding": "2rem",
+      "itemBorderRadius": "18px",
+      "items": [
+        {
+          "type": "text",
+          "pretitle": "Pistas rápidas",
+          "title": "Resumo do dossiê",
+          "subtitle": "",
+          "text": "<ul><li>Destaque três achados principais.</li><li>Inclua números e datas-chave.</li><li>Indique links para bases abertas.</li></ul>",
+          "align": "start",
+          "spanDesktop": 1,
+          "spanTablet": 1,
+          "spanMobile": 1
+        },
+        {
+          "type": "image",
+          "title": "Imagem de contexto",
+          "image": {
+            "desktop": "https://images.unsplash.com/photo-1529429617124-aee001481ac7?auto=format&fit=crop&w=1200&q=80",
+            "mobile": "https://images.unsplash.com/photo-1529429617124-aee001481ac7?auto=format&fit=crop&w=800&q=60",
+            "alt": "Equipe em reunião de pauta",
+            "caption": "Foto: Unsplash / Campaign Creators",
+            "credit": ""
+          },
+          "spanDesktop": 1,
+          "spanTablet": 2,
+          "spanMobile": 1
+        },
+        {
+          "type": "card",
+          "pretitle": "Entrevista-chave",
+          "title": "O que diz a fonte principal",
+          "subtitle": "Resumo em três bullets",
+          "text": "<p>Inclua uma declaração curta, um fato inédito e uma indicação de próxima etapa.</p>",
+          "layout": "media-left",
+          "mediaType": "image",
+          "mediaImage": {
+            "desktop": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=800&q=80",
+            "mobile": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=60",
+            "alt": "Retrato da fonte",
+            "caption": "",
+            "credit": ""
+          },
+          "spanDesktop": 1,
+          "spanTablet": 2,
+          "spanMobile": 1
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "2rem",
+        "paddingBottom": "2rem"
+      }
+    },
+    {
+      "type": "carousel",
+      "autoplay": true,
+      "interval": 5000,
+      "showDots": true,
+      "showArrows": true,
+      "items": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+          "srcMobile": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=60",
+          "alt": "Painel de dados iluminado",
+          "caption": "Dados apresentados com grid claro",
+          "credit": ""
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1600&q=80",
+          "srcMobile": "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=900&q=60",
+          "alt": "Profissional digitando em laptop",
+          "caption": "Bastidores da apuração",
+          "credit": ""
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=1600&q=80",
+          "srcMobile": "https://images.unsplash.com/photo-1485217988980-11786ced9454?auto=format&fit=crop&w=900&q=60",
+          "alt": "Detalhe gráfico impresso",
+          "caption": "Capítulo dedicado a documentos físicos",
+          "credit": ""
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#ffffff",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "body",
+      "align": "left",
+      "text": "<p>Combine o grid com blocos de texto corrido para sustentar a narrativa. Alterne entre chamadas curtas, entrevistas curtas e caixas com serviços para manter o ritmo.</p>",
+      "maxWidth": "760px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "2rem",
+        "paddingBottom": "2rem"
+      }
+    },
+    {
+      "type": "recommended-items",
+      "title": "Próximos capítulos",
+      "layout": "grid",
+      "columns": 3,
+      "backgroundColor": "#0f172a",
+      "titleColor": "#f8fafc",
+      "textColor": "rgba(248, 250, 252, 0.85)",
+      "items": [
+        {
+          "title": "Capítulo 2 — Bastidores",
+          "description": "Linha do tempo com bastidores da investigação.",
+          "image": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=800&q=80",
+          "link": "#capitulo-2"
+        },
+        {
+          "title": "Capítulo 3 — Vozes",
+          "description": "Galeria de entrevistas com áudio e vídeo.",
+          "image": "https://images.unsplash.com/photo-1525182008055-f88b95ff7980?auto=format&fit=crop&w=800&q=80",
+          "link": "#capitulo-3"
+        },
+        {
+          "title": "Capítulo 4 — Documentos",
+          "description": "Documentos interativos com grifos e comentários.",
+          "image": "https://images.unsplash.com/photo-1524499982521-1ffd58dd89ea?auto=format&fit=crop&w=800&q=80",
+          "link": "#capitulo-4"
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "4rem",
+        "paddingBottom": "5rem"
+      }
+    }
+  ],
+  "credits": {
+    "enabled": true,
+    "title": "Equipe referência",
+    "backgroundColor": "#0f172a",
+    "textColor": "#f8fafc",
+    "titleColor": "#38bdf8",
+    "borderColor": "rgba(56, 189, 248, 0.35)",
+    "groups": [
+      {
+        "title": "Design",
+        "items": [
+          "Direção de arte / Substituir",
+          "Motion design / Substituir"
+        ]
+      },
+      {
+        "title": "Reportagem",
+        "items": [
+          "Repórter responsável / Substituir",
+          "Produção / Substituir"
+        ]
+      }
+    ],
+    "notes": "Atualize nomes e funções conforme a publicação oficial."
+  }
+}

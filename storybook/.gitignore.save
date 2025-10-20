@@ -1,0 +1,123 @@
+node_modules
+# === ARQUIVOS DE MÍDIA - NUNCA FAZER UPLOAD ===
+
+# Imagens
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.tif
+*.webp
+*.svg
+*.ico
+*.heic
+*.heif
+*.raw
+*.cr2
+*.nef
+*.orf
+*.sr2
+
+# Vídeos
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+*.mkv
+*.m4v
+*.3gp
+*.ogv
+*.ts
+*.mts
+*.m2ts
+
+# Áudio
+*.mp3
+*.wav
+*.flac
+*.aac
+*.ogg
+*.wma
+*.m4a
+*.opus
+
+# Documentos pesados
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+
+# Arquivos de design
+*.psd
+*.ai
+*.sketch
+*.fig
+*.xd
+
+# Pastas comuns de mídia
+/media/
+/uploads/
+/assets/images/
+/assets/videos/
+/public/images/
+/public/videos/
+/static/images/
+/static/videos/
+/images/
+/videos/
+/fotos/
+/videos/
+
+# === OUTROS ARQUIVOS IMPORTANTES DE IGNORAR ===
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+/dist/
+/build/
+/.next/
+/.nuxt/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

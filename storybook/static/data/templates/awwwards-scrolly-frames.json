@@ -1,0 +1,186 @@
+{
+  "title": "Cinemagraph Scrolly",
+  "subtitle": "Template focado em sequências frame a frame com narrativa visual.",
+  "description": "Hero minimalista, scrolly frames e blocos de comparação para matérias visuais.",
+  "slug": "template-cinemagraph-scrolly",
+  "theme": "dark",
+  "tags": [
+    "template",
+    "awwwards",
+    "scrolly"
+  ],
+  "share": {
+    "title": "Template Cinemagraph Scrolly",
+    "description": "Scrolly frames, blocos multimídia e comparação antes/depois."
+  },
+  "appearance": {
+    "colorScheme": "dark",
+    "backgroundColor": "#020617",
+    "backgroundColorMobile": "#020617",
+    "surfaceColor": "rgba(4, 7, 17, 0.82)",
+    "textColor": "#f8fafc",
+    "accentColor": "#22d3ee",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "linear-gradient(180deg, #020617 0%, #0f172a 80%, #111827 100%)"
+  },
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "Cinemagraph Scrolly",
+      "subtitle": "Sequências visuais controladas pelo scroll com acabamento editorial.",
+      "variant": "minimal",
+      "backgroundImage": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=2000&q=80",
+      "backgroundImageMobile": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=60",
+      "overlay": true,
+      "overlayGradient": "linear-gradient(135deg, rgba(2,6,23,0.92) 0%, rgba(17,24,39,0.65) 100%)",
+      "titleColor": "#f8fafc",
+      "subtitleColor": "rgba(241, 245, 249, 0.8)",
+      "verticalAlign": "center",
+      "horizontalAlign": "center",
+      "section": {
+        "backgroundSource": "image",
+        "paddingTop": "7rem",
+        "paddingBottom": "7rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "lead",
+      "align": "left",
+      "text": "<p>Utilize este setup para narrativas cinemáticas: frames de vídeo convertidos em imagens, blocos híbridos e comparações antes/depois para reforçar mudanças.</p>",
+      "maxWidth": "760px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "3rem",
+        "paddingBottom": "2rem"
+      }
+    },
+    {
+      "type": "section-title",
+      "title": "Scroll que revela",
+      "subtitle": "Substitua pelos frames exportados do seu vídeo (PNG ou JPG).",
+      "variant": "centered",
+      "size": "medium",
+      "textColor": "#f8fafc",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "2rem",
+        "paddingBottom": "1rem"
+      }
+    },
+    {
+      "type": "scrollyframes",
+      "imagePrefix": "/img/frames/desktop/frame_",
+      "imagePrefixMobile": "/img/frames/mobile/frame_",
+      "imageSuffix": ".jpg",
+      "imageSuffixMobile": ".jpg",
+      "frameStart": 1,
+      "frameStop": 120,
+      "height": "420vh",
+      "showProgress": true,
+      "showTime": false,
+      "preloadFrames": 12,
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(4, 7, 17, 0.72)",
+        "paddingTop": "4rem",
+        "paddingBottom": "4rem"
+      }
+    },
+    {
+      "type": "media-text",
+      "mediaType": "image",
+      "mediaSrcDesktop": "https://images.unsplash.com/photo-1526481280695-3c4693f687a1?auto=format&fit=crop&w=1600&q=80",
+      "mediaSrcMobile": "https://images.unsplash.com/photo-1526481280695-3c4693f687a1?auto=format&fit=crop&w=900&q=60",
+      "mediaAlt": "Cena noturna com luzes coloridas",
+      "mediaBorderRadius": "24px",
+      "mediaBackground": "rgba(15, 23, 42, 0.45)",
+      "mediaCaption": "Substitua pela imagem ou frame principal do capítulo.",
+      "pretitle": "Capítulo 2",
+      "title": "Destaque textual após a sequência principal",
+      "subtitle": "Crie um respiro e estruture o contexto.",
+      "text": "<p>Apos o trecho controlado pelo scroll, use um bloco de texto + mídia para contextualizar, destacar depoimentos ou inserir dados adicionais.</p>",
+      "textAlign": "left",
+      "textColor": "rgba(248, 250, 252, 0.92)",
+      "mediaPosition": "left",
+      "verticalAlign": "center",
+      "backgroundColor": "rgba(8, 13, 28, 0.65)",
+      "paddingDesktop": "4rem 1.5rem",
+      "paddingMobile": "3rem 1.25rem",
+      "containerMaxWidth": "1180px",
+      "shadow": "0 40px 90px rgba(2, 6, 23, 0.4)",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "2.5rem",
+        "paddingBottom": "2.5rem"
+      }
+    },
+    {
+      "type": "before-after",
+      "beforeImage": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=1600&q=80",
+      "beforeImageMobile": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?auto=format&fit=crop&w=900&q=60",
+      "afterImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+      "afterImageMobile": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=60",
+      "beforeLabel": "Antes da intervenção",
+      "afterLabel": "Depois da intervenção",
+      "orientation": "horizontal",
+      "width": "100%",
+      "maxWidth": "960px",
+      "widthMobile": "100%",
+      "maxWidthMobile": "100%",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(8, 12, 24, 0.6)",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "body",
+      "align": "left",
+      "text": "<ul><li>Exporte seus frames como <code>frame_0001.jpg</code> para desktop e mobile.</li><li>Atualize os limites de quadros conforme a duração desejada.</li><li>Use o Before/After para destacar transformações concretas.</li></ul>",
+      "maxWidth": "780px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(4, 7, 17, 0.78)",
+        "paddingTop": "2rem",
+        "paddingBottom": "5rem"
+      }
+    }
+  ],
+  "credits": {
+    "enabled": true,
+    "title": "Equipe audiovisual",
+    "backgroundColor": "rgba(2, 6, 23, 0.92)",
+    "textColor": "#f8fafc",
+    "titleColor": "#22d3ee",
+    "borderColor": "rgba(34, 211, 238, 0.4)",
+    "groups": [
+      {
+        "title": "Imagem",
+        "items": [
+          "Direção de fotografia / Substituir",
+          "Edição de frames / Substituir"
+        ]
+      },
+      {
+        "title": "Texto",
+        "items": [
+          "Roteiro / Substituir",
+          "Pesquisa / Substituir"
+        ]
+      }
+    ],
+    "notes": "Defina créditos completos antes da publicação."
+  }
+}

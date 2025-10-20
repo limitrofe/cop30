@@ -1,0 +1,275 @@
+/* src/lib/styles/themes.css */
+
+/* Paleta de cores baseada na imagem fornecida.
+  --color-primary: A cor principal, sempre #C4170C.
+  --color-secondary: Cor de apoio para subtítulos e meta-informações.
+  --color-accent: Cor de destaque para elementos interativos ou contrastes (links em hover, etc.).
+  --color-text: Cor principal do texto.
+  --color-subtle-text: Cor para textos menos importantes (créditos, etc.).
+  --color-background: Cor de fundo principal da página.
+  --color-highlight-bg: Cor de fundo para seções de destaque (citações, etc.).
+  --color-border: Cor para bordas e divisórias.
+*/
+
+:root,
+[data-theme='default'] {
+	/* --- Tema 1: Padrão (Claro) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #5f6c7a; /* Cinza Ardósia */
+	--color-accent: #de5a68; /* Coral */
+	--color-text: #1f2933; /* Cinza Quase Preto */
+	--color-subtle-text: #949da6; /* Cinza Médio */
+	--color-background: #fff4e6;
+	--color-background-rgb: 255, 255, 255;
+	--color-highlight-bg: #f7f8f9; /* Branco Sujo */
+	--color-border: #e6e8eb; /* Cinza Claro */
+}
+
+[data-theme='dark'] {
+	/* --- Tema 2: Padrão (Escuro) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #949da6; /* Cinza Médio */
+	--color-accent: #e6b98d; /* Pêssego */
+	--color-text: #e6e8eb; /* Cinza Claro */
+	--color-subtle-text: #5f6c7a; /* Cinza Ardósia */
+	--color-background: #1f2933;
+	--color-background-rgb: 31, 41, 51;
+	--color-highlight-bg: #2a3642; /* Fundo um pouco mais claro */
+	--color-border: #3c4856; /* Borda escura */
+}
+
+[data-theme='mundo-claro'] {
+	/* --- Tema 3: Mundo (Azul Claro) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #5e7896; /* Azul Aço */
+	--color-accent: #deac5a; /* Bronze */
+	--color-text: #2f5078; /* Azul Escuro */
+	--color-subtle-text: #8da0b5; /* Azul Acinzentado */
+	--color-background: #ffffff;
+	--color-background-rgb: 255, 255, 255;
+	--color-highlight-bg: #f2f5f7; /* Fundo levemente azulado */
+	--color-border: #e6e8eb; /* Cinza Claro */
+}
+
+[data-theme='mundo-escuro'] {
+	/* --- Tema 4: Mundo (Azul Escuro) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #8da0b5; /* Azul Acinzentado */
+	--color-accent: #e6c28d; /* Pêssego Claro */
+	--color-text: #e6e8eb; /* Cinza Claro */
+	--color-subtle-text: #5e7896; /* Azul Aço */
+	--color-background: #2f5078;
+	--color-background-rgb: 47, 80, 120;
+	--color-highlight-bg: #25415d; /* Fundo um pouco mais escuro */
+	--color-border: #466384; /* Borda azul */
+}
+
+[data-theme='natureza'] {
+	/* --- Tema 5: Natureza (Verde) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #5c895c; /* Verde Escuro */
+	--color-accent: #d4a527; /* Mostarda */
+	--color-text: #336c33; /* Verde Floresta */
+	--color-subtle-text: #84a584; /* Verde Sálvia */
+	--color-background: #f8f9f5;
+	--color-background-rgb: 248, 249, 245;
+	--color-highlight-bg: #ffffff;
+	--color-border: #dee0d5; /* Verde bem claro */
+}
+
+[data-theme='lavanda'] {
+	/* --- Tema 6: Lavanda (Roxo Escuro) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #ad9fb0; /* Roxo Acinzentado */
+	--color-accent: #ded05a; /* Amarelo Ouro */
+	--color-text: #f5f5f5; /* Branco Sujo */
+	--color-subtle-text: #88778d; /* Roxo Pardo */
+	--color-background: #3a2e3f;
+	--color-background-rgb: 58, 46, 63;
+	--color-highlight-bg: #2e2432; /* Fundo mais escuro */
+	--color-border: #4f3e55; /* Borda roxa */
+}
+
+[data-theme='sepia'] {
+	/* --- Tema 7: Sépia (Oliva) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #89945c; /* Oliva */
+	--color-accent: #de5a68; /* Coral */
+	--color-text: #5a642a; /* Oliva Escuro */
+	--color-subtle-text: #a5ad84; /* Verde Oliva Claro */
+	--color-background: #f9f7f2;
+	--color-background-rgb: 249, 247, 242;
+	--color-highlight-bg: #ffffff;
+	--color-border: #e6e4dd; /* Bege */
+}
+
+[data-theme='pop-art'] {
+	/* --- Tema 8: Pop Art (Vibrante) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #e88d96; /* Rosa Salmão */
+	--color-accent: #d4ca27; /* Amarelo Vibrante */
+	--color-text: #ffffff;
+	--color-subtle-text: #bcc1c7; /* Cinza */
+	--color-background: #1f2933;
+	--color-background-rgb: 31, 41, 51;
+	--color-highlight-bg: #2e000d; /* Fundo avermelhado escuro */
+	--color-border: #3c4856; /* Borda escura */
+}
+
+[data-theme='alto-contraste'] {
+	/* --- Tema 9: Alto Contraste --- */
+	--color-primary: #c4170c;
+	--color-secondary: #000000;
+	--color-accent: #d4273a; /* Vermelho Vibrante */
+	--color-text: #000000;
+	--color-subtle-text: #222222;
+	--color-background: #ffffff;
+	--color-background-rgb: 255, 255, 255;
+	--color-highlight-bg: #eaeaea;
+	--color-border: #3c4856;
+}
+
+[data-theme='coral'] {
+	/* --- Tema 10: Coral (Tons de Laranja) --- */
+	--color-primary: #c4170c;
+	--color-secondary: #d4a527; /* Mostarda */
+	--color-accent: #5e7896; /* Azul Aço */
+	--color-text: #570a05; /* Vermelho Queimado */
+	--color-subtle-text: #deb45a; /* Damasco */
+	--color-background: #fff8f2;
+	--color-background-rgb: 255, 248, 242;
+	--color-highlight-bg: #ffffff;
+	--color-border: #e6d9cc; /* Bege rosado */
+}
+
+[data-theme='brisa-clara'] {
+	--color-primary: #c4170c;
+	--color-secondary: #8ca7b2;
+	--color-accent: #deac5a;
+	--color-text: #2a3642;
+	--color-subtle-text: #647b88;
+	--color-background: #f7fafc;
+	--color-background-rgb: 247, 250, 252;
+	--color-highlight-bg: #e3edf2;
+	--color-border: #d6dde3;
+}
+
+[data-theme='brisa-escura'] {
+	--color-primary: #c4170c;
+	--color-secondary: #647b88;
+	--color-accent: #e6b98d;
+	--color-text: #e6e8eb;
+	--color-subtle-text: #b1c1c9;
+	--color-background: #1a232a;
+	--color-background-rgb: 26, 35, 42;
+	--color-highlight-bg: #2a3a45;
+	--color-border: #3c4c56;
+}
+
+[data-theme='nevoa'] {
+	--color-primary: #c4170c;
+	--color-secondary: #949da6;
+	--color-accent: #ded05a;
+	--color-text: #333333;
+	--color-subtle-text: #7a848c;
+	--color-background: #f3f4f5;
+	--color-background-rgb: 243, 244, 245;
+	--color-highlight-bg: #ffffff;
+	--color-border: #d9dbdf;
+}
+
+[data-theme='vinho-nobre'] {
+	--color-primary: #c4170c;
+	--color-secondary: #88778d;
+	--color-accent: #de5a68;
+	--color-text: #f5f5f5;
+	--color-subtle-text: #c4b9c8;
+	--color-background: #3e2e3e;
+	--color-background-rgb: 62, 46, 62;
+	--color-highlight-bg: #2c1f2c;
+	--color-border: #5a4860;
+}
+
+[data-theme='aurora'] {
+	--color-primary: #c4170c;
+	--color-secondary: #e88d96;
+	--color-accent: #deac5a;
+	--color-text: #3a2e2a;
+	--color-subtle-text: #9d8f84;
+	--color-background: #fff9f6;
+	--color-background-rgb: 255, 249, 246;
+	--color-highlight-bg: #ffefe6;
+	--color-border: #ead6cc;
+}
+
+[data-theme='grafite'] {
+	--color-primary: #c4170c;
+	--color-secondary: #5f6c7a;
+	--color-accent: #d4ca27;
+	--color-text: #f0f2f4;
+	--color-subtle-text: #8a939c;
+	--color-background: #232323;
+	--color-background-rgb: 35, 35, 35;
+	--color-highlight-bg: #2c2c2c;
+	--color-border: #3d3d3d;
+}
+
+[data-theme='acqua'] {
+	--color-primary: #c4170c;
+	--color-secondary: #5e96a1;
+	--color-accent: #f9c57a;
+	--color-text: #1a3a42;
+	--color-subtle-text: #7aa4ae;
+	--color-background: #f4fbfd;
+	--color-background-rgb: 244, 251, 253;
+	--color-highlight-bg: #e8f2f5;
+	--color-border: #cde3ea;
+}
+
+[data-theme='dourado'] {
+	--color-primary: #c4170c;
+	--color-secondary: #d4a527;
+	--color-accent: #5f6c7a;
+	--color-text: #403500;
+	--color-subtle-text: #998f65;
+	--color-background: #fffae8;
+	--color-background-rgb: 255, 250, 232;
+	--color-highlight-bg: #fff4c4;
+	--color-border: #e6d9aa;
+}
+
+[data-theme='vermelho-profundo'] {
+	--color-primary: #c4170c;
+	--color-secondary: #570a05;
+	--color-accent: #f65c5c;
+	--color-text: #ffffff;
+	--color-subtle-text: #e88d96;
+	--color-background: #2e0000;
+	--color-background-rgb: 46, 0, 0;
+	--color-highlight-bg: #420a0a;
+	--color-border: #5e1e1e;
+}
+
+[data-theme='neon-sutil'] {
+	--color-primary: #c4170c;
+	--color-secondary: #bcc1c7;
+	--color-accent: #f6dc5c;
+	--color-text: #0f1113;
+	--color-subtle-text: #74787c;
+	--color-background: #fcfefa;
+	--color-background-rgb: 252, 254, 250;
+	--color-highlight-bg: #f5f8e6;
+	--color-border: #dde2cc;
+}
+
+[data-theme='dias-perfeitos'] {
+	--color-primary: #bcc1c7;
+	--color-secondary: #bcc1c7;
+	--color-accent: #b51207;
+	--color-text: #bcc1c7;
+	--color-subtle-text: #74787c;
+	--color-background: #000100;
+	--color-background-rgb: 252, 254, 250;
+	--color-highlight-bg: #b51207;
+	--color-border: #b51207;
+}

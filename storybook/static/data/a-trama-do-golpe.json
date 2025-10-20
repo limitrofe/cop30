@@ -1,0 +1,928 @@
+{
+  "type": "header",
+  "title": "A trama do Golpe",
+  "subtitle": "Um julgamento inédito na história brasileira",
+  "backgroundImage": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header_mobi.jpg",
+  "author": "",
+  "variant": "default",
+  "overlay": "true",
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "O julgamento",
+      "subtitle": "Por X votos a X, 1 Turma do STF declarou ex-presidente e sete aliados culpados por tentativa de golpe. Veja sentenças de todos os réus e as justificativas dos ministros.",
+      "date": "",
+      "backgroundVideo": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/resumo.mp4",
+      "backgroundVideoMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/resumo.mp4",
+      "author": "",
+      "variant": "hero",
+      "overlay": "true"
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "TRAMA GOLPISTA: <br>A SENTENÇA DO STF",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "5% 30%",
+              "mobile": "5% 0% 0% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-bolsonaro-crimes-mobile.png",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-bolsonaro-crimes-desktop.png"
+          },
+          "alt": "Foto de Jair Bolsonaro de perfil",
+          "styles": {
+            "width": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0% auto",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "JAIR BOLSONARO",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "800",
+              "mobile": "800"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-presidente",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "desktop": "",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "400",
+              "mobile": "400"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "200px"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "3% 40% 2%",
+              "mobile": "70px auto -2px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.jpg",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.jpg"
+          },
+          "alt": "bg crimes de bolsonaro",
+          "styles": {
+            "width": {
+              "desktop": "1280px",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0px auto",
+              "mobile": "16px 0%"
+            }
+          }
+        },
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/crimes-bolsonaro-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/crimes-bolsonaro-mobile.png"
+          },
+          "alt": "crimes de bolsonaro",
+          "styles": {
+            "width": {
+              "desktop": "880px",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-330px auto 100px",
+              "mobile": "-355px 0% 64px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "scrollytelling",
+      "steps": [
+        {
+          "title": "'Bolsonaro exerceu função de líder da estrutura criminosa'",
+          "text": "O relator Alexandre de Moraes foi o primeiro a votar no julgamento e apontou Jair Bolsonaro como líder de uma organização criminosa armada que tentou manter o poder à força e impedir a posse de Lula após as eleições de 2022.",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mobile_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "O Brasil quase volta a uma ditadura porque uma organização criminosa, constituída por um grupo político, não sabe perder as eleições",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "O ministro listou o que chamou de 'provas cabais': a live de 2021 contra as urnas, a reunião ministerial de 2022, o encontro com embaixadores, operações da Polícia Rodoviária no 2&ordm; turno, o plano de assassinar Lula e outras autoridades e outros eventos que culminaram na invasão de 8 de janeiro.",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Moraes também manteve a validade da delação de Mauro Cid. No fim do voto, de mais de 5 horas, defendeu a soma das penas e rejeitou a tese de absorção de crimes menores. Argumentou que que o crime de golpe de Estado (tentar derrubar o governo eleito) e abolição violenta do Estado de Direito (atacar as instituições) são crimes distintos, seguindo entendimento da Procuradoria-Geral da República (PGR).",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "title": "Dino vê diferentes graus de culpa e critica anistia",
+          "text": "Em seu voto, o ministro Flávio Dino afirmou que os 'níveis de culpabilidade' dos réus são diferentes e que Bolsonaro e o general Walter Braga Netto têm papel de maior relevância na tentativa de golpe.",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Em relação a Bolsonaro e Braga Netto, a culpabilidade é alta",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Dino defendeu penas menores para três dos réus ao avaliar que <strong>Ramagem</strong> deixou o governo em março de 2022, que <strong>Heleno</strong> não praticou atos golpistas no 2&ordm; semestre daquele ano, e que <strong>Paulo Sérgio Nogueira</strong> chegou a tentar dissuadir Bolsonaro de adotar medidas de exceção, como afirmou a defesa do general.",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Ainda durante o voto, Dino deu recado ao Congresso e afirmou que não cabe anistia aos julgados.",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_moraes.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_moraes.webp",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "title": "Detalhe Revelado: Zoom In Dinâmico",
+          "text": "Continue rolando! Observe como o elemento visual no centro da tela começa a se aproximar, focando em um detalhe específico. Este é um efeito de zoom que reage ao seu scroll. Sinta a imersão!",
+          "position": "center",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/desk_lucia.webp",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/mob_lucia.webp",
+          "alt": "Detalhe de balões de ar quente com zoom"
+        }
+      ],
+      "fullWidth": "false"
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/botao-link-trama-do-golpe-desk.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/botao-link-trama-do-golpe-mobi.png"
+          },
+          "alt": "Foto de Jair Bolsonaro de perfil",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "32px auto 0px",
+              "mobile": "64px auto 0px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "O QUE DISSERAM AS DEFESAS",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "48px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "50px",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "50%",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "64px auto 4px",
+              "mobile": "0"
+            },
+            "padding": {
+              "desktop": "0",
+              "mobile": "10% 0% 0% 5%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Advogados dos réus atacaram delação de Mauro Cid, reclamaram das provas e defenderam que o crime mais grave, o de golpe de Estado, engloba o de abolição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "50%",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "24px auto 64px",
+              "mobile": "0"
+            },
+            "padding": {
+              "desktop": "0",
+              "mobile": "6% 0% 0% 5%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-bolsonaro-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-bolsonaro.png"
+          },
+          "alt": "Foto de Jair Bolsonaro de perfil",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "A defesa negou qualquer prova de sua ligação com os ataques de 8 de janeiro ou a trama golpista, classificou a delação de Mauro Cid como não confiável e mentirosa. Os advogados <b>Celso Vilardi</b> e <b>Paulo Cunha Bueno</b> argumentaram que não houve tentativa de golpe e que Bolsonaro garantiu a transição para o governo Lula. Também alegaram cerceamento de defesa apontando acesso limitado a bilhões de documentos e pediram absolvição, considerando desproporcional uma pena de 30 anos.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-mauro-cid-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-mauro-cid.png"
+          },
+          "alt": "Header de defesa do Mauro Cid",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Os advogados <b>Jair Ferreira</b> e <b>Cezar Bittencourt</b> defenderam a validade da delação, negaram pressão e afirmaram que Cid não participou de planos de assassinato ou de golpe. Argumentaram recebimento passivo de mensagens no WhatsApp, sem incentivar crimes, e pediram a confirmação do acordo de colaboração.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-alexandre-ramagem-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-alexandre-ramagem.png"
+          },
+          "alt": "Header de defesa do Alexandre Ramagem",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Paulo Cintra</b> afirmou que Ramagem não integrava o governo quando a trama se consolidou. Negou a existência de Abin paralela e disse que ele apenas compilava ideias do presidente. Levou uma advertência de Cármen Lúcia ao tratar como a mesma coisa voto impresso e processo eleitoral auditável.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-almir-garnier-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-almir-garnier.png"
+          },
+          "alt": "Header de defesa do Almir Garnier",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Demóstenes Torres</b> argumentou que não há nexo causal individualizado, negou ligação direta entre Garnier e os fatos descritos e criticou a narrativa globalizante da acusação. Também pediu a anulação da delação de Mauro Cid.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-anderson-torres-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-anderson-torres.png"
+          },
+          "alt": "Header de defesa do Anderson Torres",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Eumar Novacki</b> disse que a acusação é um ponto fora da curva. Negou que Torres tenha se ausentado de propósito do Distrito Federal durante os ataques de 8 de janeiro e alegou que a viagem aos EUA fazia parte de férias programadas. Sobre a minuta encontrada na casa de Torres, a defesa afirmou que o documento era apócrifo e já circulava na internet.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-walter-braga-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-walter-braga.png"
+          },
+          "alt": "Header de defesa do Braga Netto",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "<b>José Luís Oliveira Lima</b>, advogado de Braga Netto, sustentou que o que pesa contra Braga Netto é a delação mentirosa de Cid e prints adulterados. A defesa afirmou ainda que o ex-ajudante de ordens foi pressionado a colaborar e pediu absolvição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-augusto-heleno-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-augusto-heleno.png"
+          },
+          "alt": "Header de defesa do Augusto Heleno",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Matheus Mayer Milanez</b> acusou Moraes de atuar como protagonista no processo e negou qualquer pressão de Heleno por golpe. Contestou o uso da agenda do ex-ministro como prova e disse que a citação em um suposto gabinete de crise não significa participação em plano golpista.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-paulo-sergio-desktop.png",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-paulo-sergio.png"
+          },
+          "alt": "Header de defesa do Paulo Sergio",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "2rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Durante sua sustentação, o advogado <b>Andrew Fernandes</b> afirmou que Paulo Sérgio Nogueira tentou demover Bolsonaro, e foi questionado por Cármen Lúcia sobre o que ele se referia.<br>- Demover de quê?, perguntou a ministra.<br>- De qualquer medida de exceção, respondeu Fernandes.<br>O advogado também destacou ataques virtuais sofridos por Nogueira e ausência em reuniões de gabinete de crise, pedindo sua absolvição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "10% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    }
+  ],
+  "slug": "a-trama-do-golpe"
+}
