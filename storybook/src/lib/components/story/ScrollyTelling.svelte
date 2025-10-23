@@ -17,8 +17,8 @@
 	let currentStepIndex = 0;
 	let isMobile = false;
 	let scrollProgress = 0;
-let previousMediaIndex = -1;
-let disableAutoVideoControl = false;
+	let previousMediaIndex = -1;
+	let disableAutoVideoControl = false;
 	let containerElement;
 	let resizeObserver;
 	let viewportWidth = 0;
@@ -285,45 +285,45 @@ let disableAutoVideoControl = false;
 
 	let stepOffset = 0;
 
-const isFormElement = (element) => {
-	if (!element) return false;
-	let current = element;
-	while (current) {
-		if (current instanceof HTMLInputElement) return true;
-		if (current instanceof HTMLTextAreaElement) return true;
-		if (current instanceof HTMLSelectElement) return true;
-		if (current instanceof HTMLButtonElement) return true;
-		if (current.getAttribute?.('role') === 'textbox') return true;
-		if (current.isContentEditable) return true;
-		current = current.parentElement;
-	}
-	return false;
-};
+	const isFormElement = (element) => {
+		if (!element) return false;
+		let current = element;
+		while (current) {
+			if (current instanceof HTMLInputElement) return true;
+			if (current instanceof HTMLTextAreaElement) return true;
+			if (current instanceof HTMLSelectElement) return true;
+			if (current instanceof HTMLButtonElement) return true;
+			if (current.getAttribute?.('role') === 'textbox') return true;
+			if (current.isContentEditable) return true;
+			current = current.parentElement;
+		}
+		return false;
+	};
 
-const getStepVideoElement = (index) => {
-	if (disableAutoVideoControl) return null;
-	if (index == null || index < 0) return null;
-	return containerElement?.querySelector(
-		`.media-wrapper[data-step-index="${index}"] video[data-step-video]`
-	);
-};
+	const getStepVideoElement = (index) => {
+		if (disableAutoVideoControl) return null;
+		if (index == null || index < 0) return null;
+		return containerElement?.querySelector(
+			`.media-wrapper[data-step-index="${index}"] video[data-step-video]`
+		);
+	};
 
 	let pointerDownOnForm = false;
 
-const isFormElementActive = () => {
-	if (typeof document === 'undefined') return false;
-	return isFormElement(document.activeElement);
-};
+	const isFormElementActive = () => {
+		if (typeof document === 'undefined') return false;
+		return isFormElement(document.activeElement);
+	};
 
-const handlePointerDown = (event) => {
-	if (disableAutoVideoControl) return;
-	pointerDownOnForm = isFormElement(event?.target);
-};
+	const handlePointerDown = (event) => {
+		if (disableAutoVideoControl) return;
+		pointerDownOnForm = isFormElement(event?.target);
+	};
 
-const handlePointerUp = () => {
-	if (disableAutoVideoControl) return;
-	pointerDownOnForm = false;
-};
+	const handlePointerUp = () => {
+		if (disableAutoVideoControl) return;
+		pointerDownOnForm = false;
+	};
 
 	async function handleMediaIndexChange(previousIndex, nextIndex) {
 		if (disableAutoVideoControl) return;
@@ -414,16 +414,8 @@ const handlePointerUp = () => {
 					{/if}
 					{#if media.type === 'image' && media.src}
 						<img src={media.src} alt={media.alt} loading="lazy" />
-					{:else if media.type === 'video' && media.src}
-						{@key `${media.src}-${i}`}
-							<video
-								src={media.src}
-								autoplay
-								loop
-								muted
-								playsinline
-								data-step-video
-							></video>
+					{:else if media.type === 'video' && media.src}key `${media.src}-${i}`}
+						<video src={media.src} autoplay loop muted playsinline data-step-video></video>
 					{/if}
 
 					{#if media.overlayColor}

@@ -20,7 +20,7 @@
 	export let stickyTop = '';
 	export let cardVisibility = 'card'; // card | transparent | hidden
 	export let progress = null;
-export let slideFromBottom = false;
+	export let slideFromBottom = false;
 	export let travelDistance = 'auto';
 
 	let stepContent;
@@ -35,10 +35,10 @@ export let slideFromBottom = false;
 
 	const clamp = (value, min = 0, max = 1) => Math.max(min, Math.min(max, value));
 
-const resolveFixedTravel = (value) => {
-	if (typeof value !== 'string') return value;
-	const trimmed = value.trim();
-	if (!trimmed) return FALLBACK_DYNAMIC_TRAVEL;
+	const resolveFixedTravel = (value) => {
+		if (typeof value !== 'string') return value;
+		const trimmed = value.trim();
+		if (!trimmed) return FALLBACK_DYNAMIC_TRAVEL;
 
 		if (trimmed.startsWith('fixed:')) {
 			const extracted = trimmed.slice(6).trim();
@@ -50,22 +50,22 @@ const resolveFixedTravel = (value) => {
 			return extracted || FALLBACK_DYNAMIC_TRAVEL;
 		}
 
-	return value;
-};
+		return value;
+	};
 
-const ensureFullOpacity = (value) => {
-	if (typeof value !== 'string') return value;
-	const trimmed = value.trim();
-	const rgbaMatch = trimmed.match(/^rgba\(\s*([^)]+)\)$/i);
-	if (!rgbaMatch) return trimmed;
-	const channels = rgbaMatch[1]
-		.split(',')
-		.map((channel) => channel.trim())
-		.filter(Boolean);
-	if (channels.length < 3) return trimmed;
-	const [r, g, b] = channels;
-	return `rgba(${r}, ${g}, ${b}, 1)`;
-};
+	const ensureFullOpacity = (value) => {
+		if (typeof value !== 'string') return value;
+		const trimmed = value.trim();
+		const rgbaMatch = trimmed.match(/^rgba\(\s*([^)]+)\)$/i);
+		if (!rgbaMatch) return trimmed;
+		const channels = rgbaMatch[1]
+			.split(',')
+			.map((channel) => channel.trim())
+			.filter(Boolean);
+		if (channels.length < 3) return trimmed;
+		const [r, g, b] = channels;
+		return `rgba(${r}, ${g}, ${b}, 1)`;
+	};
 
 	$: normalizedTravel =
 		typeof travelDistance === 'string' ? travelDistance.trim().toLowerCase() : travelDistance;

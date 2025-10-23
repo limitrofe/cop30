@@ -42,6 +42,11 @@
 	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
 	import ChartBar from './story/ChartBar.svelte';
 	import ChartLine from './story/ChartLine.svelte';
+	import ParticipantHighlight from './story/ParticipantHighlight.svelte';
+	import EmergencyTreemap from './charts/EmergencyTreemap.svelte';
+	import ChallengeBarChart from './charts/ChallengeBarChart.svelte';
+	import OptimismHistogram from './charts/OptimismHistogram.svelte';
+	import StillTimeBubbleChart from './charts/StillTimeBubbleChart.svelte';
 
 	export let previewDevice = null;
 
@@ -250,6 +255,31 @@
 			case 'flourish-scrolly':
 				return 'flourish-scrolly';
 
+			case 'emergency-treemap':
+			case 'treemap-emergency':
+			case 'participants-treemap':
+				return 'emergency-treemap';
+
+			case 'challenge-bar':
+			case 'desafio-bar':
+			case 'challenge-barchart':
+				return 'challenge-bar';
+
+			case 'still-time':
+			case 'still_time':
+			case 'still-time-bubble':
+			case 'tempo-restante':
+			case 'time-left':
+			case 'still-time-chart':
+				return 'still-time-bubble';
+
+			case 'optimism-histogram':
+			case 'optimism_chart':
+			case 'optimism-hist':
+			case 'nivel-otimismo':
+			case 'nivel_otimismo':
+				return 'optimism-histogram';
+
 			// 🎬 APRESENTAÇÕES
 			case 'personagens':
 			case 'characters':
@@ -260,6 +290,11 @@
 			case 'trivia':
 			case 'facts':
 				return 'curiosidades';
+
+			case 'participants':
+			case 'participant':
+			case 'participant-highlight':
+				return 'participant-highlight';
 
 			// 🆕 NOVOS COMPONENTES DA TRAMA DO GOLPE
 			case 'timeline-interactive':
@@ -298,6 +333,66 @@
 		// Retorna todas as propriedades exceto 'type'
 		const { type, ...props } = paragraph;
 		return stripGsapProps(props);
+	}
+
+	function buildChartWrapperStyle(rawProps = {}) {
+		if (!rawProps || typeof rawProps !== 'object') return '';
+
+		const baseWidth =
+			rawProps.chartWidth ?? rawProps.maxWidth ?? rawProps.containerWidth ?? rawProps.width;
+
+		const entries = [];
+
+		const add = (name, ...candidates) => {
+			for (const candidate of candidates) {
+				if (candidate === undefined || candidate === null) continue;
+				const value = String(candidate).trim();
+				if (value) {
+					entries.push(`${name}:${value}`);
+					break;
+				}
+			}
+		};
+
+		add(
+			'--chart-width-mobile',
+			rawProps.chartWidthMobile,
+			rawProps.maxWidthMobile,
+			rawProps.containerWidthMobile,
+			baseWidth
+		);
+		add(
+			'--chart-width-tablet',
+			rawProps.chartWidthTablet,
+			rawProps.maxWidthTablet,
+			rawProps.containerWidthTablet
+		);
+		add(
+			'--chart-width-desktop',
+			rawProps.chartWidthDesktop,
+			rawProps.maxWidthDesktop,
+			rawProps.containerWidthDesktop,
+			baseWidth
+		);
+		add(
+			'--chart-width-large',
+			rawProps.chartWidthLarge,
+			rawProps.chartWidthAbove1440,
+			rawProps.chartWidth1440Plus,
+			rawProps.chartWidthXL,
+			rawProps.maxWidthLarge,
+			rawProps.maxWidthXL,
+			rawProps.containerWidthLargeDesktop
+		);
+		add(
+			'--chart-max-width',
+			rawProps.chartMaxWidth,
+			rawProps.maxWidthPx,
+			rawProps.containerMaxWidth
+		);
+		add('--chart-padding-inline', rawProps.chartPaddingInline, rawProps.paddingInline);
+
+		return entries.join('; ');
 	}
 
 	/**
@@ -1372,6 +1467,16 @@
 							quoteColor={props.quoteColor || '#ffd700'}
 						/>
 
+						<!-- 🌍 PARTICIPANT HIGHLIGHT -->
+					{:else if componentType === 'participant-highlight'}
+						<ParticipantHighlight
+							field={props.field}
+							title={props.title}
+							variant={props.variant}
+							description={props.description}
+							fallback={props.fallback}
+						/>
+
 						<!-- 🆕 TIMELINE INTERACTIVE -->
 					{:else if componentType === 'timeline-interactive'}
 						<TimelineInteractive
@@ -1552,6 +1657,47 @@
 								props.activationPosition}
 							exitLine={props.exitLine ?? props.exitRatio ?? props.exitPoint ?? props.exitPosition}
 						/>
+
+						<!-- 🚨 Treemap Botão de Emergência -->
+					{:else if componentType === 'emergency-treemap'}
+						<div class="chart-shell" style={buildChartWrapperStyle(props)}>
+							<EmergencyTreemap
+								minHeight={props.minHeight ?? 320}
+								maxHeight={props.maxHeight ?? 540}
+								paddingInner={props.paddingInner ?? 12}
+							/>
+						</div>
+
+						<!-- 🌡️ Desafio 2050: Barras Horizontais -->
+					{:else if componentType === 'challenge-bar'}
+						<div class="chart-shell" style={buildChartWrapperStyle(props)}>
+							<ChallengeBarChart
+								minHeight={props.minHeight ?? 260}
+								barPadding={props.barPadding ?? 12}
+								barInnerPadding={props.barInnerPadding ?? 0.18}
+							/>
+						</div>
+
+						<!-- ⏳ Ainda há tempo? Bolhas -->
+					{:else if componentType === 'still-time-bubble'}
+						<div class="chart-shell" style={buildChartWrapperStyle(props)}>
+							<StillTimeBubbleChart
+								minHeight={props.minHeight ?? 360}
+								bubblePadding={props.bubblePadding ?? 12}
+								margin={props.margin}
+							/>
+						</div>
+
+						<!-- 📊 Histograma de otimismo -->
+					{:else if componentType === 'optimism-histogram'}
+						<div class="chart-shell" style={buildChartWrapperStyle(props)}>
+							<OptimismHistogram
+								minHeight={props.minHeight ?? 360}
+								margin={props.margin}
+								data={props.data}
+								palette={props.palette}
+							/>
+						</div>
 
 						<!-- Anchor Point -->
 					{:else if componentType === 'anchor'}
@@ -1752,6 +1898,36 @@
 				--section-content-justify-content-mobile,
 				var(--section-content-justify-content, flex-start)
 			);
+		}
+	}
+
+	.chart-shell {
+		--chart-width-mobile: 100%;
+		--chart-width-tablet: var(--chart-width-desktop, min(75vw, 1200px));
+		--chart-width-desktop: min(75vw, 1200px);
+		--chart-width-large: min(60vw, 1200px);
+		--chart-max-width: 1200px;
+		width: min(100%, var(--chart-width-mobile));
+		max-width: var(--chart-max-width);
+		margin: 0 auto;
+		padding-inline: var(--chart-padding-inline, 0);
+	}
+
+	@media (min-width: 640px) {
+		.chart-shell {
+			width: min(100%, var(--chart-width-tablet, var(--chart-width-desktop)));
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.chart-shell {
+			width: min(100%, var(--chart-width-desktop));
+		}
+	}
+
+	@media (min-width: 1440px) {
+		.chart-shell {
+			width: min(100%, var(--chart-width-large, var(--chart-width-desktop)));
 		}
 	}
 

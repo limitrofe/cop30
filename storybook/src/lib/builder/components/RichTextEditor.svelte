@@ -439,8 +439,8 @@
 		contenteditable
 		role="textbox"
 		aria-multiline="true"
-	aria-label={ariaLabelledby ? undefined : placeholder}
-	aria-labelledby={ariaLabelledby}
+		aria-label={ariaLabelledby ? undefined : placeholder}
+		aria-labelledby={ariaLabelledby}
 		bind:this={editorEl}
 		data-placeholder={placeholder}
 		style={`min-height: calc(${sanitizedRows} * 1.4rem);`}

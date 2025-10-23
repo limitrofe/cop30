@@ -13,7 +13,7 @@
 	export let defaultStickyTopDesktop = 'min( 0px)';
 	export let defaultStickyTopMobile = '12vh';
 	export let progress = null;
-export let slideFromBottom = false;
+	export let slideFromBottom = false;
 	export let travelDistance = 'auto';
 
 	let stepContentElement;

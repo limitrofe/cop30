@@ -1,11 +1,18 @@
 <script>
 	import StoryRenderer from '$lib/components/StoryRenderer.svelte';
 	import { buildTypographyCSS } from '$lib/builder/utils.js';
+	import ParticipantSlider from '$lib/components/story/ParticipantSlider.svelte';
+	import ParticipantProfile from '$lib/components/story/ParticipantProfile.svelte';
+	import { onDestroy } from 'svelte';
+	import { participantActions } from '$lib/stores/participantStore.js';
 
 	export let data;
 
 	let currentStory = data.story;
 	let loading = !currentStory;
+	$: participants = data?.participants ?? [];
+	$: participantActions.setParticipants(participants);
+	let showParticipantProfile = false;
 
 	$: appearance = currentStory?.appearance || {};
 	$: share = currentStory?.share || {};
@@ -29,6 +36,10 @@
 		currentStory = data.story;
 		loading = false;
 	}
+
+	onDestroy(() => {
+		participantActions.reset();
+	});
 </script>
 
 <svelte:head>
@@ -93,10 +104,31 @@
 {:else if currentStory}
 	<div
 		class="story-page"
+		class:has-fixed-slider={participants.length > 0}
 		data-theme={appearance.colorScheme || 'default'}
 		style={`--bg-desktop:${backgroundDesktop}; --bg-mobile:${backgroundMobile}; --page-padding-desktop:${paddingDesktop}; --page-padding-mobile:${paddingMobile}; --surface-color:${surfaceColor}; --accent-color:${accentColor}; color:${textColor};`}
 	>
+		{#if participants.length}
+			<section class="participants-hub" data-slider-mode="fixed">
+				<ParticipantSlider
+					mode="fixed"
+					position="bottom"
+					maxWidth={1280}
+					background="rgba(8, 12, 24, 0.92)"
+					blur={true}
+					showActiveCategory={true}
+				/>
+				{#if showParticipantProfile}
+					<div class="profile-wrapper">
+						<ParticipantProfile />
+					</div>
+				{/if}
+			</section>
+		{/if}
 		<StoryRenderer storyData={currentStory} />
+		{#if participants.length}
+			<div class="page-bottom-spacer" aria-hidden="true"></div>
+		{/if}
 	</div>
 {/if}
 
@@ -139,6 +171,38 @@
 		.story-page {
 			padding: var(--page-padding-mobile);
 			background: var(--bg-mobile, transparent);
+		}
+	}
+
+	.participants-hub {
+		margin: 0 auto clamp(2.5rem, 5vw, 4rem);
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1.75rem, 4vw, 3rem);
+	}
+
+	.profile-wrapper {
+		width: min(1160px, 94vw);
+		margin: 0 auto;
+	}
+
+	.page-bottom-spacer {
+		height: 180px;
+	}
+
+	@media (max-width: 640px) {
+		.participants-hub {
+			gap: 2rem;
+		}
+
+		.profile-wrapper {
+			width: 100%;
+			padding: 0 0.75rem;
+		}
+
+		.page-bottom-spacer {
+			height: 140px;
 		}
 	}
 </style>
