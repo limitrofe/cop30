@@ -1,15 +1,18 @@
 <script>
-	import { tick } from 'svelte';
+	import { tick, createEventDispatcher } from 'svelte';
 	import {
 		participantActions,
 		participantsList,
 		selectedParticipant,
 		selectedEmergency,
+		selectedChallenge,
 		selectedStillTime,
+		selectedOptimismScore,
 		activeGrouping as activeGroupingMode
 	} from '$lib/stores/participantStore.js';
 
-	const { selectById, selectNext, selectPrevious } = participantActions;
+	const { selectById } = participantActions;
+	const dispatch = createEventDispatcher();
 
 	export let mode = 'sticky'; // 'static' | 'sticky' | 'fixed'
 	export let position = 'bottom'; // 'top' | 'bottom'
@@ -17,26 +20,44 @@
 	export let background = 'rgba(10, 12, 23, 0.92)';
 	export let blur = true;
 	export let reserveSpace = true;
-	export let showActiveCategory = true;
+	export let collapsible = false;
 
 	const FIXED_HEIGHT = 156;
 
 	let scroller;
 	let lastGroup = null;
+let searchTerm = '';
+let locationFilter = '';
+let areaFilter = '';
+let locations = [];
+let areas = [];
+let names = [];
 
-	function normalizeGroup(value) {
-		if (value === undefined || value === null) return null;
-		const trimmed = String(value).trim();
-		return trimmed.length ? trimmed : null;
+function normalizeGroup(value) {
+	if (value === undefined || value === null) return null;
+	const normalized = String(value)
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.toLowerCase()
+		.trim();
+	return normalized.length ? normalized : null;
+}
+
+	function normalizeScore(value) {
+		const numeric = Number(value);
+		return Number.isFinite(numeric) ? numeric : null;
 	}
 
 	function getParticipantGroup(participant, field = 'emergencyFocus') {
+		if (field === 'optimismScore') {
+			return normalizeScore(participant?.optimismScore);
+		}
 		return normalizeGroup(participant?.[field]);
 	}
 
 	function reorderParticipants(list = [], group, field = 'emergencyFocus') {
 		const normalizedGroup = normalizeGroup(group);
-		if (!normalizedGroup) return list;
+		if (normalizedGroup === null) return list;
 
 		const matches = [];
 		const others = [];
@@ -53,38 +74,196 @@
 		return [...matches, ...others];
 	}
 
+	function reorderByOptimism(list = [], score) {
+		const normalizedScore = normalizeScore(score);
+		if (!Number.isFinite(normalizedScore)) return list;
+
+		const matches = [];
+		const others = [];
+
+		for (const participant of list) {
+			const participantScore = normalizeScore(participant?.optimismScore);
+			if (participantScore === normalizedScore) {
+				matches.push(participant);
+			} else {
+				others.push(participant);
+			}
+		}
+
+		return [...matches, ...others];
+	}
+
+	function isSameGroup(participant, value, field) {
+		if (field === 'optimismScore') {
+			const participantScore = normalizeScore(participant?.optimismScore);
+			const normalizedValue = normalizeScore(value);
+			return (
+				participantScore !== null &&
+				normalizedValue !== null &&
+				participantScore === normalizedValue
+			);
+		}
+		return normalizeGroup(participant?.[field]) === normalizeGroup(value);
+	}
+
+	function normalizeText(value) {
+		return String(value || '')
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.toLowerCase()
+			.trim();
+	}
+
+function buildDistinctOptions(list = [], field) {
+	const map = new Map();
+	for (const participant of list) {
+		const raw = participant?.[field];
+		if (raw === undefined || raw === null) continue;
+		const normalized = normalizeGroup(raw);
+		if (!normalized || map.has(normalized)) continue;
+		map.set(normalized, String(raw).trim());
+	}
+	return Array.from(map.values()).sort((a, b) => a.localeCompare(b));
+}
+
+function buildDistinctNames(list = []) {
+	const items = [];
+	const seen = new Set();
+	for (const participant of list) {
+		if (!participant?.name) continue;
+		const trimmed = participant.name.trim();
+		if (!trimmed) continue;
+		const key = normalizeText(trimmed);
+		if (seen.has(key)) continue;
+		seen.add(key);
+		items.push(trimmed);
+	}
+	return items.sort((a, b) => a.localeCompare(b));
+}
+
+function applyFilters(list = [], search = '', location = '', area = '') {
+	if (!list.length) return list;
+	const searchNormalized = normalizeText(search);
+	const locationNormalized = normalizeGroup(location);
+	const areaNormalized = normalizeGroup(area);
+
+	return list.filter((participant) => {
+		if (searchNormalized) {
+			const nameMatch = normalizeText(participant?.name).includes(searchNormalized);
+			if (!nameMatch) return false;
+		}
+		if (locationNormalized) {
+			if (normalizeGroup(participant?.location) !== locationNormalized) {
+				return false;
+			}
+		}
+		if (areaNormalized) {
+			if (normalizeGroup(participant?.area) !== areaNormalized) {
+				return false;
+			}
+		}
+		return true;
+	});
+}
+
 	$: groupingMode = $activeGroupingMode;
 	$: activeEmergency = normalizeGroup($selectedEmergency);
+	$: activeChallenge = normalizeGroup($selectedChallenge);
 	$: activeStillTime = normalizeGroup($selectedStillTime);
-	$: currentGrouping =
-		groupingMode === 'stillTime' && activeStillTime
-			? { field: 'stillTime', value: activeStillTime }
-			: activeEmergency
-				? { field: 'emergencyFocus', value: activeEmergency }
-				: null;
-	$: roster = reorderParticipants(
-		$participantsList || [],
-		currentGrouping?.value,
-		currentGrouping?.field
-	);
+	$: activeOptimism = normalizeScore($selectedOptimismScore);
+	$: currentGrouping = (() => {
+		switch (groupingMode) {
+			case 'stillTime':
+				return activeStillTime
+					? { field: 'stillTime', value: activeStillTime, type: 'stillTime' }
+					: null;
+			case 'challenge':
+				return activeChallenge
+					? { field: 'challenge2050', value: activeChallenge, type: 'challenge' }
+					: null;
+			case 'optimism':
+				return activeOptimism !== null
+					? { field: 'optimismScore', value: activeOptimism, type: 'optimism' }
+					: null;
+			case 'participant-focus':
+				return null;
+			case 'emergency':
+				return activeEmergency
+					? { field: 'emergencyFocus', value: activeEmergency, type: 'emergency' }
+					: null;
+			default:
+				return activeEmergency
+					? { field: 'emergencyFocus', value: activeEmergency, type: 'emergency' }
+					: null;
+		}
+	})();
+	$: allParticipants = $participantsList || [];
+	$: locations = buildDistinctOptions(allParticipants, 'location');
+	$: areas = buildDistinctOptions(allParticipants, 'area');
+	$: names = buildDistinctNames(allParticipants);
+	$: {
+		if (locationFilter) {
+			const normalized = normalizeGroup(locationFilter);
+			const match = locations.find((item) => normalizeGroup(item) === normalized);
+			if (!match) {
+				locationFilter = locationFilter.trim();
+			} else if (match !== locationFilter) {
+				locationFilter = match;
+			}
+		}
+	}
+	$: {
+		if (areaFilter) {
+			const normalized = normalizeGroup(areaFilter);
+			const match = areas.find((item) => normalizeGroup(item) === normalized);
+			if (!match) {
+				areaFilter = areaFilter.trim();
+			} else if (match !== areaFilter) {
+				areaFilter = match;
+			}
+		}
+	}
+
+	$: filteredParticipants = applyFilters(allParticipants, searchTerm, locationFilter, areaFilter);
+	$: roster =
+		currentGrouping?.type === 'optimism'
+			? reorderByOptimism(filteredParticipants || [], currentGrouping?.value)
+			: reorderParticipants(
+					filteredParticipants || [],
+					currentGrouping?.value,
+					currentGrouping?.field
+				);
 	$: activeId = $selectedParticipant?.id || null;
-	$: groupValue = currentGrouping?.value || null;
+	$: groupValue = currentGrouping ? currentGrouping.value : null;
 	$: groupField = currentGrouping?.field || 'emergencyFocus';
-	$: activeMetaLabel =
-		currentGrouping?.field === 'stillTime' ? 'Ainda há tempo:' : 'Botão de emergência:';
-	$: activeMetaValue =
-		currentGrouping?.field === 'stillTime'
-			? groupValue || ''
-			: groupValue || $selectedParticipant?.emergencyFocus || '';
+	$: hasGroup =
+		currentGrouping?.type === 'optimism'
+			? Number.isFinite(currentGrouping?.value)
+			: Boolean(currentGrouping?.value);
 	$: shellStyle = `--slider-max-width:${maxWidth}px; --slider-bg:${background}; --slider-fixed-height:${FIXED_HEIGHT}px;`;
-	$: if (scroller && groupValue !== lastGroup) {
-		lastGroup = groupValue;
+	$: if (scroller && currentGrouping?.value !== lastGroup) {
+		lastGroup = currentGrouping?.value;
 		scroller.scrollTo({ left: 0, behavior: 'auto' });
+	}
+	$: {
+		if (
+			filteredParticipants.length &&
+			activeId &&
+			!filteredParticipants.some((participant) => participant.id === activeId)
+		) {
+			handleSelect(filteredParticipants[0]?.id);
+		}
 	}
 
 	function handleSelect(id) {
 		if (!id) return;
 		selectById(id);
+	}
+
+	function handleMore(participant) {
+		if (!participant?.id) return;
+		handleSelect(participant.id);
+		dispatch('openProfile', { id: participant.id });
 	}
 
 	function getInitials(name) {
@@ -124,71 +303,156 @@
 		}
 	}
 
-	$: ensureActiveVisible();
+	$: {
+		if (groupingMode === 'participant-focus') {
+			ensureActiveVisible();
+		}
+	}
+
+	function scrollSlider(direction = 1) {
+		if (!scroller) return;
+		const delta = Math.max(scroller.clientWidth * 0.6, 240);
+		scroller.scrollBy({ left: delta * direction, behavior: 'smooth' });
+	}
 
 	function handleNext() {
-		selectNext();
+		scrollSlider(1);
 	}
 
 	function handlePrevious() {
-		selectPrevious();
+		scrollSlider(-1);
 	}
 </script>
 
-{#if roster.length}
-	<div
-		class={`slider-shell slider-shell--${mode} slider-shell--${position} ${blur ? 'slider-shell--blur' : ''}`}
-		class:slider-shell--group-active={Boolean(groupValue)}
-		style={shellStyle}
-	>
+	{#if allParticipants.length}
+		<div
+			class={`slider-shell slider-shell--${mode} slider-shell--${position} ${blur ? 'slider-shell--blur' : ''}`}
+			class:slider-shell--group-active={hasGroup}
+			class:slider-shell--participant-focus={groupingMode === 'participant-focus'}
+			style={shellStyle}
+		>
 		<div class="slider-content">
-			<div class="stories-slider">
-				<button class="nav prev" aria-label="Participante anterior" on:click={handlePrevious}>
-					<span aria-hidden="true">‹</span>
-				</button>
-
-				<div class="stories-list" bind:this={scroller}>
-					{#each roster as participant (participant.id)}
-						<button
-							class="story-item"
-							class:active={participant.id === activeId}
-							class:same-group={groupValue &&
-								getParticipantGroup(participant, groupField) === groupValue}
-							class:dimmed={groupValue &&
-								getParticipantGroup(participant, groupField) !== groupValue}
-							type="button"
-							data-participant-id={participant.id}
-							on:click={() => handleSelect(participant.id)}
-						>
-							<span class="ring">
-								{#if participant.photo}
-									<img src={participant.photo} alt={`Foto de ${participant.name}`} loading="lazy" />
-								{:else}
-									<span class="initials">{getInitials(participant.name)}</span>
-								{/if}
-							</span>
-							<span class="label">{getDisplayName(participant.name)}</span>
-						</button>
-					{/each}
-				</div>
-
-				<button class="nav next" aria-label="Próximo participante" on:click={handleNext}>
-					<span aria-hidden="true">›</span>
-				</button>
-			</div>
-
-			{#if showActiveCategory && activeMetaValue}
-				<div class="active-meta">
-					<span class="active-label">{activeMetaLabel}</span>
-					<span class="active-value">{activeMetaValue}</span>
+			{#if collapsible}
+				<div class="slider-actions">
+					<div class="filter-controls" role="group" aria-label="Filtrar participantes">
+						<label class="filter">
+							<span class="sr-only">Buscar por nome</span>
+							<input
+								type="search"
+								placeholder="Buscar por nome"
+								bind:value={searchTerm}
+								list="participant-names"
+								aria-label="Buscar por nome"
+							/>
+						</label>
+						<label class="filter">
+							<span class="sr-only">Filtrar por localização</span>
+							<input
+								type="text"
+								placeholder="Localização"
+								bind:value={locationFilter}
+								list="participant-locations"
+								aria-label="Filtrar por localização"
+							/>
+						</label>
+						<label class="filter">
+							<span class="sr-only">Filtrar por área de atuação</span>
+							<input
+								type="text"
+								placeholder="Área de atuação"
+								bind:value={areaFilter}
+								list="participant-areas"
+								aria-label="Filtrar por área de atuação"
+							/>
+						</label>
+					</div>
+					<button
+						type="button"
+						class="slider-collapse"
+						on:click={() => dispatch('collapse')}
+					>
+						Ocultar participantes
+					</button>
 				</div>
 			{/if}
+					{#if filteredParticipants.length}
+						<div class="stories-slider">
+							<button class="nav prev" aria-label="Participante anterior" on:click={handlePrevious}>
+								<span aria-hidden="true">‹</span>
+							</button>
+
+							<div class="stories-list" bind:this={scroller}>
+								{#each roster as participant (participant.id)}
+									<div
+										class="story-item"
+										class:active={participant.id === activeId}
+										class:same-group={hasGroup && isSameGroup(participant, groupValue, groupField)}
+										class:dimmed={hasGroup && !isSameGroup(participant, groupValue, groupField)}
+										data-participant-id={participant.id}
+									>
+										<button
+											class="story-trigger"
+											type="button"
+											on:click={() => handleSelect(participant.id)}
+										>
+											<span class="ring">
+												{#if participant.photo}
+													<img
+														src={participant.photo}
+														alt={`Foto de ${participant.name}`}
+														loading="lazy"
+													/>
+												{:else}
+													<span class="initials">{getInitials(participant.name)}</span>
+												{/if}
+											</span>
+											<span class="label">{getDisplayName(participant.name)}</span>
+										</button>
+										<button
+											class="more-button"
+											type="button"
+											on:click={() => handleMore(participant)}
+											aria-label={`Abrir perfil de ${getDisplayName(participant.name)}`}
+										>
+											<span aria-hidden="true">+</span>
+										</button>
+									</div>
+								{/each}
+							</div>
+
+							<button class="nav next" aria-label="Próximo participante" on:click={handleNext}>
+								<span aria-hidden="true">›</span>
+							</button>
+						</div>
+					{:else}
+						<div class="slider-empty">
+							<p>Nenhum participante encontrado. Ajuste os filtros.</p>
+						</div>
+					{/if}
+			</div>
 		</div>
-	</div>
-{/if}
+	{/if}
 
 {#if mode === 'fixed' && reserveSpace}
 	<div class="slider-spacer" style={`height:${FIXED_HEIGHT + 20}px`}></div>
+{/if}
+
+{#if collapsible}
+	<datalist id="participant-locations">
+		{#each locations as location}
+			<option value={location} />
+		{/each}
+	</datalist>
+	<datalist id="participant-areas">
+		{#each areas as item}
+			<option value={item} />
+		{/each}
+	</datalist>
+	<datalist id="participant-names">
+		{#each names as nameOption}
+			<option value={nameOption} />
+		{/each}
+	</datalist>
 {/if}
 
 <style>
@@ -215,6 +479,135 @@
 		gap: 0.65rem;
 	}
 
+	.slider-actions {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.6rem, 1.5vw, 1.2rem);
+		flex-wrap: wrap;
+		padding-bottom: 0.25rem;
+	}
+
+	.filter-controls {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.5rem, 1.5vw, 1rem);
+		flex-wrap: wrap;
+		flex: 1;
+	}
+
+	.filter {
+		position: relative;
+		width: clamp(180px, 22vw, 260px);
+	}
+
+	.filter input {
+		width: 100%;
+		padding: 0.55rem 0.9rem;
+		border-radius: 999px;
+		background: rgba(15, 23, 42, 0.35);
+		border: 1px solid rgba(148, 163, 184, 0.28);
+		color: inherit;
+		font-size: 0.9rem;
+		transition:
+			border-color 160ms ease,
+			background 160ms ease,
+			box-shadow 160ms ease;
+	}
+
+	.filter input::placeholder {
+		color: rgba(148, 163, 184, 0.75);
+	}
+
+	.filter input:focus-visible {
+		outline: none;
+		border-color: rgba(148, 163, 184, 0.5);
+		background: rgba(15, 23, 42, 0.55);
+		box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.25);
+	}
+
+	.slider-collapse {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.55rem 1rem;
+		border-radius: 999px;
+		background: rgba(15, 23, 42, 0.45);
+		border: 1px solid rgba(255, 255, 255, 0.14);
+		color: inherit;
+		font-size: 0.95rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			transform 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.slider-collapse:hover {
+		background: rgba(15, 23, 42, 0.6);
+		border-color: rgba(255, 255, 255, 0.3);
+		transform: translateY(-1px);
+	}
+
+	.slider-collapse:active {
+		transform: translateY(0);
+	}
+
+	.slider-collapse:focus-visible {
+		outline: 2px solid rgba(248, 250, 252, 0.85);
+		outline-offset: 2px;
+	}
+
+	.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	.slider-empty {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 120px;
+		border-radius: 20px;
+		background: rgba(15, 23, 42, 0.35);
+		border: 1px dashed rgba(148, 163, 184, 0.35);
+		padding: 2rem;
+		text-align: center;
+		color: rgba(248, 250, 252, 0.75);
+	}
+
+	.slider-empty p {
+		margin: 0;
+		font-size: 0.95rem;
+	}
+
+	@media (max-width: 768px) {
+		.slider-actions {
+			justify-content: center;
+		}
+
+		.filter-controls {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.filter {
+			width: min(220px, 100%);
+		}
+
+		.slider-collapse {
+			width: min(240px, 100%);
+		}
+	}
+
+
 	.slider-shell--blur {
 		backdrop-filter: blur(14px);
 	}
@@ -239,10 +632,13 @@
 		transform: none;
 		width: 100%;
 		z-index: 1200;
+		margin: 0;
+		border-radius: 0;
 	}
 
 	.slider-shell--fixed .slider-content {
-		width: min(var(--slider-max-width, 1280px), calc(100% - clamp(2rem, 5vw, 5rem)));
+		width: 100%;
+		max-width: none;
 	}
 
 	.slider-shell--fixed.slider-shell--top {
@@ -250,7 +646,7 @@
 	}
 
 	.slider-shell--fixed.slider-shell--bottom {
-		bottom: clamp(0.75rem, 3vw, 1.5rem);
+		bottom: 0;
 	}
 
 	.stories-slider {
@@ -306,27 +702,40 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: 0.5rem;
-		padding: 0.25rem;
+		gap: clamp(0.15rem, 0.6vw, 0.35rem);
+		padding: 0;
+		scroll-snap-align: center;
+	}
+
+	.story-trigger {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: clamp(0.35rem, 1vw, 0.5rem);
+		padding: 0;
 		background: transparent;
 		border: none;
 		color: inherit;
 		cursor: pointer;
-		scroll-snap-align: center;
 		transition:
 			transform 180ms ease,
 			opacity 180ms ease;
 	}
 
-	.story-item:hover {
+	.story-trigger:hover {
 		transform: translateY(-4px);
 	}
 
-	.slider-shell--group-active .story-item.same-group {
+	.story-trigger:focus-visible {
+		outline: 2px solid rgba(148, 163, 184, 0.6);
+		outline-offset: 3px;
+	}
+
+	.slider-shell--group-active .story-item.same-group .story-trigger {
 		opacity: 0.7;
 	}
 
-	.slider-shell--group-active .story-item.same-group .label {
+	.slider-shell--group-active .story-item.same-group .story-trigger .label {
 		color: rgba(248, 250, 252, 0.85);
 	}
 
@@ -335,21 +744,58 @@
 		padding: 3px;
 	}
 
-	.slider-shell--group-active .story-item.dimmed {
+	.slider-shell--group-active .story-item.dimmed .story-trigger {
 		opacity: 0.2;
-		filter: grayscale(1);
 	}
 
 	.slider-shell--group-active .story-item.dimmed .label {
 		color: rgba(248, 250, 252, 0.35);
 	}
 
-	.slider-shell--group-active .story-item.dimmed .ring {
+	.slider-shell--group-active .story-item.dimmed {
 		filter: grayscale(1);
+	}
+
+	.slider-shell--group-active .story-item.dimmed .ring,
+	.slider-shell--group-active .story-item.dimmed img,
+	.slider-shell--group-active .story-item.dimmed .initials {
+		filter: grayscale(1);
+	}
+
+	.slider-shell--group-active .story-item.dimmed .more-button {
+		opacity: 0.35;
 	}
 
 	.slider-shell--group-active .story-item.active .ring {
 		box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+	}
+
+	.slider-shell--participant-focus .story-item.active .ring {
+		background: rgba(197, 83, 69, 0.2);
+		box-shadow: 0 0 0 4px rgb(197, 83, 69);
+	}
+
+	.slider-shell--participant-focus .story-item.active img,
+	.slider-shell--participant-focus .story-item.active .initials {
+		border-color: rgb(197, 83, 69);
+		filter: grayscale(0);
+	}
+
+	.slider-shell--participant-focus .story-item:not(.active) .ring {
+		background: rgba(148, 163, 184, 0.08);
+		box-shadow: none;
+	}
+
+	.slider-shell--participant-focus .story-item:not(.active) img,
+	.slider-shell--participant-focus .story-item:not(.active) .initials {
+		border-color: transparent;
+		filter: grayscale(1);
+	}
+
+	.slider-shell--participant-focus .story-item:not(.active) .more-button {
+		background: rgba(15, 23, 42, 0.6);
+		border-color: rgba(148, 163, 184, 0.28);
+		color: rgba(148, 163, 184, 0.65);
 	}
 
 	.ring {
@@ -375,6 +821,9 @@
 		object-fit: cover;
 		background: rgba(15, 23, 42, 0.9);
 		border: 3px solid rgba(15, 23, 42, 0.9);
+		transition:
+			filter 180ms ease,
+			border-color 180ms ease;
 	}
 
 	.initials {
@@ -393,23 +842,40 @@
 		color: rgba(248, 250, 252, 0.75);
 	}
 
-	.story-item.active .label {
+	.story-item.active .story-trigger .label {
 		color: #f8fafc;
 		font-weight: 600;
 	}
 
-	.active-meta {
-		display: flex;
+	.more-button {
+		display: inline-flex;
+		align-items: center;
 		justify-content: center;
-		align-items: baseline;
-		gap: 0.35rem;
-		font-size: 0.9rem;
-		color: rgba(226, 232, 240, 0.8);
+		width: 30px;
+		height: 30px;
+		margin-top: clamp(0.35rem, 0.8vw, 0.55rem);
+		border-radius: 50%;
+		border: 1px solid rgba(148, 163, 184, 0.45);
+		background: rgba(15, 23, 42, 0.75);
+		color: rgba(248, 250, 252, 0.92);
+		font-size: 1.05rem;
+		line-height: 1;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			transform 160ms ease,
+			border-color 160ms ease;
 	}
 
-	.active-meta .active-value {
-		font-weight: 600;
-		color: #f8fafc;
+	.more-button:hover {
+		background: rgba(197, 83, 69, 0.28);
+		border-color: rgba(197, 83, 69, 0.65);
+		transform: translateY(-1px);
+	}
+
+	.more-button:focus-visible {
+		outline: 2px solid rgba(197, 83, 69, 0.8);
+		outline-offset: 2px;
 	}
 
 	@media (max-width: 768px) {
@@ -426,8 +892,26 @@
 			justify-content: flex-start;
 		}
 
+		.slider-shell {
+			border-radius: 0;
+			margin: 0;
+		}
+
 		.slider-shell--fixed {
-			width: calc(100% - 1.5rem);
+			width: 100%;
+			left: 0;
+			right: 0;
+		}
+
+		.slider-shell--fixed.slider-shell--bottom {
+			bottom: 0;
+		}
+
+		.more-button {
+			width: 34px;
+			height: 34px;
+			margin-top: 0.65rem;
+			font-size: 1.2rem;
 		}
 	}
 </style>

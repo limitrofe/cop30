@@ -58,7 +58,8 @@ export function buildOptimismHistogram(participants = [], min = 0, max = 10) {
 
 	for (const participant of participants) {
 		const raw = participant?.optimismScore;
-		const numeric = Number(raw);
+		if (raw === null || raw === undefined || raw === '') continue;
+		const numeric = typeof raw === 'number' ? raw : Number(raw);
 		if (!Number.isFinite(numeric)) continue;
 		if (numeric < min || numeric > max) continue;
 		const bucket = bins[numeric - min];

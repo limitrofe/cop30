@@ -5,6 +5,7 @@ const selectedParticipantIdStore = writable(null);
 const selectedEmergencyStore = writable(null);
 const selectedChallengeStore = writable(null);
 const selectedStillTimeStore = writable(null);
+const selectedOptimismStore = writable(null);
 const activeGroupingStore = writable('participant');
 
 function normalizeValue(value) {
@@ -13,12 +14,21 @@ function normalizeValue(value) {
 	return trimmed.length ? trimmed : null;
 }
 
+function normalizeNumericScore(value) {
+	if (value === undefined || value === null || value === '') return null;
+	const numeric = typeof value === 'number' ? value : Number(value);
+	return Number.isFinite(numeric) ? numeric : null;
+}
+
 function normalizeParticipants(list = []) {
-	return list.map((participant, index) => ({
-		...participant,
-		id: participant.id || `participant-${index}`,
-		index
-	}));
+	return list.map((participant, index) => {
+		return {
+			...participant,
+			id: participant.id || `participant-${index}`,
+			index,
+			optimismScore: normalizeNumericScore(participant.optimismScore)
+		};
+	});
 }
 
 function filterByField(participants, value, fieldName) {
@@ -29,12 +39,21 @@ function filterByField(participants, value, fieldName) {
 	);
 }
 
+function resetGroupingState() {
+	selectedEmergencyStore.set(null);
+	selectedChallengeStore.set(null);
+	selectedStillTimeStore.set(null);
+	selectedOptimismStore.set(null);
+	activeGroupingStore.set('participant');
+}
+
 function ensureConsistency(participants) {
 	if (!participants.length) {
 		selectedParticipantIdStore.set(null);
 		selectedEmergencyStore.set(null);
 		selectedChallengeStore.set(null);
 		selectedStillTimeStore.set(null);
+		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
 		return;
 	}
@@ -74,8 +93,27 @@ function ensureConsistency(participants) {
 		selectedStillTimeStore.set(null);
 	}
 
+	const currentOptimism = get(selectedOptimismStore);
+	if (
+		Number.isFinite(currentOptimism) &&
+		!participants.some(
+			(participant) => normalizeNumericScore(participant?.optimismScore) === currentOptimism
+		)
+	) {
+		selectedOptimismStore.set(null);
+	}
+
 	const currentGrouping = get(activeGroupingStore);
-	if (!['participant', 'emergency', 'challenge', 'stillTime'].includes(currentGrouping)) {
+	if (
+		![
+			'participant',
+			'participant-focus',
+			'emergency',
+			'challenge',
+			'stillTime',
+			'optimism'
+		].includes(currentGrouping)
+	) {
 		activeGroupingStore.set('participant');
 	}
 }
@@ -103,6 +141,9 @@ export const selectedChallenge = derived(selectedChallengeStore, ($value) =>
 export const selectedStillTime = derived(selectedStillTimeStore, ($value) =>
 	normalizeValue($value)
 );
+export const selectedOptimismScore = derived(selectedOptimismStore, ($value) =>
+	Number.isFinite($value) ? $value : null
+);
 export const activeGrouping = derived(activeGroupingStore, ($value) => $value ?? 'participant');
 
 export const participantActions = {
@@ -110,6 +151,7 @@ export const participantActions = {
 		const normalized = normalizeParticipants(list);
 		participantsStore.set(normalized);
 		ensureConsistency(normalized);
+		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
 	},
 	selectById(id) {
@@ -118,11 +160,20 @@ export const participantActions = {
 		const participant = participants.find((item) => item.id === id);
 		if (!participant) return;
 
+		const currentId = get(selectedParticipantIdStore);
+		const currentGrouping = get(activeGroupingStore);
+
+		if (currentId === participant.id && currentGrouping === 'participant-focus') {
+			resetGroupingState();
+			return;
+		}
+
 		selectedParticipantIdStore.set(participant.id);
-		selectedEmergencyStore.set(normalizeValue(participant.emergencyFocus));
-		selectedChallengeStore.set(normalizeValue(participant.challenge2050));
-		selectedStillTimeStore.set(normalizeValue(participant.stillTime));
-		activeGroupingStore.set('participant');
+		selectedEmergencyStore.set(null);
+		selectedChallengeStore.set(null);
+		selectedStillTimeStore.set(null);
+		selectedOptimismStore.set(normalizeNumericScore(participant.optimismScore));
+		activeGroupingStore.set('participant-focus');
 	},
 	selectEmergencyGroup(group) {
 		const normalizedGroup = normalizeValue(group);
@@ -142,54 +193,49 @@ export const participantActions = {
 
 		selectedEmergencyStore.set(normalizedGroup);
 
-		const currentId = get(selectedParticipantIdStore);
-		const hasCurrent = currentId && scoped.some((participant) => participant.id === currentId);
+	const nextParticipant = scoped[0];
 
-		const nextParticipant = hasCurrent
-			? participants.find((participant) => participant.id === currentId)
-			: scoped[0];
-
-		if (!hasCurrent) {
-			selectedParticipantIdStore.set(nextParticipant.id);
-		}
-
+	if (nextParticipant) {
+		selectedParticipantIdStore.set(nextParticipant.id);
 		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		activeGroupingStore.set('emergency');
+		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+	}
+	activeGroupingStore.set('emergency');
 	},
 	selectChallengeGroup(group) {
 		const normalizedGroup = normalizeValue(group);
 		if (!normalizedGroup) {
-			selectedChallengeStore.set(null);
-			activeGroupingStore.set('participant');
+			resetGroupingState();
+			return;
+		}
+
+		const currentGrouping = get(activeGroupingStore);
+		const currentSelected = normalizeValue(get(selectedChallengeStore));
+		if (currentGrouping === 'challenge' && currentSelected && currentSelected === normalizedGroup) {
+			resetGroupingState();
 			return;
 		}
 
 		const participants = get(participantsStore);
 		const scoped = filterByField(participants, normalizedGroup, 'challenge2050');
 		if (!scoped.length) {
-			selectedChallengeStore.set(null);
-			activeGroupingStore.set('participant');
+			resetGroupingState();
 			return;
 		}
 
 		selectedChallengeStore.set(normalizedGroup);
 
-		const currentId = get(selectedParticipantIdStore);
-		const hasCurrent = currentId && scoped.some((participant) => participant.id === currentId);
+	const nextParticipant = scoped[0];
 
-		const nextParticipant = hasCurrent
-			? participants.find((participant) => participant.id === currentId)
-			: scoped[0];
-
-		if (!hasCurrent) {
-			selectedParticipantIdStore.set(nextParticipant.id);
-			selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
-		}
-
+	if (nextParticipant) {
+		selectedParticipantIdStore.set(nextParticipant.id);
+		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
 		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		activeGroupingStore.set('challenge');
-	},
+		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+	}
+	activeGroupingStore.set('challenge');
+},
 	selectStillTimeGroup(group) {
 		const normalizedGroup = normalizeValue(group);
 		if (!normalizedGroup) {
@@ -206,32 +252,101 @@ export const participantActions = {
 			return;
 		}
 
-		const currentId = get(selectedParticipantIdStore);
-		const hasCurrent = currentId && scoped.some((participant) => participant.id === currentId);
+	const nextParticipant = scoped[0];
 
-		const nextParticipant = hasCurrent
-			? participants.find((participant) => participant.id === currentId)
-			: scoped[0];
-
-		if (!hasCurrent) {
-			selectedParticipantIdStore.set(nextParticipant.id);
-		}
+	if (nextParticipant) {
+		selectedParticipantIdStore.set(nextParticipant.id);
 		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
 		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		activeGroupingStore.set('stillTime');
+		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+	}
+	activeGroupingStore.set('stillTime');
+},
+	selectOptimismScore(score) {
+		const numericScore = normalizeNumericScore(score);
+		if (numericScore === null) {
+			selectedOptimismStore.set(null);
+			activeGroupingStore.set('participant');
+			return;
+		}
+
+		const currentSelected = get(selectedOptimismStore);
+		if (Number.isFinite(currentSelected) && currentSelected === numericScore) {
+			selectedOptimismStore.set(null);
+			activeGroupingStore.set('participant');
+			return;
+		}
+
+		const participants = get(participantsStore);
+		const scoped = participants.filter(
+			(participant) => normalizeNumericScore(participant?.optimismScore) === numericScore
+		);
+
+		if (!scoped.length) {
+			selectedOptimismStore.set(null);
+			activeGroupingStore.set('participant');
+			return;
+		}
+
+		selectedOptimismStore.set(numericScore);
+
+	const nextParticipant = scoped[0];
+
+	if (nextParticipant) {
+		selectedParticipantIdStore.set(nextParticipant.id);
+		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
+		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
+		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
+	}
+	activeGroupingStore.set('optimism');
 	},
 	selectNext() {
 		const participants = get(participantsStore);
 		if (!participants.length) return;
 
+		const grouping = get(activeGroupingStore);
 		const emergency = normalizeValue(get(selectedEmergencyStore));
+		const challenge = normalizeValue(get(selectedChallengeStore));
 		const stillTime = normalizeValue(get(selectedStillTimeStore));
-		const scoped = emergency
-			? filterByField(participants, emergency, 'emergencyFocus')
-			: stillTime
-				? filterByField(participants, stillTime, 'stillTime')
-				: participants;
+		const optimism = get(selectedOptimismStore);
+
+		let scoped;
+		switch (grouping) {
+			case 'stillTime':
+				scoped = stillTime ? filterByField(participants, stillTime, 'stillTime') : null;
+				break;
+			case 'challenge':
+				scoped = challenge ? filterByField(participants, challenge, 'challenge2050') : null;
+				break;
+			case 'optimism':
+				scoped = Number.isFinite(optimism)
+					? participants.filter(
+							(participant) => normalizeNumericScore(participant?.optimismScore) === optimism
+						)
+					: null;
+				break;
+			case 'emergency':
+			default:
+				scoped = emergency ? filterByField(participants, emergency, 'emergencyFocus') : null;
+				break;
+		}
+
+		if (!scoped || !scoped.length) {
+			if (emergency) {
+				scoped = filterByField(participants, emergency, 'emergencyFocus');
+			} else if (stillTime) {
+				scoped = filterByField(participants, stillTime, 'stillTime');
+			} else if (challenge) {
+				scoped = filterByField(participants, challenge, 'challenge2050');
+			} else if (Number.isFinite(optimism)) {
+				scoped = participants.filter(
+					(participant) => normalizeNumericScore(participant?.optimismScore) === optimism
+				);
+			} else {
+				scoped = participants;
+			}
+		}
 
 		if (!scoped.length) return;
 
@@ -244,18 +359,54 @@ export const participantActions = {
 		selectedEmergencyStore.set(normalizeValue(next.emergencyFocus));
 		selectedChallengeStore.set(normalizeValue(next.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(next.stillTime));
+		selectedOptimismStore.set(normalizeNumericScore(next.optimismScore));
 	},
 	selectPrevious() {
 		const participants = get(participantsStore);
 		if (!participants.length) return;
 
+		const grouping = get(activeGroupingStore);
 		const emergency = normalizeValue(get(selectedEmergencyStore));
+		const challenge = normalizeValue(get(selectedChallengeStore));
 		const stillTime = normalizeValue(get(selectedStillTimeStore));
-		const scoped = emergency
-			? filterByField(participants, emergency, 'emergencyFocus')
-			: stillTime
-				? filterByField(participants, stillTime, 'stillTime')
-				: participants;
+		const optimism = get(selectedOptimismStore);
+
+		let scoped;
+		switch (grouping) {
+			case 'stillTime':
+				scoped = stillTime ? filterByField(participants, stillTime, 'stillTime') : null;
+				break;
+			case 'challenge':
+				scoped = challenge ? filterByField(participants, challenge, 'challenge2050') : null;
+				break;
+			case 'optimism':
+				scoped = Number.isFinite(optimism)
+					? participants.filter(
+							(participant) => normalizeNumericScore(participant?.optimismScore) === optimism
+						)
+					: null;
+				break;
+			case 'emergency':
+			default:
+				scoped = emergency ? filterByField(participants, emergency, 'emergencyFocus') : null;
+				break;
+		}
+
+		if (!scoped || !scoped.length) {
+			if (emergency) {
+				scoped = filterByField(participants, emergency, 'emergencyFocus');
+			} else if (stillTime) {
+				scoped = filterByField(participants, stillTime, 'stillTime');
+			} else if (challenge) {
+				scoped = filterByField(participants, challenge, 'challenge2050');
+			} else if (Number.isFinite(optimism)) {
+				scoped = participants.filter(
+					(participant) => normalizeNumericScore(participant?.optimismScore) === optimism
+				);
+			} else {
+				scoped = participants;
+			}
+		}
 
 		if (!scoped.length) return;
 
@@ -268,6 +419,7 @@ export const participantActions = {
 		selectedEmergencyStore.set(normalizeValue(previous.emergencyFocus));
 		selectedChallengeStore.set(normalizeValue(previous.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(previous.stillTime));
+		selectedOptimismStore.set(normalizeNumericScore(previous.optimismScore));
 	},
 	reset() {
 		participantsStore.set([]);
@@ -275,6 +427,7 @@ export const participantActions = {
 		selectedEmergencyStore.set(null);
 		selectedChallengeStore.set(null);
 		selectedStillTimeStore.set(null);
+		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
 	}
 };

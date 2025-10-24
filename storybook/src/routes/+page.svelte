@@ -2,8 +2,8 @@
 	import StoryRenderer from '$lib/components/StoryRenderer.svelte';
 	import { buildTypographyCSS } from '$lib/builder/utils.js';
 	import ParticipantSlider from '$lib/components/story/ParticipantSlider.svelte';
-	import ParticipantProfile from '$lib/components/story/ParticipantProfile.svelte';
-	import { onDestroy } from 'svelte';
+	import ParticipantModal from '$lib/components/story/ParticipantModal.svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { participantActions } from '$lib/stores/participantStore.js';
 
 	export let data;
@@ -12,7 +12,17 @@
 	let loading = !currentStory;
 	$: participants = data?.participants ?? [];
 	$: participantActions.setParticipants(participants);
-	let showParticipantProfile = false;
+let showParticipantProfile = false;
+let sliderVisible = false;
+let sliderCollapsed = false;
+let sliderStopActive = false;
+let sliderStopElement = null;
+	$: if (!participants?.length && showParticipantProfile) {
+		showParticipantProfile = false;
+	}
+	$: if (!participants?.length && sliderCollapsed) {
+		sliderCollapsed = false;
+	}
 
 	$: appearance = currentStory?.appearance || {};
 	$: share = currentStory?.share || {};
@@ -35,11 +45,77 @@
 	$: if (data?.story && data.story !== currentStory) {
 		currentStory = data.story;
 		loading = false;
+		showParticipantProfile = false;
+		sliderCollapsed = false;
+		sliderStopActive = false;
+		sliderStopElement = null;
+		syncSliderVisibility();
 	}
 
+	function syncSliderVisibility() {
+		if (typeof window === 'undefined') {
+			sliderVisible = false;
+			sliderStopActive = false;
+			return;
+		}
+		const header = document.querySelector('.story-header');
+		if (!header) {
+			sliderVisible = window.scrollY > 0;
+		} else {
+			const headerRect = header.getBoundingClientRect();
+			sliderVisible = headerRect.top <= -8;
+		}
+
+		sliderStopElement = document.querySelector('[data-slider-stop="true"]');
+
+		if (sliderStopElement) {
+			const rect = sliderStopElement.getBoundingClientRect();
+			const viewportBottom = window.innerHeight;
+			const sliderBuffer = 180;
+			sliderStopActive = rect.top <= viewportBottom - sliderBuffer;
+		} else {
+			sliderStopActive = false;
+		}
+	}
+
+	function handleScroll() {
+		syncSliderVisibility();
+	}
+
+	onMount(() => {
+		if (typeof window === 'undefined') return;
+		syncSliderVisibility();
+		window.addEventListener('scroll', handleScroll, { passive: true });
+	});
+
 	onDestroy(() => {
+		if (typeof window !== 'undefined') {
+			window.removeEventListener('scroll', handleScroll);
+		}
 		participantActions.reset();
 	});
+
+	function handleProfileOpen(event) {
+		const participantId = event?.detail?.id;
+		if (participantId) {
+			participantActions.selectById(participantId);
+		}
+		showParticipantProfile = true;
+	}
+
+	function handleProfileClose() {
+		showParticipantProfile = false;
+		syncSliderVisibility();
+	}
+
+	function handleSliderCollapse() {
+		sliderCollapsed = true;
+	}
+
+	function handleSliderExpand() {
+		sliderCollapsed = false;
+		syncSliderVisibility();
+	}
 </script>
 
 <svelte:head>
@@ -108,29 +184,45 @@
 		data-theme={appearance.colorScheme || 'default'}
 		style={`--bg-desktop:${backgroundDesktop}; --bg-mobile:${backgroundMobile}; --page-padding-desktop:${paddingDesktop}; --page-padding-mobile:${paddingMobile}; --surface-color:${surfaceColor}; --accent-color:${accentColor}; color:${textColor};`}
 	>
-		{#if participants.length}
+			<StoryRenderer storyData={currentStory} />
+			{#if participants.length}
+				<ParticipantModal open={showParticipantProfile} on:close={handleProfileClose} />
+			{/if}
+		{#if participants.length && sliderVisible && !sliderCollapsed && !sliderStopActive}
 			<section class="participants-hub" data-slider-mode="fixed">
 				<ParticipantSlider
 					mode="fixed"
 					position="bottom"
-					maxWidth={1280}
-					background="rgba(8, 12, 24, 0.92)"
-					blur={true}
-					showActiveCategory={true}
-				/>
-				{#if showParticipantProfile}
-					<div class="profile-wrapper">
-						<ParticipantProfile />
-					</div>
-				{/if}
-			</section>
+						maxWidth={1280}
+						background="rgba(8, 12, 24, 0.92)"
+						blur={true}
+						reserveSpace={false}
+						collapsible={true}
+						on:openProfile={handleProfileOpen}
+						on:collapse={handleSliderCollapse}
+					/>
+				</section>
+			{/if}
+		{#if participants.length && sliderCollapsed && sliderVisible && !sliderStopActive}
+			<button
+				type="button"
+				class="participants-toggle"
+				on:click={handleSliderExpand}
+				aria-label="Reabrir lista de participantes"
+				>
+					<span class="participants-toggle__icon" aria-hidden="true">+</span>
+					<span>Mostrar participantes</span>
+				</button>
+			{/if}
+			{#if participants.length}
+			<div
+				class="page-bottom-spacer"
+				class:page-bottom-spacer--active={sliderVisible && !sliderCollapsed && !sliderStopActive}
+				aria-hidden="true"
+			></div>
 		{/if}
-		<StoryRenderer storyData={currentStory} />
-		{#if participants.length}
-			<div class="page-bottom-spacer" aria-hidden="true"></div>
-		{/if}
-	</div>
-{/if}
+		</div>
+	{/if}
 
 <style>
 	.loading {
@@ -182,27 +274,77 @@
 		gap: clamp(1.75rem, 4vw, 3rem);
 	}
 
-	.profile-wrapper {
-		width: min(1160px, 94vw);
-		margin: 0 auto;
+	.page-bottom-spacer {
+		height: 0;
+		transition: height 0.2s ease;
 	}
 
-	.page-bottom-spacer {
+	.page-bottom-spacer--active {
 		height: 180px;
+	}
+
+	.participants-toggle {
+		position: fixed;
+		right: clamp(1rem, 3vw, 2.5rem);
+		bottom: calc(clamp(1rem, 3vw, 2.5rem) + env(safe-area-inset-bottom, 0px));
+		z-index: 1100;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.7rem 1.2rem;
+		border-radius: 999px;
+		background: rgba(10, 12, 23, 0.92);
+		color: #f8fafc;
+		border: 1px solid rgba(148, 163, 184, 0.35);
+		box-shadow: 0 14px 36px rgba(1, 6, 18, 0.45);
+		font-size: 0.95rem;
+		font-weight: 600;
+		cursor: pointer;
+		transition:
+			transform 160ms ease,
+			box-shadow 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.participants-toggle__icon {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1.35rem;
+		height: 1.35rem;
+		border-radius: 999px;
+		background: rgba(15, 23, 42, 0.6);
+		border: 1px solid rgba(255, 255, 255, 0.22);
+		font-size: 1.1rem;
+		line-height: 1;
+	}
+
+	.participants-toggle:hover {
+		transform: translateY(-1px);
+		border-color: rgba(255, 255, 255, 0.45);
+		box-shadow: 0 18px 44px rgba(1, 6, 18, 0.55);
+	}
+
+	.participants-toggle:active {
+		transform: translateY(0);
+	}
+
+	.participants-toggle:focus-visible {
+		outline: 2px solid rgba(248, 250, 252, 0.85);
+		outline-offset: 3px;
 	}
 
 	@media (max-width: 640px) {
 		.participants-hub {
 			gap: 2rem;
 		}
-
-		.profile-wrapper {
-			width: 100%;
-			padding: 0 0.75rem;
-		}
-
-		.page-bottom-spacer {
+		.page-bottom-spacer--active {
 			height: 140px;
+		}
+		.participants-toggle {
+			left: clamp(0.75rem, 4vw, 1.5rem);
+			right: clamp(0.75rem, 4vw, 1.5rem);
+			justify-content: center;
 		}
 	}
 </style>

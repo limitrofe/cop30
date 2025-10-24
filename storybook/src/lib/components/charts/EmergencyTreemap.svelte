@@ -3,11 +3,13 @@
 	import { hierarchy, treemap as d3Treemap } from 'd3-hierarchy';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-	import {
-		participantActions,
-		participantsList,
-		selectedEmergency
-	} from '$lib/stores/participantStore.js';
+import {
+	participantActions,
+	participantsList,
+	selectedEmergency,
+	selectedParticipant,
+	activeGrouping as activeGroupingStore
+} from '$lib/stores/participantStore.js';
 	import { buildEmergencyFocusTree } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 320;
@@ -26,7 +28,6 @@
 	const defaultPalette = ['#c55345', '#cb634c', '#d98155', '#dea56b', '#c7b48d', '#9ab4a4'];
 
 	const formatter = format('d');
-	const { selectEmergencyGroup } = participantActions;
 
 	function getColorHex(category, fallbackKey) {
 		const normalized = normalizeGroup(category);
@@ -55,8 +56,13 @@
 	let width = 0;
 	let height = 0;
 
-	let participantsData = [];
-	let activeGroup = null;
+let participantsData = [];
+let activeGroup = null;
+let focusedParticipant = null;
+let groupingMode = 'participant';
+let localSelection = null;
+
+const { selectEmergencyGroup } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
@@ -68,15 +74,55 @@
 		updateSelectionHighlight();
 	});
 
+	const unsubscribeParticipant = selectedParticipant.subscribe((value) => {
+		focusedParticipant = value;
+		updateSelectionHighlight();
+	});
+
+	const unsubscribeGrouping = activeGroupingStore.subscribe((value) => {
+		groupingMode = value || 'participant';
+		if (groupingMode !== 'emergency') {
+			localSelection = null;
+		}
+		updateSelectionHighlight();
+	});
+
 	let resizeObserver;
 	let needsRender = false;
 	let tooltipEl;
+	let intersectionObserver;
 
 	function normalizeGroup(value) {
 		if (value === undefined || value === null) return null;
 		const trimmed = String(value).trim();
 		return trimmed.length ? trimmed : null;
 	}
+
+function setLocalSelection(value) {
+	const normalized = normalizeGroup(value);
+	if (!normalized) {
+		clearLocalSelection();
+		return;
+	}
+	if (localSelection === normalized && groupingMode === 'emergency') {
+		clearLocalSelection();
+		return;
+	}
+	localSelection = normalized;
+	selectEmergencyGroup(normalized);
+	updateSelectionHighlight();
+}
+
+function clearLocalSelection() {
+	if (localSelection === null) return;
+	const shouldResetStore =
+		groupingMode === 'emergency' && normalizeGroup(activeGroup) === localSelection;
+	localSelection = null;
+	updateSelectionHighlight();
+	if (shouldResetStore) {
+		selectEmergencyGroup(null);
+	}
+}
 
 	function requestRender() {
 		if (!container) return;
@@ -106,6 +152,22 @@
 		resizeObserver.observe(container);
 	}
 
+	function setupIntersectionObserver() {
+		if (!container || typeof IntersectionObserver === 'undefined') return;
+		intersectionObserver = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.target !== container) continue;
+					if (!entry.isIntersecting) {
+						clearLocalSelection();
+					}
+				}
+			},
+			{ threshold: 0.01 }
+		);
+		intersectionObserver.observe(container);
+	}
+
 	function render() {
 		if (!participantsData?.length || !width) {
 			renderEmptyState();
@@ -119,7 +181,12 @@
 			.sum((d) => d.value || 0)
 			.sort((a, b) => b.value - a.value);
 
-		const currentGroup = normalizeGroup(activeGroup);
+	if (
+		localSelection !== null &&
+		!treeData.children?.some((node) => normalizeGroup(node.name) === localSelection)
+	) {
+		clearLocalSelection();
+	}
 
 		const layout = d3Treemap().size([width, height]).paddingInner(paddingInner).round(true);
 		layout(root);
@@ -128,8 +195,11 @@
 			svg = select(container).append('svg').attr('class', 'treemap');
 		}
 
+		svg.on('click', () => {
+			clearLocalSelection();
+		});
+
 		svg.attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height);
-		svg.classed('has-selection', Boolean(currentGroup));
 
 		const nodes = svg.selectAll('g.cell').data(root.leaves(), (d) => d.data.name);
 
@@ -139,7 +209,7 @@
 			.attr('class', 'cell')
 			.attr('data-category', (d) => d.data.name);
 
-		nodesEnter.append('rect').attr('rx', 12).attr('ry', 12);
+	nodesEnter.append('rect').attr('rx', 0).attr('ry', 0);
 
 		nodesEnter
 			.append('foreignObject')
@@ -153,13 +223,15 @@
 			.attr('transform', (d) => `translate(${d.x0},${d.y0})`)
 			.each(function (d, index) {
 				const fillColor = getColorHex(d.data.name, index);
-				const textColor = getContrastingTextColor(fillColor);
-				const node = select(this);
-				node
-					.select('rect')
-					.attr('width', Math.max(0, d.x1 - d.x0))
-					.attr('height', Math.max(0, d.y1 - d.y0))
-					.attr('fill', fillColor);
+		const textColor = getContrastingTextColor(fillColor);
+		const node = select(this);
+		node
+			.select('rect')
+			.attr('width', Math.max(0, d.x1 - d.x0))
+			.attr('height', Math.max(0, d.y1 - d.y0))
+			.attr('fill', fillColor)
+			.attr('rx', 0)
+			.attr('ry', 0);
 
 				const innerWidth = Math.max(0, d.x1 - d.x0);
 				const innerHeight = Math.max(0, d.y1 - d.y0);
@@ -192,7 +264,7 @@
 			.on('click', (event, d) => {
 				event.stopPropagation();
 				const category = normalizeGroup(d.data.name);
-				if (category) selectEmergencyGroup(category);
+				if (category) setLocalSelection(category);
 			});
 
 		nodes.exit().remove();
@@ -235,11 +307,15 @@
 
 	function updateSelectionHighlight() {
 		if (!svg) return;
-		const currentGroup = normalizeGroup(activeGroup);
-		svg.classed('has-selection', Boolean(currentGroup));
+	const participantHighlight =
+		groupingMode === 'participant-focus'
+			? normalizeGroup(focusedParticipant?.emergencyFocus)
+			: null;
+	const highlightGroup = participantHighlight || localSelection;
+		svg.classed('has-selection', Boolean(highlightGroup));
 		svg.selectAll('g.cell').classed('active', (d) => {
 			const category = normalizeGroup(d.data.name);
-			return currentGroup && category === currentGroup;
+			return highlightGroup && category === highlightGroup;
 		});
 	}
 
@@ -252,15 +328,20 @@
 		select(container).selectAll('.empty-state').remove();
 	}
 
-	onMount(() => {
-		setupResizeObserver();
-		requestRender();
-	});
+onMount(() => {
+	setupResizeObserver();
+	setupIntersectionObserver();
+	requestRender();
+});
 
-	onDestroy(() => {
-		resizeObserver?.disconnect();
-		unsubscribeParticipants();
-		unsubscribeGroup();
+onDestroy(() => {
+	clearLocalSelection();
+	resizeObserver?.disconnect();
+	intersectionObserver?.disconnect();
+	unsubscribeParticipants();
+	unsubscribeGroup();
+	unsubscribeParticipant();
+		unsubscribeGrouping();
 		hideTooltip();
 		tooltipEl?.remove();
 	});
@@ -281,7 +362,7 @@
 		display: block;
 		width: 100%;
 		height: auto;
-		border-radius: 18px;
+		border-radius: 0;
 		overflow: hidden;
 	}
 
@@ -347,17 +428,17 @@
 		font-size: clamp(0.95rem, 1.8vw, 1.35rem);
 	}
 
-	.treemap-tooltip {
-		position: absolute;
-		background: rgba(15, 23, 42, 0.88);
-		color: #f8fafc;
-		padding: 0.75rem 1rem;
-		border-radius: 12px;
-		pointer-events: none;
-		transition: opacity 120ms ease;
-		opacity: 0;
-		max-width: min(260px, 70vw);
-		font-size: 0.85rem;
+		.treemap-tooltip {
+			position: absolute;
+			background: rgba(15, 23, 42, 0.88);
+			color: #f8fafc;
+			padding: 0.75rem 1rem;
+			border-radius: 0;
+			pointer-events: none;
+			transition: opacity 120ms ease;
+			opacity: 0;
+			max-width: min(260px, 70vw);
+			font-size: 0.85rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
@@ -373,10 +454,10 @@
 		font-size: 0.8rem;
 	}
 
-	.empty-state {
-		width: 100%;
-		min-height: 220px;
-		border-radius: 18px;
+		.empty-state {
+			width: 100%;
+			min-height: 220px;
+			border-radius: 0;
 		border: 1px dashed rgba(148, 163, 184, 0.35);
 		display: flex;
 		align-items: center;

@@ -5,10 +5,34 @@
 
 	function parseNameBlock(value = '') {
 		if (!value) return { name: '', role: '' };
-		const segments = value.split(',');
-		const name = segments.shift()?.trim() ?? '';
-		const role = segments.join(',').trim();
-		return { name, role };
+
+		const normalized = String(value).replace(/\s+/g, ' ').trim();
+		if (!normalized) return { name: '', role: '' };
+
+		const commaSegments = normalized
+			.split(',')
+			.map((segment) => segment.trim())
+			.filter(Boolean);
+
+		if (commaSegments.length > 1) {
+			return {
+				name: commaSegments[0],
+				role: commaSegments.slice(1).join(', ')
+			};
+		}
+
+		const separators = [' – ', ' — ', ' - ', ' —', ' –', '/', '|'];
+		for (const separator of separators) {
+			const index = normalized.indexOf(separator);
+			if (index > 0) {
+				return {
+					name: normalized.slice(0, index).trim(),
+					role: normalized.slice(index + separator.length).trim()
+				};
+			}
+		}
+
+		return { name: normalized, role: '' };
 	}
 
 	function getFirstName(name = '') {
@@ -18,86 +42,122 @@
 	function hasContent(value) {
 		return value !== null && value !== undefined && String(value).trim().length > 0;
 	}
+
+	function deriveArea(participant, nameBlock) {
+		if (hasContent(participant?.area)) {
+			return String(participant.area).trim();
+		}
+
+		if (hasContent(nameBlock.role)) {
+			return nameBlock.role.trim();
+		}
+
+		const rawSource =
+			participant?.raw?.nome_e_area_de_atuacao_ou_pesquisa ||
+			participant?.raw?.Nome ||
+			participant?.name;
+
+		if (hasContent(rawSource)) {
+			const parsed = parseNameBlock(rawSource);
+			if (hasContent(parsed.role)) {
+				return parsed.role.trim();
+			}
+		}
+
+		return '';
+	}
+
+	let participant = null;
+	let nameBlock = { name: '', role: '' };
+	let area = '';
+	let primaryDescriptor = '';
+	let secondaryRole = '';
+
+	$: participant = $selectedParticipant;
+	$: nameBlock = parseNameBlock(participant?.name || '');
+	$: area = deriveArea(participant, nameBlock);
+	$: primaryDescriptor = area || nameBlock.role;
+	$: secondaryRole =
+		area && hasContent(nameBlock.role) && nameBlock.role !== area ? nameBlock.role : '';
 </script>
 
-{#if $selectedParticipant}
-	{@const nameBlock = parseNameBlock($selectedParticipant.name)}
+{#if participant}
 	<div class="profile-card">
-		<div class="media">
-			{#if $selectedParticipant.photo}
-				<img src={$selectedParticipant.photo} alt={`Foto de ${nameBlock.name}`} loading="lazy" />
-			{:else}
-				<div class="placeholder" aria-hidden="true">
-					<span>{getFirstName(nameBlock.name).slice(0, 1).toUpperCase()}</span>
-				</div>
-			{/if}
-			<div class="media-nav">
-				<button type="button" on:click={selectPrevious} aria-label="Participante anterior">‹</button
-				>
-				<button type="button" on:click={selectNext} aria-label="Próximo participante">›</button>
+		<div class="profile-header">
+			<div class="photo">
+				{#if participant.photo}
+					<img src={participant.photo} alt={`Foto de ${nameBlock.name}`} loading="lazy" />
+				{:else}
+					<div class="placeholder" aria-hidden="true">
+						<span>{getFirstName(nameBlock.name).slice(0, 1).toUpperCase()}</span>
+					</div>
+				{/if}
 			</div>
-		</div>
-
-		<div class="profile-body">
-			<header>
+			<header class="identity">
 				<p class="eyebrow">Participante destacado</p>
 				<h2>{nameBlock.name}</h2>
-				{#if nameBlock.role}
-					<p class="role">{nameBlock.role}</p>
-				{:else if $selectedParticipant.area}
-					<p class="role">{$selectedParticipant.area}</p>
+				{#if hasContent(primaryDescriptor)}
+					<p class="role">{primaryDescriptor}</p>
+				{/if}
+				{#if hasContent(secondaryRole)}
+					<p class="role role--secondary">{secondaryRole}</p>
 				{/if}
 			</header>
+			<div class="profile-nav" aria-hidden="false">
+				<button type="button" on:click={selectPrevious} aria-label="Participante anterior">‹</button>
+				<button type="button" on:click={selectNext} aria-label="Próximo participante">›</button>
+			</div>
+			</div>
 
 			<div class="chips">
-				{#if $selectedParticipant.area}
+				{#if participant.area}
 					<span class="chip">
 						<small>Área</small>
-						<strong>{$selectedParticipant.area}</strong>
+						<strong>{participant.area}</strong>
 					</span>
 				{/if}
-				{#if $selectedParticipant.location}
+				{#if participant.location}
 					<span class="chip">
 						<small>Localização</small>
-						<strong>{$selectedParticipant.location}</strong>
+						<strong>{participant.location}</strong>
 					</span>
 				{/if}
-				{#if hasContent($selectedParticipant.stillTime)}
+				{#if hasContent(participant.stillTime)}
 					<span class="chip highlight">
 						<small>Ainda dá tempo?</small>
-						<strong>{$selectedParticipant.stillTime}</strong>
+						<strong>{participant.stillTime}</strong>
 					</span>
 				{/if}
 			</div>
 
-			{#if $selectedParticipant.emergencyFocus || $selectedParticipant.challenge2050}
+			{#if participant.emergencyFocus || participant.challenge2050}
 				<div class="insights">
-					{#if $selectedParticipant.emergencyFocus}
+					{#if participant.emergencyFocus}
 						<div>
 							<h3>Botão de emergência</h3>
-							<p>{$selectedParticipant.emergencyFocus}</p>
+							<p>{participant.emergencyFocus}</p>
 						</div>
 					{/if}
-					{#if $selectedParticipant.challenge2050}
+					{#if participant.challenge2050}
 						<div>
 							<h3>Maior desafio até 2050</h3>
-							<p>{$selectedParticipant.challenge2050}</p>
+							<p>{participant.challenge2050}</p>
 						</div>
 					{/if}
 				</div>
 			{/if}
 
-			{#if hasContent($selectedParticipant.optimismScore)}
+			{#if hasContent(participant.optimismScore)}
 				<div class="optimism">
 					<div class="optimism-header">
 						<h3>Nível de otimismo</h3>
-						<span>{$selectedParticipant.optimismScore}</span>
+						<span>{participant.optimismScore}</span>
 					</div>
 					<div class="optimism-bar">
 						<div
 							class="optimism-fill"
 							style={`width:${
-								Math.max(0, Math.min(Number($selectedParticipant.optimismScore) || 0, 10)) * 10
+								Math.max(0, Math.min(Number(participant.optimismScore) || 0, 10)) * 10
 							}%;`}
 						></div>
 					</div>
@@ -105,21 +165,20 @@
 				</div>
 			{/if}
 
-			{#if hasContent($selectedParticipant.optimismReason)}
+			{#if hasContent(participant.optimismReason)}
 				<blockquote>
 					<span class="legend">Por que pensa assim</span>
-					<p>{$selectedParticipant.optimismReason}</p>
+					<p>{participant.optimismReason}</p>
 				</blockquote>
 			{/if}
-		</div>
 	</div>
 {/if}
 
 <style>
-	.profile-card {
-		display: grid;
-		grid-template-columns: minmax(220px, 280px) 1fr;
-		gap: clamp(1.5rem, 3vw, 2.5rem);
+.profile-card {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1.25rem, 3vw, 2.25rem);
 		padding: clamp(1.5rem, 3vw, 2.5rem);
 		border-radius: 24px;
 		background: rgba(15, 23, 42, 0.6);
@@ -127,60 +186,74 @@
 		color: #f8fafc;
 	}
 
-	.media {
+	.profile-header {
+		display: flex;
+		align-items: center;
+		gap: clamp(1rem, 3vw, 2rem);
+	}
+
+	.photo {
+		flex-shrink: 0;
 		position: relative;
-		border-radius: 22px;
-		overflow: hidden;
-		min-height: 260px;
-		background: rgba(15, 23, 42, 0.75);
+		width: 86px;
+		height: 86px;
+		border-radius: 999px;
+		background: rgba(148, 163, 184, 0.18);
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		padding: 3px;
+		box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.9);
 	}
 
-	.media img {
+	.photo img,
+	.placeholder {
 		width: 100%;
 		height: 100%;
+		border-radius: 50%;
 		object-fit: cover;
+		background: rgba(15, 23, 42, 0.92);
+		border: 3px solid rgba(15, 23, 42, 0.92);
 	}
 
 	.placeholder {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 100%;
-		height: 100%;
-		font-size: 4rem;
+		font-size: 2rem;
 		font-weight: 600;
 		color: rgba(248, 250, 252, 0.85);
 	}
 
-	.media-nav {
-		position: absolute;
-		bottom: 1rem;
-		left: 50%;
-		transform: translateX(-50%);
+	.profile-nav {
+		margin-left: auto;
 		display: inline-flex;
-		gap: 0.75rem;
+		gap: 0.65rem;
 	}
 
-	.media-nav button {
-		width: 42px;
-		height: 42px;
+	.profile-nav button {
+		width: 40px;
+		height: 40px;
 		border-radius: 999px;
-		border: 1px solid rgba(248, 250, 252, 0.45);
-		background: rgba(15, 23, 42, 0.75);
+		border: 1px solid rgba(248, 250, 252, 0.35);
+		background: rgba(15, 23, 42, 0.7);
 		color: inherit;
-		font-size: 1.5rem;
+		font-size: 1.4rem;
 		cursor: pointer;
 		transition:
 			transform 180ms ease,
 			background 180ms ease;
 	}
 
-	.media-nav button:hover {
-		transform: scale(1.08);
-		background: rgba(249, 115, 22, 0.35);
+	.profile-nav button:hover {
+		transform: scale(1.06);
+		background: rgba(197, 83, 69, 0.25);
+	}
+
+	.identity {
+		display: flex;
+		flex-direction: column;
+		gap: 0.35rem;
 	}
 
 	header .eyebrow {
@@ -201,6 +274,15 @@
 		margin-top: 0.5rem;
 		font-size: 1.05rem;
 		color: rgba(203, 213, 225, 0.85);
+	}
+
+	header .role + .role {
+		margin-top: 0.25rem;
+	}
+
+	header .role--secondary {
+		font-size: 0.95rem;
+		color: rgba(203, 213, 225, 0.6);
 	}
 
 	.chips {
@@ -340,19 +422,13 @@
 	}
 
 	@media (max-width: 1024px) {
-		.profile-card {
-			grid-template-columns: 1fr;
+		.profile-header {
+			flex-wrap: wrap;
+			gap: 1.25rem;
 		}
 
-		.media {
-			max-height: 360px;
-		}
-
-		.media-nav {
-			position: absolute;
-			top: 0.75rem;
-			left: 0.75rem;
-			transform: none;
+		.profile-nav {
+			margin-left: 0;
 		}
 	}
 
@@ -360,6 +436,18 @@
 		.profile-card {
 			padding: 1.25rem;
 			border-radius: 20px;
+		}
+
+		.profile-header {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+		}
+
+		.profile-nav {
+			width: 100%;
+			justify-content: center;
+			margin-top: 0.5rem;
 		}
 
 		header h2 {

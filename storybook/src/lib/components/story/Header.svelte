@@ -335,6 +335,7 @@
 		background-color: inherit;
 		color: var(--color-text, #f8fafc);
 		text-align: left;
+		z-index: 10000000;
 	}
 
 	.story-header.has-media {

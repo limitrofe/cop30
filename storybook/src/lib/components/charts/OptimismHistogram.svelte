@@ -3,12 +3,17 @@
 	import { scaleBand, scaleLinear } from 'd3-scale';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-	import { participantsList, selectedParticipant } from '$lib/stores/participantStore.js';
+import {
+	participantActions,
+	participantsList,
+	selectedOptimismScore,
+	activeGrouping as activeGroupingStore
+} from '$lib/stores/participantStore.js';
 	import { buildOptimismHistogram } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 320;
 	export let margin = { top: 48, right: 32, bottom: 72, left: 32 };
-	export let data = null; // optional array of counts (index = scale)
+	export let data = null;
 	export let palette = null;
 
 	const valueFormatter = format('d');
@@ -27,29 +32,82 @@
 		'#88adb7'
 	];
 
-	let container;
-	let svg;
-	let width = 0;
-	let height = 0;
-	let resizeObserver;
-	let histogram = [];
-	let participantScore = null;
-	let xAxisGroup;
-	let barsGroup;
-	let labelsGroup;
+	const scheduleFrame =
+		typeof globalThis !== 'undefined' && typeof globalThis.requestAnimationFrame === 'function'
+			? globalThis.requestAnimationFrame.bind(globalThis)
+			: (callback) => callback();
+
+let container;
+let svg;
+let width = 0;
+let height = 0;
+let resizeObserver;
+let histogram = [];
+let activeOptimismScore = null;
+let xAxisGroup;
+let barsGroup;
+let labelsGroup;
+let localSelection = null;
+let intersectionObserver;
+let groupingMode = 'participant';
+const { selectOptimismScore } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((participants) => {
 		updateHistogram(participants);
 	});
 
-	const unsubscribeSelected = selectedParticipant.subscribe((participant) => {
-		const value = Number(participant?.optimismScore);
-		participantScore = Number.isFinite(value) ? value : null;
+	const unsubscribeOptimism = selectedOptimismScore.subscribe((score) => {
+		activeOptimismScore = Number.isFinite(score) ? score : null;
 		updateHighlight();
 	});
 
+	const unsubscribeGrouping = activeGroupingStore.subscribe((value) => {
+		groupingMode = value || 'participant';
+		if (groupingMode !== 'optimism') {
+			localSelection = null;
+		}
+		updateHighlight();
+	});
+
+	function setLocalSelection(value) {
+		const numeric = Number(value);
+		if (!Number.isFinite(numeric)) {
+			clearLocalSelection();
+			return;
+		}
+		if (localSelection === numeric && groupingMode === 'optimism') {
+			clearLocalSelection();
+			return;
+		}
+		localSelection = numeric;
+		selectOptimismScore(numeric);
+		updateHighlight();
+	}
+
+	function clearLocalSelection() {
+		if (localSelection === null) return;
+		const shouldResetStore =
+			groupingMode === 'optimism' &&
+			Number.isFinite(activeOptimismScore) &&
+			Number(activeOptimismScore) === Number(localSelection);
+		localSelection = null;
+		updateHighlight();
+		if (shouldResetStore) {
+			selectOptimismScore(null);
+		}
+	}
+
 	function setupResizeObserver() {
 		if (!container) return;
+		if (typeof ResizeObserver === 'undefined') {
+			const rect = container.getBoundingClientRect();
+			if (rect.width) {
+				width = rect.width;
+				update();
+			}
+			return;
+		}
+
 		resizeObserver = new ResizeObserver((entries) => {
 			for (const entry of entries) {
 				const nextWidth = entry.contentBoxSize
@@ -57,7 +115,7 @@
 					: entry.contentRect.width;
 				if (nextWidth && Math.round(nextWidth) !== Math.round(width)) {
 					width = nextWidth;
-					requestAnimationFrame(update);
+					scheduleFrame(update);
 				}
 			}
 		});
@@ -70,6 +128,22 @@
 		}
 	}
 
+	function setupIntersectionObserver() {
+		if (!container || typeof IntersectionObserver === 'undefined') return;
+		intersectionObserver = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.target !== container) continue;
+					if (!entry.isIntersecting) {
+						clearLocalSelection();
+					}
+				}
+			},
+			{ threshold: 0.01 }
+		);
+		intersectionObserver.observe(container);
+	}
+
 	function ensureSvg() {
 		if (!svg) {
 			svg = select(container).append('svg').attr('class', 'optimism-histogram');
@@ -79,11 +153,15 @@
 			svg.append('text').attr('class', 'axis-label');
 			svg.append('text').attr('class', 'footnote');
 		}
+
+		svg.on('click', () => {
+			clearLocalSelection();
+		});
 	}
 
 	function updateAxis(xScale, availableHeight) {
 		const ticks = histogram.map((d) => d.scale);
-		const axis = xAxisGroup
+		xAxisGroup
 			.selectAll('text.tick')
 			.data(ticks, (d) => d)
 			.join('text')
@@ -105,8 +183,14 @@
 		} else {
 			histogram = buildOptimismHistogram(participants);
 		}
-		update();
+	if (
+		localSelection !== null &&
+		!histogram.some((bucket) => Number(bucket.scale) === Number(localSelection))
+	) {
+		clearLocalSelection();
 	}
+	update();
+}
 
 	function update() {
 		if (!container || !width) return;
@@ -134,20 +218,24 @@
 
 		const colors = palette && palette.length ? palette : defaultPalette;
 
-		const barGroups = barsGroup
+		barsGroup
 			.attr('transform', `translate(${margin.left}, ${margin.top})`)
 			.selectAll('rect.bar')
 			.data(histogram, (d) => d.scale)
-			.join('rect')
-			.attr('class', 'bar')
-			.attr('x', (d) => xScale(String(d.scale)) ?? 0)
-			.attr('width', Math.max(10, xScale.bandwidth()))
-			.attr('y', (d) => yScale(Math.max(0.08, d.count)))
-			.attr('height', (d) => chartHeight - yScale(Math.max(0.08, d.count)))
-			.attr('rx', 12)
-			.attr('fill', (d) => colors[d.scale] ?? colors[colors.length - 1]);
+		.join('rect')
+		.attr('class', 'bar')
+		.attr('x', (d) => xScale(String(d.scale)) ?? 0)
+		.attr('width', Math.max(10, xScale.bandwidth()))
+		.attr('y', (d) => yScale(Math.max(0.08, d.count)))
+		.attr('height', (d) => chartHeight - yScale(Math.max(0.08, d.count)))
+		.attr('rx', 12)
+		.attr('fill', (d) => colors[d.scale] ?? colors[colors.length - 1])
+			.on('click', (event, d) => {
+				event.stopPropagation();
+				setLocalSelection(d.scale);
+			});
 
-		const values = labelsGroup
+		labelsGroup
 			.attr('transform', `translate(${margin.left}, ${margin.top})`)
 			.selectAll('text.value')
 			.data(histogram, (d) => d.scale)
@@ -181,37 +269,53 @@
 		updateHistogram();
 	}
 
-	function updateHighlight() {
+function updateHighlight() {
+	if (!barsGroup || !labelsGroup) return;
+	const participantHighlight =
+		groupingMode === 'participant-focus' && Number.isFinite(activeOptimismScore)
+			? Number(activeOptimismScore)
+			: null;
+	const highlightScale = participantHighlight ?? localSelection;
+	const shouldDim = highlightScale !== null;
+
+	scheduleFrame(() => {
 		if (!barsGroup || !labelsGroup) return;
-		const hasSelection = Number.isFinite(participantScore);
-		const activeScale = hasSelection ? Number(participantScore) : null;
+		if (svg) {
+			svg.classed('has-selection', shouldDim);
+		}
+		const bars = barsGroup.selectAll('rect.bar');
+		if (!bars.size()) return;
 
-		// Apply highlight after the current paint to avoid race conditions with the D3 join.
-		requestAnimationFrame(() => {
-			if (!barsGroup || !labelsGroup) return;
-			const bars = barsGroup.selectAll('rect.bar');
-			if (!bars.size()) return;
+		bars
+			.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
+			.classed(
+				'dimmed',
+				(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
+			);
 
-			bars
-				.classed('active', (d) => activeScale !== null && Number(d.scale) === activeScale)
-				.classed('dimmed', (d) => activeScale !== null && Number(d.scale) !== activeScale);
-
-			labelsGroup
-				.selectAll('text.value')
-				.classed('active', (d) => activeScale !== null && Number(d.scale) === activeScale)
-				.classed('dimmed', (d) => activeScale !== null && Number(d.scale) !== activeScale);
-		});
-	}
-
-	onMount(() => {
-		setupResizeObserver();
-		updateHistogram();
+		labelsGroup
+			.selectAll('text.value')
+			.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
+			.classed(
+				'dimmed',
+				(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
+			);
 	});
+}
 
-	onDestroy(() => {
-		resizeObserver?.disconnect();
-		unsubscribeParticipants();
-		unsubscribeSelected();
+onMount(() => {
+	setupResizeObserver();
+	setupIntersectionObserver();
+	updateHistogram();
+});
+
+onDestroy(() => {
+	clearLocalSelection();
+	resizeObserver?.disconnect();
+	intersectionObserver?.disconnect();
+	unsubscribeParticipants();
+	unsubscribeOptimism();
+	unsubscribeGrouping();
 	});
 </script>
 
@@ -234,6 +338,7 @@
 		filter: drop-shadow(0 12px 18px rgba(48, 55, 66, 0.16));
 		stroke: transparent;
 		stroke-width: 0;
+		cursor: pointer;
 		transition:
 			opacity 160ms ease,
 			filter 160ms ease,
@@ -248,8 +353,8 @@
 
 	:global(svg.optimism-histogram rect.bar.active) {
 		opacity: 1;
-		stroke: rgba(32, 39, 52, 0.75);
-		stroke-width: 3;
+		stroke: transparent;
+		stroke-width: 0;
 		filter: drop-shadow(0 16px 26px rgba(48, 55, 66, 0.2));
 	}
 
@@ -261,6 +366,7 @@
 	:global(svg.optimism-histogram text.value) {
 		font-size: 0.95rem;
 		font-weight: 600;
+		pointer-events: none;
 	}
 
 	:global(svg.optimism-histogram text.value.dimmed) {
@@ -276,16 +382,19 @@
 		font-size: 0.9rem;
 		font-weight: 500;
 		fill: rgba(47, 52, 63, 0.78);
+		pointer-events: none;
 	}
 
 	:global(svg.optimism-histogram text.axis-label) {
 		font-size: 1rem;
 		font-weight: 500;
 		fill: rgba(47, 52, 63, 0.9);
+		pointer-events: none;
 	}
 
 	:global(svg.optimism-histogram text.footnote) {
 		font-size: 0.85rem;
 		fill: rgba(47, 52, 63, 0.66);
+		pointer-events: none;
 	}
 </style>

@@ -1,66 +1,70 @@
 <script>
 	import { onDestroy, onMount } from 'svelte';
-	import { scaleLinear, scaleOrdinal } from 'd3-scale';
+	import { scaleLinear } from 'd3-scale';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
 import {
 	participantActions,
 	participantsList,
-	selectedChallenge,
-	selectedParticipant,
+	selectedOptimismScore,
 	activeGrouping as activeGroupingStore
 } from '$lib/stores/participantStore.js';
-	import { buildChallengeTree } from '$lib/utils/participantsData.js';
+	import { buildOptimismHistogram } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 260;
 	export let barPadding = 20;
 	export let barInnerPadding = 0.22;
 	export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+	export let data = null;
+	export let palette = null;
 
-	const palette = ['#c84f3d', '#de6b3f', '#e78443', '#eeb058', '#ceb47b', '#88b8a3'];
 	const formatter = format('d');
-	const labelStyles = new Map([
-		['Eventos extremos', { text: '#4c3b2f', fill: '#c94f3b' }],
-		['Escassez de água', { text: '#4c3b2f', fill: '#d66a3f' }],
-		['Calor extremo', { text: '#4c3b2f', fill: '#df8a4d' }],
-		['Desmatamento e perda de biodiversidade', { text: '#4c3b2f', fill: '#e5a85b' }],
-		['Refugiados climáticos', { text: '#4c3b2f', fill: '#ccb176' }],
-		['Crise alimentar', { text: '#4c3b2f', fill: '#99b79e' }]
-	]);
+	const defaultPalette = [
+		'#c85646',
+		'#d46a4c',
+		'#da7a4f',
+		'#df8550',
+		'#e59255',
+		'#ebaa68',
+		'#d3b782',
+		'#c0b98c',
+		'#adbba0',
+		'#9ab6b1',
+		'#88adb7'
+	];
+
+	const scheduleFrame =
+		typeof globalThis !== 'undefined' && typeof globalThis.requestAnimationFrame === 'function'
+			? globalThis.requestAnimationFrame.bind(globalThis)
+			: (callback) => callback();
 
 	let container;
 	let svg;
 	let width = 0;
 	let height = 0;
 
-	let participantsData = [];
-	let activeChallenge = null;
-	let groupingMode = 'participant';
-	let focusedParticipant = null;
-	let localSelection = null;
-
-	const { selectChallengeGroup } = participantActions;
+let participantsData = [];
+let activeScore = null;
+let groupingMode = 'participant';
+let barsData = [];
+let localSelection = null;
+const { selectOptimismScore } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
-		requestRender();
+		updateBarsData();
 	});
 
-	const unsubscribeChallenge = selectedChallenge.subscribe((value) => {
-		activeChallenge = value;
+	const unsubscribeScore = selectedOptimismScore.subscribe((value) => {
+		activeScore = Number.isFinite(value) ? value : null;
 		updateSelectionHighlight();
 	});
 
 	const unsubscribeGrouping = activeGroupingStore.subscribe((value) => {
 		groupingMode = value || 'participant';
-		if (groupingMode !== 'challenge') {
+		if (groupingMode !== 'optimism') {
 			localSelection = null;
 		}
-		updateSelectionHighlight();
-	});
-
-	const unsubscribeFocusedParticipant = selectedParticipant.subscribe((value) => {
-		focusedParticipant = value;
 		updateSelectionHighlight();
 	});
 
@@ -68,36 +72,55 @@ import {
 	let needsRender = false;
 	let intersectionObserver;
 
-	function normalizeCategory(value) {
-		if (value === undefined || value === null) return null;
-		const trimmed = String(value).trim();
-		return trimmed.length ? trimmed : null;
+function setLocalSelection(value) {
+	const numeric = Number(value);
+	if (!Number.isFinite(numeric)) {
+		clearLocalSelection();
+		return;
 	}
-
-	function setLocalSelection(category) {
-		const normalized = normalizeCategory(category);
-		if (!normalized) {
-			clearLocalSelection();
-			return;
-		}
-		if (localSelection === normalized && groupingMode === 'challenge') {
-			clearLocalSelection();
-			return;
-		}
-		localSelection = normalized;
-		selectChallengeGroup(normalized);
-		updateSelectionHighlight();
+	if (localSelection === numeric && groupingMode === 'optimism') {
+		clearLocalSelection();
+		return;
 	}
+	localSelection = numeric;
+	selectOptimismScore(numeric);
+	updateSelectionHighlight();
+}
 
-	function clearLocalSelection() {
-		if (localSelection === null) return;
-		const shouldResetStore =
-			groupingMode === 'challenge' && normalizeCategory(activeChallenge) === localSelection;
-		localSelection = null;
-		updateSelectionHighlight();
-		if (shouldResetStore) {
-			selectChallengeGroup(null);
+function clearLocalSelection() {
+	if (localSelection === null) return;
+	const shouldResetStore =
+		groupingMode === 'optimism' &&
+		Number.isFinite(activeScore) &&
+		Number(activeScore) === Number(localSelection);
+	localSelection = null;
+	updateSelectionHighlight();
+	if (shouldResetStore) {
+		selectOptimismScore(null);
+	}
+}
+
+	function updateBarsData() {
+		if (participantsData?.length) {
+			barsData = buildOptimismHistogram(participantsData).map((item) => ({
+				name: String(item.scale),
+				value: item.count
+			}));
+		} else if (Array.isArray(data) && data.length) {
+			barsData = data.map((count, index) => ({
+				name: String(index),
+				value: Number(count) || 0
+			}));
+		} else {
+			barsData = [];
 		}
+	if (
+		localSelection !== null &&
+		!barsData.some((item) => Number(item.name) === Number(localSelection))
+	) {
+		clearLocalSelection();
+	}
+		requestRender();
 	}
 
 	function requestRender() {
@@ -154,38 +177,23 @@ import {
 	function render() {
 		select(container).selectAll('.empty-state').remove();
 
-		if (!participantsData?.length || !width) {
+		if (!barsData.length || !width) {
 			renderEmptyState();
 			return;
-		}
-
-		const challengeTree = buildChallengeTree(participantsData);
-		const data = challengeTree.children;
-		if (!data.length) {
-			renderEmptyState();
-			return;
-		}
-
-		if (
-			localSelection !== null &&
-			!data.some((item) => normalizeCategory(item.name) === localSelection)
-		) {
-			clearLocalSelection();
 		}
 
 		const labelHeight = 20;
-		const innerGap = 4;
-		const baseBarHeight = 24;
+		const innerGap = Math.max(4, barPadding * 0.18);
+		const baseBarHeight = Math.max(24, barPadding);
 		const blockHeight = labelHeight + innerGap + baseBarHeight + innerGap;
-		const chartHeight = data.length * blockHeight;
+		const chartHeight = barsData.length * blockHeight;
 		height = Math.max(minHeight, chartHeight) + margin.top + margin.bottom;
 
 		if (!svg) {
 			svg = select(container).append('svg').attr('class', 'challenge-bars');
 		}
 
-		svg.on('click', (event) => {
-			event?.stopPropagation();
+		svg.on('click', () => {
 			clearLocalSelection();
 		});
 
@@ -193,27 +201,17 @@ import {
 		container.style.minHeight = `${height}px`;
 
 		const chartWidth = Math.max(0, width - margin.left - margin.right);
+		const maxValue = Math.max(1, ...barsData.map((d) => d.value));
+		const xScale = scaleLinear().domain([0, maxValue]).range([0, chartWidth]).nice();
 
-		const xScale = scaleLinear()
-			.domain([0, Math.max(...data.map((d) => d.value))])
-			.range([0, chartWidth])
-			.nice();
+		const colors =
+			Array.isArray(palette) && palette.length
+				? palette
+				: defaultPalette.slice(0, Math.max(defaultPalette.length, barsData.length));
 
-		svg.selectAll('g.axis').remove();
-
-		const categories = data.map((d) => d.name);
-		const colorScale = scaleOrdinal()
-			.domain(categories)
-			.range(
-				categories.map(
-					(name, index) => labelStyles.get(name)?.fill || palette[index % palette.length]
-				)
-			);
-
-		const bars = svg.selectAll('g.bar').data(data, (d) => d.name);
+		const bars = svg.selectAll('g.bar').data(barsData, (d) => d.name);
 
 		const barsEnter = bars.enter().append('g').attr('class', 'bar');
-
 		barsEnter.append('rect');
 		barsEnter.append('text').attr('class', 'bar__label');
 		barsEnter.append('text').attr('class', 'bar__value');
@@ -225,18 +223,18 @@ import {
 				const yOffset = margin.top + index * blockHeight;
 				return `translate(${margin.left}, ${yOffset})`;
 			})
-			.each(function (d) {
+			.each(function (d, index) {
 				const group = select(this);
-				const barWidth = xScale(d.value);
+				const barWidth = d.value > 0 ? Math.max(12, xScale(d.value)) : 0;
 				const barHeight = baseBarHeight;
-				const labelInfo = labelStyles.get(d.name);
+				const fillColor = colors[index % colors.length];
 
 				group
 					.select('rect')
 					.attr('width', barWidth)
 					.attr('height', barHeight)
 					.attr('y', labelHeight + innerGap)
-					.attr('fill', labelInfo?.fill || colorScale(d.name))
+					.attr('fill', fillColor)
 					.attr('rx', 8)
 					.attr('ry', 8);
 
@@ -246,15 +244,13 @@ import {
 					.attr('y', 0)
 					.attr('text-anchor', 'start')
 					.attr('dy', '0')
-					.attr('fill', labelInfo?.text || '#3c332a')
 					.text(d.name);
 
 				group
 					.select('.bar__value')
-					.attr('x', barWidth + 24)
+					.attr('x', barWidth + 12)
 					.attr('y', labelHeight + innerGap + barHeight / 2)
 					.attr('dy', '0.35em')
-					.attr('fill', labelInfo?.text || '#3c332a')
 					.text(formatter(d.value));
 			})
 			.on('click', (event, d) => {
@@ -276,14 +272,24 @@ import {
 	function updateSelectionHighlight() {
 		if (!svg) return;
 		const participantHighlight =
-			groupingMode === 'participant-focus'
-				? normalizeCategory(focusedParticipant?.challenge2050)
+			groupingMode === 'participant-focus' && Number.isFinite(activeScore)
+				? Number(activeScore)
 				: null;
-		const highlightCategory = participantHighlight || localSelection;
-		svg.classed('has-selection', Boolean(highlightCategory));
-		svg.selectAll('g.bar').classed('active', (d) => {
-			const category = normalizeCategory(d.name);
-			return highlightCategory && category === highlightCategory;
+		const highlightValue = participantHighlight ?? localSelection;
+		const shouldDim = highlightValue !== null;
+
+		scheduleFrame(() => {
+			if (!svg) return;
+			svg.classed('has-selection', shouldDim);
+			const bars = svg.selectAll('g.bar');
+			bars.classed('active', (d) => {
+				const numeric = Number(d.name);
+				return shouldDim && Number.isFinite(numeric) && numeric === highlightValue;
+			});
+			bars.classed('dimmed', (d) => {
+				const numeric = Number(d.name);
+				return shouldDim && (!Number.isFinite(numeric) || numeric !== highlightValue);
+			});
 		});
 	}
 
@@ -306,7 +312,7 @@ import {
 	onMount(() => {
 		setupResizeObserver();
 		setupIntersectionObserver();
-		requestRender();
+		updateBarsData();
 	});
 
 	onDestroy(() => {
@@ -314,9 +320,8 @@ import {
 		resizeObserver?.disconnect();
 		intersectionObserver?.disconnect();
 		unsubscribeParticipants();
-		unsubscribeChallenge();
+		unsubscribeScore();
 		unsubscribeGrouping();
-		unsubscribeFocusedParticipant();
 	});
 </script>
 
@@ -339,7 +344,7 @@ import {
 		transition:
 			opacity 160ms ease,
 			transform 160ms ease;
-		border-radius: 8px;
+		filter: drop-shadow(0 14px 26px rgba(47, 52, 63, 0.14));
 	}
 
 	:global(svg.challenge-bars.has-selection g.bar rect) {
@@ -350,8 +355,8 @@ import {
 		opacity: 1;
 	}
 
-	:global(svg.challenge-bars g.bar.hovered rect) {
-		filter: brightness(1.05);
+	:global(svg.challenge-bars g.bar:hover rect) {
+		filter: drop-shadow(0 18px 32px rgba(47, 52, 63, 0.2));
 	}
 
 	:global(svg.challenge-bars g.bar text.bar__label) {
@@ -359,6 +364,7 @@ import {
 		font-weight: 500;
 		text-anchor: start;
 		dominant-baseline: text-before-edge;
+		fill: rgba(47, 52, 63, 0.86);
 	}
 
 	:global(svg.challenge-bars g.bar text.bar__value) {
@@ -366,9 +372,10 @@ import {
 		font-weight: 600;
 		text-anchor: start;
 		dominant-baseline: middle;
+		fill: rgba(47, 52, 63, 0.86);
 	}
 
-	:global(svg.challenge-bars.has-selection g.bar:not(.active) text) {
+	:global(svg.challenge-bars.has-selection g.bar.dimmed text) {
 		fill: rgba(71, 85, 105, 0.55);
 	}
 

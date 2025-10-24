@@ -45,6 +45,7 @@
 	import ParticipantHighlight from './story/ParticipantHighlight.svelte';
 	import EmergencyTreemap from './charts/EmergencyTreemap.svelte';
 	import ChallengeBarChart from './charts/ChallengeBarChart.svelte';
+	import ChallengeBarChartScores from './charts/ChallengeBarChartScores.svelte';
 	import OptimismHistogram from './charts/OptimismHistogram.svelte';
 	import StillTimeBubbleChart from './charts/StillTimeBubbleChart.svelte';
 
@@ -264,6 +265,12 @@
 			case 'desafio-bar':
 			case 'challenge-barchart':
 				return 'challenge-bar';
+
+			case 'challenge-bar-scores':
+			case 'challenge-bar-2':
+			case 'barras-nota':
+			case 'challenge-barchart-scores':
+				return 'challenge-bar-scores';
 
 			case 'still-time':
 			case 'still_time':
@@ -726,7 +733,7 @@
 
 <article class="story-content">
 	<!-- Renderizar intro se existir -->
-	{#if storyData.intro}
+	{#if storyData.intro?.text?.trim()}
 		<div class="section-content">
 			<StoryText content={storyData.intro.text} variant="lead" />
 		</div>
@@ -933,6 +940,10 @@
 							overlay={stringToBoolean(props.overlay, false)}
 							titleShadow={props.titleShadow}
 							subtitleShadow={props.subtitleShadow}
+							disableParticipantSlider={stringToBoolean(
+								props.disableParticipantSlider ?? props.hideParticipantSlider,
+								false
+							)}
 						/>
 
 						<!-- Flexible Layout -->
@@ -1675,6 +1686,18 @@
 								minHeight={props.minHeight ?? 260}
 								barPadding={props.barPadding ?? 12}
 								barInnerPadding={props.barInnerPadding ?? 0.18}
+							/>
+						</div>
+
+						<!-- 📊 Barras por nota -->
+					{:else if componentType === 'challenge-bar-scores'}
+						<div class="chart-shell" style={buildChartWrapperStyle(props)}>
+							<ChallengeBarChartScores
+								minHeight={props.minHeight ?? 260}
+								barPadding={props.barPadding ?? 12}
+								barInnerPadding={props.barInnerPadding ?? 0.18}
+								data={props.data}
+								palette={props.palette}
 							/>
 						</div>
 

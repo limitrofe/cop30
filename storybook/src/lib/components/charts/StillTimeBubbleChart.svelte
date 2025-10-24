@@ -4,16 +4,16 @@
 	import { hierarchy, pack } from 'd3-hierarchy';
 	import { scaleOrdinal } from 'd3-scale';
 	import { select } from 'd3-selection';
-	import {
-		participantActions,
-		participantsList,
-		selectedParticipant,
-		selectedStillTime
-	} from '$lib/stores/participantStore.js';
+import {
+	participantActions,
+	participantsList,
+	selectedParticipant,
+	selectedStillTime,
+	activeGrouping as activeGroupingStore
+} from '$lib/stores/participantStore.js';
 	import { buildStillTimeTree } from '$lib/utils/participantsData.js';
 
 	const formatter = format('d');
-	const { selectStillTimeGroup } = participantActions;
 
 	export let minHeight = 260;
 	export let bubblePadding = 12;
@@ -43,13 +43,18 @@
 	let svg;
 	let width = 0;
 	let height = 0;
-	let participantsData = [];
-	let activeStillTime = null;
-	let participantStillTime = null;
-	let resizeObserver;
-	let needsRender = false;
-	let legendEntries = [];
-	let currentGroup = null;
+let participantsData = [];
+let activeStillTime = null;
+let participantStillTime = null;
+let groupingMode = 'participant';
+let resizeObserver;
+let needsRender = false;
+let legendEntries = [];
+let currentGroup = null;
+let localSelection = null;
+let intersectionObserver;
+
+const { selectStillTimeGroup } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
@@ -66,11 +71,45 @@
 		updateSelectionHighlight();
 	});
 
+	const unsubscribeGrouping = activeGroupingStore.subscribe((value) => {
+		groupingMode = value || 'participant';
+		if (groupingMode !== 'stillTime') {
+			localSelection = null;
+		}
+		updateSelectionHighlight();
+	});
+
 	function normalizeCategory(value) {
 		if (value === undefined || value === null) return null;
 		const trimmed = String(value).trim();
 		return trimmed.length ? trimmed : null;
 	}
+
+function setLocalSelection(value) {
+	const normalized = normalizeCategory(value);
+	if (!normalized) {
+		clearLocalSelection();
+		return;
+	}
+	if (localSelection === normalized && groupingMode === 'stillTime') {
+		clearLocalSelection();
+		return;
+	}
+	localSelection = normalized;
+	selectStillTimeGroup(normalized);
+	updateSelectionHighlight();
+}
+
+function clearLocalSelection() {
+	if (localSelection === null) return;
+	const shouldResetStore =
+		groupingMode === 'stillTime' && normalizeCategory(activeStillTime) === localSelection;
+	localSelection = null;
+	updateSelectionHighlight();
+	if (shouldResetStore) {
+		selectStillTimeGroup(null);
+	}
+}
 
 	function requestRender() {
 		if (!container) return;
@@ -105,6 +144,22 @@
 		}
 	}
 
+	function setupIntersectionObserver() {
+		if (!container || typeof IntersectionObserver === 'undefined') return;
+		intersectionObserver = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.target !== container) continue;
+					if (!entry.isIntersecting) {
+						clearLocalSelection();
+					}
+				}
+			},
+			{ threshold: 0.01 }
+		);
+		intersectionObserver.observe(container);
+	}
+
 	function buildLines(label = '') {
 		const words = String(label).split(/\s+/).filter(Boolean);
 		const lines = [];
@@ -128,7 +183,7 @@
 	}
 
 	function getColorScale(categories) {
-		const scale = scaleOrdinal()
+		return scaleOrdinal()
 			.domain(categories)
 			.range(
 				categories.map(
@@ -136,18 +191,21 @@
 						preferredColors.get(category) ?? fallbackPalette[index % fallbackPalette.length]
 				)
 			);
-		return scale;
 	}
 
 	function updateSelectionHighlight() {
-		const normalized = activeStillTime ?? participantStillTime;
-		currentGroup = normalized;
+	const participantHighlight =
+		groupingMode === 'participant-focus' ? participantStillTime : null;
+	const highlightGroup = participantHighlight || localSelection;
+		currentGroup = highlightGroup;
+
 		if (!svg) return;
-		svg.classed('has-selection', Boolean(normalized));
+
+		svg.classed('has-selection', Boolean(highlightGroup));
 		svg
 			.selectAll('g.bubble')
-			.classed('active', (d) => normalizeCategory(d.data.name) === normalized)
-			.classed('dimmed', (d) => normalized && normalizeCategory(d.data.name) !== normalized);
+			.classed('active', (d) => normalizeCategory(d.data.name) === highlightGroup)
+			.classed('dimmed', (d) => highlightGroup && normalizeCategory(d.data.name) !== highlightGroup);
 	}
 
 	function render() {
@@ -167,6 +225,13 @@
 			return;
 		}
 
+	if (
+		localSelection !== null &&
+		!data.some((item) => normalizeCategory(item.name) === localSelection)
+	) {
+		clearLocalSelection();
+	}
+
 		const categories = data.map((d) => d.name);
 		const colorScale = getColorScale(categories);
 
@@ -183,7 +248,7 @@
 
 		if (!svg) {
 			svg = rootSelection.append('svg').attr('class', 'still-time-bubbles');
-			svg.on('click', () => selectStillTimeGroup(null));
+			svg.on('click', () => clearLocalSelection());
 		}
 
 		svg.attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height);
@@ -208,12 +273,12 @@
 			.attr('aria-pressed', 'false')
 			.on('click', (event, d) => {
 				event.stopPropagation();
-				selectStillTimeGroup(d.data.name);
+				setLocalSelection(d.data.name);
 			})
 			.on('keydown', (event, d) => {
 				if (event.key === 'Enter' || event.key === ' ') {
 					event.preventDefault();
-					selectStillTimeGroup(d.data.name);
+					setLocalSelection(d.data.name);
 				}
 			});
 
@@ -225,39 +290,19 @@
 		const bubblesMerged = bubblesEnter.merge(bubbles);
 
 		bubblesMerged
-			.attr(
-				'transform',
-				(d) => `translate(${chartOffsetX + d.x}, ${chartOffsetY + d.y})`
-			)
+			.attr('transform', (d) => `translate(${chartOffsetX + d.x}, ${chartOffsetY + d.y})`)
 			.each(function (d) {
 				const group = select(this);
 				const radius = Math.max(24, d.r);
 				const labelLines = buildLines(d.data.name);
-				const lineHeight = 20;
-				const valueSpacing = 28;
-				let labelScale = Math.max(0.58, Math.min(1, radius / 110));
-				let valueScale = Math.max(0.58, Math.min(1, radius / 95));
-				let scaledLineHeight = lineHeight * labelScale;
-				let scaledValueSpacing = valueSpacing * valueScale;
-				let totalLabelHeight = labelLines.length * scaledLineHeight;
-				let contentHeight = totalLabelHeight + scaledValueSpacing;
-				const availableHeight = radius * 1.75;
-				if (contentHeight > availableHeight) {
-					const factor = Math.max(0.45, availableHeight / contentHeight);
-					labelScale *= factor;
-					valueScale *= factor;
-					scaledLineHeight = lineHeight * labelScale;
-					scaledValueSpacing = valueSpacing * valueScale;
-					totalLabelHeight = labelLines.length * scaledLineHeight;
-					contentHeight = totalLabelHeight + scaledValueSpacing;
-				}
+
 				group.select('circle').attr('r', radius).attr('fill', colorScale(d.data.name));
 
 				const label = group
 					.select('.bubble__label')
 					.attr('text-anchor', 'middle')
 					.attr('fill', 'rgba(47, 52, 63, 0.92)')
-					.style('font-size', `${16 * labelScale}px`);
+					.text(null);
 
 				const tspans = label
 					.selectAll('tspan')
@@ -268,23 +313,22 @@
 					.append('tspan')
 					.merge(tspans)
 					.attr('x', 0)
-					.attr('dy', (line, index) => (index === 0 ? '0' : `${scaledLineHeight}px`))
+					.attr('dy', (line, index) => (index === 0 ? '0' : '1.1em'))
 					.text((line) => line);
 
 				const valueText = group
 					.select('.bubble__value')
 					.attr('text-anchor', 'middle')
 					.attr('fill', 'rgba(47, 52, 63, 0.92)')
-					.text(formatter(d.data.value))
-					.style('font-size', `${22 * valueScale}px`);
+					.text(formatter(d.data.value));
 
 				const labelBox = label.node()?.getBBox() ?? { width: 0, height: 0 };
 				const valueBox = valueText.node()?.getBBox() ?? { width: 0, height: 0 };
-				const spacing = Math.max(8, 14 * valueScale);
+				const spacing = 16;
 				const totalHeight = labelBox.height + valueBox.height + spacing;
 				const maxWidth = Math.max(labelBox.width, valueBox.width);
 				const fitsInside = totalHeight <= radius * 1.85 && maxWidth <= radius * 1.85;
-				const preferLeft = d.x0 + radius > width / 2;
+				const preferLeft = d.x > chartDiameter / 2;
 				const offsetOutside = radius + 24;
 
 				if (fitsInside) {
@@ -345,16 +389,20 @@
 		empty.exit().remove();
 	}
 
-	onMount(() => {
-		setupResizeObserver();
-		requestRender();
-	});
+onMount(() => {
+	setupResizeObserver();
+	setupIntersectionObserver();
+	requestRender();
+});
 
-	onDestroy(() => {
-		resizeObserver?.disconnect();
-		unsubscribeParticipants();
-		unsubscribeStillTime();
-		unsubscribeSelectedParticipant();
+onDestroy(() => {
+	clearLocalSelection();
+	resizeObserver?.disconnect();
+	intersectionObserver?.disconnect();
+	unsubscribeParticipants();
+	unsubscribeStillTime();
+	unsubscribeSelectedParticipant();
+		unsubscribeGrouping();
 	});
 </script>
 
@@ -430,6 +478,13 @@
 		height: auto;
 	}
 
+	:global(svg.still-time-bubbles:focus),
+	:global(svg.still-time-bubbles:focus-visible),
+	:global(svg.still-time-bubbles g.bubble:focus),
+	:global(svg.still-time-bubbles g.bubble:focus-visible) {
+		outline: none;
+	}
+
 	:global(svg.still-time-bubbles g.bubble) {
 		cursor: pointer;
 		transition: transform 160ms ease;
@@ -471,6 +526,7 @@
 		stroke-width: 3px;
 		stroke-linejoin: round;
 	}
+
 	:global(svg.still-time-bubbles g.bubble text.bubble__value) {
 		font-size: clamp(1.05rem, 2.6vw, 1.65rem);
 		font-weight: 600;
