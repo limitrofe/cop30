@@ -3,16 +3,20 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import { loadFlourishScript, waitForFlourish } from '$lib/utils/flourish.js';
 
-	export let src = '';
-	export let url = ''; // Alias para src
-	export let height = 'auto';
-	export let width = '100%';
-	export let maxWidth = '800px';
-	export let heightMobile = 'auto';
-	export let widthMobile = '100%';
-	export let maxWidthMobile = '100%';
-	export let caption = '';
-	export let credit = '';
+export let src = '';
+export let url = ''; // Alias para src
+export let height = 'auto';
+export let width = '100%';
+
+const DEFAULT_MAX_WIDTH_DESKTOP = 'var(--section-content-max-width-desktop, 800px)';
+const DEFAULT_MAX_WIDTH_MOBILE = 'var(--section-content-max-width-mobile, 100%)';
+
+export let maxWidth = DEFAULT_MAX_WIDTH_DESKTOP;
+export let heightMobile = 'auto';
+export let widthMobile = '100%';
+export let maxWidthMobile = DEFAULT_MAX_WIDTH_MOBILE;
+export let caption = '';
+export let credit = '';
 
 	// Resolver src (pode vir como 'src' ou 'url')
 	$: actualSrc = src || url;
@@ -28,9 +32,9 @@
 	})();
 
 	$: normalizedMaxWidth = (() => {
-		if (maxWidth == null) return '800px';
+		if (maxWidth == null) return DEFAULT_MAX_WIDTH_DESKTOP;
 		const value = String(maxWidth).trim();
-		return value === '' ? '800px' : value;
+		return value === '' ? DEFAULT_MAX_WIDTH_DESKTOP : value;
 	})();
 
 	$: normalizedWidthMobile = (() => {
@@ -40,9 +44,9 @@
 	})();
 
 	$: normalizedMaxWidthMobile = (() => {
-		if (maxWidthMobile == null) return '100%';
+		if (maxWidthMobile == null) return DEFAULT_MAX_WIDTH_MOBILE;
 		const value = String(maxWidthMobile).trim();
-		return value === '' ? '100%' : value;
+		return value === '' ? DEFAULT_MAX_WIDTH_MOBILE : value;
 	})();
 
 	$: normalizedHeight = (() => {
@@ -62,7 +66,7 @@
 		isDeclaredAuto ||
 		(normalizedHeight.toLowerCase() === DEFAULT_HEIGHT &&
 			normalizedWidth === '100%' &&
-			normalizedMaxWidth === '800px');
+			normalizedMaxWidth === DEFAULT_MAX_WIDTH_DESKTOP);
 	$: dataHeight = treatAsAuto ? undefined : normalizedHeight;
 
 	$: isDeclaredAutoMobile = ['auto', 'automatic'].includes(normalizedHeightMobile.toLowerCase());
@@ -150,7 +154,10 @@
 <style>
 	.flourish-embed-container {
 		width: var(--flourish-width, 100%);
-		max-width: var(--flourish-max-width, 800px);
+		max-width: var(
+			--flourish-max-width,
+			var(--section-content-max-width-desktop, 800px)
+		);
 		margin: 2rem auto;
 		min-height: var(--flourish-min-height, 0);
 		background-color: var(--color-highlight-bg, #f9fafb);
@@ -166,7 +173,13 @@
 	@media (max-width: 768px) {
 		.flourish-embed-container {
 			width: var(--flourish-width-mobile, var(--flourish-width, 100%));
-			max-width: var(--flourish-max-width-mobile, var(--flourish-max-width, 100%));
+			max-width: var(
+				--flourish-max-width-mobile,
+				var(
+					--section-content-max-width-mobile,
+					var(--flourish-max-width, var(--section-content-max-width-desktop, 100%))
+				)
+			);
 			min-height: var(--flourish-min-height-mobile, var(--flourish-min-height, 0));
 		}
 

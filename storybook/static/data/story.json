@@ -22,7 +22,7 @@
     "ogType": "article"
   },
   "appearance": {
-    "colorScheme": "dark",
+    "colorScheme": "default",
     "backgroundColor": "#fcf2e6",
     "backgroundColorMobile": "#fcf2e6",
     "surfaceColor": "#fcf2e6",
@@ -276,7 +276,7 @@
       "variant": "hero",
       "overlay": false,
       "overlayGradient": "top-to-bottom",
-      "verticalAlign": "top",
+      "verticalAlign": "bottom",
       "horizontalAlign": "left",
       "titleColor": "",
       "subtitleColor": "",
@@ -380,10 +380,10 @@
       "text": "<p>O <b>g1</b> reuniu pesquisadores de referência mundial, ambientalistas e personalidades com voz ativa no debate climático para responder a uma pergunta central: qual é o futuro do planeta?</p><p>Eles estiveram na linha de frente da ciência, das negociações internacionais e da defesa da floresta para compartilharem suas visões sobre o que ainda pode ser feito.</p><p>As respostas, reunidas ao longo de meses de apuração, revelam um consenso e um alerta: <b>o tempo está se esgotando.</b></p><p>Da transição energética à proteção das florestas, das mudanças no modelo de consumo à urgência de adaptação, os entrevistados apontam quais devem ser as prioridades globais até 2050 — <b>e o que ainda é possível salvar.</b></p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
-      "maxWidthDesktop": "",
-      "maxWidthMobile": "",
-      "widthDesktop": "",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "100%",
+      "maxWidthMobile": "100%",
+      "widthDesktop": "100%",
       "widthMobile": "",
       "containerWidth": "",
       "containerWidthDesktop": "",
@@ -401,19 +401,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#fcf2e6",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -441,6 +428,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "0",
+        "paddingBottom": "0"
       }
     },
     {
@@ -452,7 +452,7 @@
       "fontFamily": "globotipo",
       "variant": "default",
       "minimalAccentColor": "",
-      "minimalAccentWidthDesktop": "70%",
+      "minimalAccentWidthDesktop": "80%",
       "minimalAccentWidthMobile": "80%",
       "minimalAccentHeightDesktop": "",
       "minimalAccentHeightMobile": "",
@@ -490,19 +490,6 @@
       "subtitleFontStyle": "",
       "textAlignMobile": "left",
       "align": "left",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -530,6 +517,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -537,10 +537,10 @@
       "text": "<p>Para os entrevistados, a raiz da crise climática está no modelo global de consumo, que esgota os recursos naturais e amplia as desigualdades.</p><p>Produção em massa, extração sem limite e desperdício em escala mundial criam um ciclo que alimenta o desmatamento, a poluição e o aquecimento do planeta.</p><p>Mudar esse padrão é visto como o primeiro passo para qualquer transformação ambiental duradoura.&nbsp;</p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
+      "maxWidth": "100%",
       "maxWidthDesktop": "",
       "maxWidthMobile": "",
-      "widthDesktop": "",
+      "widthDesktop": "100%",
       "widthMobile": "",
       "containerWidth": "",
       "containerWidthDesktop": "",
@@ -558,19 +558,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#fcf2e6",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -598,6 +585,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -666,19 +666,6 @@
       "subtitleFontStyle": "",
       "textAlignMobile": "left",
       "align": "left",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -706,6 +693,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -713,10 +713,10 @@
       "text": "<p>O ano de 2050 virou símbolo da corrida global contra a crise climática.</p><p>É o prazo que a maioria dos países definiu para zerar as emissões líquidas de gases do efeito estufa. Mas esse também é o ponto em que o planeta pode ultrapassar o limite de 2 °C de aquecimento, caso não haja cortes drásticos nas emissões.</p><p><span style=\"font-size: 0.95rem; text-wrap-mode: initial;\"><b><i>Para os especialistas ouvidos pelo g1, o alerta é claro: os próximos 25 anos serão decisivos para o clima.</i></b></span></p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
+      "maxWidth": "100%",
       "maxWidthDesktop": "",
       "maxWidthMobile": "",
-      "widthDesktop": "",
+      "widthDesktop": "100%",
       "widthMobile": "",
       "containerWidth": "",
       "containerWidthDesktop": "",
@@ -734,19 +734,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#fcf2e6",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -774,6 +761,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -841,19 +841,6 @@
       "subtitleFontStyle": "",
       "textAlignMobile": "left",
       "align": "left",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -881,6 +868,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -888,10 +888,10 @@
       "text": "<p>Em meio a tantos alertas e metas, sobra uma dúvida que move todos os debates: ainda dá tempo de mudar o destino do planeta?</p><p><b><i>A maioria dos especialistas ouvidos pelo g1 são céticos sobre isso. </i></b>Para eles, o relógio climático está em contagem regressiva, e a diferença entre esperança e desastre está na velocidade da reação global.</p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
+      "maxWidth": "100%",
       "maxWidthDesktop": "",
       "maxWidthMobile": "",
-      "widthDesktop": "",
+      "widthDesktop": "100%",
       "widthMobile": "",
       "containerWidth": "",
       "containerWidthDesktop": "",
@@ -909,19 +909,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#fcf2e6",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -949,6 +936,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -1022,19 +1022,6 @@
       "subtitleFontStyle": "",
       "textAlignMobile": "left",
       "align": "left",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -1062,6 +1049,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -1069,7 +1069,7 @@
       "text": "<p>As maiores economias do planeta foram as que mais emitiram gases de efeito estufa nos últimos séculos e, por isso, têm responsabilidade histórica na crise climática.</p><p>Mesmo assim, o avanço das metas tem sido desigual: <i><b>grandes emissores têm atrasado compromissos, reduzido metas e até saído de acordos internacionais.</b></i></p><p>O levantamento mostra que <i><b>quem acompanha o tema de perto tem pouca confiança de que esses países assumam o protagonismo necessário</b></i> — um sinal de alerta para o futuro do planeta.</p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
+      "maxWidth": "100%",
       "maxWidthDesktop": "",
       "maxWidthMobile": "",
       "widthDesktop": "",
@@ -1090,19 +1090,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#fcf2e6",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -1130,6 +1117,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -1292,19 +1292,6 @@
       "align": "left",
       "disableParticipantSlider": true,
       "hideParticipantSlider": true,
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#2a3642",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -1332,6 +1319,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#2a3642",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {
@@ -1339,10 +1339,10 @@
       "text": "<p><b style=\"color: rgb(252, 242, 230);\">Para dar zoom no computador, pressione a tecla CTRL + scroll no mouse. No celular, use o movimento de pinça</b></p>",
       "variant": "body",
       "align": "left",
-      "maxWidth": "720px",
-      "maxWidthDesktop": "",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "100%",
       "maxWidthMobile": "",
-      "widthDesktop": "",
+      "widthDesktop": "100%",
       "widthMobile": "",
       "containerWidth": "",
       "containerWidthDesktop": "",
@@ -1360,19 +1360,6 @@
       "lineHeightDesktop": "",
       "lineHeightMobile": "",
       "textColor": "#3e3e3eed",
-      "section": {
-        "backgroundSource": "color",
-        "backgroundColor": "#2a3642",
-        "backgroundImageDesktop": "",
-        "backgroundImageMobile": "",
-        "backgroundVideoDesktop": "",
-        "backgroundVideoMobile": "",
-        "backgroundVideoPosterDesktop": "",
-        "backgroundVideoPosterMobile": "",
-        "textColor": "",
-        "paddingTop": "",
-        "paddingBottom": ""
-      },
       "gsap": {
         "enabled": true,
         "autoRefresh": true,
@@ -1400,6 +1387,19 @@
             }
           }
         ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#2a3642",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
       }
     },
     {

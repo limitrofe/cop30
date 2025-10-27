@@ -190,7 +190,10 @@
 	.before-after {
 		position: relative;
 		width: var(--before-after-width, 100%);
-		max-width: var(--before-after-max-width, none);
+		max-width: var(
+			--before-after-max-width,
+			var(--section-content-max-width-desktop, none)
+		);
 		margin: 2rem auto;
 		border-radius: 12px;
 		overflow: hidden;
@@ -330,7 +333,13 @@
 	@media (max-width: 768px) {
 		.before-after {
 			width: var(--before-after-width-mobile, var(--before-after-width, 100%));
-			max-width: var(--before-after-max-width-mobile, var(--before-after-max-width, none));
+			max-width: var(
+				--before-after-max-width-mobile,
+				var(
+					--section-content-max-width-mobile,
+					var(--before-after-max-width, var(--section-content-max-width-desktop, none))
+				)
+			);
 		}
 
 		.before-after__handle {

@@ -134,7 +134,7 @@
 	.section-wrapper__content {
 		position: relative;
 		z-index: 3;
-		max-width: 800px;
+		max-width: var(--section-content-max-width-desktop, 800px);
 		margin: 0 auto;
 		padding: 0 0rem;
 	}
@@ -174,6 +174,7 @@
 
 		.section-wrapper__content {
 			padding: 0 1.5rem;
+			max-width: var(--section-content-max-width-mobile, var(--section-content-max-width-desktop, 800px));
 		}
 
 		/* Remove background-attachment fixed no mobile para melhor performance */

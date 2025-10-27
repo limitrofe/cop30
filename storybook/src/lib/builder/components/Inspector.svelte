@@ -94,6 +94,42 @@
 		},
 		{ path: 'section.textColor', label: 'Cor do texto da seção', type: 'color' },
 		{
+			path: 'section.contentWidth',
+			label: 'Largura (telas padrão)',
+			type: 'text',
+			placeholder: 'ex: 100% ou 800px'
+		},
+		{
+			path: 'section.contentWidthDesktop',
+			label: 'Largura desktop',
+			type: 'text',
+			placeholder: 'ex: 100% ou 800px'
+		},
+		{
+			path: 'section.contentWidthMobile',
+			label: 'Largura mobile',
+			type: 'text',
+			placeholder: 'ex: 100% ou 360px'
+		},
+		{
+			path: 'section.contentMaxWidth',
+			label: 'Largura máxima (telas padrão)',
+			type: 'text',
+			placeholder: 'ex: 800px ou 70%'
+		},
+		{
+			path: 'section.contentMaxWidthDesktop',
+			label: 'Largura máxima desktop',
+			type: 'text',
+			placeholder: 'ex: 800px ou 70%'
+		},
+		{
+			path: 'section.contentMaxWidthMobile',
+			label: 'Largura máxima mobile',
+			type: 'text',
+			placeholder: 'ex: 360px ou 95%'
+		},
+		{
 			path: 'section.paddingTop',
 			label: 'Padding superior',
 			type: 'text',

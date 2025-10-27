@@ -240,11 +240,31 @@ function clearLocalSelection() {
 			color: colorScale(category)
 		}));
 
-		const availableWidth = Math.max(160, width - resolvedMargin.left - resolvedMargin.right);
-		const chartDiameter = Math.max(140, availableWidth * 0.6);
-		const chartOffsetX = resolvedMargin.left + Math.max(0, (availableWidth - chartDiameter) / 2);
-		const chartOffsetY = resolvedMargin.top;
-		height = Math.max(minHeight, chartDiameter + resolvedMargin.top + resolvedMargin.bottom);
+		const baseMargin = resolvedMargin;
+		const useMobileLayout = (() => {
+			if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+				return width <= 640;
+			}
+			return window.matchMedia('(max-width: 640px)').matches;
+		})();
+		const effectiveMargin = useMobileLayout
+			? {
+					...baseMargin,
+					left: Math.min(Math.max(baseMargin.left, 16), 28),
+					right: Math.min(Math.max(baseMargin.right, 16), 28)
+				}
+			: baseMargin;
+
+		const availableWidth = Math.max(
+			160,
+			width - effectiveMargin.left - effectiveMargin.right
+		);
+		const diameterRatio = useMobileLayout ? 1 : 0.6;
+		const chartDiameter = Math.max(140, availableWidth * diameterRatio);
+		const chartOffsetX =
+			effectiveMargin.left + Math.max(0, (availableWidth - chartDiameter) / 2);
+		const chartOffsetY = effectiveMargin.top;
+		height = Math.max(minHeight, chartDiameter + effectiveMargin.top + effectiveMargin.bottom);
 
 		if (!svg) {
 			svg = rootSelection.append('svg').attr('class', 'still-time-bubbles');
@@ -324,41 +344,42 @@ function clearLocalSelection() {
 
 				const labelBox = label.node()?.getBBox() ?? { width: 0, height: 0 };
 				const valueBox = valueText.node()?.getBBox() ?? { width: 0, height: 0 };
-				const spacing = 16;
+				const baseSpacing = Math.max(2, Math.min(8, radius * 0.12));
+				const multilineBoost = labelLines.length > 1 ? Math.min(6, radius * 0.12) : 0;
+				const spacing = baseSpacing + multilineBoost;
 				const totalHeight = labelBox.height + valueBox.height + spacing;
 				const maxWidth = Math.max(labelBox.width, valueBox.width);
 				const fitsInside = totalHeight <= radius * 1.85 && maxWidth <= radius * 1.85;
-				const preferLeft = d.x > chartDiameter / 2;
-				const offsetOutside = radius + 24;
 
-				if (fitsInside) {
-					const labelY = -valueBox.height / 2 - spacing / 2;
-					const valueY = labelBox.height / 2 + spacing / 2;
-					label
-						.attr('text-anchor', 'middle')
-						.attr('x', 0)
-						.attr('y', labelY)
-						.classed('outside', false);
-					valueText
-						.attr('text-anchor', 'middle')
-						.attr('x', 0)
-						.attr('y', valueY)
-						.classed('outside', false);
-				} else {
-					const anchor = preferLeft ? 'end' : 'start';
-					const xPos = (preferLeft ? -1 : 1) * offsetOutside;
-					const baseY = -(labelBox.height + spacing + valueBox.height) / 2;
-					label
-						.attr('text-anchor', anchor)
-						.attr('x', xPos)
-						.attr('y', baseY + labelBox.height)
-						.classed('outside', true);
-					valueText
-						.attr('text-anchor', anchor)
-						.attr('x', xPos)
-						.attr('y', baseY + labelBox.height + spacing + valueBox.height / 2)
-						.classed('outside', true);
-				}
+			if (fitsInside) {
+				const labelY = -valueBox.height / 2 - spacing / 2;
+				const valueY = labelBox.height / 2 + spacing / 2;
+				label
+					.attr('text-anchor', 'middle')
+					.attr('x', 0)
+					.attr('y', labelY)
+					.classed('outside', false);
+				valueText
+					.attr('text-anchor', 'middle')
+					.attr('x', 0)
+					.attr('y', valueY)
+					.attr('dy', null)
+					.classed('outside', false);
+			} else {
+				const outsideSpacing = Math.max(4, Math.min(12, radius * 0.16));
+				const labelBaseline = -(radius + outsideSpacing) + labelBox.height;
+				label
+					.attr('text-anchor', 'middle')
+					.attr('x', 0)
+					.attr('y', labelBaseline)
+					.classed('outside', true);
+				valueText
+					.attr('text-anchor', 'middle')
+					.attr('x', 0)
+					.attr('y', 0)
+					.attr('dy', '0.35em')
+					.classed('outside', false);
+			}
 
 				group.select('title').text(`${d.data.name}: ${formatter(d.data.value)} participante(s)`);
 			})

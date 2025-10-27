@@ -365,8 +365,7 @@
 			'--chart-width-mobile',
 			rawProps.chartWidthMobile,
 			rawProps.maxWidthMobile,
-			rawProps.containerWidthMobile,
-			baseWidth
+			rawProps.containerWidthMobile
 		);
 		add(
 			'--chart-width-tablet',
@@ -1925,32 +1924,57 @@
 	}
 
 	.chart-shell {
-		--chart-width-mobile: 100%;
-		--chart-width-tablet: var(--chart-width-desktop, min(75vw, 1200px));
-		--chart-width-desktop: min(75vw, 1200px);
-		--chart-width-large: min(60vw, 1200px);
 		--chart-max-width: 1200px;
-		width: min(100%, var(--chart-width-mobile));
+		--chart-width-mobile-default: 100%;
+		--chart-width-tablet-default: min(
+			var(--section-content-max-width-desktop, min(75vw, var(--chart-max-width))),
+			var(--chart-max-width)
+		);
+		--chart-width-desktop-default: min(
+			var(--section-content-max-width-desktop, min(75vw, var(--chart-max-width))),
+			var(--chart-max-width)
+		);
+		--chart-width-large-default: min(
+			var(--section-content-max-width-desktop, min(60vw, var(--chart-max-width))),
+			var(--chart-max-width)
+		);
+		width: min(100%, var(--chart-width-mobile, var(--chart-width-mobile-default)));
 		max-width: var(--chart-max-width);
 		margin: 0 auto;
 		padding-inline: var(--chart-padding-inline, 0);
 	}
 
+	@media (max-width: 639px) {
+		.chart-shell {
+			width: min(100%, var(--chart-width-mobile, var(--chart-width-mobile-default)));
+			max-width: 100%;
+		}
+	}
+
 	@media (min-width: 640px) {
 		.chart-shell {
-			width: min(100%, var(--chart-width-tablet, var(--chart-width-desktop)));
+			width: min(
+				100%,
+				var(--chart-width-tablet, var(--chart-width-tablet-default))
+			);
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.chart-shell {
-			width: min(100%, var(--chart-width-desktop));
+			width: min(
+				100%,
+				var(--chart-width-desktop, var(--chart-width-desktop-default))
+			);
 		}
 	}
 
 	@media (min-width: 1440px) {
 		.chart-shell {
-			width: min(100%, var(--chart-width-large, var(--chart-width-desktop)));
+			width: min(
+				100%,
+				var(--chart-width-large, var(--chart-width-large-default))
+			);
 		}
 	}
 

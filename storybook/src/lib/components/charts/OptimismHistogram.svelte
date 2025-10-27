@@ -159,7 +159,7 @@ const { selectOptimismScore } = participantActions;
 		});
 	}
 
-	function updateAxis(xScale, availableHeight) {
+	function updateAxis(xScale, availableHeight, currentMargin) {
 		const ticks = histogram.map((d) => d.scale);
 		xAxisGroup
 			.selectAll('text.tick')
@@ -171,7 +171,17 @@ const { selectOptimismScore } = participantActions;
 			.attr('y', availableHeight + 24)
 			.text((d) => d);
 
-		xAxisGroup.attr('transform', `translate(${margin.left}, ${margin.top})`);
+		xAxisGroup.attr('transform', `translate(${currentMargin.left}, ${currentMargin.top})`);
+	}
+
+	function getResponsiveMargin(availableWidth) {
+		const current = { ...margin };
+		const isCompact = availableWidth < 640;
+
+		current.top = Math.min(current.top, isCompact ? 20 : 28);
+		current.bottom = Math.max(current.bottom, isCompact ? 112 : 96);
+
+		return current;
 	}
 
 	function updateHistogram(participants = []) {
@@ -189,17 +199,18 @@ const { selectOptimismScore } = participantActions;
 	) {
 		clearLocalSelection();
 	}
-	update();
-}
+		update();
+	}
 
 	function update() {
 		if (!container || !width) return;
 		ensureSvg();
 		const availableWidth = Math.max(0, width);
+		const currentMargin = getResponsiveMargin(availableWidth);
 
 		height = Math.max(minHeight, Math.round(availableWidth * 0.48));
-		const chartWidth = Math.max(0, availableWidth - margin.left - margin.right);
-		const chartHeight = Math.max(120, height - margin.top - margin.bottom);
+		const chartWidth = Math.max(0, availableWidth - currentMargin.left - currentMargin.right);
+		const chartHeight = Math.max(120, height - currentMargin.top - currentMargin.bottom);
 
 		svg
 			.attr('viewBox', `0 0 ${availableWidth} ${height}`)
@@ -219,24 +230,25 @@ const { selectOptimismScore } = participantActions;
 		const colors = palette && palette.length ? palette : defaultPalette;
 
 		barsGroup
-			.attr('transform', `translate(${margin.left}, ${margin.top})`)
+			.attr('transform', `translate(${currentMargin.left}, ${currentMargin.top})`)
 			.selectAll('rect.bar')
 			.data(histogram, (d) => d.scale)
-		.join('rect')
-		.attr('class', 'bar')
-		.attr('x', (d) => xScale(String(d.scale)) ?? 0)
-		.attr('width', Math.max(10, xScale.bandwidth()))
-		.attr('y', (d) => yScale(Math.max(0.08, d.count)))
-		.attr('height', (d) => chartHeight - yScale(Math.max(0.08, d.count)))
-		.attr('rx', 12)
-		.attr('fill', (d) => colors[d.scale] ?? colors[colors.length - 1])
+			.join('rect')
+			.attr('class', 'bar')
+			.attr('x', (d) => xScale(String(d.scale)) ?? 0)
+			.attr('width', Math.max(10, xScale.bandwidth()))
+			.attr('y', (d) => yScale(Math.max(0.08, d.count)))
+			.attr('height', (d) => chartHeight - yScale(Math.max(0.08, d.count)))
+			.attr('rx', 0)
+			.attr('ry', 0)
+			.attr('fill', (d) => colors[d.scale] ?? colors[colors.length - 1])
 			.on('click', (event, d) => {
 				event.stopPropagation();
 				setLocalSelection(d.scale);
 			});
 
 		labelsGroup
-			.attr('transform', `translate(${margin.left}, ${margin.top})`)
+			.attr('transform', `translate(${currentMargin.left}, ${currentMargin.top})`)
 			.selectAll('text.value')
 			.data(histogram, (d) => d.scale)
 			.join('text')
@@ -246,19 +258,25 @@ const { selectOptimismScore } = participantActions;
 			.attr('y', (d) => yScale(Math.max(0.08, d.count)) - 10)
 			.text((d) => (d.count > 0 ? valueFormatter(d.count) : ''));
 
-		updateAxis(xScale, chartHeight);
+		updateAxis(xScale, chartHeight, currentMargin);
+
+		const isCompact = availableWidth < 640;
+		const axisLabelOffset = isCompact
+			? Math.max(36, currentMargin.bottom * 0.55)
+			: Math.max(28, currentMargin.bottom * 0.4);
+		const footnoteOffset = Math.max(12, axisLabelOffset - (isCompact ? 20 : 16));
 
 		svg
 			.select('text.axis-label')
-			.attr('x', margin.left + chartWidth / 2)
-			.attr('y', height - Math.max(24, margin.bottom / 2))
+			.attr('x', currentMargin.left + chartWidth / 2)
+			.attr('y', height - axisLabelOffset)
 			.attr('text-anchor', 'middle')
 			.text('Nível de otimismo');
 
 		svg
 			.select('text.footnote')
-			.attr('x', margin.left + chartWidth)
-			.attr('y', height - Math.max(12, margin.bottom / 3))
+			.attr('x', currentMargin.left + chartWidth)
+			.attr('y', height - footnoteOffset)
 			.attr('text-anchor', 'end')
 			.text('Votos por categoria');
 
@@ -386,7 +404,7 @@ onDestroy(() => {
 	}
 
 	:global(svg.optimism-histogram text.axis-label) {
-		font-size: 1rem;
+		font-size: 1.25rem;
 		font-weight: 500;
 		fill: rgba(47, 52, 63, 0.9);
 		pointer-events: none;

@@ -1,5 +1,5 @@
 <script>
-	import { tick, createEventDispatcher } from 'svelte';
+	import { tick, createEventDispatcher, onMount } from 'svelte';
 	import {
 		participantActions,
 		participantsList,
@@ -23,15 +23,49 @@
 	export let collapsible = false;
 
 	const FIXED_HEIGHT = 156;
+	const MOBILE_BREAKPOINT = 768;
+	const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
+	const FILTER_CONTROLS_ID = 'participant-slider-filters';
 
 	let scroller;
 	let lastGroup = null;
-let searchTerm = '';
-let locationFilter = '';
-let areaFilter = '';
-let locations = [];
-let areas = [];
-let names = [];
+	let searchTerm = '';
+	let locationFilter = '';
+	let areaFilter = '';
+	let locations = [];
+	let areas = [];
+	let names = [];
+	let isMobileViewport = false;
+	let mobileFiltersOpen = true;
+
+	onMount(() => {
+		if (typeof window === 'undefined') return;
+
+		const mediaQuery = window.matchMedia(MOBILE_MEDIA_QUERY);
+
+		function applyViewportState(matches) {
+			const wasMobile = isMobileViewport;
+			isMobileViewport = matches;
+			if (!matches) {
+				mobileFiltersOpen = true;
+			} else if (!wasMobile && matches) {
+				mobileFiltersOpen = false;
+			}
+		}
+
+		applyViewportState(mediaQuery.matches);
+
+		const handleChange = (event) => applyViewportState(event.matches);
+		mediaQuery.addEventListener('change', handleChange);
+
+		return () => {
+			mediaQuery.removeEventListener('change', handleChange);
+		};
+	});
+
+	function toggleMobileFilters() {
+		mobileFiltersOpen = !mobileFiltersOpen;
+	}
 
 function normalizeGroup(value) {
 	if (value === undefined || value === null) return null;
@@ -334,7 +368,34 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		<div class="slider-content">
 			{#if collapsible}
 				<div class="slider-actions">
-					<div class="filter-controls" role="group" aria-label="Filtrar participantes">
+					{#if isMobileViewport}
+						<div class="action-buttons action-buttons--mobile">
+							<button
+								type="button"
+								class="filter-toggle"
+								on:click={toggleMobileFilters}
+								aria-expanded={mobileFiltersOpen}
+								aria-controls={FILTER_CONTROLS_ID}
+							>
+								{mobileFiltersOpen ? 'Ocultar filtros' : 'Mostrar filtros'}
+							</button>
+							<button
+								type="button"
+								class="slider-collapse"
+								on:click={() => dispatch('collapse')}
+							>
+								Ocultar participantes
+							</button>
+						</div>
+					{/if}
+					<div
+						class="filter-controls"
+						role="group"
+						aria-label="Filtrar participantes"
+						id={FILTER_CONTROLS_ID}
+						class:filter-controls--collapsed={isMobileViewport && !mobileFiltersOpen}
+						aria-hidden={isMobileViewport && !mobileFiltersOpen}
+					>
 						<label class="filter">
 							<span class="sr-only">Buscar por nome</span>
 							<input
@@ -364,15 +425,17 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 								list="participant-areas"
 								aria-label="Filtrar por área de atuação"
 							/>
-						</label>
-					</div>
-					<button
-						type="button"
-						class="slider-collapse"
-						on:click={() => dispatch('collapse')}
-					>
-						Ocultar participantes
-					</button>
+							</label>
+						</div>
+					{#if !isMobileViewport}
+						<button
+							type="button"
+							class="slider-collapse"
+							on:click={() => dispatch('collapse')}
+						>
+							Ocultar participantes
+						</button>
+					{/if}
 				</div>
 			{/if}
 					{#if filteredParticipants.length}
@@ -495,6 +558,14 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		flex: 1;
 	}
 
+	.filter-controls--collapsed {
+		display: none;
+	}
+
+	.filter-toggle {
+		display: none;
+	}
+
 	.filter {
 		position: relative;
 		width: clamp(180px, 22vw, 260px);
@@ -512,6 +583,12 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 			border-color 160ms ease,
 			background 160ms ease,
 			box-shadow 160ms ease;
+	}
+
+	@media (min-width: 769px) {
+		.filter-controls--collapsed {
+			display: flex;
+		}
 	}
 
 	.filter input::placeholder {
@@ -589,21 +666,85 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	}
 
 	@media (max-width: 768px) {
+		.slider-content {
+			gap: 0.5rem;
+		}
+
 		.slider-actions {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.5rem;
+			padding-bottom: 0;
+		}
+
+		.action-buttons {
+			width: 100%;
+		}
+
+		.action-buttons {
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
+			width: 100%;
+		}
+
+		.action-buttons--mobile .filter-toggle,
+		.action-buttons--mobile .slider-collapse {
+			flex: 1 1 0;
+			min-width: 0;
+			font-size: 0.8rem;
+			padding: 0.45rem 0.7rem;
+		}
+
+		.action-buttons--mobile .slider-collapse {
 			justify-content: center;
+		}
+
+		.filter-toggle {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 100%;
+			padding: 0.45rem 0.9rem;
+			border-radius: 999px;
+			border: 1px solid rgba(148, 163, 184, 0.35);
+			background: rgba(15, 23, 42, 0.5);
+			color: inherit;
+			font-size: 0.85rem;
+			font-weight: 500;
+			cursor: pointer;
+			transition:
+				background 160ms ease,
+				border-color 160ms ease;
+		}
+
+		.filter-toggle[aria-expanded='true'] {
+			background: rgba(15, 23, 42, 0.65);
+			border-color: rgba(148, 163, 184, 0.5);
+		}
+
+		.filter-toggle:focus-visible {
+			outline: 2px solid rgba(148, 163, 184, 0.4);
+			outline-offset: 2px;
 		}
 
 		.filter-controls {
 			width: 100%;
-			justify-content: center;
+			justify-content: flex-start;
+			gap: 0.45rem;
 		}
 
 		.filter {
-			width: min(220px, 100%);
+			width: 100%;
+		}
+
+		.filter input {
+			padding: 0.45rem 0.8rem;
+			font-size: 0.85rem;
 		}
 
 		.slider-collapse {
-			width: min(240px, 100%);
+			width: auto;
 		}
 	}
 
@@ -881,7 +1022,7 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	@media (max-width: 768px) {
 		.stories-slider {
 			grid-template-columns: 1fr;
-			gap: 0.75rem;
+			gap: 0.6rem;
 		}
 
 		.nav {
@@ -890,11 +1031,16 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 
 		.stories-list {
 			justify-content: flex-start;
+			grid-auto-columns: minmax(68px, 1fr);
+			gap: 0.55rem;
+			padding: 0 0.15rem;
 		}
 
 		.slider-shell {
 			border-radius: 0;
 			margin: 0;
+			padding: 0.6rem 0.85rem;
+			box-shadow: 0 16px 35px rgba(1, 5, 15, 0.35);
 		}
 
 		.slider-shell--fixed {
@@ -907,11 +1053,38 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 			bottom: 0;
 		}
 
+		.story-item {
+			gap: 0.25rem;
+		}
+
+		.story-trigger {
+			gap: 0.3rem;
+		}
+
+		.ring {
+			width: 60px;
+			height: 60px;
+			padding: 1.5px;
+		}
+
+		.ring img,
+		.initials {
+			border-width: 2px;
+		}
+
+		.initials {
+			font-size: 1.1rem;
+		}
+
+		.label {
+			font-size: 0.78rem;
+		}
+
 		.more-button {
-			width: 34px;
-			height: 34px;
-			margin-top: 0.65rem;
-			font-size: 1.2rem;
+			width: 28px;
+			height: 28px;
+			margin-top: 0.4rem;
+			font-size: 1rem;
 		}
 	}
 </style>

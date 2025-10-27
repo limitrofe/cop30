@@ -8,8 +8,8 @@
 	export let link = ''; // Nova prop para o link
 	export let target = '_self'; // Nova prop para o target do link
 
-	const DEFAULT_WIDTH_DESKTOP = 'min(100%, 800px)';
-	const DEFAULT_WIDTH_MOBILE = '100%';
+	const DEFAULT_WIDTH_DESKTOP = 'min(100%, var(--section-content-max-width-desktop, 800px))';
+	const DEFAULT_WIDTH_MOBILE = 'min(100%, var(--section-content-max-width-mobile, 100%))';
 
 	export let widthDesktop = DEFAULT_WIDTH_DESKTOP;
 	export let widthMobile = DEFAULT_WIDTH_MOBILE;
@@ -102,7 +102,7 @@
 	.photo-with-caption {
 		margin: 2rem auto;
 		width: var(--photo-width-mobile, 100%);
-		max-width: 100%;
+		max-width: var(--section-content-max-width-mobile, 100%);
 	}
 
 	.photo-with-caption[data-align-mobile='left'] {
@@ -125,6 +125,7 @@
 	@media (min-width: 769px) {
 		.photo-with-caption {
 			width: var(--photo-width-desktop, var(--photo-width-mobile, 100%));
+			max-width: var(--section-content-max-width-desktop, 100%);
 		}
 
 		.photo-with-caption[data-align-desktop='left'] {

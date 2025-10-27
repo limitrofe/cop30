@@ -503,7 +503,7 @@
 	}
 
 	.event-content {
-		max-width: 800px;
+		max-width: var(--section-content-max-width-desktop, 800px);
 		margin: 0 auto;
 	}
 

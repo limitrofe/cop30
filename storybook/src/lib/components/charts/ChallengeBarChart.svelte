@@ -173,12 +173,43 @@ import {
 			clearLocalSelection();
 		}
 
+		const baseMargin = {
+			top: typeof margin?.top === 'number' ? margin.top : 52,
+			right: typeof margin?.right === 'number' ? margin.right : 72,
+			bottom: typeof margin?.bottom === 'number' ? margin.bottom : 48,
+			left: typeof margin?.left === 'number' ? margin.left : 60
+		};
+		const useMobileLayout = (() => {
+			if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+				return width <= 640;
+			}
+			return window.matchMedia('(max-width: 640px)').matches;
+		})();
+		const valueGap = 4;
+		const sanitizedValues = data.map((d) => (typeof d.value === 'number' ? d.value : 0));
+		const maxValue = Math.max(...sanitizedValues, 0);
+		const formattedMaxValue = formatter(maxValue);
+		const maxValueCharacters = formattedMaxValue.length || 1;
+		const estimatedDigitWidth = useMobileLayout ? 9 : 10;
+		const valueLabelSpace =
+			valueGap + maxValueCharacters * estimatedDigitWidth + (useMobileLayout ? 6 : 10);
+		const effectiveMargin = useMobileLayout
+			? {
+					...baseMargin,
+					left: 12,
+					right: valueLabelSpace
+				}
+			: {
+					...baseMargin,
+					right: Math.max(baseMargin.right, valueLabelSpace)
+				};
+
 		const labelHeight = 20;
 		const innerGap = 4;
 		const baseBarHeight = 24;
 		const blockHeight = labelHeight + innerGap + baseBarHeight + innerGap;
 		const chartHeight = data.length * blockHeight;
-		height = Math.max(minHeight, chartHeight) + margin.top + margin.bottom;
+		height = Math.max(minHeight, chartHeight) + effectiveMargin.top + effectiveMargin.bottom;
 
 		if (!svg) {
 			svg = select(container).append('svg').attr('class', 'challenge-bars');
@@ -192,12 +223,9 @@ import {
 		svg.attr('viewBox', `0 0 ${width} ${height}`).attr('width', width).attr('height', height);
 		container.style.minHeight = `${height}px`;
 
-		const chartWidth = Math.max(0, width - margin.left - margin.right);
+		const chartWidth = Math.max(0, width - effectiveMargin.left - effectiveMargin.right);
 
-		const xScale = scaleLinear()
-			.domain([0, Math.max(...data.map((d) => d.value))])
-			.range([0, chartWidth])
-			.nice();
+		const xScale = scaleLinear().domain([0, maxValue]).range([0, chartWidth]).nice();
 
 		svg.selectAll('g.axis').remove();
 
@@ -222,8 +250,8 @@ import {
 
 		barsMerged
 			.attr('transform', (d, index) => {
-				const yOffset = margin.top + index * blockHeight;
-				return `translate(${margin.left}, ${yOffset})`;
+				const yOffset = effectiveMargin.top + index * blockHeight;
+				return `translate(${effectiveMargin.left}, ${yOffset})`;
 			})
 			.each(function (d) {
 				const group = select(this);
@@ -237,8 +265,8 @@ import {
 					.attr('height', barHeight)
 					.attr('y', labelHeight + innerGap)
 					.attr('fill', labelInfo?.fill || colorScale(d.name))
-					.attr('rx', 8)
-					.attr('ry', 8);
+					.attr('rx', 0)
+					.attr('ry', 0);
 
 				group
 					.select('.bar__label')
@@ -251,9 +279,9 @@ import {
 
 				group
 					.select('.bar__value')
-					.attr('x', barWidth + 24)
+					.attr('x', barWidth + valueGap)
 					.attr('y', labelHeight + innerGap + barHeight / 2)
-					.attr('dy', '0.35em')
+					.attr('dy', '0')
 					.attr('fill', labelInfo?.text || '#3c332a')
 					.text(formatter(d.value));
 			})
@@ -339,7 +367,7 @@ import {
 		transition:
 			opacity 160ms ease,
 			transform 160ms ease;
-		border-radius: 8px;
+		border-radius: 0;
 	}
 
 	:global(svg.challenge-bars.has-selection g.bar rect) {

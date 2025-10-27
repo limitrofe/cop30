@@ -100,10 +100,10 @@
 	function applyContainerStyles() {
 		if (!sectionContentElement) return;
 
-		const widthDesktopValue = containerWidthDesktop || containerWidth || '100%';
-		const widthMobileValue = containerWidthMobile || containerWidth || '100%';
-		const maxWidthDesktopValue = containerMaxWidthDesktop || containerMaxWidth || 'none';
-		const maxWidthMobileValue = containerMaxWidthMobile || containerMaxWidth || 'none';
+		const widthDesktopValue = containerWidthDesktop || containerWidth || '';
+		const widthMobileValue = containerWidthMobile || containerWidth || '';
+		const maxWidthDesktopValue = containerMaxWidthDesktop || containerMaxWidth || '';
+		const maxWidthMobileValue = containerMaxWidthMobile || containerMaxWidth || '';
 		const minHeightDesktopValue = containerMinHeightDesktop || containerMinHeight || 'auto';
 		const minHeightMobileValue = containerMinHeightMobile || containerMinHeight || 'auto';
 		const marginDesktopValue = containerMarginMap[horizontalPosition] || '0 auto';
@@ -266,10 +266,19 @@
 
 <style>
 	:global(.story-text-container) {
-		--story-text-container-width-desktop: 100%;
-		--story-text-container-width-mobile: 100%;
-		--story-text-container-max-width-desktop: 100%;
-		--story-text-container-max-width-mobile: 100%;
+		--story-text-container-width-desktop: var(--section-content-width-desktop, 100%);
+		--story-text-container-width-mobile: var(
+			--section-content-width-mobile,
+			var(--section-content-width-desktop, 100%)
+		);
+		--story-text-container-max-width-desktop: var(
+			--section-content-max-width-desktop,
+			100%
+		);
+		--story-text-container-max-width-mobile: var(
+			--section-content-max-width-mobile,
+			var(--section-content-max-width-desktop, 100%)
+		);
 		--story-text-container-min-height-desktop: auto;
 		--story-text-container-min-height-mobile: auto;
 	}
@@ -301,7 +310,10 @@
 		padding: 0 1rem;
 		color: var(--story-text-color, var(--color-text));
 		width: var(--story-text-wrapper-width-desktop, auto);
-		max-width: var(--story-text-wrapper-max-width-desktop, 700px);
+		max-width: var(
+			--story-text-wrapper-max-width-desktop,
+			var(--section-content-max-width-desktop, 700px)
+		);
 	}
 
 	.story-text__content {
@@ -344,7 +356,13 @@
 			width: var(--story-text-wrapper-width-mobile, var(--story-text-wrapper-width-desktop, auto));
 			max-width: var(
 				--story-text-wrapper-max-width-mobile,
-				var(--story-text-wrapper-max-width-desktop, 700px)
+				var(
+					--section-content-max-width-mobile,
+					var(
+						--story-text-wrapper-max-width-desktop,
+						var(--section-content-max-width-desktop, 700px)
+					)
+				)
 			);
 		}
 
