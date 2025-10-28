@@ -248,20 +248,14 @@ async function loadParticipants() {
 	}
 }
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
-	const participants = await loadParticipants();
+async function loadStory() {
 	const candidates = [STORY_PATH, ...FALLBACK_PATHS];
 
 	for (const candidate of candidates) {
 		try {
 			const file = await readFile(candidate, 'utf-8');
 			const story = JSON.parse(file);
-			return {
-				story,
-				source: candidate,
-				participants
-			};
+			return { story, source: candidate };
 		} catch (error) {
 			if (error.code !== 'ENOENT') {
 				console.error(`Falha ao ler ${candidate}:`, error);
@@ -269,9 +263,18 @@ export async function load() {
 		}
 	}
 
+	return { story: null, source: null };
+}
+
+/** @type {import('./$types').PageServerLoad} */
+export async function load() {
+	const { story, source } = await loadStory();
+	const wantsParticipants = story ? story?.features?.participants !== false : false;
+	const participants = wantsParticipants ? await loadParticipants() : [];
+
 	return {
-		story: null,
-		source: null,
+		story,
+		source,
 		participants
 	};
 }

@@ -33,5 +33,6 @@ export { default as FlexibleLayout } from './FlexibleLayout.svelte';
 export { default as ContentGrid } from './ContentGrid.svelte';
 export { default as MediaTextLayout } from './MediaTextLayout.svelte';
 export { default as Curiosidades } from './Curiosidades.svelte';
+export { default as VideoSheetShowcase } from './VideoSheetShowcase.svelte';
 
 // Add other component exports here

@@ -281,15 +281,20 @@ export function registerStoryComponents() {
 		() => import('../components/story/GloboPlayerCarousel.svelte')
 	);
 
-	componentManager.registerComponent(
-		'globoplayer-grid-slider',
-		() => import('../components/story/GloboPlayerGridSlider.svelte')
-	);
+componentManager.registerComponent(
+	'globoplayer-grid-slider',
+	() => import('../components/story/GloboPlayerGridSlider.svelte')
+);
 
-	componentManager.registerComponent(
-		'character-presentation',
-		() => import('../components/story/CharacterPresentation.svelte')
-	);
+componentManager.registerComponent(
+	'video-sheet-showcase',
+	() => import('../components/story/VideoSheetShowcase.svelte')
+);
+
+componentManager.registerComponent(
+	'character-presentation',
+	() => import('../components/story/CharacterPresentation.svelte')
+);
 
 	componentManager.registerComponent(
 		'curiosidades',
@@ -387,6 +392,13 @@ export const componentTypeMap = {
 	'globoplayer-grid': 'globoplayer-grid-slider',
 	'grade-globoplay': 'globoplayer-grid-slider',
 	'grid-globoplay': 'globoplayer-grid-slider',
+	'video-sheet': 'video-sheet-showcase',
+	'videos-sheet': 'video-sheet-showcase',
+	'sheet-video': 'video-sheet-showcase',
+	'sheet-videos': 'video-sheet-showcase',
+	'videosheet': 'video-sheet-showcase',
+	'videosheets': 'video-sheet-showcase',
+	'globoplay-sheet': 'video-sheet-showcase',
 	recomendados: 'recommended-items',
 	recommended: 'recommended-items',
 	'itens-recomendados': 'recommended-items',

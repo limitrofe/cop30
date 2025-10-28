@@ -9,6 +9,7 @@ import PhotoGallery from '$lib/components/story/PhotoGallery.svelte';
 import Carousel from '$lib/components/story/Carousel.svelte';
 import GloboPlayerCarousel from '$lib/components/story/GloboPlayerCarousel.svelte';
 import GloboPlayerGridSlider from '$lib/components/story/GloboPlayerGridSlider.svelte';
+import VideoSheetShowcase from '$lib/components/story/VideoSheetShowcase.svelte';
 import Parallax from '$lib/components/story/Parallax.svelte';
 import BeforeAfter from '$lib/components/story/BeforeAfter.svelte';
 import ScrollyTelling from '$lib/components/story/ScrollyTelling.svelte';
@@ -1384,6 +1385,371 @@ export const componentRegistry = [
 				type: 'text',
 				placeholder: '768px'
 			}
+		]
+	},
+	{
+		type: 'video-sheet-showcase',
+		label: 'Narrativa de vídeos (Sheets)',
+		icon: '📼',
+		category: 'Video',
+		description:
+			'Lista de vídeos verticais integrada ao Google Sheets com filtros, busca e seções automáticas.',
+		component: VideoSheetShowcase,
+		defaultData: {
+			type: 'video-sheet-showcase',
+			sheetUrl: '',
+			sheetId: '',
+			sheetName: '',
+			gid: '',
+			query: '',
+			filtersConfig: {
+				columns: [],
+				includeAll: true,
+				allLabel: 'Tudo',
+				mode: 'single',
+				match: 'OR',
+				labelMap: {},
+				defaultValue: null,
+				includeCounts: false
+			},
+			searchConfig: {
+				columns: [],
+				placeholder: 'Busque pelo tema ou título do vídeo',
+				minLength: 0,
+				instant: false
+			},
+			sectionsConfig: {
+				column: '',
+				order: [],
+				labelMap: {},
+				fallbackLabel: 'Outros vídeos',
+				highlight: {
+					column: '',
+					values: ['destaque'],
+					label: 'Destaque',
+					limit: 6,
+					retainInSections: false,
+					anchor: 'destaque'
+				}
+			},
+			videoConfig: {
+				id: 'video_id',
+				mobileId: '',
+				desktopId: '',
+				title: 'titulo',
+				subtitle: 'subtitulo',
+				description: 'descricao',
+				tag: 'tag',
+				section: 'secao',
+				publishedAt: 'Data de publicação',
+				link: 'Links',
+				searchTokensExtra: []
+			},
+		layoutConfig: {
+			stickyOffset: 0,
+			showCounts: false,
+			highlightLimit: null,
+			cardsPerRowMobile: 1,
+			cardsPerRowTablet: 2,
+			cardsPerRowDesktop: 4,
+			cardGap: '1.25rem',
+			enableMobileFeed: true,
+			mobileDefaultView: 'feed',
+			mobileFeedMaxWidth: 768,
+			mobileFeedTitleColor: '#ffffff',
+			mobileFeedMetaColor: 'rgba(255,255,255,0.78)',
+			mobileFeedTagColor: '#111827',
+			mobileFeedTagBackground: 'rgba(255,255,255,0.92)',
+				mobileFeedOverlay:
+					'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)'
+			},
+			loadingMessage: 'Carregando vídeos...',
+			emptyStateMessage: 'Nenhum vídeo encontrado para os filtros selecionados.'
+		},
+		fields: [
+			{
+				path: 'sheetUrl',
+				label: 'URL pública do Google Sheets',
+				type: 'url',
+				placeholder: 'https://docs.google.com/spreadsheets/d/...'
+			},
+			{ path: 'sheetId', label: 'Sheet ID (opcional)', type: 'text' },
+			{ path: 'sheetName', label: 'Nome da aba (sheet)', type: 'text' },
+			{ path: 'gid', label: 'GID da aba', type: 'text' },
+			{
+				path: 'query',
+				label: 'Query (tq) opcional',
+				type: 'text',
+				placeholder: 'select A,B where ...'
+			},
+			{
+				path: 'videoConfig.id',
+				label: 'Coluna com ID principal do vídeo',
+				type: 'text',
+				placeholder: 'video_id'
+			},
+			{
+				path: 'videoConfig.desktopId',
+				label: 'Coluna ID desktop (opcional)',
+				type: 'text'
+			},
+			{
+				path: 'videoConfig.mobileId',
+				label: 'Coluna ID mobile (opcional)',
+				type: 'text'
+			},
+			{
+				path: 'videoConfig.title',
+				label: 'Coluna título',
+				type: 'text',
+				placeholder: 'titulo'
+			},
+			{ path: 'videoConfig.subtitle', label: 'Coluna subtítulo', type: 'text' },
+			{ path: 'videoConfig.description', label: 'Coluna descrição', type: 'text' },
+			{ path: 'videoConfig.tag', label: 'Coluna tag/selo', type: 'text' },
+		{
+			path: 'videoConfig.section',
+			label: 'Coluna que define a seção',
+			type: 'text',
+			placeholder: 'secao'
+		},
+		{
+			path: 'videoConfig.publishedAt',
+			label: 'Coluna data de publicação',
+			type: 'text',
+			placeholder: 'Data de publicação'
+		},
+		{
+			path: 'videoConfig.link',
+			label: 'Coluna link/CTA',
+			type: 'text',
+			placeholder: 'Links'
+		},
+		{
+			path: 'videoConfig.searchTokensExtra',
+			label: 'Colunas extras para busca (JSON)',
+			type: 'json',
+			rows: 3,
+				placeholder: '["palavra_chave","resumo"]',
+				emptyValue: []
+			},
+			{
+				path: 'filtersConfig.columns',
+				label: 'Colunas usadas nos filtros (JSON)',
+				type: 'json',
+				rows: 3,
+				placeholder: '["tema","categoria"]',
+				emptyValue: []
+			},
+			{
+				path: 'filtersConfig.includeAll',
+				label: 'Incluir opção "Tudo"',
+				type: 'boolean'
+			},
+			{
+				path: 'filtersConfig.allLabel',
+				label: 'Rótulo da opção "Tudo"',
+				type: 'text',
+				placeholder: 'Tudo'
+			},
+			{
+				path: 'filtersConfig.defaultValue',
+				label: 'Valor selecionado inicialmente',
+				type: 'text',
+				placeholder: 'tema::clima'
+			},
+			{
+				path: 'filtersConfig.mode',
+				label: 'Modo de seleção dos filtros',
+				type: 'select',
+				options: [
+					{ label: 'Apenas um por vez', value: 'single' },
+					{ label: 'Permitir múltiplos', value: 'multiple' }
+				]
+			},
+			{
+				path: 'filtersConfig.match',
+				label: 'Quando múltiplos filtros',
+				type: 'select',
+				options: [
+					{ label: 'Basta combinar com um (OR)', value: 'OR' },
+					{ label: 'Precisa combinar com todos (AND)', value: 'AND' }
+				]
+			},
+			{
+				path: 'filtersConfig.includeCounts',
+				label: 'Mostrar contagem em cada filtro',
+				type: 'boolean'
+			},
+			{
+				path: 'filtersConfig.labelMap',
+				label: 'Mapeamento de rótulos (JSON)',
+				type: 'json',
+				rows: 3,
+				placeholder: '{"clima":"Entenda o clima"}',
+				emptyValue: {}
+			},
+			{
+				path: 'searchConfig.columns',
+				label: 'Colunas usadas na busca (JSON)',
+				type: 'json',
+				rows: 3,
+				placeholder: '["titulo","descricao"]',
+				emptyValue: []
+			},
+			{
+				path: 'searchConfig.placeholder',
+				label: 'Placeholder da busca',
+				type: 'text',
+				placeholder: 'Busque pelo tema ou título do vídeo'
+			},
+			{
+				path: 'searchConfig.minLength',
+				label: 'Mínimo de caracteres para buscar',
+				type: 'number',
+				min: 0,
+				step: 1
+			},
+			{
+				path: 'searchConfig.instant',
+				label: 'Atualizar resultados enquanto digita',
+				type: 'boolean'
+			},
+			{
+				path: 'sectionsConfig.column',
+				label: 'Coluna usada para criar seções',
+				type: 'text',
+				placeholder: 'secao'
+			},
+			{
+				path: 'sectionsConfig.order',
+				label: 'Ordem fixa das seções (JSON)',
+				type: 'json',
+				rows: 3,
+				placeholder: '["Destaque","Entenda o clima"]',
+				emptyValue: []
+			},
+			{
+				path: 'sectionsConfig.labelMap',
+				label: 'Map de rótulos de seções (JSON)',
+				type: 'json',
+				rows: 3,
+				placeholder: '{"clima":"Entenda o clima"}',
+				emptyValue: {}
+			},
+			{
+				path: 'sectionsConfig.fallbackLabel',
+				label: 'Nome para seção sem valor',
+				type: 'text',
+				placeholder: 'Outros vídeos'
+			},
+			{
+				path: 'sectionsConfig.highlight',
+				label: 'Configuração de destaque (JSON)',
+				type: 'json',
+				rows: 4,
+				placeholder: '{"column":"destaque","values":["sim"],"label":"Destaque","limit":6}',
+				emptyValue: null
+			},
+			{
+				path: 'layoutConfig.showCounts',
+				label: 'Mostrar contagem por seção',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.stickyOffset',
+				label: 'Offset do sticky (px)',
+				type: 'number',
+				step: 1
+			},
+			{
+				path: 'layoutConfig.cardsPerRowDesktop',
+				label: 'Cards por linha (desktop)',
+				type: 'number',
+				min: 1,
+				max: 6
+			},
+			{
+				path: 'layoutConfig.cardsPerRowTablet',
+				label: 'Cards por linha (tablet)',
+				type: 'number',
+				min: 1,
+				max: 4
+			},
+			{
+				path: 'layoutConfig.cardsPerRowMobile',
+				label: 'Cards por linha (mobile)',
+				type: 'number',
+				min: 1,
+				max: 2
+			},
+			{
+				path: 'layoutConfig.highlightLimit',
+				label: 'Máximo de vídeos em destaque',
+				type: 'number',
+				min: 1,
+				step: 1
+			},
+		{
+			path: 'layoutConfig.cardGap',
+			label: 'Espaço entre cards',
+			type: 'text',
+			placeholder: '1.25rem'
+		},
+		{
+			path: 'layoutConfig.enableMobileFeed',
+			label: 'Ativar feed mobile em tela cheia',
+			type: 'boolean'
+		},
+		{
+			path: 'layoutConfig.mobileDefaultView',
+			label: 'Visão padrão no mobile',
+			type: 'select',
+			options: [
+				{ label: 'Feed vertical', value: 'feed' },
+				{ label: 'Grade (3 colunas)', value: 'grid' }
+			]
+		},
+		{
+			path: 'layoutConfig.mobileFeedMaxWidth',
+			label: 'Largura máxima para feed mobile',
+			type: 'number',
+			min: 320,
+			max: 1280,
+			step: 10
+		},
+		{
+			path: 'layoutConfig.mobileFeedTitleColor',
+			label: 'Feed mobile • cor do título',
+			type: 'color',
+			showAlpha: true
+		},
+		{
+			path: 'layoutConfig.mobileFeedMetaColor',
+			label: 'Feed mobile • cor das metainformações',
+			type: 'color',
+			showAlpha: true
+		},
+		{
+			path: 'layoutConfig.mobileFeedTagColor',
+			label: 'Feed mobile • cor do texto da tag',
+			type: 'color',
+			showAlpha: true
+		},
+		{
+			path: 'layoutConfig.mobileFeedTagBackground',
+			label: 'Feed mobile • cor de fundo da tag',
+			type: 'color',
+			showAlpha: true
+		},
+		{
+			path: 'layoutConfig.mobileFeedOverlay',
+			label: 'Feed mobile • gradiente do overlay',
+			type: 'text',
+			placeholder: 'linear-gradient(...)'
+		},
+			{ path: 'loadingMessage', label: 'Mensagem de carregamento', type: 'text' },
+			{ path: 'emptyStateMessage', label: 'Mensagem sem resultados', type: 'text' }
 		]
 	},
 	{

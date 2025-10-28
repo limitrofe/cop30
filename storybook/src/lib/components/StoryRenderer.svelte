@@ -37,10 +37,11 @@
 	import ContentGrid from './story/ContentGrid.svelte';
 	// 🎨 NOVO: ResponsiveMediaLayout
 	import ResponsiveMediaLayout from './story/ResponsiveMediaLayout.svelte';
-	import MediaTextLayout from './story/MediaTextLayout.svelte';
-	import FreeCanvas from './story/FreeCanvas.svelte';
-	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
-	import ChartBar from './story/ChartBar.svelte';
+import MediaTextLayout from './story/MediaTextLayout.svelte';
+import FreeCanvas from './story/FreeCanvas.svelte';
+import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
+import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
+import ChartBar from './story/ChartBar.svelte';
 	import ChartLine from './story/ChartLine.svelte';
 	import ParticipantHighlight from './story/ParticipantHighlight.svelte';
 	import EmergencyTreemap from './charts/EmergencyTreemap.svelte';
@@ -198,6 +199,15 @@
 			case 'grade-globoplay':
 			case 'grid-globoplay':
 				return 'globoplayer-grid-slider';
+
+			case 'video-sheet':
+			case 'videos-sheet':
+			case 'sheet-video':
+			case 'sheet-videos':
+			case 'video-sheet-showcase':
+			case 'videosheet':
+			case 'videosheets':
+				return 'video-sheet-showcase';
 
 			// 🆕 NOVO: Itens Recomendados
 			case 'recomendados':
@@ -1367,6 +1377,26 @@
 							borderRadius={props.borderRadius ?? '0'}
 							tabletBreakpoint={props.tabletBreakpoint ?? '1024px'}
 							mobileBreakpoint={props.mobileBreakpoint ?? '768px'}
+						/>
+
+						<!-- Video Sheet Showcase -->
+					{:else if componentType === 'video-sheet-showcase'}
+						<VideoSheetShowcase
+							sheetUrl={props.sheetUrl}
+							sheetId={props.sheetId}
+							sheetName={props.sheetName}
+							gid={props.gid}
+							query={props.query}
+							filtersConfig={props.filtersConfig}
+							searchConfig={props.searchConfig}
+							sectionsConfig={props.sectionsConfig}
+							videoConfig={props.videoConfig}
+							layoutConfig={props.layoutConfig}
+							loadingMessage={props.loadingMessage}
+							emptyStateMessage={props.emptyStateMessage}
+							debug={stringToBoolean(props.debug, false)}
+							fetchOnMount={stringToBoolean(props.fetchOnMount, true)}
+							initialData={props.initialData}
 						/>
 
 						<!-- 🆕 NOVO: Recommended Items -->

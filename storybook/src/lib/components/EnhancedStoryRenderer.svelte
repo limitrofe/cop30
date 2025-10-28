@@ -6,10 +6,11 @@
 	import StoryHeader from './StoryHeader.svelte';
 	import StoryText from './StoryText.svelte';
 	import SectionTitle from './story/SectionTitle.svelte';
-	import PhotoWithCaption from './story/PhotoWithCaption.svelte';
-	import VideoPlayer from './story/VideoPlayer.svelte';
-	import GloboPlayer from './story/GloboPlayer.svelte';
-	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
+import PhotoWithCaption from './story/PhotoWithCaption.svelte';
+import VideoPlayer from './story/VideoPlayer.svelte';
+import GloboPlayer from './story/GloboPlayer.svelte';
+import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
+import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
 	import { getSectionStyling } from './story/sectionStyle.js';
 	import { gsapAnimator } from '$lib/utils/gsapAnimator.js';
 	import { extractGsapOptions } from '$lib/utils/gsapConfig.js';
@@ -97,6 +98,14 @@
 			case 'grade-globoplay':
 			case 'grid-globoplay':
 				return 'globoplayer-grid-slider';
+			case 'video-sheet-showcase':
+			case 'video-sheet':
+			case 'videos-sheet':
+			case 'sheet-video':
+			case 'sheet-videos':
+			case 'videosheet':
+			case 'videosheets':
+				return 'video-sheet-showcase';
 			default:
 				return 'text';
 		}
@@ -480,6 +489,24 @@
 								borderRadius={paragraph.borderRadius || '0'}
 								tabletBreakpoint={paragraph.tabletBreakpoint || '1024px'}
 								mobileBreakpoint={paragraph.mobileBreakpoint || '768px'}
+							/>
+						{:else if componentType === 'video-sheet-showcase'}
+							<VideoSheetShowcase
+								sheetUrl={paragraph.sheetUrl}
+								sheetId={paragraph.sheetId}
+								sheetName={paragraph.sheetName}
+								gid={paragraph.gid}
+								query={paragraph.query}
+								filtersConfig={paragraph.filtersConfig}
+								searchConfig={paragraph.searchConfig}
+								sectionsConfig={paragraph.sectionsConfig}
+								videoConfig={paragraph.videoConfig}
+								layoutConfig={paragraph.layoutConfig}
+								loadingMessage={paragraph.loadingMessage}
+								emptyStateMessage={paragraph.emptyStateMessage}
+								fetchOnMount={paragraph.fetchOnMount !== false}
+								initialData={paragraph.initialData}
+								debug={paragraph.debug}
 							/>
 						{/if}
 					</div>

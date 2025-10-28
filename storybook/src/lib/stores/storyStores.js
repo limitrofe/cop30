@@ -28,7 +28,8 @@ export const currentStoryMeta = derived(currentStory, ($currentStory) => {
 			'globoplayer-carousel',
 			'globoplay-carousel',
 			'globoplayer-grid-slider',
-			'globoplay-grid-slider'
+			'globoplay-grid-slider',
+			'video-sheet-showcase'
 		]),
 		hasInteractive: hasComponentType($currentStory, ['before-after', 'scrolly', 'parallax']),
 		wordCount: calculateWordCount($currentStory)

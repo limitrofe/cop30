@@ -417,6 +417,32 @@ export function parseStoryComponents(paragraphs) {
 				component.mobileBreakpoint = paragraph.mobileBreakpoint;
 				break;
 
+			case 'video-sheet-showcase':
+			case 'video-sheet':
+			case 'videos-sheet':
+			case 'sheet-video':
+			case 'sheet-videos':
+			case 'videosheet':
+			case 'videosheets':
+				component.type = 'video-sheet-showcase';
+				component.sheetUrl = paragraph.sheetUrl || paragraph.sheetURL || '';
+				component.sheetId = paragraph.sheetId || paragraph.sheetID || '';
+				component.sheetName = paragraph.sheetName || '';
+				component.gid = paragraph.gid || paragraph.sheetGid || '';
+				component.query = paragraph.query || '';
+				component.filtersConfig = paragraph.filtersConfig || {};
+				component.searchConfig = paragraph.searchConfig || {};
+				component.sectionsConfig = paragraph.sectionsConfig || {};
+				component.videoConfig = paragraph.videoConfig || {};
+				component.layoutConfig = paragraph.layoutConfig || {};
+				component.loadingMessage = paragraph.loadingMessage || paragraph.loadingText;
+				component.emptyStateMessage =
+					paragraph.emptyStateMessage || paragraph.emptyMessage || paragraph.noResultsMessage;
+				component.debug = paragraph.debug || false;
+				component.fetchOnMount = paragraph.fetchOnMount !== false;
+				component.initialData = paragraph.initialData;
+				break;
+
 			case 'carrossel':
 			case 'carousel':
 				component.type = 'carousel';
