@@ -1,6 +1,7 @@
 <!-- src/lib/components/story/VideoPlayer.svelte -->
 <script>
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
+	import { activateVideo, deactivateVideo, registerVideo } from './videoPlaybackManager.js';
 
 	// Props principais
 	export let src = '';
@@ -30,9 +31,24 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 	let userHasInteracted = false;
 	let isIOS = false;
 	let isMobile = false;
+	const playbackId = `video-player-${Math.random().toString(36).slice(2)}`;
+	let unregisterPlayback = null;
+
+	function ensurePlaybackRegistration() {
+		if (unregisterPlayback || !videoElement) return;
+		unregisterPlayback = registerVideo(playbackId, {
+			pause: () => {
+				if (videoElement && !videoElement.paused) {
+					videoElement.pause();
+				}
+			}
+		});
+	}
 
 	onMount(() => {
 		mounted = true;
+		ensurePlaybackRegistration();
+		tick().then(() => ensurePlaybackRegistration());
 
 		// Detectar iOS e mobile
 		const userAgent = navigator.userAgent;
@@ -66,6 +82,9 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 			document.removeEventListener('touchstart', handleFirstInteraction);
 			document.removeEventListener('click', handleFirstInteraction);
 			window.removeEventListener('resize', handleResize);
+			unregisterPlayback?.();
+			unregisterPlayback = null;
+			deactivateVideo(playbackId);
 		};
 	});
 
@@ -91,12 +110,15 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 			}
 
 			// Tenta play
+			ensurePlaybackRegistration();
+			activateVideo(playbackId, { source: 'autoplay' });
 			const playPromise = videoElement.play();
 			if (playPromise !== undefined) {
 				await playPromise;
 				isPlaying = true;
 			}
 		} catch (error) {
+			deactivateVideo(playbackId);
 			// No iOS, falha de autoplay é esperada sem interação
 			isPlaying = false;
 		}
@@ -110,6 +132,8 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 			videoElement.muted = true;
 			videoElement.playsInline = true;
 
+			ensurePlaybackRegistration();
+			activateVideo(playbackId, { source: 'toggle-play' });
 			const playPromise = videoElement.play();
 			if (playPromise !== undefined) {
 				playPromise
@@ -117,15 +141,18 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 						isPlaying = true;
 					})
 					.catch(() => {
+						deactivateVideo(playbackId);
 						// Se falhar, força unmute e tenta novamente (iOS pode permitir)
 						if (userHasInteracted) {
 							videoElement.muted = false;
+							activateVideo(playbackId, { source: 'toggle-play-unmuted' });
 							videoElement
 								.play()
 								.then(() => {
 									isPlaying = true;
 								})
 								.catch(() => {
+									deactivateVideo(playbackId);
 									// Volta para muted se falhar
 									videoElement.muted = true;
 								});
@@ -158,11 +185,14 @@ export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 	}
 
 	function handlePlay() {
+		ensurePlaybackRegistration();
+		activateVideo(playbackId, { source: 'native-play' });
 		isPlaying = true;
 	}
 
 	function handlePause() {
 		isPlaying = false;
+		deactivateVideo(playbackId);
 	}
 
 	// Computed values

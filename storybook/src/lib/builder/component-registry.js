@@ -1416,7 +1416,28 @@ export const componentRegistry = [
 				columns: [],
 				placeholder: 'Busque pelo tema ou título do vídeo',
 				minLength: 0,
-				instant: false
+				instant: false,
+				submitLabel: 'Buscar',
+				clearLabel: 'Limpar',
+				showClearButton: true,
+				containerPadding: '0.5rem',
+				containerPaddingDesktop: null,
+				inputBackground: 'transparent',
+				inputColor: '#111827',
+				inputPlaceholderColor: 'rgba(17,24,39,0.45)',
+				inputBorderColor: 'rgba(17,24,39,0.15)',
+				inputFocusBorderColor: '#111827',
+				inputFocusOutline: '#111827',
+				buttonBackground: '#111827',
+				buttonColor: '#ffffff',
+				buttonHoverBackground: '#0f172a',
+				buttonBorderColor: 'transparent',
+				buttonHoverBorderColor: 'transparent',
+				clearButtonBackground: 'rgba(17,24,39,0.05)',
+				clearButtonColor: '#111827',
+				clearButtonHoverBackground: 'rgba(17,24,39,0.12)',
+				clearButtonBorderColor: 'transparent',
+				clearButtonHoverBorderColor: 'transparent'
 			},
 			sectionsConfig: {
 				column: '',
@@ -1445,23 +1466,88 @@ export const componentRegistry = [
 				link: 'Links',
 				searchTokensExtra: []
 			},
-		layoutConfig: {
-			stickyOffset: 0,
-			showCounts: false,
-			highlightLimit: null,
-			cardsPerRowMobile: 1,
-			cardsPerRowTablet: 2,
-			cardsPerRowDesktop: 4,
-			cardGap: '1.25rem',
-			enableMobileFeed: true,
-			mobileDefaultView: 'feed',
-			mobileFeedMaxWidth: 768,
-			mobileFeedTitleColor: '#ffffff',
-			mobileFeedMetaColor: 'rgba(255,255,255,0.78)',
-			mobileFeedTagColor: '#111827',
-			mobileFeedTagBackground: 'rgba(255,255,255,0.92)',
+			layoutConfig: {
+				stickyOffset: 0,
+				showCounts: false,
+				highlightLimit: null,
+				cardsPerRowMobile: 1,
+				cardsPerRowTablet: 2,
+				cardsPerRowDesktop: 4,
+				cardGap: '1.25rem',
+				backgroundColor: '#fdf4ed',
+				containerMaxWidthDesktop: 'none',
+				containerPaddingMobile: '1rem',
+				containerPaddingDesktop: '1rem',
+				mobileTopbarTitle: '',
+				desktopTitle: '',
+				desktopSubtitle: '',
+				mobileTitle: '',
+				mobileSubtitle: '',
+				subtitle: '',
+				searchMaxWidthDesktop: '100%',
+				desktopTopbarBackground: '#ffffff',
+				desktopTopbarColor: '#111827',
+				controlsHeadingColorDesktop: '#b91c1c',
+				controlsHeadingSubtitleDesktop: 'rgba(15, 23, 42, 0.65)',
+				headingEyebrowDesktop: '',
+				headingEyebrowMobile: '',
+				headingEyebrowColor: '#c2410c',
+				headingDividerColor: 'rgba(194, 65, 12, 0.28)',
+				headingAlignmentDesktop: 'center',
+				headingAlignmentMobile: 'left',
+				enableMobileFeed: true,
+				mobileDefaultView: 'feed',
+				mobileFeedMaxWidth: 768,
+				mobileFeedTitleColor: '#ffffff',
+				mobileFeedMetaColor: 'rgba(255,255,255,0.78)',
+				mobileFeedTagColor: '#111827',
+				mobileFeedTagBackground: 'rgba(255,255,255,0.92)',
 				mobileFeedOverlay:
-					'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)'
+					'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)',
+				mobileChromeBackground:
+					'linear-gradient(180deg, rgba(17,24,39,0.45) 0%, rgba(17,24,39,0.32) 55%, rgba(17,24,39,0.18) 100%)',
+				mobileChromeTextColor: null,
+				mobileChromeActiveColor: null,
+				controlsBackground: 'transparent',
+				controlsBorderColor: 'transparent',
+				controlsShadow: 'none',
+				controlsBackdrop: 'none',
+				controlsStartMuted: true,
+				controlsAutoMute: true,
+				sectionTitleColor: '#111827',
+				sectionTitleHighlightColor: '#b45309',
+				sectionCountColor: 'rgba(15, 23, 42, 0.6)',
+				filterChipBackground: 'rgba(15, 23, 42, 0.06)',
+				filterChipColor: 'rgba(15, 23, 42, 0.82)',
+				filterChipBorderColor: 'transparent',
+				filterChipHoverBackground: 'rgba(15, 23, 42, 0.12)',
+				filterChipHoverBorderColor: null,
+				filterChipActiveBackground: '#0f172a',
+				filterChipActiveColor: '#ffffff',
+				filterChipActiveBorderColor: '#0f172a',
+				filterChipCountColor: null,
+				videoTitleColor: '#111827',
+				videoSubtitleColor: 'rgba(15, 23, 42, 0.75)',
+				videoTagBackground: 'rgba(15, 23, 42, 0.08)',
+				videoTagColor: 'rgba(15, 23, 42, 0.78)',
+				desktopOverlayVariant: 'glass',
+				desktopOverlayMetaAlign: 'center',
+				desktopOverlayBackdrop:
+					'radial-gradient(circle at top left, rgba(80, 132, 247, 0.24), transparent 55%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.18), transparent 50%), rgba(5,9,18,0.78)',
+				desktopOverlayBackdropBlur: '28px',
+				desktopOverlaySurface: 'rgba(12, 18, 36, 0.55)',
+				desktopOverlaySurfaceBlur: '22px',
+				desktopOverlaySurfaceBorder: 'rgba(255, 255, 255, 0.18)',
+				desktopOverlaySurfaceShadow: '0 32px 80px rgba(5, 8, 25, 0.65)',
+				desktopOverlayAccent:
+					'linear-gradient(135deg, rgba(236, 72, 153, 0.32) 0%, rgba(59, 130, 246, 0.32) 35%, rgba(45, 212, 191, 0.25) 100%)',
+				desktopOverlayCardBackground:
+					'linear-gradient(145deg, rgba(9, 14, 26, 0.95) 0%, rgba(17, 25, 46, 0.82) 100%)',
+				desktopOverlayCardShadow: '0 32px 64px rgba(5, 9, 18, 0.58)',
+				desktopOverlayCardPadding: '1.85rem',
+				desktopOverlayCardRadius: '1.8rem',
+				desktopOverlayCardMediaPadding: '1.1rem',
+				desktopOverlayCardWidth: 'min(560px, 92vw)'
 			},
 			loadingMessage: 'Carregando vídeos...',
 			emptyStateMessage: 'Nenhum vídeo encontrado para os filtros selecionados.'
@@ -1604,6 +1690,35 @@ export const componentRegistry = [
 				placeholder: 'Busque pelo tema ou título do vídeo'
 			},
 			{
+				path: 'searchConfig.submitLabel',
+				label: 'Busca • texto do botão principal',
+				type: 'text',
+				placeholder: 'Buscar'
+			},
+			{
+				path: 'searchConfig.clearLabel',
+				label: 'Busca • texto do botão limpar',
+				type: 'text',
+				placeholder: 'Limpar'
+			},
+			{
+				path: 'searchConfig.showClearButton',
+				label: 'Busca • exibir botão limpar',
+				type: 'boolean'
+			},
+			{
+				path: 'searchConfig.containerPadding',
+				label: 'Busca • padding horizontal (mobile)',
+				type: 'text',
+				placeholder: '0.5rem'
+			},
+			{
+				path: 'searchConfig.containerPaddingDesktop',
+				label: 'Busca • padding horizontal (desktop)',
+				type: 'text',
+				placeholder: 'herda do mobile'
+			},
+			{
 				path: 'searchConfig.minLength',
 				label: 'Mínimo de caracteres para buscar',
 				type: 'number',
@@ -1614,6 +1729,102 @@ export const componentRegistry = [
 				path: 'searchConfig.instant',
 				label: 'Atualizar resultados enquanto digita',
 				type: 'boolean'
+			},
+			{
+				path: 'searchConfig.inputBackground',
+				label: 'Busca • cor de fundo do campo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.inputColor',
+				label: 'Busca • cor do texto',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.inputPlaceholderColor',
+				label: 'Busca • cor do placeholder',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.inputBorderColor',
+				label: 'Busca • cor da borda',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.inputFocusBorderColor',
+				label: 'Busca • cor da borda (focus)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.inputFocusOutline',
+				label: 'Busca • cor do contorno (focus)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.buttonBackground',
+				label: 'Busca • cor do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.buttonColor',
+				label: 'Busca • cor do texto do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.buttonHoverBackground',
+				label: 'Busca • cor do botão (hover)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.buttonBorderColor',
+				label: 'Busca • cor da borda do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.buttonHoverBorderColor',
+				label: 'Busca • cor da borda do botão (hover)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.clearButtonBackground',
+				label: 'Busca • cor do botão limpar',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.clearButtonColor',
+				label: 'Busca • cor do texto do botão limpar',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.clearButtonHoverBackground',
+				label: 'Busca • cor do botão limpar (hover)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.clearButtonBorderColor',
+				label: 'Busca • borda do botão limpar',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'searchConfig.clearButtonHoverBorderColor',
+				label: 'Busca • borda do botão limpar (hover)',
+				type: 'color',
+				showAlpha: true
 			},
 			{
 				path: 'sectionsConfig.column',
@@ -1690,64 +1901,370 @@ export const componentRegistry = [
 				min: 1,
 				step: 1
 			},
-		{
-			path: 'layoutConfig.cardGap',
-			label: 'Espaço entre cards',
-			type: 'text',
-			placeholder: '1.25rem'
-		},
-		{
-			path: 'layoutConfig.enableMobileFeed',
-			label: 'Ativar feed mobile em tela cheia',
-			type: 'boolean'
-		},
-		{
-			path: 'layoutConfig.mobileDefaultView',
-			label: 'Visão padrão no mobile',
-			type: 'select',
-			options: [
-				{ label: 'Feed vertical', value: 'feed' },
-				{ label: 'Grade (3 colunas)', value: 'grid' }
-			]
-		},
-		{
-			path: 'layoutConfig.mobileFeedMaxWidth',
-			label: 'Largura máxima para feed mobile',
-			type: 'number',
-			min: 320,
-			max: 1280,
-			step: 10
-		},
-		{
-			path: 'layoutConfig.mobileFeedTitleColor',
-			label: 'Feed mobile • cor do título',
-			type: 'color',
-			showAlpha: true
-		},
-		{
-			path: 'layoutConfig.mobileFeedMetaColor',
-			label: 'Feed mobile • cor das metainformações',
-			type: 'color',
-			showAlpha: true
-		},
-		{
-			path: 'layoutConfig.mobileFeedTagColor',
-			label: 'Feed mobile • cor do texto da tag',
-			type: 'color',
-			showAlpha: true
-		},
-		{
-			path: 'layoutConfig.mobileFeedTagBackground',
-			label: 'Feed mobile • cor de fundo da tag',
-			type: 'color',
-			showAlpha: true
-		},
-		{
-			path: 'layoutConfig.mobileFeedOverlay',
-			label: 'Feed mobile • gradiente do overlay',
-			type: 'text',
-			placeholder: 'linear-gradient(...)'
-		},
+			{
+				path: 'layoutConfig.desktopTitle',
+				label: 'Título (desktop)',
+				type: 'text',
+				placeholder: 'Vídeos da COP30'
+			},
+			{
+				path: 'layoutConfig.desktopSubtitle',
+				label: 'Linha fina (desktop)',
+				type: 'textarea',
+				rows: 2,
+				placeholder: 'Resumo curto exibido antes da busca no desktop'
+			},
+			{
+				path: 'layoutConfig.mobileTitle',
+				label: 'Título (mobile)',
+				type: 'text'
+			},
+			{
+				path: 'layoutConfig.mobileSubtitle',
+				label: 'Linha fina (mobile)',
+				type: 'textarea',
+				rows: 2
+			},
+			{
+				path: 'layoutConfig.subtitle',
+				label: 'Linha fina padrão (fallback)',
+				type: 'textarea',
+				rows: 2,
+				placeholder: 'Usada se desktop/mobile estiverem vazios'
+			},
+			{
+				path: 'layoutConfig.mobileTopbarTitle',
+				label: 'Título da tarja fixa (mobile)',
+				type: 'text',
+				placeholder: 'Título curtinho para a tarja'
+			},
+			{
+				path: 'layoutConfig.desktopTopbarBackground',
+				label: 'Tarja fixa desktop • fundo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.desktopTopbarColor',
+				label: 'Tarja fixa desktop • texto',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.backgroundColor',
+				label: 'Fundo geral • cor',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.controlsHeadingColorDesktop',
+				label: 'Título principal • cor (desktop)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.controlsHeadingSubtitleDesktop',
+				label: 'Título principal • linha fina (desktop)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.headingEyebrowColor',
+				label: 'Título principal • cor do super título',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.headingDividerColor',
+				label: 'Título principal • divisor',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.cardGap',
+				label: 'Espaço entre cards',
+				type: 'text',
+				placeholder: '1.25rem'
+			},
+			{
+				path: 'layoutConfig.enableMobileFeed',
+				label: 'Ativar feed mobile em tela cheia',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.mobileDefaultView',
+				label: 'Visão padrão no mobile',
+				type: 'select',
+				options: [
+					{ label: 'Feed vertical', value: 'feed' },
+					{ label: 'Grade (3 colunas)', value: 'grid' }
+				]
+			},
+			{
+				path: 'layoutConfig.mobileFeedMaxWidth',
+				label: 'Largura máxima para feed mobile',
+				type: 'number',
+				min: 320,
+				max: 1280,
+				step: 10
+			},
+			{
+				path: 'layoutConfig.mobileFeedTitleColor',
+				label: 'Feed mobile • cor do título',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedMetaColor',
+				label: 'Feed mobile • cor das metainformações',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedTagColor',
+				label: 'Feed mobile • cor do texto da tag',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedTagBackground',
+				label: 'Feed mobile • cor de fundo da tag',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedOverlay',
+				label: 'Feed mobile • gradiente do overlay',
+				type: 'text',
+				placeholder: 'linear-gradient(...)'
+			},
+			{
+				path: 'layoutConfig.controlsBackground',
+				label: 'Controles (desk) • fundo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.controlsBorderColor',
+				label: 'Controles (desk) • borda',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.controlsShadow',
+				label: 'Controles (desk) • sombra (CSS)',
+				type: 'text',
+				placeholder: 'none'
+			},
+			{
+				path: 'layoutConfig.controlsBackdrop',
+				label: 'Controles (desk) • backdrop-filter',
+				type: 'text',
+				placeholder: 'blur(12px)'
+			},
+			{
+				path: 'layoutConfig.controlsStartMuted',
+				label: 'Players iniciam mutados',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.controlsAutoMute',
+				label: 'Silenciar automaticamente vídeos fora de foco',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.sectionTitleColor',
+				label: 'Seções • cor do título',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.sectionTitleHighlightColor',
+				label: 'Seções • cor de destaque',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.sectionCountColor',
+				label: 'Seções • cor da contagem',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipBackground',
+				label: 'Filtros • fundo do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipColor',
+				label: 'Filtros • texto do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipBorderColor',
+				label: 'Filtros • borda do botão',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipHoverBackground',
+				label: 'Filtros • fundo (hover)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipHoverBorderColor',
+				label: 'Filtros • borda (hover)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipActiveBackground',
+				label: 'Filtros • fundo ativo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipActiveColor',
+				label: 'Filtros • texto ativo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipActiveBorderColor',
+				label: 'Filtros • borda ativa',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.filterChipCountColor',
+				label: 'Filtros • cor da contagem',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.videoTitleColor',
+				label: 'Cards • cor do título',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.videoSubtitleColor',
+				label: 'Cards • cor da linha fina',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.videoTagBackground',
+				label: 'Cards • fundo do selo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.videoTagColor',
+				label: 'Cards • texto do selo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.desktopOverlayVariant',
+				label: 'Overlay desktop • variante visual',
+				type: 'select',
+				options: [
+					{ label: 'Glass multi-coluna', value: 'glass' },
+					{ label: 'Card central', value: 'card' }
+				]
+			},
+			{
+				path: 'layoutConfig.desktopOverlayMetaAlign',
+				label: 'Overlay desktop • alinhamento vertical do texto',
+				type: 'select',
+				options: [
+					{ label: 'Topo', value: 'top' },
+					{ label: 'Centro', value: 'center' },
+					{ label: 'Base', value: 'bottom' }
+				]
+			},
+			{
+				path: 'layoutConfig.desktopOverlayBackdrop',
+				label: 'Overlay desktop • fundo (body)',
+				type: 'text',
+				placeholder: 'CSS background (cores ou gradient)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayBackdropBlur',
+				label: 'Overlay desktop • blur do fundo',
+				type: 'text',
+				placeholder: '28px'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurface',
+				label: 'Overlay desktop • cor da superfície glass',
+				type: 'text',
+				placeholder: 'rgba(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceBlur',
+				label: 'Overlay desktop • blur da superfície',
+				type: 'text',
+				placeholder: '22px'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceBorder',
+				label: 'Overlay desktop • borda da superfície',
+				type: 'text',
+				placeholder: 'rgba(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceShadow',
+				label: 'Overlay desktop • sombra da superfície',
+				type: 'text',
+				placeholder: '0 32px 80px rgba(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayAccent',
+				label: 'Overlay desktop • gradiente/acento',
+				type: 'text',
+				placeholder: 'linear-gradient(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardBackground',
+				label: 'Overlay card • fundo',
+				type: 'text',
+				placeholder: 'linear-gradient(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardShadow',
+				label: 'Overlay card • sombra',
+				type: 'text',
+				placeholder: '0 32px 64px rgba(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardPadding',
+				label: 'Overlay card • padding interno',
+				type: 'text',
+				placeholder: '1.85rem'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardRadius',
+				label: 'Overlay card • raio do canto',
+				type: 'text',
+				placeholder: '1.8rem'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardMediaPadding',
+				label: 'Overlay card • padding ao redor do vídeo',
+				type: 'text',
+				placeholder: '1.1rem'
+			},
+			{
+				path: 'layoutConfig.desktopOverlayCardWidth',
+				label: 'Overlay card • largura máxima',
+				type: 'text',
+				placeholder: 'min(560px, 92vw)'
+			},
 			{ path: 'loadingMessage', label: 'Mensagem de carregamento', type: 'text' },
 			{ path: 'emptyStateMessage', label: 'Mensagem sem resultados', type: 'text' }
 		]

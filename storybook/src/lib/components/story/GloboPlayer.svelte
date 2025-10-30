@@ -2,6 +2,7 @@
 <script>
 	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
+	import { activateVideo, deactivateVideo, registerVideo } from './videoPlaybackManager.js';
 
 	// Script Loading Promise (Singleton)
 	let scriptLoadPromise = null;
@@ -62,11 +63,11 @@
 	export let skipDFP = false;
 	export let loop = false;
 	export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
-	export let height = '100%';
-	export let chromeless = false;
-	export let allowRestrictedContent = true;
-	export let allowLocation = true;
-	export let exitFullscreenOnEnd = true;
+export let height = '100%';
+export let chromeless = null;
+export let allowRestrictedContent = true;
+export let allowLocation = true;
+export let exitFullscreenOnEnd = true;
 	export let isLiveContent = false;
 	export let preventBlackBars = false;
 	export let includeResetStyle = true;
@@ -83,21 +84,30 @@
 	export let adUnit = null;
 	export let adCustomData = null;
 	export let siteName = null;
-	export let ga4 = null;
-	export let caption = '';
-	export let credit = '';
-	export let fullWidth = false;
-	export let autoplay = false;
-	export let controls = true;
-	export let showCaption = true;
+export let ga4 = null;
+export let caption = '';
+export let credit = '';
+export let fullWidth = false;
+export let autoplay = false;
+export let controls = true;
+export let forceControls = false;
+export let showCaption = true;
+export let poster = null;
+export let posterAlt = 'Prévia do vídeo';
 
-	// --- VARIÁVEIS INTERNAS ---
-	let playerElement;
-	let playerInstance = null;
-	let isLoading = false;
-	let error = null;
-	let isMuted = startMuted;
-	const dispatch = createEventDispatcher();
+// --- VARIÁVEIS INTERNAS ---
+let playerElement;
+let playerContainerElement;
+let playerInstance = null;
+let isLoading = false;
+let error = null;
+let isMuted = startMuted;
+let playerReady = false;
+let resolvedPosterAlt = 'Prévia do vídeo';
+let showPoster = false;
+const dispatch = createEventDispatcher();
+const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
+let unregisterPlayback = null;
 
 	// Controle de estado
 	let observer = null;
@@ -106,11 +116,154 @@
 	let publicControls;
 	let lastPropStartMuted = startMuted;
 	let isRecreatingForMute = false;
+	let muteButtonObserver = null;
+
+	function resolveChromeless() {
+		if (typeof chromeless === 'boolean') {
+			return chromeless;
+		}
+		if (forceControls) {
+			return false;
+		}
+		return controls === false;
+	}
+
+	function applyChromelessSetting(instance, value) {
+		if (!instance) return;
+		if (typeof instance.setChromeless === 'function') {
+			try {
+				instance.setChromeless(value);
+			} catch (error) {
+				console.warn('GloboPlayer: falha ao atualizar modo chromeless', error);
+			}
+		}
+	}
+
+	function syncControlsVisibility(instance, shouldShow) {
+		if (!instance) return;
+		let synced = false;
+		try {
+			if (typeof instance.setControls === 'function') {
+				instance.setControls(shouldShow);
+				synced = true;
+			} else if (typeof instance.toggleUI === 'function') {
+				instance.toggleUI('controls', shouldShow);
+				synced = true;
+			} else if (typeof instance.setControlsVisible === 'function') {
+				instance.setControlsVisible(shouldShow);
+				synced = true;
+			} else if (typeof instance.setControlsVisibility === 'function') {
+				instance.setControlsVisibility(shouldShow);
+				synced = true;
+			}
+			if (shouldShow) {
+				if (typeof instance.showControls === 'function') {
+					instance.showControls();
+					synced = true;
+				} else if (typeof instance.displayControls === 'function') {
+					instance.displayControls(true);
+					synced = true;
+				}
+			} else if (typeof instance.hideControls === 'function') {
+				instance.hideControls();
+				synced = true;
+			}
+		} catch (controlsError) {
+			console.warn('GloboPlayer: falha ao sincronizar controles via API direta', controlsError);
+		}
+
+		if (synced) return;
+
+		try {
+			if (typeof instance.command === 'function') {
+				instance.command('controls', shouldShow);
+				if (shouldShow) {
+					instance.command('showControls');
+				} else {
+					instance.command('hideControls');
+				}
+				synced = true;
+			}
+		} catch (commandError) {
+			console.warn('GloboPlayer: comando de controle indisponível', commandError);
+		}
+
+		if (synced || !playerElement) return;
+		try {
+			const video = playerElement.querySelector('video');
+			if (video) {
+				video.controls = shouldShow;
+				if (shouldShow) {
+					video.setAttribute('controls', 'controls');
+				} else {
+					video.removeAttribute('controls');
+				}
+			}
+		} catch (domError) {
+			console.warn('GloboPlayer: falha ao ajustar controles nativos', domError);
+		}
+	}
+
+	function hideMuteButton() {
+		if (!playerElement) return;
+		const selectors = [
+			"button[aria-label='Ativar som']",
+			"button[aria-label='Ativar áudio']",
+			"button[aria-label='Ativar audio']",
+			"button[aria-label*='som']",
+			"button[aria-label*='áudio']",
+			"button[aria-label*='audio']"
+		];
+		for (const selector of selectors) {
+			const button = playerElement.querySelector(selector);
+			if (button) {
+				button.style.display = 'none';
+				button.setAttribute('aria-hidden', 'true');
+				button.setAttribute('tabindex', '-1');
+			}
+		}
+	}
+
+	function setupMuteButtonObserver() {
+		if (!browser || !playerElement) return;
+		muteButtonObserver?.disconnect();
+		try {
+			muteButtonObserver = new MutationObserver(() => hideMuteButton());
+			muteButtonObserver.observe(playerElement, { childList: true, subtree: true });
+		} catch (error) {
+			console.warn('GloboPlayer: falha ao observar botão de som', error);
+		}
+		hideMuteButton();
+	}
+
+	function ensurePlaybackRegistration() {
+		if (unregisterPlayback) return;
+		unregisterPlayback = registerVideo(playbackId, {
+			pause: () => {
+				if (playerInstance && typeof playerInstance.pause === 'function') {
+					try {
+						playerInstance.pause();
+						return;
+					} catch (pauseError) {
+						console.warn('GloboPlayer: falha ao pausar via manager', pauseError);
+					}
+				}
+				const inlineVideo = playerElement?.querySelector('video');
+				try {
+					inlineVideo?.pause?.();
+				} catch (inlineError) {
+					console.warn('GloboPlayer: falha ao pausar vídeo inline', inlineError);
+				}
+			}
+		});
+	}
 
 	function buildControls() {
 		publicControls = {
 			play: () => {
 				try {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'controls-play' });
 					return playerInstance?.play?.();
 				} catch (controlError) {
 					console.warn('GloboPlayer: falha ao dar play via controles públicos', controlError);
@@ -118,12 +271,20 @@
 				}
 			},
 			pause: () => {
+				let result;
 				try {
-					return playerInstance?.pause?.();
+					if (playerInstance && typeof playerInstance.pause === 'function') {
+						result = playerInstance.pause();
+					} else {
+						const inlineVideo = playerElement?.querySelector('video');
+						result = inlineVideo?.pause?.();
+					}
 				} catch (controlError) {
 					console.warn('GloboPlayer: falha ao pausar via controles públicos', controlError);
-					return undefined;
+				} finally {
+					deactivateVideo(playbackId);
 				}
+				return result;
 			},
 			setMuted: (nextMuted) => setMutedState(!!nextMuted, { allowRecreate: true }),
 			isMuted: () => isMuted,
@@ -212,52 +373,63 @@
 			if (videoIdMobile) return videoIdMobile;
 		}
 
-		// Fallbacks de compatibilidade
-		return videoId || videosIDs || null;
-	}
+	// Fallbacks de compatibilidade
+	return videoId || videosIDs || null;
+}
+
+	$: resolvedPosterAlt =
+		typeof posterAlt === 'string' && posterAlt.trim().length ? posterAlt : 'Prévia do vídeo';
+	$: showPoster = Boolean(poster) && !playerReady;
 
 	// Criar o player
 	function createPlayer(shouldAutoplayOnCreate = false, options = {}) {
-		const { preserveMuteState = false } = options;
-		if (!browser || !window.WM || !window.WM.Player) {
-			error = new Error('A API do player da Globo (WM) não está disponível.');
-			isLoading = false;
-			return;
-		}
+	const { preserveMuteState = false } = options;
+	if (!browser || !window.WM || !window.WM.Player) {
+		error = new Error('A API do player da Globo (WM) não está disponível.');
+		isLoading = false;
+		playerReady = false;
+		return;
+	}
 
-		const actualVideoId = getVideoId();
-		if (!actualVideoId) {
-			error = new Error('É necessário informar o videoId para criar o player!');
-			isLoading = false;
-			return;
-		}
+	const actualVideoId = getVideoId();
+	if (!actualVideoId) {
+		error = new Error('É necessário informar o videoId para criar o player!');
+		isLoading = false;
+		playerReady = false;
+		return;
+	}
 
-		// Destruir player anterior se existir
-		if (playerInstance && typeof playerInstance.destroy === 'function') {
-			playerInstance.destroy();
-		}
-		playerInstance = null;
-		publicControls = null;
-		if (!preserveMuteState) {
-			lastPropStartMuted = startMuted;
-			isMuted = !!lastPropStartMuted;
-		}
-		isLoading = true;
-		error = null;
+	// Destruir player anterior se existir
+	if (playerInstance && typeof playerInstance.destroy === 'function') {
+		playerInstance.destroy();
+		deactivateVideo(playbackId);
+	}
+	playerInstance = null;
+	publicControls = null;
+	if (!preserveMuteState) {
+		lastPropStartMuted = startMuted;
+		isMuted = !!lastPropStartMuted;
+	}
+	isLoading = true;
+	error = null;
+	playerReady = false;
 
-		const config = {
-			source: Number(actualVideoId),
-			autoPlay: shouldAutoplayOnCreate,
-			startMuted: isMuted,
-			skipDFP,
-			width: '100%',
-			height: '100%',
-			chromeless,
-			allowRestrictedContent,
-			allowLocation,
-			exitFullscreenOnEnd,
-			isLiveContent,
-			preventBlackBars,
+	const chromelessSetting = resolveChromeless();
+	const shouldShowControls = forceControls ? true : controls !== false;
+
+	const config = {
+		source: Number(actualVideoId),
+		autoPlay: shouldAutoplayOnCreate,
+		startMuted: isMuted,
+		skipDFP,
+		width: '100%',
+		height: '100%',
+		chromeless: chromelessSetting,
+		allowRestrictedContent,
+		allowLocation,
+		exitFullscreenOnEnd,
+		isLiveContent,
+		preventBlackBars,
 			includeResetStyle,
 			disasterRecoveryMode,
 			env,
@@ -271,34 +443,53 @@
 			adCmsId,
 			adUnit,
 			adCustomData,
-			siteName,
-			ga4
-		};
+		siteName,
+		ga4
+	};
 
-		// Limpar propriedades nulas
-		Object.keys(config).forEach(
-			(key) => (config[key] === null || config[key] === undefined) && delete config[key]
-		);
+	if (forceControls) {
+		config.controls = shouldShowControls;
+		config.showControls = shouldShowControls;
+		config.ui = { ...(config.ui || {}), controls: shouldShowControls };
+	}
+
+	// Limpar propriedades nulas
+	Object.keys(config).forEach(
+		(key) => (config[key] === null || config[key] === undefined) && delete config[key]
+	);
 
 		// Eventos
 		config.events = {
 			onError: (err) => {
 				error = err;
 				isLoading = false;
+				playerReady = false;
+				deactivateVideo(playbackId);
 				dispatch('error', err);
 			},
 			onReady: () => {
 				isLoading = false;
-				if (shouldAutoplayOnCreate) playerInstance.play();
+				playerReady = true;
+				if (shouldAutoplayOnCreate) {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'globo-autoplay-ready' });
+					playerInstance.play();
+				}
 				setMutedState(isMuted, { allowRecreate: false });
+				applyChromelessSetting(playerInstance, chromelessSetting);
+				if (forceControls) {
+					syncControlsVisibility(playerInstance, shouldShowControls);
+				}
 				const controls = notifyControls('ready');
 				dispatch('ready', { player: playerInstance, controls });
 			},
 			onEnded: () => {
+				deactivateVideo(playbackId);
 				if (loop && playerInstance && typeof playerInstance.seek === 'function') {
 					try {
 						playerInstance.seek(0);
 						if (typeof playerInstance.play === 'function') {
+							activateVideo(playbackId, { source: 'globo-loop' });
 							playerInstance.play();
 						}
 					} catch (error) {
@@ -307,39 +498,55 @@
 				}
 				dispatch('ended');
 			},
-			onPlay: () => dispatch('play'),
-			onPause: () => dispatch('pause')
+			onPlay: () => {
+				ensurePlaybackRegistration();
+				activateVideo(playbackId, { source: 'globo-event' });
+				dispatch('play');
+			},
+			onPause: () => {
+				deactivateVideo(playbackId);
+				dispatch('pause');
+			}
 		};
 
 		try {
 			playerInstance = new window.WM.Player(config);
 			playerInstance.attachTo(playerElement);
+			applyChromelessSetting(playerInstance, chromelessSetting);
+			if (forceControls) {
+				syncControlsVisibility(playerInstance, shouldShowControls);
+			}
 			setMutedState(isMuted, { allowRecreate: false });
+			setupMuteButtonObserver();
 			notifyControls('created');
 		} catch (e) {
 			error = e;
 			isLoading = false;
+			playerReady = false;
 		}
 	}
 
 	// Inicializar player
-	async function initializePlayer(shouldPlay) {
-		if (hasBeenInitialized || !browser) return;
-		hasBeenInitialized = true;
-		isLoading = true;
+async function initializePlayer(shouldPlay) {
+	if (hasBeenInitialized || !browser) return;
+	hasBeenInitialized = true;
+	isLoading = true;
+	playerReady = false;
 
-		try {
-			await loadGloboScript();
-			createPlayer(shouldPlay);
-		} catch (err) {
-			error = err;
-			isLoading = false;
-		}
+	try {
+		await loadGloboScript();
+		createPlayer(shouldPlay);
+	} catch (err) {
+		error = err;
+		isLoading = false;
+		playerReady = false;
 	}
+}
 
 	// ✅ DETECTAR MOBILE E CONFIGURAR OBSERVER
 	onMount(() => {
 		if (!browser) return;
+		ensurePlaybackRegistration();
 
 		// Mobile detection (mobile first)
 		const checkMobile = () => {
@@ -363,17 +570,20 @@
 				if (!hasBeenInitialized) {
 					initializePlayer(shouldPlayVideo);
 				} else if (playerInstance && typeof playerInstance.play === 'function' && shouldPlayVideo) {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'intersection-play' });
 					playerInstance.play();
 				}
 			} else {
 				if (playerInstance && typeof playerInstance.pause === 'function' && shouldPlayVideo) {
 					playerInstance.pause();
+					deactivateVideo(playbackId);
 				}
 			}
 		}, options);
 
-		if (playerElement) {
-			observer.observe(playerElement);
+		if (playerContainerElement) {
+			observer.observe(playerContainerElement);
 		}
 
 		return () => {
@@ -383,25 +593,45 @@
 
 	// Cleanup
 	onDestroy(() => {
-		if (observer && playerElement) {
-			observer.unobserve(playerElement);
+		if (observer && playerContainerElement) {
+			observer.unobserve(playerContainerElement);
 		}
+		muteButtonObserver?.disconnect();
+		muteButtonObserver = null;
 		if (playerInstance && typeof playerInstance.destroy === 'function') {
 			playerInstance.destroy();
 			console.log('🗑️ GloboPlayer destruído');
 		}
 		dispatch('destroyed', { player: playerInstance, controls: publicControls });
+		unregisterPlayback?.();
+		unregisterPlayback = null;
+		deactivateVideo(playbackId);
 		playerInstance = null;
 		publicControls = null;
+		playerReady = false;
 	});
 
 	// Reativo: recriar player quando IDs mudarem
 	$: if (
 		browser &&
-		(videoIdMobile || videoIdDesktop || videoId || videosIDs) &&
-		hasBeenInitialized
+		hasBeenInitialized &&
+		(videoIdMobile ||
+			videoIdDesktop ||
+			videoId ||
+			videosIDs ||
+			typeof chromeless === 'boolean' ||
+			controls === false ||
+			forceControls)
 	) {
 		createPlayer(false);
+	}
+
+	$: if (browser && playerInstance) {
+		const nextChromeless = resolveChromeless();
+		applyChromelessSetting(playerInstance, nextChromeless);
+		if (forceControls) {
+			syncControlsVisibility(playerInstance, true);
+		}
 	}
 
 	$: if (startMuted !== lastPropStartMuted) {
@@ -438,9 +668,20 @@
 	>
 		<div
 			class="player-wrapper"
-			bind:this={playerElement}
 			style="--aspect-ratio-desktop: {aspectRatio}; --aspect-ratio-mobile: {aspectRatioMobile};"
+			bind:this={playerContainerElement}
 		>
+			{#if poster}
+				<img
+					class="player-poster"
+					class:player-poster--hidden={!showPoster}
+					src={poster}
+					alt={resolvedPosterAlt}
+					aria-hidden={!showPoster}
+					loading="lazy"
+				/>
+			{/if}
+			<div class="player-surface" bind:this={playerElement}></div>
 			{#if isLoading}
 				<div class="feedback-state loading-state">
 					<div class="loading-spinner"></div>
@@ -520,6 +761,26 @@
 		background: #000;
 		border-radius: 4px;
 		overflow: hidden;
+	}
+
+	.player-surface {
+		position: absolute;
+		inset: 0;
+	}
+
+	.player-poster {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		pointer-events: none;
+		transition: opacity 0.2s ease, visibility 0.2s ease;
+	}
+
+	.player-poster--hidden {
+		opacity: 0;
+		visibility: hidden;
 	}
 
 	/* ✅ DESKTOP: aspect ratio diferente */
