@@ -17,26 +17,34 @@
 	export let mode = 'sticky'; // 'static' | 'sticky' | 'fixed'
 	export let position = 'bottom'; // 'top' | 'bottom'
 	export let maxWidth = 1280;
-	export let background = 'rgba(10, 12, 23, 0.92)';
-	export let blur = true;
-	export let reserveSpace = true;
-	export let collapsible = false;
+export let background = '#0c1d27';
+export let blur = true;
+export let reserveSpace = true;
+export let collapsible = false;
 
-	const FIXED_HEIGHT = 156;
+const FIXED_HEIGHT = 128;
 	const MOBILE_BREAKPOINT = 768;
 	const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
 	const FILTER_CONTROLS_ID = 'participant-slider-filters';
 
 	let scroller;
 	let lastGroup = null;
-	let searchTerm = '';
-	let locationFilter = '';
-	let areaFilter = '';
-	let locations = [];
-	let areas = [];
-	let names = [];
-	let isMobileViewport = false;
-	let mobileFiltersOpen = true;
+let searchTerm = '';
+let locationFilter = '';
+let areaFilter = '';
+let locations = [];
+let areas = [];
+let names = [];
+let matchedParticipant = null;
+let locationLocked = false;
+let areaLocked = false;
+let normalizedLocationFilter = null;
+let normalizedAreaFilter = null;
+let participantsForLocationOptions = [];
+let participantsForAreaOptions = [];
+let participantsForNameOptions = [];
+let isMobileViewport = false;
+let mobileFiltersOpen = true;
 
 	onMount(() => {
 		if (typeof window === 'undefined') return;
@@ -175,8 +183,22 @@ function buildDistinctNames(list = []) {
 	return items.sort((a, b) => a.localeCompare(b));
 }
 
-function applyFilters(list = [], search = '', location = '', area = '') {
+function findParticipantByName(list = [], name = '') {
+	const normalized = normalizeText(name);
+	if (!normalized) return null;
+	return (
+		list.find((participant) => normalizeText(participant?.name) === normalized) || null
+	);
+}
+
+function applyFilters(
+	list = [],
+	{ search = '', location = '', area = '', selected = null } = {}
+) {
 	if (!list.length) return list;
+	if (selected?.id) {
+		return list.filter((participant) => participant.id === selected.id);
+	}
 	const searchNormalized = normalizeText(search);
 	const locationNormalized = normalizeGroup(location);
 	const areaNormalized = normalizeGroup(area);
@@ -232,33 +254,62 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		}
 	})();
 	$: allParticipants = $participantsList || [];
-	$: locations = buildDistinctOptions(allParticipants, 'location');
-	$: areas = buildDistinctOptions(allParticipants, 'area');
-	$: names = buildDistinctNames(allParticipants);
+	$: normalizedLocationFilter = normalizeGroup(locationFilter);
+	$: normalizedAreaFilter = normalizeGroup(areaFilter);
+	$: participantsForLocationOptions =
+		normalizedAreaFilter
+			? allParticipants.filter(
+					(participant) => normalizeGroup(participant?.area) === normalizedAreaFilter
+				)
+			: allParticipants;
+	$: participantsForAreaOptions =
+		normalizedLocationFilter
+			? allParticipants.filter(
+					(participant) => normalizeGroup(participant?.location) === normalizedLocationFilter
+				)
+			: allParticipants;
+	$: participantsForNameOptions = allParticipants.filter((participant) => {
+		if (
+			normalizedLocationFilter &&
+			normalizeGroup(participant?.location) !== normalizedLocationFilter
+		) {
+			return false;
+		}
+		if (normalizedAreaFilter && normalizeGroup(participant?.area) !== normalizedAreaFilter) {
+			return false;
+		}
+		return true;
+	});
+	$: locations = buildDistinctOptions(participantsForLocationOptions, 'location');
+	$: areas = buildDistinctOptions(participantsForAreaOptions, 'area');
+	$: names = buildDistinctNames(participantsForNameOptions);
+	$: matchedParticipant = findParticipantByName(allParticipants, searchTerm);
+	$: locationLocked = Boolean(matchedParticipant);
+	$: areaLocked = Boolean(matchedParticipant);
 	$: {
-		if (locationFilter) {
-			const normalized = normalizeGroup(locationFilter);
-			const match = locations.find((item) => normalizeGroup(item) === normalized);
-			if (!match) {
-				locationFilter = locationFilter.trim();
-			} else if (match !== locationFilter) {
-				locationFilter = match;
+		if (matchedParticipant) {
+			const locationValue =
+				matchedParticipant.location === undefined || matchedParticipant.location === null
+					? ''
+					: String(matchedParticipant.location).trim();
+			const areaValue =
+				matchedParticipant.area === undefined || matchedParticipant.area === null
+					? ''
+					: String(matchedParticipant.area).trim();
+			if (locationValue !== locationFilter) {
+				locationFilter = locationValue;
+			}
+			if (areaValue !== areaFilter) {
+				areaFilter = areaValue;
 			}
 		}
 	}
-	$: {
-		if (areaFilter) {
-			const normalized = normalizeGroup(areaFilter);
-			const match = areas.find((item) => normalizeGroup(item) === normalized);
-			if (!match) {
-				areaFilter = areaFilter.trim();
-			} else if (match !== areaFilter) {
-				areaFilter = match;
-			}
-		}
-	}
-
-	$: filteredParticipants = applyFilters(allParticipants, searchTerm, locationFilter, areaFilter);
+	$: filteredParticipants = applyFilters(allParticipants, {
+		search: searchTerm,
+		location: locationFilter,
+		area: areaFilter,
+		selected: matchedParticipant
+	});
 	$: roster =
 		currentGrouping?.type === 'optimism'
 			? reorderByOptimism(filteredParticipants || [], currentGrouping?.value)
@@ -367,9 +418,9 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		>
 		<div class="slider-content">
 			{#if collapsible}
-				<div class="slider-actions">
-					{#if isMobileViewport}
-						<div class="action-buttons action-buttons--mobile">
+				<div class="slider-header">
+					<div class="slider-header__filters">
+						{#if isMobileViewport}
 							<button
 								type="button"
 								class="filter-toggle"
@@ -377,65 +428,56 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 								aria-expanded={mobileFiltersOpen}
 								aria-controls={FILTER_CONTROLS_ID}
 							>
-								{mobileFiltersOpen ? 'Ocultar filtros' : 'Mostrar filtros'}
+								Filtros
 							</button>
-							<button
-								type="button"
-								class="slider-collapse"
-								on:click={() => dispatch('collapse')}
-							>
-								Ocultar participantes
-							</button>
-						</div>
-					{/if}
-					<div
-						class="filter-controls"
-						role="group"
-						aria-label="Filtrar participantes"
-						id={FILTER_CONTROLS_ID}
-						class:filter-controls--collapsed={isMobileViewport && !mobileFiltersOpen}
-						aria-hidden={isMobileViewport && !mobileFiltersOpen}
-					>
-						<label class="filter">
-							<span class="sr-only">Buscar por nome</span>
-							<input
-								type="search"
-								placeholder="Buscar por nome"
-								bind:value={searchTerm}
-								list="participant-names"
-								aria-label="Buscar por nome"
-							/>
-						</label>
-						<label class="filter">
-							<span class="sr-only">Filtrar por localização</span>
-							<input
-								type="text"
-								placeholder="Localização"
-								bind:value={locationFilter}
-								list="participant-locations"
-								aria-label="Filtrar por localização"
-							/>
-						</label>
-						<label class="filter">
-							<span class="sr-only">Filtrar por área de atuação</span>
-							<input
-								type="text"
-								placeholder="Área de atuação"
-								bind:value={areaFilter}
-								list="participant-areas"
-								aria-label="Filtrar por área de atuação"
-							/>
+						{/if}
+						<div
+							class="filter-pill"
+							role="group"
+							aria-label="Filtrar participantes"
+							id={FILTER_CONTROLS_ID}
+							class:filter-pill--collapsed={isMobileViewport && !mobileFiltersOpen}
+							aria-hidden={isMobileViewport && !mobileFiltersOpen}
+						>
+							<label class="filter">
+								<span class="sr-only">Buscar por nome</span>
+								<input
+									type="search"
+									placeholder="Buscar por nome"
+									bind:value={searchTerm}
+									list="participant-names"
+									aria-label="Buscar por nome"
+								/>
+							</label>
+							<label class="filter">
+								<span class="sr-only">Filtrar por localização</span>
+								<input
+									type="text"
+									placeholder="Localização"
+									bind:value={locationFilter}
+									list="participant-locations"
+									aria-label="Filtrar por localização"
+									disabled={locationLocked}
+									aria-disabled={locationLocked}
+								/>
+							</label>
+							<label class="filter">
+								<span class="sr-only">Filtrar por área de atuação</span>
+								<input
+									type="text"
+									placeholder="Área de atuação"
+									bind:value={areaFilter}
+									list="participant-areas"
+									aria-label="Filtrar por área de atuação"
+									disabled={areaLocked}
+									aria-disabled={areaLocked}
+								/>
 							</label>
 						</div>
-					{#if !isMobileViewport}
-						<button
-							type="button"
-							class="slider-collapse"
-							on:click={() => dispatch('collapse')}
-						>
-							Ocultar participantes
-						</button>
-					{/if}
+					</div>
+					<button type="button" class="slider-collapse" on:click={() => dispatch('collapse')}>
+						Ocultar
+					</button>
 				</div>
 			{/if}
 					{#if filteredParticipants.length}
@@ -472,9 +514,9 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 											<span class="label">{getDisplayName(participant.name)}</span>
 										</button>
 										<button
-											class="more-button"
+											class="story-more"
 											type="button"
-											on:click={() => handleMore(participant)}
+											on:click|stopPropagation={() => handleMore(participant)}
 											aria-label={`Abrir perfil de ${getDisplayName(participant.name)}`}
 										>
 											<span aria-hidden="true">+</span>
@@ -526,11 +568,11 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	.slider-shell {
 		width: 100%;
 		margin: 0 auto;
-		padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1rem, 4vw, 1.75rem);
-		border-radius: 28px;
-		background: var(--slider-bg, rgba(10, 12, 23, 0.92));
-		border: 1px solid rgba(148, 163, 184, 0.18);
-		box-shadow: 0 28px 60px rgba(1, 5, 15, 0.4);
+		padding: clamp(0.55rem, 1.8vw, 0.9rem) clamp(0.8rem, 3vw, 1.6rem);
+		border-radius: 20px;
+		background: var(--slider-bg, #0f1f2b);
+		border: 1px solid rgba(244, 232, 210, 0.18);
+		box-shadow: 0 24px 48px rgba(5, 12, 21, 0.42);
 		color: #f8fafc;
 	}
 
@@ -539,79 +581,109 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
-		gap: 0.65rem;
+		gap: clamp(0.45rem, 1.2vw, 0.7rem);
 	}
 
-	.slider-actions {
+	.slider-header {
 		display: flex;
 		align-items: center;
-		gap: clamp(0.6rem, 1.5vw, 1.2rem);
-		flex-wrap: wrap;
-		padding-bottom: 0.25rem;
+		justify-content: space-between;
+		gap: clamp(0.6rem, 1.8vw, 1.2rem);
 	}
 
-	.filter-controls {
+	.slider-header__filters {
 		display: flex;
 		align-items: center;
-		gap: clamp(0.5rem, 1.5vw, 1rem);
-		flex-wrap: wrap;
+		gap: clamp(0.5rem, 1.6vw, 0.9rem);
 		flex: 1;
-	}
-
-	.filter-controls--collapsed {
-		display: none;
+		min-width: 0;
 	}
 
 	.filter-toggle {
 		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 0.45rem 0.75rem;
+		border-radius: 999px;
+		border: 1px solid rgba(244, 232, 210, 0.25);
+		background: rgba(9, 26, 34, 0.5);
+		color: inherit;
+		font-size: 0.8rem;
+		font-weight: 500;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
+
+	.filter-toggle[aria-expanded='true'] {
+		background: rgba(9, 26, 34, 0.7);
+		border-color: rgba(244, 232, 210, 0.4);
+	}
+
+	.filter-toggle:focus-visible {
+		outline: 2px solid rgba(244, 232, 210, 0.45);
+		outline-offset: 2px;
+	}
+
+	.filter-pill {
+		display: flex;
+		align-items: center;
+		gap: clamp(0.4rem, 1.2vw, 0.75rem);
+		padding: 0.45rem clamp(0.6rem, 1.5vw, 0.9rem);
+		border-radius: 999px;
+		background: transparent;
+		border: 1px solid rgba(244, 232, 210, 0.12);
+		flex: 1;
+		min-width: 0;
+	}
+
+	.filter-pill--collapsed {
+		display: none !important;
 	}
 
 	.filter {
 		position: relative;
-		width: clamp(180px, 22vw, 260px);
+		flex: 1;
+		min-width: 0;
 	}
 
 	.filter input {
 		width: 100%;
-		padding: 0.55rem 0.9rem;
+		padding: 0.4rem 0.75rem;
 		border-radius: 999px;
-		background: rgba(15, 23, 42, 0.35);
-		border: 1px solid rgba(148, 163, 184, 0.28);
+		background: rgba(6, 18, 27, 0.18);
+		border: 1px solid rgba(141, 168, 182, 0.24);
 		color: inherit;
-		font-size: 0.9rem;
+		font-size: 0.82rem;
 		transition:
 			border-color 160ms ease,
 			background 160ms ease,
 			box-shadow 160ms ease;
 	}
 
-	@media (min-width: 769px) {
-		.filter-controls--collapsed {
-			display: flex;
-		}
-	}
-
 	.filter input::placeholder {
-		color: rgba(148, 163, 184, 0.75);
+		color: rgba(200, 212, 220, 0.7);
 	}
 
 	.filter input:focus-visible {
 		outline: none;
-		border-color: rgba(148, 163, 184, 0.5);
-		background: rgba(15, 23, 42, 0.55);
-		box-shadow: 0 0 0 2px rgba(148, 163, 184, 0.25);
+		border-color: rgba(244, 232, 210, 0.4);
+		background: rgba(9, 26, 34, 0.4);
+		box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
 	}
 
 	.slider-collapse {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		padding: 0.55rem 1rem;
+		white-space: nowrap;
+		padding: 0.45rem 0.9rem;
 		border-radius: 999px;
-		background: rgba(15, 23, 42, 0.45);
-		border: 1px solid rgba(255, 255, 255, 0.14);
+		background: rgba(9, 26, 34, 0.45);
+		border: 1px solid rgba(244, 232, 210, 0.18);
 		color: inherit;
-		font-size: 0.95rem;
+		font-size: 0.82rem;
 		font-weight: 500;
 		cursor: pointer;
 		transition:
@@ -621,8 +693,8 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	}
 
 	.slider-collapse:hover {
-		background: rgba(15, 23, 42, 0.6);
-		border-color: rgba(255, 255, 255, 0.3);
+		background: rgba(9, 26, 34, 0.62);
+		border-color: rgba(244, 232, 210, 0.35);
 		transform: translateY(-1px);
 	}
 
@@ -631,7 +703,7 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	}
 
 	.slider-collapse:focus-visible {
-		outline: 2px solid rgba(248, 250, 252, 0.85);
+		outline: 2px solid rgba(244, 232, 210, 0.35);
 		outline-offset: 2px;
 	}
 
@@ -651,101 +723,82 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		min-height: 120px;
-		border-radius: 20px;
-		background: rgba(15, 23, 42, 0.35);
-		border: 1px dashed rgba(148, 163, 184, 0.35);
-		padding: 2rem;
+		min-height: 108px;
+		border-radius: 18px;
+		background: rgba(9, 26, 34, 0.4);
+		border: 1px dashed rgba(244, 232, 210, 0.28);
+		padding: 1.6rem;
 		text-align: center;
 		color: rgba(248, 250, 252, 0.75);
 	}
 
 	.slider-empty p {
 		margin: 0;
-		font-size: 0.95rem;
+		font-size: 0.92rem;
 	}
 
 	@media (max-width: 768px) {
 		.slider-content {
-			gap: 0.5rem;
-		}
-
-		.slider-actions {
-			flex-direction: column;
-			align-items: stretch;
-			gap: 0.5rem;
-			padding-bottom: 0;
-		}
-
-		.action-buttons {
-			width: 100%;
-		}
-
-		.action-buttons {
-			display: flex;
-			align-items: center;
 			gap: 0.4rem;
-			width: 100%;
 		}
 
-		.action-buttons--mobile .filter-toggle,
-		.action-buttons--mobile .slider-collapse {
-			flex: 1 1 0;
-			min-width: 0;
-			font-size: 0.8rem;
-			padding: 0.45rem 0.7rem;
-		}
+	.slider-header {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		grid-template-areas:
+			'filters_toggle collapse'
+			'filters filters';
+		gap: 0.4rem;
+		align-items: center;
+	}
 
-		.action-buttons--mobile .slider-collapse {
-			justify-content: center;
-		}
+	.slider-header__filters {
+		display: contents;
+	}
 
-		.filter-toggle {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			width: 100%;
-			padding: 0.45rem 0.9rem;
-			border-radius: 999px;
-			border: 1px solid rgba(148, 163, 184, 0.35);
-			background: rgba(15, 23, 42, 0.5);
-			color: inherit;
-			font-size: 0.85rem;
-			font-weight: 500;
-			cursor: pointer;
-			transition:
-				background 160ms ease,
-				border-color 160ms ease;
-		}
+	.filter-toggle {
+		display: inline-flex;
+		grid-area: filters_toggle;
+		width: auto;
+		justify-content: center;
+	}
 
-		.filter-toggle[aria-expanded='true'] {
-			background: rgba(15, 23, 42, 0.65);
-			border-color: rgba(148, 163, 184, 0.5);
-		}
+	.slider-collapse {
+		grid-area: collapse;
+		width: auto;
+		justify-content: center;
+	}
 
-		.filter-toggle:focus-visible {
-			outline: 2px solid rgba(148, 163, 184, 0.4);
-			outline-offset: 2px;
-		}
+	.filter-pill {
+		grid-area: filters;
+		width: 100%;
+	}
 
-		.filter-controls {
-			width: 100%;
-			justify-content: flex-start;
-			gap: 0.45rem;
-		}
+	.filter {
+		width: 100%;
+	}
 
-		.filter {
-			width: 100%;
-		}
+	.filter input {
+		padding: 0.42rem 0.7rem;
+		font-size: 0.85rem;
+	}
 
-		.filter input {
-			padding: 0.45rem 0.8rem;
-			font-size: 0.85rem;
-		}
+	.filter-pill {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		gap: 0.45rem;
+		padding: 0.55rem clamp(0.6rem, 4vw, 1rem);
+		border-radius: 18px;
+	}
 
-		.slider-collapse {
-			width: auto;
-		}
+	.filter {
+		width: 100%;
+	}
+
+	.filter input {
+		width: 100%;
+	}
 	}
 
 
@@ -802,29 +855,31 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: clamp(40px, 6vw, 52px);
-		height: clamp(40px, 6vw, 52px);
-		border-radius: 999px;
-		border: 1px solid rgba(255, 255, 255, 0.18);
-		background: rgba(15, 23, 42, 0.35);
+		width: clamp(32px, 4.5vw, 40px);
+		height: clamp(32px, 4.5vw, 40px);
+		border-radius: 50%;
+		border: 1px solid rgba(244, 232, 210, 0.26);
+		background: rgba(9, 26, 34, 0.48);
 		color: inherit;
-		font-size: 1.75rem;
+		font-size: 1.35rem;
 		cursor: pointer;
 		transition:
-			background 180ms ease,
-			transform 180ms ease;
+			background 160ms ease,
+			transform 160ms ease,
+			border-color 160ms ease;
 	}
 
 	.nav:hover {
-		background: rgba(249, 115, 22, 0.25);
-		transform: scale(1.05);
+		background: rgba(210, 75, 63, 0.28);
+		border-color: rgba(210, 75, 63, 0.6);
+		transform: translateY(-1px);
 	}
 
 	.stories-list {
 		display: grid;
 		grid-auto-flow: column;
-		grid-auto-columns: minmax(86px, 1fr);
-		gap: clamp(0.5rem, 1.4vw, 0.9rem);
+		grid-auto-columns: minmax(80px, max-content);
+		gap: clamp(0.18rem, 0.8vw, 0.4rem);
 		overflow-x: auto;
 		padding: 0.1rem 0.25rem;
 		scroll-snap-type: x mandatory;
@@ -835,16 +890,19 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	}
 
 	.stories-list::-webkit-scrollbar-thumb {
-		background: rgba(255, 255, 255, 0.15);
+		background: rgba(244, 232, 210, 0.25);
 		border-radius: 999px;
 	}
 
 	.story-item {
+		--ring-size: 64px;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: clamp(0.15rem, 0.6vw, 0.35rem);
-		padding: 0;
+		gap: clamp(0.2rem, 0.7vw, 0.4rem);
+		padding: 0.1rem 0.2rem;
+		margin-right: clamp(0.28rem, 1.4vw, 0.55rem);
 		scroll-snap-align: center;
 	}
 
@@ -852,7 +910,7 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		gap: clamp(0.35rem, 1vw, 0.5rem);
+		gap: clamp(0.3rem, 0.9vw, 0.45rem);
 		padding: 0;
 		background: transparent;
 		border: none;
@@ -864,33 +922,33 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 	}
 
 	.story-trigger:hover {
-		transform: translateY(-4px);
+		transform: translateY(-3px);
 	}
 
 	.story-trigger:focus-visible {
-		outline: 2px solid rgba(148, 163, 184, 0.6);
+		outline: 2px solid rgba(244, 232, 210, 0.45);
 		outline-offset: 3px;
 	}
 
 	.slider-shell--group-active .story-item.same-group .story-trigger {
-		opacity: 0.7;
+		opacity: 0.78;
 	}
 
 	.slider-shell--group-active .story-item.same-group .story-trigger .label {
-		color: rgba(248, 250, 252, 0.85);
+		color: rgba(248, 250, 252, 0.88);
 	}
 
 	.slider-shell--group-active .story-item.same-group .ring {
-		background: linear-gradient(135deg, #f97316, #38bdf8);
+		background: linear-gradient(135deg, #f29b54, #2a6b7a);
 		padding: 3px;
 	}
 
 	.slider-shell--group-active .story-item.dimmed .story-trigger {
-		opacity: 0.2;
+		opacity: 0.22;
 	}
 
 	.slider-shell--group-active .story-item.dimmed .label {
-		color: rgba(248, 250, 252, 0.35);
+		color: rgba(248, 250, 252, 0.32);
 	}
 
 	.slider-shell--group-active .story-item.dimmed {
@@ -903,27 +961,27 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		filter: grayscale(1);
 	}
 
-	.slider-shell--group-active .story-item.dimmed .more-button {
+	.slider-shell--group-active .story-item.dimmed .story-more {
 		opacity: 0.35;
 	}
 
 	.slider-shell--group-active .story-item.active .ring {
-		box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.4);
+		box-shadow: 0 0 0 3px rgba(240, 200, 97, 0.45);
 	}
 
 	.slider-shell--participant-focus .story-item.active .ring {
-		background: rgba(197, 83, 69, 0.2);
-		box-shadow: 0 0 0 4px rgb(197, 83, 69);
+		background: rgba(210, 75, 63, 0.26);
+		box-shadow: 0 0 0 3px rgba(210, 75, 63, 0.85);
 	}
 
 	.slider-shell--participant-focus .story-item.active img,
 	.slider-shell--participant-focus .story-item.active .initials {
-		border-color: rgb(197, 83, 69);
+		border-color: rgba(210, 75, 63, 0.85);
 		filter: grayscale(0);
 	}
 
 	.slider-shell--participant-focus .story-item:not(.active) .ring {
-		background: rgba(148, 163, 184, 0.08);
+		background: rgba(141, 168, 182, 0.12);
 		box-shadow: none;
 	}
 
@@ -933,10 +991,10 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		filter: grayscale(1);
 	}
 
-	.slider-shell--participant-focus .story-item:not(.active) .more-button {
-		background: rgba(15, 23, 42, 0.6);
-		border-color: rgba(148, 163, 184, 0.28);
-		color: rgba(148, 163, 184, 0.65);
+	.slider-shell--participant-focus .story-item:not(.active) .story-more {
+		background: rgba(9, 26, 34, 0.6);
+		border-color: rgba(141, 168, 182, 0.28);
+		color: rgba(200, 212, 220, 0.7);
 	}
 
 	.ring {
@@ -944,11 +1002,11 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 72px;
-		height: 72px;
+		width: var(--ring-size);
+		height: var(--ring-size);
 		padding: 2px;
 		border-radius: 50%;
-		background: rgba(148, 163, 184, 0.12);
+		background: rgba(141, 168, 182, 0.16);
 		transition:
 			background 220ms ease,
 			box-shadow 220ms ease;
@@ -960,8 +1018,8 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		height: 100%;
 		border-radius: 50%;
 		object-fit: cover;
-		background: rgba(15, 23, 42, 0.9);
-		border: 3px solid rgba(15, 23, 42, 0.9);
+		background: rgba(9, 26, 34, 0.9);
+		border: 3px solid rgba(9, 26, 34, 0.9);
 		transition:
 			filter 180ms ease,
 			border-color 180ms ease;
@@ -972,15 +1030,15 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		align-items: center;
 		justify-content: center;
 		font-weight: 600;
-		font-size: 1.35rem;
+		font-size: 1.1rem;
 		color: rgba(248, 250, 252, 0.82);
 	}
 
 	.label {
-		font-size: 0.85rem;
+		font-size: 0.78rem;
 		text-align: center;
 		line-height: 1.2;
-		color: rgba(248, 250, 252, 0.75);
+		color: rgba(248, 250, 252, 0.72);
 	}
 
 	.story-item.active .story-trigger .label {
@@ -988,34 +1046,39 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 		font-weight: 600;
 	}
 
-	.more-button {
+	.story-more {
+		position: absolute;
+		top: calc(var(--ring-size) / 2);
+		left: 50%;
+		transform: translate(calc(var(--ring-size) / 2 - 8px), -50%);
+		width: 28px;
+		height: 28px;
+		border-radius: 50%;
+		border: 1px solid rgba(244, 232, 210, 0.3);
+		background: rgba(9, 26, 34, 0.72);
+		color: rgba(248, 250, 252, 0.9);
+		font-size: 1rem;
+		line-height: 1;
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		width: 30px;
-		height: 30px;
-		margin-top: clamp(0.35rem, 0.8vw, 0.55rem);
-		border-radius: 50%;
-		border: 1px solid rgba(148, 163, 184, 0.45);
-		background: rgba(15, 23, 42, 0.75);
-		color: rgba(248, 250, 252, 0.92);
-		font-size: 1.05rem;
-		line-height: 1;
 		cursor: pointer;
+		z-index: 2;
 		transition:
 			background 160ms ease,
 			transform 160ms ease,
-			border-color 160ms ease;
+			border-color 160ms ease,
+			box-shadow 160ms ease;
 	}
 
-	.more-button:hover {
-		background: rgba(197, 83, 69, 0.28);
-		border-color: rgba(197, 83, 69, 0.65);
-		transform: translateY(-1px);
+	.story-more:hover {
+		background: rgba(210, 75, 63, 0.32);
+		border-color: rgba(210, 75, 63, 0.65);
+		transform: translate(calc(var(--ring-size) / 2 - 8px), -50%) scale(1.06);
 	}
 
-	.more-button:focus-visible {
-		outline: 2px solid rgba(197, 83, 69, 0.8);
+	.story-more:focus-visible {
+		outline: 2px solid rgba(210, 75, 63, 0.85);
 		outline-offset: 2px;
 	}
 
@@ -1031,8 +1094,8 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 
 		.stories-list {
 			justify-content: flex-start;
-			grid-auto-columns: minmax(68px, 1fr);
-			gap: 0.55rem;
+			grid-auto-columns: minmax(74px, max-content);
+			gap: 0.4rem;
 			padding: 0 0.15rem;
 		}
 
@@ -1055,15 +1118,20 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 
 		.story-item {
 			gap: 0.25rem;
+			--ring-size: 60px;
+			margin-right: clamp(0.32rem, 4.5vw, 0.65rem);
 		}
 
 		.story-trigger {
 			gap: 0.3rem;
 		}
 
+		.story-more {
+			width: 26px;
+			height: 26px;
+		}
+
 		.ring {
-			width: 60px;
-			height: 60px;
 			padding: 1.5px;
 		}
 
@@ -1080,11 +1148,5 @@ function applyFilters(list = [], search = '', location = '', area = '') {
 			font-size: 0.78rem;
 		}
 
-		.more-button {
-			width: 28px;
-			height: 28px;
-			margin-top: 0.4rem;
-			font-size: 1rem;
-		}
 	}
 </style>

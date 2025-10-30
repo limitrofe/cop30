@@ -102,21 +102,21 @@
 		z-index: 1600;
 		background: rgba(2, 6, 23, 0.72);
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		justify-content: center;
-		padding: clamp(1.5rem, 4vw, 3rem);
+		padding: 60px 12px;
 		backdrop-filter: blur(10px);
 	}
 
 	.modal-dialog {
 		position: relative;
-		width: min(960px, calc(100vw - 2rem));
-		max-height: calc(100vh - 2rem);
+		width: min(960px, calc(100vw - 24px));
+		max-height: calc(100vh - 120px);
 		overflow-y: auto;
 		border-radius: 28px;
-		background: rgba(15, 23, 42, 0.94);
-		box-shadow: 0 40px 90px rgba(2, 6, 23, 0.6);
-		padding: clamp(1rem, 2vw, 1.5rem);
+		background: transparent;
+		box-shadow: none;
+		padding: clamp(0.25rem, 1vw, 0.5rem);
 	}
 
 	.close-button {
@@ -159,10 +159,10 @@
 
 	@media (max-width: 768px) {
 		.modal-dialog {
-			width: 100%;
-			height: calc(100vh - 1.5rem);
-			max-height: none;
-			padding: clamp(0.75rem, 4vw, 1.25rem);
+			width: calc(100vw - 24px);
+			height: auto;
+			max-height: calc(100vh - 120px);
+			padding: clamp(0.25rem, 2vw, 0.5rem);
 		}
 	}
 </style>

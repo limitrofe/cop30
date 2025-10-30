@@ -94,7 +94,6 @@
 				{/if}
 			</div>
 			<header class="identity">
-				<p class="eyebrow">Participante destacado</p>
 				<h2>{nameBlock.name}</h2>
 				{#if hasContent(primaryDescriptor)}
 					<p class="role">{primaryDescriptor}</p>
@@ -103,10 +102,6 @@
 					<p class="role role--secondary">{secondaryRole}</p>
 				{/if}
 			</header>
-			<div class="profile-nav" aria-hidden="false">
-				<button type="button" on:click={selectPrevious} aria-label="Participante anterior">‹</button>
-				<button type="button" on:click={selectNext} aria-label="Próximo participante">›</button>
-			</div>
 			</div>
 
 			<div class="chips">
@@ -177,20 +172,27 @@
 				<span class="legend">Recado para os leitores</span>
 				<p>{participant.extraMessage}</p>
 			</blockquote>
-	{/if}
-</div>
+		{/if}
+
+		<div class="profile-nav">
+			<button type="button" on:click={selectPrevious} aria-label="Participante anterior">‹</button>
+			<button type="button" on:click={selectNext} aria-label="Próximo participante">›</button>
+		</div>
+	</div>
 {/if}
 
 <style>
-	.profile-card {
+.profile-card {
 		display: flex;
 		flex-direction: column;
-		gap: clamp(1.25rem, 3vw, 2.25rem);
-		padding: clamp(1.5rem, 3vw, 2.5rem);
+		gap: clamp(1.1rem, 3vw, 2.25rem);
+		padding: clamp(1.25rem, 3.8vw, 2.4rem);
 		border-radius: 24px;
 		background: #374953;
-		box-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
+		box-shadow: 0 28px 60px rgba(2, 6, 23, 0.55);
 		color: #f8fafc;
+		width: 100%;
+		box-sizing: border-box;
 	}
 
 	.profile-header {
@@ -232,43 +234,10 @@
 		color: rgba(248, 250, 252, 0.85);
 	}
 
-	.profile-nav {
-		margin-left: auto;
-		display: inline-flex;
-		gap: 0.65rem;
-	}
-
-	.profile-nav button {
-		width: 40px;
-		height: 40px;
-		border-radius: 999px;
-		border: 1px solid rgba(248, 250, 252, 0.35);
-		background: rgba(15, 23, 42, 0.7);
-		color: inherit;
-		font-size: 1.4rem;
-		cursor: pointer;
-		transition:
-			transform 180ms ease,
-			background 180ms ease;
-	}
-
-	.profile-nav button:hover {
-		transform: scale(1.06);
-		background: rgba(197, 83, 69, 0.25);
-	}
-
 	.identity {
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
-	}
-
-	header .eyebrow {
-		text-transform: uppercase;
-		font-size: 0.75rem;
-		letter-spacing: 0.18em;
-		color: rgba(148, 163, 184, 0.8);
-		margin: 0 0 0.75rem;
 	}
 
 	header h2 {
@@ -295,24 +264,25 @@
 	.chips {
 		display: flex;
 		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin: 1.25rem 0;
+		gap: 0.85rem;
+		margin: 1.35rem 0;
 	}
 
 	.chip {
 		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
-		gap: 0.2rem;
-		padding: 0.6rem 1rem;
-		border-radius: 14px;
+		gap: 0.28rem;
+		padding: 0.7rem 1.15rem;
+		border-radius: 16px;
 		background: rgba(55, 73, 83, 0.75);
 		border: 1px solid rgba(148, 197, 216, 0.3);
-		min-width: 120px;
+		min-width: 150px;
+		flex: 1 1 150px;
 	}
 
 	.chip small {
-		font-size: 0.7rem;
+		font-size: 0.9rem;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
 		color: rgba(148, 163, 184, 0.8);
@@ -331,9 +301,9 @@
 
 	.insights {
 		display: grid;
-		gap: 1rem;
+		gap: 1.1rem;
 		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-		margin-bottom: 1.5rem;
+		margin-bottom: 1.6rem;
 	}
 
 	.insights h3 {
@@ -352,14 +322,14 @@
 	}
 
 	.optimism {
-		margin-bottom: 1.5rem;
-		padding: 1rem 1.2rem;
-		border-radius: 16px;
+		margin-bottom: 1.75rem;
+		padding: 1.15rem 1.35rem;
+		border-radius: 18px;
 		background: rgba(55, 73, 83, 0.92);
 		border: 1px solid rgba(56, 189, 248, 0.4);
 		display: flex;
 		flex-direction: column;
-		gap: 0.75rem;
+		gap: 0.85rem;
 	}
 
 	.optimism-header {
@@ -402,7 +372,7 @@
 
 	.optimism-caption {
 		margin: 0.45rem 0 0;
-		font-size: 0.8rem;
+		font-size: 0.9rem;
 		color: rgba(148, 163, 184, 0.8);
 	}
 
@@ -416,7 +386,7 @@
 	}
 
 	.optimism-reason .legend {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 		text-transform: uppercase;
 		letter-spacing: 0.14em;
 		color: rgba(148, 163, 184, 0.85);
@@ -432,7 +402,7 @@
 
 	blockquote {
 		margin: 0;
-		padding: 1.2rem 1.4rem;
+		padding: 1.35rem 1.5rem;
 		border-left: 4px solid rgba(249, 115, 22, 0.9);
 		border-radius: 14px;
 		background: rgba(55, 73, 83, 0.92);
@@ -443,7 +413,7 @@
 	}
 
 	blockquote .legend {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 		text-transform: uppercase;
 		letter-spacing: 0.14em;
 		color: rgba(148, 163, 184, 0.85);
@@ -459,6 +429,32 @@
 		white-space: pre-line;
 	}
 
+	.profile-nav {
+		margin-top: clamp(1.25rem, 3vw, 1.9rem);
+		display: flex;
+		justify-content: center;
+		gap: clamp(0.75rem, 2.8vw, 1rem);
+	}
+
+	.profile-nav button {
+		width: 46px;
+		height: 46px;
+		border-radius: 999px;
+		border: 1px solid rgba(248, 250, 252, 0.35);
+		background: rgba(15, 23, 42, 0.7);
+		color: inherit;
+		font-size: 1.4rem;
+		cursor: pointer;
+		transition:
+			transform 180ms ease,
+			background 180ms ease;
+	}
+
+	.profile-nav button:hover {
+		transform: scale(1.05);
+		background: rgba(197, 83, 69, 0.3);
+	}
+
 	@media (max-width: 1024px) {
 		.profile-header {
 			flex-wrap: wrap;
@@ -472,7 +468,7 @@
 
 	@media (max-width: 640px) {
 		.profile-card {
-			padding: 1.25rem;
+			padding: clamp(1rem, 6vw, 1.6rem);
 			border-radius: 20px;
 		}
 
@@ -485,11 +481,18 @@
 		.profile-nav {
 			width: 100%;
 			justify-content: center;
-			margin-top: 0.5rem;
+			margin-top: 1rem;
 		}
 
 		header h2 {
 			font-size: 1.75rem;
+		}
+
+		.chip small,
+		.optimism-caption,
+		.optimism-reason .legend,
+		blockquote .legend {
+			font-size: 0.8rem;
 		}
 	}
 </style>
