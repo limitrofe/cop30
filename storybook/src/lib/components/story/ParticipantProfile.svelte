@@ -148,40 +148,47 @@
 			{/if}
 
 			{#if hasContent(participant.optimismScore)}
-				<div class="optimism">
-					<div class="optimism-header">
-						<h3>Nível de otimismo</h3>
-						<span>{participant.optimismScore}</span>
-					</div>
-					<div class="optimism-bar">
+			<div class="optimism">
+				<div class="optimism-header">
+					<h3>Nível de otimismo</h3>
+					<span>{participant.optimismScore}</span>
+				</div>
+				<div class="optimism-bar">
 						<div
 							class="optimism-fill"
 							style={`width:${
 								Math.max(0, Math.min(Number(participant.optimismScore) || 0, 10)) * 10
 							}%;`}
 						></div>
-					</div>
-					<p class="optimism-caption">0 = mais pessimista &middot; 10 = mais otimista</p>
 				</div>
-			{/if}
+				<p class="optimism-caption">0 = mais pessimista &middot; 10 = mais otimista</p>
 
-			{#if hasContent(participant.optimismReason)}
-				<blockquote>
-					<span class="legend">Por que pensa assim</span>
-					<p>{participant.optimismReason}</p>
-				</blockquote>
-			{/if}
-	</div>
+				{#if hasContent(participant.optimismReason)}
+					<div class="optimism-reason">
+						<span class="legend">Por que pensa assim</span>
+						<p>{participant.optimismReason}</p>
+					</div>
+				{/if}
+			</div>
+		{/if}
+
+		{#if hasContent(participant.extraMessage)}
+			<blockquote class="extra-message">
+				<span class="legend">Recado para os leitores</span>
+				<p>{participant.extraMessage}</p>
+			</blockquote>
+	{/if}
+</div>
 {/if}
 
 <style>
-.profile-card {
+	.profile-card {
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1.25rem, 3vw, 2.25rem);
 		padding: clamp(1.5rem, 3vw, 2.5rem);
 		border-radius: 24px;
-		background: rgba(15, 23, 42, 0.6);
+		background: #374953;
 		box-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
 		color: #f8fafc;
 	}
@@ -299,8 +306,8 @@
 		gap: 0.2rem;
 		padding: 0.6rem 1rem;
 		border-radius: 14px;
-		background: rgba(15, 23, 42, 0.6);
-		border: 1px solid rgba(148, 163, 184, 0.3);
+		background: rgba(55, 73, 83, 0.75);
+		border: 1px solid rgba(148, 197, 216, 0.3);
 		min-width: 120px;
 	}
 
@@ -318,7 +325,7 @@
 
 	.chip.highlight {
 		border-color: rgba(249, 115, 22, 0.6);
-		background: rgba(249, 115, 22, 0.1);
+		background: rgba(249, 115, 22, 0.16);
 		color: #f97316;
 	}
 
@@ -348,8 +355,11 @@
 		margin-bottom: 1.5rem;
 		padding: 1rem 1.2rem;
 		border-radius: 16px;
-		background: rgba(15, 23, 42, 0.55);
+		background: rgba(55, 73, 83, 0.92);
 		border: 1px solid rgba(56, 189, 248, 0.4);
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
 	}
 
 	.optimism-header {
@@ -396,12 +406,40 @@
 		color: rgba(148, 163, 184, 0.8);
 	}
 
+	.optimism-reason {
+		margin-top: 0.35rem;
+		padding-top: 0.75rem;
+		border-top: 1px solid rgba(56, 189, 248, 0.28);
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	.optimism-reason .legend {
+		font-size: 0.75rem;
+		text-transform: uppercase;
+		letter-spacing: 0.14em;
+		color: rgba(148, 163, 184, 0.85);
+	}
+
+	.optimism-reason p {
+		margin: 0;
+		font-size: 1rem;
+		line-height: 1.6;
+		color: rgba(248, 250, 252, 0.92);
+		white-space: pre-line;
+	}
+
 	blockquote {
 		margin: 0;
 		padding: 1.2rem 1.4rem;
 		border-left: 4px solid rgba(249, 115, 22, 0.9);
 		border-radius: 14px;
-		background: rgba(15, 23, 42, 0.6);
+		background: rgba(55, 73, 83, 0.92);
+	}
+
+	blockquote + blockquote {
+		margin-top: 1.25rem;
 	}
 
 	blockquote .legend {
