@@ -76,13 +76,21 @@
 	let activeFilterId = null;
 	let activeFilterIds = new Set();
 
-	let videos = [];
-	let filteredVideos = [];
-	let highlightSection = null;
-	let regularSections = [];
+let videos = [];
+let filteredVideos = [];
+let highlightSection = null;
+let regularSections = [];
+let filteredVideosOrdered = [];
+let filteredVideosShuffleKey = '';
+let defaultShuffleActive = false;
+let filtersIdle = true;
+let searchActive = false;
+let searchSuggestionsVisible = false;
+let searchSuggestionsHideTimeoutId = null;
+let searchFieldFocused = false;
 
-	let totalVideos = 0;
-	let totalVisible = 0;
+let totalVideos = 0;
+let totalVisible = 0;
 
 	let controlsStuck = false;
 	let sentinelElement;
@@ -155,16 +163,21 @@ let hideControlsForMobileFeed = false;
 	let desktopVisibilityObserver = null;
 	let desktopObserverActive = false;
 	let autoScrollTriggered = false;
-	let desktopOverlayVideoId = null;
-	let desktopOverlayVideos = [];
-	let desktopOverlayIndex = -1;
-	let desktopOverlayVideo = null;
-	let desktopOverlayElement;
-	let desktopOverlayScrollTop = 0;
-	let desktopOverlayControls = null;
-	let desktopOverlaySkipDFP = true;
-	let desktopOverlayPendingAutoplay = false;
-	const DESKTOP_SKIP_PATTERN = [true, true, true, false];
+let desktopOverlayVideoId = null;
+let desktopOverlayVideos = [];
+let desktopOverlayIndex = -1;
+let desktopOverlayVideo = null;
+let desktopOverlayElement;
+let desktopOverlayPinnedVideoId = null;
+let desktopOverlayShuffleSeed = 0;
+let desktopOverlayShuffleKey = '';
+let desktopOverlayScrollTop = 0;
+let desktopOverlayControls = null;
+let desktopOverlaySkipDFP = false;
+let desktopOverlayPendingAutoplay = false;
+let desktopOverlayTransitionLock = false;
+let desktopOverlayTransitionToken = 0;
+const DESKTOP_SKIP_PATTERN = [false];
 	let desktopPlaybackCount = 0;
 	const desktopAdDecisions = new Map();
 	const desktopStartedPlaybacks = new Set();
@@ -370,6 +383,7 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 	desktopOverlaySurfaceShadow: '0 32px 80px rgba(5, 8, 25, 0.65)',
 	desktopOverlayAccent:
 		'linear-gradient(135deg, rgba(236, 72, 153, 0.32) 0%, rgba(59, 130, 246, 0.32) 35%, rgba(45, 212, 191, 0.25) 100%)',
+	desktopOverlayPlayerBackground: 'rgba(5, 9, 18, 0.88)',
 	desktopOverlayMetaAlign: 'center',
 	desktopOverlayPlayerPadding: '0rem',
 	desktopOverlayCardBackground:
@@ -542,10 +556,13 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 	isMeaningful(layoutResolved.desktopOverlayAccent)
 		? `--desktop-overlay-accent:${layoutResolved.desktopOverlayAccent}`
 		: null,
-	isMeaningful(layoutResolved.desktopOverlayPlayerPadding)
-		? `--desktop-overlay-player-padding:${layoutResolved.desktopOverlayPlayerPadding}`
-		: null,
-	isMeaningful(layoutResolved.desktopOverlayCardBackground)
+isMeaningful(layoutResolved.desktopOverlayPlayerPadding)
+	? `--desktop-overlay-player-padding:${layoutResolved.desktopOverlayPlayerPadding}`
+	: null,
+isMeaningful(layoutResolved.desktopOverlayPlayerBackground)
+	? `--desktop-overlay-player-background:${layoutResolved.desktopOverlayPlayerBackground}`
+	: null,
+isMeaningful(layoutResolved.desktopOverlayCardBackground)
 		? `--desktop-overlay-card-bg:${layoutResolved.desktopOverlayCardBackground}`
 		: null,
 	isMeaningful(layoutResolved.desktopOverlayCardShadow)
@@ -716,10 +733,83 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 	activeSearchNormalized
 	});
 
+	$: searchTermNormalized = normalizeValue(searchTerm);
+
+	$: if (!searchResolved.instant) {
+		const activationThreshold = Math.max(
+			searchResolved?.minLength ?? 0,
+			SEARCH_SUGGESTION_MIN_LENGTH
+		);
+		if (searchTermNormalized.length >= activationThreshold) {
+			if (activeSearchTerm !== searchTerm) {
+				activeSearchTerm = searchTerm;
+			}
+			if (!searchHasSubmitted) {
+				searchHasSubmitted = true;
+			}
+		} else if (
+			searchHasSubmitted &&
+			activeSearchTerm &&
+			searchTermNormalized.length < activationThreshold
+		) {
+			activeSearchTerm = '';
+			searchHasSubmitted = false;
+		}
+	}
+
+	$: activeSearchNormalized = normalizeValue(activeSearchTerm);
+	$: shouldApplySearch =
+	searchResolved.instant || activeSearchNormalized.length >= (searchResolved.minLength ?? 0);
+	$: searchActive = Boolean(
+		(searchTermNormalized && searchTermNormalized.length > 0) ||
+		(activeSearchNormalized && activeSearchNormalized.length > 0)
+	);
+
+	$: searchSuggestions = buildSearchSuggestions({
+		videos,
+		termNormalized: searchTermNormalized,
+		termOriginal: searchTerm,
+		limit: Math.max(
+			1,
+			Math.min(
+				searchResolved?.suggestionLimit ?? SEARCH_SUGGESTION_LIMIT,
+				SEARCH_SUGGESTION_LIMIT
+			)
+		),
+		filterMode,
+		activeFilterId,
+		activeFilterIds,
+		filterMatchStrategy
+	});
+
 	$: totalVisible = filteredVideos.length;
+	$: filtersIdle =
+		filterMode === 'single'
+			? (!activeFilterId || activeFilterId === 'all')
+			: (!activeFilterIds || activeFilterIds.size === 0);
+	$: defaultShuffleActive = filtersIdle && !searchActive;
+	$: {
+		// Shuffle the default listing until the user interacts with filters or search.
+		if (!filteredVideos?.length) {
+			filteredVideosOrdered = filteredVideos;
+			filteredVideosShuffleKey = '';
+		} else if (!defaultShuffleActive) {
+			filteredVideosOrdered = filteredVideos;
+			filteredVideosShuffleKey = '';
+		} else {
+			const nextKey = filteredVideos.map((video) => video.uuid).join('|');
+			if (nextKey && nextKey !== filteredVideosShuffleKey) {
+				filteredVideosOrdered = shuffleList(filteredVideos);
+				filteredVideosShuffleKey = nextKey;
+			} else if (!filteredVideosOrdered?.length) {
+				filteredVideosOrdered = shuffleList(filteredVideos);
+				filteredVideosShuffleKey = nextKey;
+			}
+		}
+	}
 
 	$: highlightSection = buildHighlightSection(
-		filteredVideos,
+		filteredVideosOrdered,
 		sectionsResolved,
 		highlightValueSet,
 		layoutResolved
@@ -731,15 +821,15 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 
 	$: videosForSections =
 		sectionsResolved.highlight && highlightSection && !sectionsResolved.highlight.retainInSections
-			? filteredVideos.filter((video) => !highlightIds.has(video.uuid))
-			: filteredVideos;
+			? filteredVideosOrdered.filter((video) => !highlightIds.has(video.uuid))
+			: filteredVideosOrdered;
 
 	$: regularSections = buildSections(videosForSections, sectionsResolved);
 	$: feedVideosBase = buildFeedSourceVideos({
-	highlightSection,
-	regularSections,
-	filteredVideos,
-	sectionsResolved
+		highlightSection,
+		regularSections,
+		filteredVideos: filteredVideosOrdered,
+		sectionsResolved
 	});
 	$: {
 	const nextFeedVideos = buildShortzVideos({
@@ -754,7 +844,44 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 		feedLeadVideoId = null;
 	}
 	}
-	$: desktopOverlayVideos = feedVideosBase ?? [];
+	$: {
+		const base = Array.isArray(feedVideosBase) ? [...feedVideosBase] : [];
+		if (!base.length) {
+			desktopOverlayVideos = [];
+			desktopOverlayShuffleKey = '';
+			if (desktopOverlayPinnedVideoId !== null) {
+				desktopOverlayPinnedVideoId = null;
+			}
+			if (desktopOverlayShuffleSeed !== 0) {
+				desktopOverlayShuffleSeed = 0;
+			}
+		} else if (!defaultShuffleActive) {
+			desktopOverlayVideos = base;
+			desktopOverlayShuffleKey = '';
+			if (desktopOverlayPinnedVideoId !== null) {
+				desktopOverlayPinnedVideoId = null;
+			}
+			if (desktopOverlayShuffleSeed !== 0) {
+				desktopOverlayShuffleSeed = 0;
+			}
+		} else {
+			const pinnedId = desktopOverlayPinnedVideoId ?? '';
+			const keyParts = [pinnedId, String(desktopOverlayShuffleSeed ?? 0), ...base.map((video) => video.uuid ?? '')];
+			const nextKey = keyParts.join('|');
+			if (nextKey && nextKey !== desktopOverlayShuffleKey) {
+				const pinnedVideo = pinnedId ? base.find((video) => video.uuid === pinnedId) ?? null : null;
+				const remaining = pinnedVideo
+					? base.filter((video) => video.uuid !== pinnedVideo.uuid)
+					: base;
+				const random = createSeededRandom(desktopOverlayShuffleSeed || Date.now());
+				const shuffled = shuffleList(remaining, random);
+				desktopOverlayVideos = pinnedVideo ? [pinnedVideo, ...shuffled] : shuffled;
+				desktopOverlayShuffleKey = nextKey;
+			} else if (!desktopOverlayVideos?.length) {
+				desktopOverlayVideos = base;
+			}
+		}
+	}
 
 	$: {
 	if (!desktopOverlayVideoId) {
@@ -784,50 +911,14 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 	activeFeedId = null;
 	}
 
-	$: searchTermNormalized = normalizeValue(searchTerm);
-
-	$: if (!searchResolved.instant) {
-		const activationThreshold = Math.max(
-			searchResolved?.minLength ?? 0,
-			SEARCH_SUGGESTION_MIN_LENGTH
-		);
-		if (searchTermNormalized.length >= activationThreshold) {
-			if (activeSearchTerm !== searchTerm) {
-				activeSearchTerm = searchTerm;
-			}
-			if (!searchHasSubmitted) {
-				searchHasSubmitted = true;
-			}
-		} else if (
-			searchHasSubmitted &&
-			activeSearchTerm &&
-			searchTermNormalized.length < activationThreshold
-		) {
-			activeSearchTerm = '';
-			searchHasSubmitted = false;
-		}
+	$: if (!searchSuggestions.length) {
+	clearSearchSuggestionsHideTimeout();
+	if (searchSuggestionsVisible) {
+		searchSuggestionsVisible = false;
 	}
-
-	$: activeSearchNormalized = normalizeValue(activeSearchTerm);
-	$: shouldApplySearch =
-	searchResolved.instant || activeSearchNormalized.length >= (searchResolved.minLength ?? 0);
-
-	$: searchSuggestions = buildSearchSuggestions({
-		videos,
-		termNormalized: searchTermNormalized,
-		termOriginal: searchTerm,
-		limit: Math.max(
-			1,
-			Math.min(
-				searchResolved?.suggestionLimit ?? SEARCH_SUGGESTION_LIMIT,
-				SEARCH_SUGGESTION_LIMIT
-			)
-		),
-		filterMode,
-		activeFilterId,
-		activeFilterIds,
-		filterMatchStrategy
-	});
+	} else if (searchFieldFocused && !searchSuggestionsVisible) {
+	openSearchSuggestions();
+	}
 
 	$: isMobileFeed =
 	layoutResolved.enableMobileFeed !== false &&
@@ -932,6 +1023,7 @@ hasMounted = true;
 	teardownRevealObserver();
 	resizeCleanup?.();
 	teardownFeedObserver();
+	clearSearchSuggestionsHideTimeout();
 	clearTimeout(snapTimeoutId);
 	feedPlayerControls.forEach((controls) => {
 		try {
@@ -1900,11 +1992,11 @@ feedOrderToken = nextShortzSeed();
 	}
 	}
 
-	function handleFilterClick(option) {
-		if (!option) return;
-		userTouchedFilters = true;
-		if (filterMode === 'single') {
-			activeFilterId = option.id;
+function handleFilterClick(option) {
+	if (!option) return;
+	userTouchedFilters = true;
+	if (filterMode === 'single') {
+		activeFilterId = option.id;
 		} else {
 			if (option.isAll) {
 				activeFilterIds = new Set();
@@ -1919,7 +2011,7 @@ feedOrderToken = nextShortzSeed();
 			}
 			activeFilterIds = next;
 		}
-		revealMobileResults({ type: 'filter' });
+	revealMobileResults({ type: 'filter' });
 	}
 
 	function isFilterActive(option) {
@@ -1933,16 +2025,56 @@ feedOrderToken = nextShortzSeed();
 		if (option.isAll) {
 			return !activeFilterIds || activeFilterIds.size === 0;
 		}
-		return activeFilterIds.has(option.id);
+	return activeFilterIds.has(option.id);
+	}
+
+	function clearSearchSuggestionsHideTimeout() {
+	if (searchSuggestionsHideTimeoutId) {
+		clearTimeout(searchSuggestionsHideTimeoutId);
+		searchSuggestionsHideTimeoutId = null;
+	}
+	}
+
+	function openSearchSuggestions() {
+	clearSearchSuggestionsHideTimeout();
+	if (searchSuggestions.length) {
+		searchSuggestionsVisible = true;
+	}
+	}
+
+function closeSearchSuggestionsImmediate() {
+clearSearchSuggestionsHideTimeout();
+searchSuggestionsVisible = false;
+searchFieldFocused = false;
+}
+
+	function scheduleSearchSuggestionsClose(delay = 120) {
+	clearSearchSuggestionsHideTimeout();
+	searchSuggestionsHideTimeoutId = setTimeout(() => {
+		searchSuggestionsVisible = false;
+		searchSuggestionsHideTimeoutId = null;
+	}, Math.max(0, delay));
+	}
+
+function handleSearchFocus() {
+	searchFieldFocused = true;
+	openSearchSuggestions();
+	}
+
+	function handleSearchBlur() {
+	searchFieldFocused = false;
+	scheduleSearchSuggestionsClose();
 	}
 
 	function handleSearchInput(event) {
+		searchFieldFocused = true;
 		searchTerm = event.currentTarget.value;
 		if (searchResolved.instant) {
 			activeSearchTerm = searchTerm;
 			searchHasSubmitted = true;
 			revealMobileResults({ type: 'search' });
 		}
+		openSearchSuggestions();
 	}
 
 	function handleSearchSubmit(event) {
@@ -1950,12 +2082,14 @@ feedOrderToken = nextShortzSeed();
 		activeSearchTerm = searchTerm;
 		searchHasSubmitted = true;
 		revealMobileResults({ type: 'search' });
+		closeSearchSuggestionsImmediate();
 	}
 
 	function handleSearchClear() {
 		searchTerm = '';
 		activeSearchTerm = '';
 		searchHasSubmitted = false;
+		closeSearchSuggestionsImmediate();
 	}
 
 	function handleSuggestionSelect(suggestion) {
@@ -1966,6 +2100,7 @@ feedOrderToken = nextShortzSeed();
 		activeSearchTerm = nextValue;
 		searchHasSubmitted = true;
 		revealMobileResults({ type: 'search' });
+		closeSearchSuggestionsImmediate();
 	}
 
 async function setControlsFloatingState(shouldFloat) {
@@ -2029,7 +2164,7 @@ if (shouldFloat) {
 				const isVisible = entry?.isIntersecting ?? false;
 				controlsRevealActive = !isVisible;
 			},
-			{ threshold: [0], rootMargin: '-10vh 0px 0px 0px' }
+			{ threshold: [0], rootMargin: '-10% 0px 0px 0px' }
 		);
 	}
 	if (revealObservedElement === controlsRevealSentinelElement) return;
@@ -2295,6 +2430,9 @@ if (shouldFloat) {
 	function activateDesktopOverlayAt(index, { autoplay = false } = {}) {
 	const videos = desktopOverlayVideos ?? [];
 	if (!videos.length) return -1;
+	if (desktopOverlayTransitionLock) {
+		return desktopOverlayIndex;
+	}
 	const total = videos.length;
 	let normalizedIndex = Number.isInteger(index) ? index : 0;
 	if (normalizedIndex < 0) {
@@ -2306,41 +2444,59 @@ if (shouldFloat) {
 	const target = videos[normalizedIndex];
 	if (!target) return -1;
 
-	const sameVideo = desktopOverlayVideoId === target.uuid;
-	desktopOverlayPendingAutoplay = autoplay;
+	desktopOverlayTransitionLock = true;
+	const transitionToken = ++desktopOverlayTransitionToken;
+	const releaseTransitionLock = () => {
+		if (transitionToken === desktopOverlayTransitionToken) {
+			desktopOverlayTransitionLock = false;
+		}
+	};
 
-	if (autoplay) {
-		desktopOverlaySkipDFP = DESKTOP_SKIP_PATTERN[desktopPlaybackCount % DESKTOP_SKIP_PATTERN.length];
-		desktopPlaybackCount += 1;
-	}
+	try {
+		const sameVideo = desktopOverlayVideoId === target.uuid;
+		desktopOverlayPendingAutoplay = autoplay;
 
-	if (!sameVideo) {
-		try {
-			desktopOverlayControls?.pause?.();
-			if (shouldAutoMute) {
-				desktopOverlayControls?.setMuted?.(true);
+		if (autoplay) {
+			desktopOverlaySkipDFP = DESKTOP_SKIP_PATTERN[desktopPlaybackCount % DESKTOP_SKIP_PATTERN.length];
+			desktopPlaybackCount += 1;
+		}
+
+		if (!sameVideo) {
+			try {
+				desktopOverlayControls?.pause?.();
+				if (shouldAutoMute) {
+					desktopOverlayControls?.setMuted?.(true);
+				}
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao pausar player do overlay', error);
 			}
-		} catch (error) {
-			console.warn('VideoSheetShowcase: falha ao pausar player do overlay', error);
+			desktopOverlayControls = null;
+			desktopOverlayVideoId = target.uuid;
+		} else if (autoplay && desktopOverlayControls) {
+			try {
+				desktopOverlayControls.play?.();
+				desktopOverlayControls.setMuted?.(false);
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao iniciar vídeo do overlay', error);
+			} finally {
+				desktopOverlayPendingAutoplay = false;
+			}
 		}
-		desktopOverlayControls = null;
-		desktopOverlayVideoId = target.uuid;
-	} else if (autoplay && desktopOverlayControls) {
-		try {
-			desktopOverlayControls.play?.();
-			desktopOverlayControls.setMuted?.(false);
-		} catch (error) {
-			console.warn('VideoSheetShowcase: falha ao iniciar vídeo do overlay', error);
-		} finally {
-			desktopOverlayPendingAutoplay = false;
-		}
+
+		tick()
+			.then(() => {
+				desktopOverlayElement?.focus?.();
+				releaseTransitionLock();
+			})
+			.catch(() => {
+				releaseTransitionLock();
+			});
+
+		return normalizedIndex;
+	} catch (error) {
+		releaseTransitionLock();
+		throw error;
 	}
-
-	tick().then(() => {
-		desktopOverlayElement?.focus?.();
-	});
-
-	return normalizedIndex;
 	}
 
 	function openShortzWithLead(videoId) {
@@ -2373,9 +2529,112 @@ if (shouldFloat) {
 	openDesktopOverlay(videoId);
 	}
 
-	function openDesktopOverlay(videoId) {
+	function resolveFilterOptionForVideo(video) {
+	if (!video || !filterOptions?.length) return null;
+	const ids =
+		video.filterIds instanceof Set
+			? video.filterIds
+			: new Set(Array.isArray(video.filterIds) ? video.filterIds : []);
+	if (ids.size) {
+		for (const option of filterOptions) {
+			if (option?.isAll) continue;
+			if (ids.has(option.id)) {
+				return option;
+			}
+		}
+	}
+	if (Array.isArray(video.filters)) {
+		for (const filter of video.filters) {
+			if (!filter?.id) continue;
+			const option = filterOptions.find((candidate) => candidate.id === filter.id);
+			if (option && !option.isAll) {
+				return option;
+			}
+		}
+	}
+	const normalizedTag = normalizeValue(video.tag);
+	if (normalizedTag) {
+		const option = filterOptions.find(
+			(candidate) => !candidate.isAll && normalizeValue(candidate.label) === normalizedTag
+		);
+		if (option) {
+			return option;
+		}
+	}
+	return null;
+	}
+
+	function clearSearchStateForFilterJump() {
+	if (!searchTerm && !activeSearchTerm && !searchHasSubmitted) return;
+	searchTerm = '';
+	activeSearchTerm = '';
+	searchHasSubmitted = false;
+	}
+
+	function applyFilterOption(option) {
+	if (!option || !filterOptions?.length) return false;
+	const exists = filterOptions.some((candidate) => candidate.id === option.id);
+	if (!exists) return false;
+	userTouchedFilters = true;
+	if (filterMode === 'single') {
+		activeFilterId = option.id;
+	} else {
+		activeFilterId = null;
+		const next = new Set();
+		if (!option.isAll) {
+			next.add(option.id);
+		}
+		activeFilterIds = next;
+	}
+	revealMobileResults({ type: 'filter' });
+	return true;
+	}
+
+	async function handleVideoLabelFilter(video) {
+	const option = resolveFilterOptionForVideo(video);
+	if (!option) return;
+	clearSearchStateForFilterJump();
+	const applied = applyFilterOption(option);
+	if (!applied) return;
+	const overlayWasOpen = !!desktopOverlayVideoId;
+	if (overlayWasOpen) {
+		closeDesktopOverlay({ restoreScroll: false });
+	}
+	if (isMobileViewport) {
+		setMobileViewMode(MobileView.FEED);
+	}
+	await tick();
+	if (browser) {
+		try {
+			if (controlsElement) {
+				controlsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+			} else {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			}
+		} catch (error) {
+			try {
+				window.scrollTo({ top: 0, behavior: 'smooth' });
+			} catch (scrollError) {
+				// ignore fallback failures
+			}
+		}
+	}
+	}
+
+async function openDesktopOverlay(videoId) {
 	if (!videoId) return;
 	if (isMobileViewport || isMobileFeed) return;
+	if (desktopOverlayTransitionLock) return;
+	const baseVideos = feedVideosBase ?? [];
+	if (!baseVideos.length) return;
+
+	if (defaultShuffleActive) {
+		desktopOverlayPinnedVideoId = videoId;
+		desktopOverlayShuffleSeed = Math.floor(Math.random() * 0xffffffff);
+		desktopOverlayShuffleKey = '';
+		await tick();
+	}
+
 	const videos = desktopOverlayVideos ?? [];
 	if (!videos.length) return;
 	const targetIndex = videos.findIndex((video) => video.uuid === videoId);
@@ -2392,9 +2651,11 @@ if (shouldFloat) {
 	activateDesktopOverlayAt(targetIndex, { autoplay: true });
 	}
 
-	function closeDesktopOverlay({ restoreScroll = true } = {}) {
+function closeDesktopOverlay({ restoreScroll = true } = {}) {
 	const hadVideo = !!desktopOverlayVideoId;
 	desktopOverlayPendingAutoplay = false;
+	desktopOverlayTransitionToken += 1;
+	desktopOverlayTransitionLock = false;
 	overlayKeydownCleanup?.();
 	overlayKeydownCleanup = null;
 
@@ -2408,6 +2669,12 @@ if (shouldFloat) {
 	}
 	desktopOverlayControls = null;
 	desktopOverlayVideoId = null;
+	if (desktopOverlayPinnedVideoId !== null) {
+		desktopOverlayPinnedVideoId = null;
+	}
+	if (desktopOverlayShuffleSeed !== 0) {
+		desktopOverlayShuffleSeed = 0;
+	}
 
 	if (browser) {
 		document.body.classList.remove(BODY_SCROLL_LOCK_CLASS);
@@ -2419,13 +2686,13 @@ if (shouldFloat) {
 	}
 
 	function showNextDesktopOverlay() {
-	if (!desktopOverlayVideos?.length) return;
+	if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock) return;
 	const nextIndex = desktopOverlayIndex >= 0 ? desktopOverlayIndex + 1 : 0;
 	activateDesktopOverlayAt(nextIndex, { autoplay: true });
 	}
 
 	function showPreviousDesktopOverlay() {
-	if (!desktopOverlayVideos?.length) return;
+	if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock) return;
 	const prevIndex =
 		desktopOverlayIndex >= 0 ? desktopOverlayIndex - 1 : (desktopOverlayVideos.length || 1) - 1;
 	activateDesktopOverlayAt(prevIndex, { autoplay: true });
@@ -2477,6 +2744,8 @@ if (shouldFloat) {
 
 	function closeFeedOverlay() {
 	feedOverlayMode = 'none';
+	closeSearchSuggestionsImmediate();
+	searchFieldFocused = false;
 	if (isMobileFeed) {
 		queueMicrotask(() => snapActiveFeedVideo({ behavior: 'smooth', force: true }));
 	}
@@ -2673,6 +2942,8 @@ if (shouldFloat) {
 									aria-label={searchResolved.placeholder}
 									bind:value={searchTerm}
 									on:input={handleSearchInput}
+									on:focus={handleSearchFocus}
+									on:blur={handleSearchBlur}
 									bind:this={searchInputRef}
 								/>
 								<button type="submit">{searchResolved.submitLabel}</button>
@@ -2680,7 +2951,7 @@ if (shouldFloat) {
 									<button type="button" class="alt" on:click={handleSearchClear}>{searchResolved.clearLabel}</button>
 								{/if}
 							</form>
-							{#if searchSuggestions.length}
+							{#if searchSuggestionsVisible && searchSuggestions.length}
 								<ul class="search-suggestions" role="listbox" aria-label="Sugestões de busca">
 									{#each searchSuggestions as suggestion (suggestion.id)}
 										<li role="presentation">
@@ -2688,6 +2959,7 @@ if (shouldFloat) {
 												type="button"
 												role="option"
 												class="search-suggestions__item"
+												on:mousedown|preventDefault
 												on:click={() => handleSuggestionSelect(suggestion)}
 											>
 												{suggestion.label}
@@ -2766,13 +3038,15 @@ if (shouldFloat) {
 									aria-label={searchResolved.placeholder}
 									bind:value={searchTerm}
 									on:input={handleSearchInput}
+									on:focus={handleSearchFocus}
+									on:blur={handleSearchBlur}
 								/>
 								<button type="submit">{searchResolved.submitLabel}</button>
 								{#if searchTerm && searchResolved.showClearButton !== false}
 									<button type="button" class="alt" on:click={handleSearchClear}>{searchResolved.clearLabel}</button>
 								{/if}
 							</form>
-							{#if searchSuggestions.length}
+							{#if searchSuggestionsVisible && searchSuggestions.length}
 								<ul class="search-suggestions" role="listbox" aria-label="Sugestões de busca">
 									{#each searchSuggestions as suggestion (suggestion.id)}
 										<li role="presentation">
@@ -2780,6 +3054,7 @@ if (shouldFloat) {
 												type="button"
 												role="option"
 												class="search-suggestions__item"
+												on:mousedown|preventDefault
 												on:click={() => handleSuggestionSelect(suggestion)}
 											>
 												{suggestion.label}
@@ -3162,7 +3437,14 @@ if (shouldFloat) {
 						{/if}
 
 						{#if desktopOverlayVideo.tag || desktopOverlayVideo.section?.label}
-							<span class="desktop-overlay__tag">{desktopOverlayVideo.tag || desktopOverlayVideo.section?.label}</span>
+							<button
+								type="button"
+								class="desktop-overlay__tag"
+								on:click|stopPropagation={() => handleVideoLabelFilter(desktopOverlayVideo)}
+								aria-label={`Ver vídeos do tema ${desktopOverlayVideo.tag || desktopOverlayVideo.section?.label}`}
+							>
+								{desktopOverlayVideo.tag || desktopOverlayVideo.section?.label}
+							</button>
 						{/if}
 
 						<h2 id={`desktop-overlay-title-${desktopOverlayVideo.uuid}`}>{desktopOverlayVideo.title}</h2>
@@ -3763,6 +4045,28 @@ if (shouldFloat) {
 		box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
 	}
 
+	@keyframes controls-floating-in {
+		0% {
+			opacity: 0;
+			transform: translateY(40px) scale(0.94);
+			box-shadow: 0 16px 36px rgba(15, 23, 42, 0.12);
+		}
+		55% {
+			opacity: 1;
+			transform: translateY(-8px) scale(1.04);
+			box-shadow: 0 42px 62px rgba(15, 23, 42, 0.22);
+		}
+		75% {
+			transform: translateY(4px) scale(0.99);
+			box-shadow: 0 28px 48px rgba(15, 23, 42, 0.18);
+		}
+		100% {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+			box-shadow: 0 32px 52px rgba(15, 23, 42, 0.18);
+		}
+	}
+
 	.controls--floating {
 		position: fixed;
 		top: auto;
@@ -3776,22 +4080,23 @@ if (shouldFloat) {
 		padding: clamp(1.1rem, 3vw, 1.6rem) clamp(1.5rem, 4vw, 2.4rem);
 		backdrop-filter: blur(18px);
 		-webkit-backdrop-filter: blur(18px);
+		will-change: transform, opacity, box-shadow;
 	}
 
 	.controls--floating-visible {
 		opacity: 1;
 		transform: translateY(0);
 		pointer-events: auto;
+		animation: controls-floating-in 0.58s cubic-bezier(0.18, 0.88, 0.24, 1.12);
 	}
 
 	.controls--floating .controls-heading,
-	.controls--floating .filter-carousel,
 	.controls--floating .controls-meta {
 		display: none;
 	}
 
 	.controls--floating .controls__inner {
-		gap: 0;
+		gap: 0.75rem;
 	}
 
 	.controls--floating .search-wrapper {
@@ -3799,13 +4104,16 @@ if (shouldFloat) {
 		width: 100%;
 	}
 
+	.controls--floating .filter-carousel {
+		margin: 0;
+	}
+
 	.controls--floating .search-bar {
 		width: 100%;
 	}
 
 	.controls--floating .search-suggestions {
-		max-height: 50vh;
-		overflow-y: auto;
+		max-height: min(40vh, 16rem);
 	}
 
 	@media (min-width: 768px) {
@@ -4058,31 +4366,39 @@ if (shouldFloat) {
 
 	.search-suggestions {
 		list-style: none;
-		margin: 0;
-		padding: 0;
 		display: flex;
 		flex-direction: column;
-		gap: 0.25rem;
+		gap: 0.35rem;
+		margin: 0;
+		padding: 0.5rem 0.35rem;
+		border-radius: 0.85rem;
+		background: rgba(15, 23, 42, 0.04);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 12px 24px rgba(15, 23, 42, 0.08);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		max-height: 14rem;
+		overflow-y: auto;
 	}
 
 	.search-suggestions__item {
-		display: block;
 		width: 100%;
 		text-align: left;
-		padding: 0.5rem 0.75rem;
-		border: 1px solid var(--search-input-border-color, rgba(15, 23, 42, 0.15));
-		border-radius: 0.75rem;
-		background: var(--search-input-background, rgba(255, 255, 255, 0.97));
-		color: var(--search-input-color, #111827);
-		font: inherit;
+		padding: 0.6rem 0.9rem;
+		border-radius: 0.65rem;
+		background: rgba(255, 255, 255, 0.92);
+		border: 1px solid rgba(15, 23, 42, 0.08);
+		color: rgba(15, 23, 42, 0.85);
+		font-size: 0.95rem;
+		font-weight: 500;
 		cursor: pointer;
-		transition: background 0.2s ease, border-color 0.2s ease;
+		transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 	}
 
 	.search-suggestions__item:hover,
 	.search-suggestions__item:focus-visible {
-		background: var(--search-input-hover-background, rgba(15, 23, 42, 0.08));
-		border-color: var(--search-input-focus-border-color, var(--search-input-border-color, rgba(15, 23, 42, 0.15)));
+		background: rgba(15, 23, 42, 0.12);
+		border-color: rgba(15, 23, 42, 0.18);
+		transform: translateX(4px);
 		outline: none;
 	}
 
@@ -4336,6 +4652,7 @@ if (shouldFloat) {
 	.desktop-overlay__col--left,
 	.desktop-overlay__col--right {
 		min-width: clamp(2.75rem, 5vw, 3.75rem);
+		position: relative;
 	}
 
 	.desktop-overlay__col--right {
@@ -4351,9 +4668,19 @@ if (shouldFloat) {
 		padding-left: clamp(0.5rem, 2vw, 1.25rem);
 	}
 
+	.desktop-overlay__col--left .desktop-overlay__nav,
 	.desktop-overlay__col--right .desktop-overlay__nav {
-		margin-top: auto;
-		margin-bottom: auto;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.desktop-overlay__col--left .desktop-overlay__nav {
+		left: clamp(0.65rem, 2vw, 1.25rem);
+	}
+
+	.desktop-overlay__col--right .desktop-overlay__nav {
+		right: clamp(0.65rem, 2vw, 1.25rem);
 	}
 
 	.desktop-overlay__col--video,
@@ -4372,7 +4699,7 @@ if (shouldFloat) {
 		--desktop-overlay-player-padding: clamp(0.5rem, 1.8vh, 1.35rem);
 		padding: var(--desktop-overlay-player-padding, 0);
 		border-radius: var(--desktop-overlay-player-radius, 1.5rem);
-		background: rgba(5, 9, 18, 0.88);
+		background: var(--desktop-overlay-player-background, rgba(5, 9, 18, 0.88));
 		box-shadow: var(--desktop-overlay-player-shadow, 0 24px 46px rgba(12, 18, 36, 0.42));
 	}
 
@@ -4468,17 +4795,38 @@ if (shouldFloat) {
 
 	.desktop-overlay__tag {
 		align-self: flex-start;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.35rem;
 		padding: 0.35rem 1.1rem;
 		border-radius: 999px;
 		font-size: 0.78rem;
 		font-weight: 700;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
+		border: none;
+		appearance: none;
+		-webkit-appearance: none;
+		cursor: pointer;
+		outline: none;
 		background: linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.08));
 		color: rgba(248, 250, 252, 0.9);
 		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25), 0 8px 18px rgba(15, 23, 42, 0.35);
 		backdrop-filter: blur(12px);
 		-webkit-backdrop-filter: blur(12px);
+		transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+	}
+
+	.desktop-overlay__tag:hover,
+	.desktop-overlay__tag:focus-visible {
+		transform: translateY(-1px);
+		box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), 0 12px 28px rgba(15, 23, 42, 0.42);
+	}
+
+	.desktop-overlay__tag:focus-visible {
+		outline: 2px solid rgba(255, 255, 255, 0.65);
+		outline-offset: 3px;
 	}
 
 	.desktop-overlay__cta {
@@ -4554,13 +4902,14 @@ if (shouldFloat) {
 		backdrop-filter: blur(14px);
 		-webkit-backdrop-filter: blur(14px);
 		box-shadow: 0 14px 30px rgba(15, 23, 42, 0.38);
-		transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+		transform-origin: center;
+		transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 	}
 
 	.desktop-overlay__nav:hover,
 	.desktop-overlay__nav:focus-visible {
 		background: rgba(255, 255, 255, 0.26);
-		transform: scale(1.06);
+		transform: translateY(-50%) scale(1.04);
 		box-shadow: 0 20px 42px rgba(15, 23, 42, 0.45);
 		outline: none;
 	}
@@ -4647,7 +4996,7 @@ if (shouldFloat) {
 		--desktop-overlay-player-padding: var(--desktop-overlay-card-media-padding, 1.1rem);
 		padding: var(--desktop-overlay-player-padding, 0);
 		border-radius: calc(var(--desktop-overlay-card-radius, 1.8rem) - 0.6rem);
-		background: rgba(5, 9, 18, 0.92);
+		background: var(--desktop-overlay-player-background, rgba(5, 9, 18, 0.92));
 		box-shadow: 0 26px 48px rgba(5, 9, 18, 0.45);
 	}
 
