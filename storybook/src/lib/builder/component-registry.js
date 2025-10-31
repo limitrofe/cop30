@@ -1536,6 +1536,11 @@ export const componentRegistry = [
 					'radial-gradient(circle at top left, rgba(80, 132, 247, 0.24), transparent 55%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.18), transparent 50%), rgba(5,9,18,0.78)',
 				desktopOverlayBackdropBlur: '28px',
 				desktopOverlaySurface: 'rgba(12, 18, 36, 0.55)',
+				desktopOverlaySurfaceImage: '',
+				desktopOverlaySurfaceImageSize: 'cover',
+				desktopOverlaySurfaceImagePosition: 'center',
+				desktopOverlaySurfaceImageRepeat: 'no-repeat',
+				desktopOverlaySurfaceImageBlendMode: 'normal',
 				desktopOverlaySurfaceBlur: '22px',
 				desktopOverlaySurfaceBorder: 'rgba(255, 255, 255, 0.18)',
 				desktopOverlaySurfaceShadow: '0 32px 80px rgba(5, 8, 25, 0.65)',
@@ -2205,6 +2210,36 @@ export const componentRegistry = [
 				label: 'Overlay desktop • cor da superfície glass',
 				type: 'text',
 				placeholder: 'rgba(...)'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceImage',
+				label: 'Overlay desktop • imagem/fundo da superfície',
+				type: 'text',
+				placeholder: 'URL, url(...) ou gradient'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceImageSize',
+				label: 'Overlay desktop • tamanho da imagem',
+				type: 'text',
+				placeholder: 'cover'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceImagePosition',
+				label: 'Overlay desktop • posição da imagem',
+				type: 'text',
+				placeholder: 'center'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceImageRepeat',
+				label: 'Overlay desktop • repetição da imagem',
+				type: 'text',
+				placeholder: 'no-repeat'
+			},
+			{
+				path: 'layoutConfig.desktopOverlaySurfaceImageBlendMode',
+				label: 'Overlay desktop • blend mode da imagem',
+				type: 'text',
+				placeholder: 'normal, multiply...'
 			},
 			{
 				path: 'layoutConfig.desktopOverlaySurfaceBlur',

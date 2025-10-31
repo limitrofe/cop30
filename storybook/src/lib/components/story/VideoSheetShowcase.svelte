@@ -378,6 +378,11 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 		'radial-gradient(circle at top left, rgba(80, 132, 247, 0.24), transparent 55%), radial-gradient(circle at bottom right, rgba(236, 72, 153, 0.18), transparent 50%), rgba(5,9,18,0.78)',
 	desktopOverlayBackdropBlur: '28px',
 	desktopOverlaySurface: 'rgba(12, 18, 36, 0.55)',
+	desktopOverlaySurfaceImage: '',
+	desktopOverlaySurfaceImageSize: 'cover',
+	desktopOverlaySurfaceImagePosition: 'center',
+	desktopOverlaySurfaceImageRepeat: 'no-repeat',
+	desktopOverlaySurfaceImageBlendMode: 'normal',
 	desktopOverlaySurfaceBlur: '22px',
 	desktopOverlaySurfaceBorder: 'rgba(255, 255, 255, 0.18)',
 	desktopOverlaySurfaceShadow: '0 32px 80px rgba(5, 8, 25, 0.65)',
@@ -398,6 +403,29 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 	$: filtersResolved = { ...defaultFiltersConfig, ...(filtersConfig || {}) };
 	$: searchResolved = { ...defaultSearchConfig, ...(searchConfig || {}) };
 	$: layoutResolved = { ...defaultLayoutConfig, ...(layoutConfig || {}) };
+	$: desktopOverlaySurfaceImageValue = formatBackgroundImageValue(
+		layoutResolved.desktopOverlaySurfaceImage
+	);
+	$: desktopOverlaySurfaceHasImage = !!desktopOverlaySurfaceImageValue;
+	$: desktopOverlaySurfaceInlineStyle = [
+		desktopOverlaySurfaceImageValue
+			? `--desktop-overlay-surface-image:${desktopOverlaySurfaceImageValue}`
+			: null,
+		isMeaningful(layoutResolved.desktopOverlaySurfaceImageSize)
+			? `--desktop-overlay-surface-image-size:${layoutResolved.desktopOverlaySurfaceImageSize}`
+			: null,
+		isMeaningful(layoutResolved.desktopOverlaySurfaceImagePosition)
+			? `--desktop-overlay-surface-image-position:${layoutResolved.desktopOverlaySurfaceImagePosition}`
+			: null,
+		isMeaningful(layoutResolved.desktopOverlaySurfaceImageRepeat)
+			? `--desktop-overlay-surface-image-repeat:${layoutResolved.desktopOverlaySurfaceImageRepeat}`
+			: null,
+		isMeaningful(layoutResolved.desktopOverlaySurfaceImageBlendMode)
+			? `--desktop-overlay-surface-image-blend:${layoutResolved.desktopOverlaySurfaceImageBlendMode}`
+			: null
+	]
+		.filter(Boolean)
+		.join(';');
 	$: controlsInlineStyle = buildControlsInlineStyle(layoutResolved, {
 	fixed: controlsFixed && !isMobileFeed,
 	bounds: controlsBounds,
@@ -543,6 +571,21 @@ const AD_SCROLL_LOCK_DURATION = 5000;
 		: null,
 	isMeaningful(layoutResolved.desktopOverlaySurface)
 		? `--desktop-overlay-surface:${layoutResolved.desktopOverlaySurface}`
+		: null,
+	desktopOverlaySurfaceImageValue
+		? `--desktop-overlay-surface-image:${desktopOverlaySurfaceImageValue}`
+		: null,
+	isMeaningful(layoutResolved.desktopOverlaySurfaceImageSize)
+		? `--desktop-overlay-surface-image-size:${layoutResolved.desktopOverlaySurfaceImageSize}`
+		: null,
+	isMeaningful(layoutResolved.desktopOverlaySurfaceImagePosition)
+		? `--desktop-overlay-surface-image-position:${layoutResolved.desktopOverlaySurfaceImagePosition}`
+		: null,
+	isMeaningful(layoutResolved.desktopOverlaySurfaceImageRepeat)
+		? `--desktop-overlay-surface-image-repeat:${layoutResolved.desktopOverlaySurfaceImageRepeat}`
+		: null,
+	isMeaningful(layoutResolved.desktopOverlaySurfaceImageBlendMode)
+		? `--desktop-overlay-surface-image-blend:${layoutResolved.desktopOverlaySurfaceImageBlendMode}`
 		: null,
 	isMeaningful(layoutResolved.desktopOverlaySurfaceBlur)
 		? `--desktop-overlay-surface-blur:${layoutResolved.desktopOverlaySurfaceBlur}`
@@ -1181,19 +1224,30 @@ hasMounted = true;
 	}
 
 	function formatCssLength(value, fallback = '0px') {
-	if (typeof value === 'number' && Number.isFinite(value)) {
-		return `${value}px`;
-	}
-	if (typeof value === 'string') {
-		const trimmed = value.trim();
-		if (!trimmed) return fallback;
-		const numeric = Number(trimmed);
-		if (!Number.isNaN(numeric)) {
-			return `${numeric}px`;
+		if (typeof value === 'number' && Number.isFinite(value)) {
+			return `${value}px`;
 		}
-		return trimmed;
+		if (typeof value === 'string') {
+			const trimmed = value.trim();
+			if (!trimmed) return fallback;
+			const numeric = Number(trimmed);
+			if (!Number.isNaN(numeric)) {
+				return `${numeric}px`;
+			}
+			return trimmed;
+		}
+		return fallback;
 	}
-	return fallback;
+
+	function formatBackgroundImageValue(value) {
+		if (!isMeaningful(value)) return '';
+		const trimmed = String(value).trim();
+		if (!trimmed) return '';
+		if (/^(?:url|var|linear-gradient|radial-gradient|conic-gradient)\(/i.test(trimmed)) {
+			return trimmed;
+		}
+		const escaped = trimmed.replace(/(["\\])/g, '\\$1');
+		return `url("${escaped}")`;
 	}
 
 	function measureControlsBounds(node) {
@@ -2990,16 +3044,6 @@ function closeDesktopOverlay({ restoreScroll = true } = {}) {
 							{/each}
 						</div>
 					{/if}
-				{:else if mobileViewMode === MobileView.FEED}
-					{#if showCountsEnabled}
-						<div class="controls-meta">
-							{#if totalVisible === totalVideos}
-								{totalVideos} {totalVideos === 1 ? 'video' : 'videos'} carregados
-							{:else}
-								Mostrando {totalVisible} de {totalVideos} videos
-							{/if}
-						</div>
-					{/if}
 				{/if}
 			{:else}
 				{#if !hideControlsForMobileFeed}
@@ -3086,15 +3130,6 @@ function closeDesktopOverlay({ restoreScroll = true } = {}) {
 						</div>
 					{/if}
 
-					{#if showCountsEnabled}
-						<div class="controls-meta">
-							{#if totalVisible === totalVideos}
-								{totalVideos} {totalVideos === 1 ? 'video' : 'videos'} carregados
-							{:else}
-								Mostrando {totalVisible} de {totalVideos} videos
-							{/if}
-						</div>
-					{/if}
 					</div>
 				{/if}
 			{/if}
@@ -3382,6 +3417,8 @@ function closeDesktopOverlay({ restoreScroll = true } = {}) {
 	>
 		<div
 			class="desktop-overlay__surface"
+			data-has-image={desktopOverlaySurfaceHasImage ? 'true' : 'false'}
+			style={desktopOverlaySurfaceInlineStyle}
 			role="dialog"
 			aria-modal="true"
 			aria-labelledby={`desktop-overlay-title-${desktopOverlayVideo.uuid}`}
@@ -4625,6 +4662,11 @@ function closeDesktopOverlay({ restoreScroll = true } = {}) {
 		padding: clamp(1.5rem, 4vw, 2.6rem);
 		border-radius: 1.75rem;
 		background: var(--desktop-overlay-surface, rgba(12, 18, 36, 0.55));
+		background-image: var(--desktop-overlay-surface-image, none);
+		background-size: var(--desktop-overlay-surface-image-size, cover);
+		background-position: var(--desktop-overlay-surface-image-position, center);
+		background-repeat: var(--desktop-overlay-surface-image-repeat, no-repeat);
+		background-blend-mode: var(--desktop-overlay-surface-image-blend, normal);
 		border: 1px solid var(--desktop-overlay-surface-border, rgba(255, 255, 255, 0.18));
 		box-shadow: var(--desktop-overlay-surface-shadow, 0 32px 80px rgba(5, 8, 25, 0.65));
 		backdrop-filter: blur(var(--desktop-overlay-surface-blur, 22px));
@@ -4942,6 +4984,13 @@ function closeDesktopOverlay({ restoreScroll = true } = {}) {
 			radial-gradient(circle at 80% 120%, rgba(148, 163, 255, 0.22), transparent 40%);
 		opacity: 0.4;
 		pointer-events: none;
+	}
+
+	.desktop-overlay[data-variant='glass']
+		.desktop-overlay__surface[data-has-image='true']::before,
+	.desktop-overlay[data-variant='glass']
+		.desktop-overlay__surface[data-has-image='true']::after {
+		content: none;
 	}
 
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__grid {
