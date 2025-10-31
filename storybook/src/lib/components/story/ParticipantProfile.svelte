@@ -35,15 +35,25 @@
 		return { name: normalized, role: '' };
 	}
 
-	function getFirstName(name = '') {
-		return name.split(/\s+/)[0] || '';
-	}
+function getFirstName(name = '') {
+	return name.split(/\s+/)[0] || '';
+}
 
-	function hasContent(value) {
-		return value !== null && value !== undefined && String(value).trim().length > 0;
-	}
+function normalizeNameKey(value = '') {
+	return String(value || '')
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '')
+		.replace(/[^a-zA-Z0-9\s]/g, ' ')
+		.replace(/\s+/g, ' ')
+		.trim()
+		.toLowerCase();
+}
 
-	function deriveArea(participant, nameBlock) {
+function hasContent(value) {
+	return value !== null && value !== undefined && String(value).trim().length > 0;
+}
+
+function deriveArea(participant, nameBlock) {
 		if (hasContent(participant?.area)) {
 			return String(participant.area).trim();
 		}
@@ -64,21 +74,24 @@
 			}
 		}
 
-		return '';
+	return '';
+}
+
+let participant = null;
+let nameBlock = { name: '', role: '' };
+let area = '';
+let headerSubtitle = '';
+
+$: participant = $selectedParticipant;
+$: nameBlock = parseNameBlock(participant?.name || '');
+$: area = deriveArea(participant, nameBlock);
+$: headerSubtitle = (() => {
+	const key = normalizeNameKey(nameBlock?.name || participant?.name || '');
+	if (key === 'kongjian yu') {
+		return 'Morto em um acidente em setembro de 2025';
 	}
-
-	let participant = null;
-	let nameBlock = { name: '', role: '' };
-	let area = '';
-	let primaryDescriptor = '';
-	let secondaryRole = '';
-
-	$: participant = $selectedParticipant;
-	$: nameBlock = parseNameBlock(participant?.name || '');
-	$: area = deriveArea(participant, nameBlock);
-	$: primaryDescriptor = area || nameBlock.role;
-	$: secondaryRole =
-		area && hasContent(nameBlock.role) && nameBlock.role !== area ? nameBlock.role : '';
+	return '';
+})();
 </script>
 
 {#if participant}
@@ -95,20 +108,17 @@
 			</div>
 			<header class="identity">
 				<h2>{nameBlock.name}</h2>
-				{#if hasContent(primaryDescriptor)}
-					<p class="role">{primaryDescriptor}</p>
-				{/if}
-				{#if hasContent(secondaryRole)}
-					<p class="role role--secondary">{secondaryRole}</p>
+				{#if hasContent(headerSubtitle)}
+					<p class="role">{headerSubtitle}</p>
 				{/if}
 			</header>
 			</div>
 
 			<div class="chips">
-				{#if participant.area}
+				{#if hasContent(area)}
 					<span class="chip">
-						<small>Área</small>
-						<strong>{participant.area}</strong>
+						<small>Biografia</small>
+						<strong>{area}</strong>
 					</span>
 				{/if}
 				{#if participant.location}

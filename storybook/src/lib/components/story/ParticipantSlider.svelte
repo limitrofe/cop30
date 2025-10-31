@@ -22,6 +22,12 @@ export let blur = true;
 export let reserveSpace = true;
 export let collapsible = false;
 
+const SORT_OPTIONS = [
+	{ value: 'original', label: 'Ordem original' },
+	{ value: 'asc', label: 'Nome A-Z' },
+	{ value: 'desc', label: 'Nome Z-A' }
+];
+
 const FIXED_HEIGHT = 128;
 	const MOBILE_BREAKPOINT = 768;
 	const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
@@ -31,17 +37,13 @@ const FIXED_HEIGHT = 128;
 	let lastGroup = null;
 let searchTerm = '';
 let locationFilter = '';
-let areaFilter = '';
+let sortOrder = 'original';
 let locations = [];
-let areas = [];
 let names = [];
 let matchedParticipant = null;
 let locationLocked = false;
-let areaLocked = false;
 let normalizedLocationFilter = null;
-let normalizedAreaFilter = null;
 let participantsForLocationOptions = [];
-let participantsForAreaOptions = [];
 let participantsForNameOptions = [];
 let isMobileViewport = false;
 let mobileFiltersOpen = true;
@@ -191,17 +193,33 @@ function findParticipantByName(list = [], name = '') {
 	);
 }
 
-function applyFilters(
-	list = [],
-	{ search = '', location = '', area = '', selected = null } = {}
-) {
+function compareParticipantsByName(a, b) {
+	const nameA = normalizeText(a?.name);
+	const nameB = normalizeText(b?.name);
+	if (!nameA && !nameB) return 0;
+	if (!nameA) return 1;
+	if (!nameB) return -1;
+	return nameA.localeCompare(nameB);
+}
+
+function sortParticipants(list = [], order = 'original') {
+	if (!Array.isArray(list) || !list.length) return list;
+	if (order === 'asc') {
+		return [...list].sort(compareParticipantsByName);
+	}
+	if (order === 'desc') {
+		return [...list].sort(compareParticipantsByName).reverse();
+	}
+	return list;
+}
+
+function applyFilters(list = [], { search = '', location = '', selected = null } = {}) {
 	if (!list.length) return list;
 	if (selected?.id) {
 		return list.filter((participant) => participant.id === selected.id);
 	}
 	const searchNormalized = normalizeText(search);
 	const locationNormalized = normalizeGroup(location);
-	const areaNormalized = normalizeGroup(area);
 
 	return list.filter((participant) => {
 		if (searchNormalized) {
@@ -210,11 +228,6 @@ function applyFilters(
 		}
 		if (locationNormalized) {
 			if (normalizeGroup(participant?.location) !== locationNormalized) {
-				return false;
-			}
-		}
-		if (areaNormalized) {
-			if (normalizeGroup(participant?.area) !== areaNormalized) {
 				return false;
 			}
 		}
@@ -255,19 +268,7 @@ function applyFilters(
 	})();
 	$: allParticipants = $participantsList || [];
 	$: normalizedLocationFilter = normalizeGroup(locationFilter);
-	$: normalizedAreaFilter = normalizeGroup(areaFilter);
-	$: participantsForLocationOptions =
-		normalizedAreaFilter
-			? allParticipants.filter(
-					(participant) => normalizeGroup(participant?.area) === normalizedAreaFilter
-				)
-			: allParticipants;
-	$: participantsForAreaOptions =
-		normalizedLocationFilter
-			? allParticipants.filter(
-					(participant) => normalizeGroup(participant?.location) === normalizedLocationFilter
-				)
-			: allParticipants;
+	$: participantsForLocationOptions = allParticipants;
 	$: participantsForNameOptions = allParticipants.filter((participant) => {
 		if (
 			normalizedLocationFilter &&
@@ -275,46 +276,34 @@ function applyFilters(
 		) {
 			return false;
 		}
-		if (normalizedAreaFilter && normalizeGroup(participant?.area) !== normalizedAreaFilter) {
-			return false;
-		}
 		return true;
 	});
 	$: locations = buildDistinctOptions(participantsForLocationOptions, 'location');
-	$: areas = buildDistinctOptions(participantsForAreaOptions, 'area');
 	$: names = buildDistinctNames(participantsForNameOptions);
 	$: matchedParticipant = findParticipantByName(allParticipants, searchTerm);
 	$: locationLocked = Boolean(matchedParticipant);
-	$: areaLocked = Boolean(matchedParticipant);
 	$: {
 		if (matchedParticipant) {
 			const locationValue =
 				matchedParticipant.location === undefined || matchedParticipant.location === null
 					? ''
 					: String(matchedParticipant.location).trim();
-			const areaValue =
-				matchedParticipant.area === undefined || matchedParticipant.area === null
-					? ''
-					: String(matchedParticipant.area).trim();
 			if (locationValue !== locationFilter) {
 				locationFilter = locationValue;
-			}
-			if (areaValue !== areaFilter) {
-				areaFilter = areaValue;
 			}
 		}
 	}
 	$: filteredParticipants = applyFilters(allParticipants, {
 		search: searchTerm,
 		location: locationFilter,
-		area: areaFilter,
 		selected: matchedParticipant
 	});
+	$: sortedParticipants = sortParticipants(filteredParticipants || [], sortOrder);
 	$: roster =
 		currentGrouping?.type === 'optimism'
-			? reorderByOptimism(filteredParticipants || [], currentGrouping?.value)
+			? reorderByOptimism(sortedParticipants || [], currentGrouping?.value)
 			: reorderParticipants(
-					filteredParticipants || [],
+					sortedParticipants || [],
 					currentGrouping?.value,
 					currentGrouping?.field
 				);
@@ -461,17 +450,13 @@ function applyFilters(
 									aria-disabled={locationLocked}
 								/>
 							</label>
-							<label class="filter">
-								<span class="sr-only">Filtrar por área de atuação</span>
-								<input
-									type="text"
-									placeholder="Área de atuação"
-									bind:value={areaFilter}
-									list="participant-areas"
-									aria-label="Filtrar por área de atuação"
-									disabled={areaLocked}
-									aria-disabled={areaLocked}
-								/>
+							<label class="filter filter--sort">
+								<span class="sr-only">Ordenar participantes</span>
+								<select bind:value={sortOrder} aria-label="Ordenar participantes">
+									{#each SORT_OPTIONS as option}
+										<option value={option.value}>{option.label}</option>
+									{/each}
+								</select>
 							</label>
 						</div>
 					</div>
@@ -546,11 +531,6 @@ function applyFilters(
 	<datalist id="participant-locations">
 		{#each locations as location}
 			<option value={location} />
-		{/each}
-	</datalist>
-	<datalist id="participant-areas">
-		{#each areas as item}
-			<option value={item} />
 		{/each}
 	</datalist>
 	<datalist id="participant-names">
@@ -642,36 +622,55 @@ function applyFilters(
 		display: none !important;
 	}
 
-	.filter {
-		position: relative;
-		flex: 1;
-		min-width: 0;
-	}
+.filter {
+	position: relative;
+	flex: 1;
+	min-width: 0;
+}
 
-	.filter input {
-		width: 100%;
-		padding: 0.4rem 0.75rem;
-		border-radius: 999px;
-		background: rgba(6, 18, 27, 0.18);
-		border: 1px solid rgba(141, 168, 182, 0.24);
-		color: inherit;
-		font-size: 0.82rem;
-		transition:
-			border-color 160ms ease,
-			background 160ms ease,
-			box-shadow 160ms ease;
-	}
+.filter--sort {
+	flex: 0 0 clamp(9rem, 14vw, 11rem);
+}
 
-	.filter input::placeholder {
-		color: rgba(200, 212, 220, 0.7);
-	}
+.filter input,
+.filter select {
+	width: 100%;
+	padding: 0.4rem 0.75rem;
+	border-radius: 999px;
+	background: rgba(6, 18, 27, 0.18);
+	border: 1px solid rgba(141, 168, 182, 0.24);
+	color: inherit;
+	font-size: 0.82rem;
+	transition:
+		border-color 160ms ease,
+		background 160ms ease,
+		box-shadow 160ms ease;
+}
 
-	.filter input:focus-visible {
-		outline: none;
-		border-color: rgba(244, 232, 210, 0.4);
-		background: rgba(9, 26, 34, 0.4);
-		box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
-	}
+.filter select {
+	appearance: none;
+	cursor: pointer;
+	padding-right: 2rem;
+	background-image: linear-gradient(45deg, transparent 50%, rgba(200, 212, 220, 0.7) 50%),
+		linear-gradient(135deg, rgba(200, 212, 220, 0.7) 50%, transparent 50%);
+	background-position:
+		calc(100% - 1.2rem) calc(50% - 0.35rem),
+		calc(100% - 0.6rem) calc(50% - 0.35rem);
+	background-size: 0.5rem 0.5rem;
+	background-repeat: no-repeat;
+}
+
+.filter input::placeholder {
+	color: rgba(200, 212, 220, 0.7);
+}
+
+.filter input:focus-visible,
+.filter select:focus-visible {
+	outline: none;
+	border-color: rgba(244, 232, 210, 0.4);
+	background: rgba(9, 26, 34, 0.4);
+	box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
+}
 
 	.slider-collapse {
 		display: inline-flex;
@@ -778,7 +777,8 @@ function applyFilters(
 		width: 100%;
 	}
 
-	.filter input {
+	.filter input,
+	.filter select {
 		padding: 0.42rem 0.7rem;
 		font-size: 0.85rem;
 	}
@@ -796,10 +796,16 @@ function applyFilters(
 		width: 100%;
 	}
 
-	.filter input {
+	.filter input,
+	.filter select {
 		width: 100%;
 	}
+
+	.filter--sort {
+		flex: 1;
+		min-width: 0;
 	}
+}
 
 
 	.slider-shell--blur {
