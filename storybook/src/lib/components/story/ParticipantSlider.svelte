@@ -22,11 +22,6 @@ export let blur = true;
 export let reserveSpace = true;
 export let collapsible = false;
 
-const SORT_OPTIONS = [
-	{ value: 'asc', label: 'A-Z' },
-	{ value: 'desc', label: 'Z-A' }
-];
-
 const FIXED_HEIGHT = 128;
 	const MOBILE_BREAKPOINT = 768;
 	const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
@@ -449,15 +444,22 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 									aria-disabled={locationLocked}
 								/>
 							</label>
-								<label class="filter filter--sort">
-									<span class="sr-only">Ordenar participantes</span>
-									<select bind:value={sortOrder} aria-label="Ordenar participantes">
-										<option value="">Ordem original</option>
-										{#each SORT_OPTIONS as option}
-											<option value={option.value}>{option.label}</option>
-										{/each}
-									</select>
-								</label>
+				<div class="sort-buttons" role="group" aria-label="Ordenar participantes">
+								<button
+									type="button"
+									class:active={sortOrder === 'asc'}
+									on:click={() => (sortOrder = sortOrder === 'asc' ? '' : 'asc')}
+								>
+									A-Z
+								</button>
+								<button
+									type="button"
+									class:active={sortOrder === 'desc'}
+									on:click={() => (sortOrder = sortOrder === 'desc' ? '' : 'desc')}
+								>
+									Z-A
+								</button>
+							</div>
 						</div>
 					</div>
 					<button type="button" class="slider-collapse" on:click={() => dispatch('collapse')}>
@@ -628,12 +630,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	min-width: 0;
 }
 
-.filter--sort {
-	flex: 0 0 clamp(9rem, 14vw, 11rem);
-}
-
-.filter input,
-.filter select {
+.filter input {
 	width: 100%;
 	padding: 0.4rem 0.75rem;
 	border-radius: 999px;
@@ -647,29 +644,56 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		box-shadow 160ms ease;
 }
 
-.filter select {
-	appearance: none;
-	cursor: pointer;
-	padding-right: 2rem;
-	background-image: linear-gradient(45deg, transparent 50%, rgba(248, 250, 252, 0.8) 50%),
-		linear-gradient(135deg, rgba(248, 250, 252, 0.8) 50%, transparent 50%);
-	background-position:
-		calc(100% - 1.2rem) calc(50% - 0.35rem),
-		calc(100% - 0.6rem) calc(50% - 0.35rem);
-	background-size: 0.5rem 0.5rem;
-	background-repeat: no-repeat;
-}
-
 .filter input::placeholder {
 	color: rgba(248, 250, 252, 0.6);
 }
 
-.filter input:focus-visible,
-.filter select:focus-visible {
+.filter input:focus-visible {
 	outline: none;
 	border-color: rgba(244, 232, 210, 0.4);
 	background: rgba(9, 26, 34, 0.4);
 	box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
+}
+
+.sort-buttons {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	border-radius: 999px;
+	border: 1px solid rgba(244, 232, 210, 0.18);
+	background: rgba(6, 18, 27, 0.2);
+	padding: 0.25rem 0.3rem;
+	flex-shrink: 0;
+}
+
+.sort-buttons button {
+	appearance: none;
+	border: none;
+	background: transparent;
+	color: #f8fafc;
+	font-size: 0.82rem;
+	font-weight: 400;
+	padding: 0.35rem 0.9rem;
+	border-radius: 999px;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		color 160ms ease,
+		box-shadow 160ms ease;
+}
+
+.sort-buttons button:hover,
+.sort-buttons button:focus-visible {
+	background: rgba(9, 26, 34, 0.65);
+	box-shadow: 0 0 0 1px rgba(244, 232, 210, 0.25);
+	outline: none;
+}
+
+.sort-buttons button.active {
+	background: rgba(244, 232, 210, 0.22);
+	color: #0f172a;
+	font-weight: 600;
+	box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.45);
 }
 
 .slider-collapse {
@@ -737,9 +761,9 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	}
 
 	@media (max-width: 768px) {
-		.slider-content {
-			gap: 0.4rem;
-		}
+	.slider-content {
+		gap: 0.4rem;
+	}
 
 	.slider-header {
 		display: grid;
@@ -771,19 +795,6 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	.filter-pill {
 		grid-area: filters;
 		width: 100%;
-	}
-
-	.filter {
-		width: 100%;
-	}
-
-	.filter input,
-	.filter select {
-		padding: 0.42rem 0.7rem;
-		font-size: 0.85rem;
-	}
-
-	.filter-pill {
 		display: flex;
 		flex-direction: column;
 		align-items: stretch;
@@ -796,17 +807,23 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		width: 100%;
 	}
 
-	.filter input,
-	.filter select {
+	.filter input {
 		width: 100%;
+		padding: 0.42rem 0.7rem;
+		font-size: 0.85rem;
 	}
 
-	.filter--sort {
+	.sort-buttons {
+		width: 100%;
+		justify-content: space-between;
+	}
+
+	.sort-buttons button {
 		flex: 1;
-		min-width: 0;
+		padding: 0.45rem 0.7rem;
+		font-size: 0.85rem;
 	}
 }
-
 
 	.slider-shell--blur {
 		backdrop-filter: blur(14px);
