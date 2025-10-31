@@ -325,7 +325,11 @@ function clearLocalSelection() {
 	});
 </script>
 
-<div class="bars-container" bind:this={container}></div>
+<div
+	class="bars-container"
+	bind:this={container}
+	data-participant-slider-anchor="chart"
+></div>
 
 <style>
 	.bars-container {

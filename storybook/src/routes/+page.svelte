@@ -52,12 +52,21 @@ let sliderStopElement = null;
 		syncSliderVisibility();
 	}
 
-	function syncSliderVisibility() {
-		if (typeof window === 'undefined') {
-			sliderVisible = false;
-			sliderStopActive = false;
-			return;
-		}
+function syncSliderVisibility() {
+	if (typeof window === 'undefined') {
+		sliderVisible = false;
+		sliderStopActive = false;
+		return;
+	}
+	const chartAnchor = document.querySelector('[data-participant-slider-anchor="chart"]');
+
+	if (chartAnchor) {
+		const anchorRect = chartAnchor.getBoundingClientRect();
+		const anchorTop = anchorRect.top + window.scrollY;
+		const viewportBottom = window.scrollY + window.innerHeight;
+		const triggerOffset = 64;
+		sliderVisible = viewportBottom >= anchorTop + triggerOffset;
+	} else {
 		const header = document.querySelector('.story-header');
 		if (!header) {
 			sliderVisible = window.scrollY > 0;
@@ -65,11 +74,12 @@ let sliderStopElement = null;
 			const headerRect = header.getBoundingClientRect();
 			sliderVisible = headerRect.top <= -8;
 		}
+	}
 
-		sliderStopElement = document.querySelector('[data-slider-stop="true"]');
+	sliderStopElement = document.querySelector('[data-slider-stop="true"]');
 
-		if (sliderStopElement) {
-			const rect = sliderStopElement.getBoundingClientRect();
+	if (sliderStopElement) {
+		const rect = sliderStopElement.getBoundingClientRect();
 			const viewportBottom = window.innerHeight;
 			const sliderBuffer = 180;
 			sliderStopActive = rect.top <= viewportBottom - sliderBuffer;

@@ -368,7 +368,7 @@
 	$: maxYTicksSafe = parseNumberLike(maxYTicks, 6);
 </script>
 
-<section class="chart-line-block">
+<section class="chart-line-block" data-participant-slider-anchor="chart">
 	{#if externalLoading}
 		<div class="chart-line-block__alert chart-line-block__alert--info">
 			<p>{externalStatusMessage()}</p>

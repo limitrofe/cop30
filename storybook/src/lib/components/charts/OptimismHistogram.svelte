@@ -337,7 +337,11 @@ onDestroy(() => {
 	});
 </script>
 
-<div class="histogram-container" bind:this={container}></div>
+<div
+	class="histogram-container"
+	bind:this={container}
+	data-participant-slider-anchor="chart"
+></div>
 
 <style>
 	.histogram-container {

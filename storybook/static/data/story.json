@@ -274,7 +274,7 @@
       "poster": "",
       "posterMobile": "",
       "variant": "hero",
-      "overlay": false,
+      "overlay": true,
       "overlayGradient": "top-to-bottom",
       "verticalAlign": "bottom",
       "horizontalAlign": "left",

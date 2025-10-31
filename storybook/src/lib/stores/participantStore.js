@@ -7,6 +7,7 @@ const selectedChallengeStore = writable(null);
 const selectedStillTimeStore = writable(null);
 const selectedOptimismStore = writable(null);
 const activeGroupingStore = writable('participant');
+const participantFocusLockStore = writable(null);
 
 function normalizeValue(value) {
 	if (value === undefined || value === null) return null;
@@ -45,6 +46,7 @@ function resetGroupingState() {
 	selectedStillTimeStore.set(null);
 	selectedOptimismStore.set(null);
 	activeGroupingStore.set('participant');
+	participantFocusLockStore.set(null);
 }
 
 function ensureConsistency(participants) {
@@ -55,6 +57,7 @@ function ensureConsistency(participants) {
 		selectedStillTimeStore.set(null);
 		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
+		participantFocusLockStore.set(null);
 		return;
 	}
 
@@ -151,6 +154,17 @@ export const participantActions = {
 		const normalized = normalizeParticipants(list);
 		participantsStore.set(normalized);
 		ensureConsistency(normalized);
+		const lockedId = get(participantFocusLockStore);
+		if (lockedId) {
+			const lockedParticipant = normalized.find((participant) => participant.id === lockedId);
+			if (lockedParticipant) {
+				selectedParticipantIdStore.set(lockedParticipant.id);
+				selectedOptimismStore.set(normalizeNumericScore(lockedParticipant.optimismScore));
+				activeGroupingStore.set('participant-focus');
+				return;
+			}
+			participantFocusLockStore.set(null);
+		}
 		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
 	},
@@ -164,6 +178,7 @@ export const participantActions = {
 		const currentGrouping = get(activeGroupingStore);
 
 		if (currentId === participant.id && currentGrouping === 'participant-focus') {
+			participantFocusLockStore.set(null);
 			resetGroupingState();
 			return;
 		}
@@ -174,12 +189,14 @@ export const participantActions = {
 		selectedStillTimeStore.set(null);
 		selectedOptimismStore.set(normalizeNumericScore(participant.optimismScore));
 		activeGroupingStore.set('participant-focus');
+		participantFocusLockStore.set(participant.id);
 	},
 	selectEmergencyGroup(group) {
 		const normalizedGroup = normalizeValue(group);
 		if (!normalizedGroup) {
 			selectedEmergencyStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
@@ -188,20 +205,22 @@ export const participantActions = {
 		if (!scoped.length) {
 			selectedEmergencyStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
 		selectedEmergencyStore.set(normalizedGroup);
 
-	const nextParticipant = scoped[0];
+		const nextParticipant = scoped[0];
 
-	if (nextParticipant) {
-		selectedParticipantIdStore.set(nextParticipant.id);
-		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
-		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
-	}
-	activeGroupingStore.set('emergency');
+		if (nextParticipant) {
+			selectedParticipantIdStore.set(nextParticipant.id);
+			selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
+			selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
+			selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+		}
+		participantFocusLockStore.set(null);
+		activeGroupingStore.set('emergency');
 	},
 	selectChallengeGroup(group) {
 		const normalizedGroup = normalizeValue(group);
@@ -226,21 +245,23 @@ export const participantActions = {
 
 		selectedChallengeStore.set(normalizedGroup);
 
-	const nextParticipant = scoped[0];
+		const nextParticipant = scoped[0];
 
-	if (nextParticipant) {
-		selectedParticipantIdStore.set(nextParticipant.id);
-		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
-		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
-	}
-	activeGroupingStore.set('challenge');
-},
+		if (nextParticipant) {
+			selectedParticipantIdStore.set(nextParticipant.id);
+			selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
+			selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
+			selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+		}
+		participantFocusLockStore.set(null);
+		activeGroupingStore.set('challenge');
+	},
 	selectStillTimeGroup(group) {
 		const normalizedGroup = normalizeValue(group);
 		if (!normalizedGroup) {
 			selectedStillTimeStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
@@ -249,25 +270,28 @@ export const participantActions = {
 		if (!scoped.length) {
 			selectedStillTimeStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
-	const nextParticipant = scoped[0];
+		const nextParticipant = scoped[0];
 
-	if (nextParticipant) {
-		selectedParticipantIdStore.set(nextParticipant.id);
-		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
-		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
-		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-		selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
-	}
-	activeGroupingStore.set('stillTime');
-},
+		if (nextParticipant) {
+			selectedParticipantIdStore.set(nextParticipant.id);
+			selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
+			selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
+			selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
+			selectedOptimismStore.set(normalizeNumericScore(nextParticipant?.optimismScore));
+		}
+		participantFocusLockStore.set(null);
+		activeGroupingStore.set('stillTime');
+	},
 	selectOptimismScore(score) {
 		const numericScore = normalizeNumericScore(score);
 		if (numericScore === null) {
 			selectedOptimismStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
@@ -275,6 +299,7 @@ export const participantActions = {
 		if (Number.isFinite(currentSelected) && currentSelected === numericScore) {
 			selectedOptimismStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
@@ -286,20 +311,22 @@ export const participantActions = {
 		if (!scoped.length) {
 			selectedOptimismStore.set(null);
 			activeGroupingStore.set('participant');
+			participantFocusLockStore.set(null);
 			return;
 		}
 
 		selectedOptimismStore.set(numericScore);
 
-	const nextParticipant = scoped[0];
+		const nextParticipant = scoped[0];
 
-	if (nextParticipant) {
-		selectedParticipantIdStore.set(nextParticipant.id);
-		selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
-		selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
-		selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
-	}
-	activeGroupingStore.set('optimism');
+		if (nextParticipant) {
+			selectedParticipantIdStore.set(nextParticipant.id);
+			selectedEmergencyStore.set(normalizeValue(nextParticipant?.emergencyFocus));
+			selectedChallengeStore.set(normalizeValue(nextParticipant?.challenge2050));
+			selectedStillTimeStore.set(normalizeValue(nextParticipant?.stillTime));
+		}
+		participantFocusLockStore.set(null);
+		activeGroupingStore.set('optimism');
 	},
 	selectNext() {
 		const participants = get(participantsStore);
@@ -360,6 +387,9 @@ export const participantActions = {
 		selectedChallengeStore.set(normalizeValue(next.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(next.stillTime));
 		selectedOptimismStore.set(normalizeNumericScore(next.optimismScore));
+		if (get(activeGroupingStore) === 'participant-focus') {
+			participantFocusLockStore.set(next.id);
+		}
 	},
 	selectPrevious() {
 		const participants = get(participantsStore);
@@ -420,6 +450,9 @@ export const participantActions = {
 		selectedChallengeStore.set(normalizeValue(previous.challenge2050));
 		selectedStillTimeStore.set(normalizeValue(previous.stillTime));
 		selectedOptimismStore.set(normalizeNumericScore(previous.optimismScore));
+		if (get(activeGroupingStore) === 'participant-focus') {
+			participantFocusLockStore.set(previous.id);
+		}
 	},
 	reset() {
 		participantsStore.set([]);
@@ -429,5 +462,6 @@ export const participantActions = {
 		selectedStillTimeStore.set(null);
 		selectedOptimismStore.set(null);
 		activeGroupingStore.set('participant');
+		participantFocusLockStore.set(null);
 	}
 };

@@ -171,7 +171,7 @@
 	$: warnings = [...(csvResult.warnings || [])];
 </script>
 
-<section class="chart-bar-block">
+<section class="chart-bar-block" data-participant-slider-anchor="chart">
 	{#if externalLoading}
 		<div class="chart-bar-block__alert chart-bar-block__alert--info">
 			<p>{externalStatusMessage()}</p>

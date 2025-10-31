@@ -442,7 +442,11 @@ onDestroy(() => {
 			{/each}
 		</div>
 	{/if}
-	<div class="chart-surface" bind:this={container}></div>
+	<div
+		class="chart-surface"
+		bind:this={container}
+		data-participant-slider-anchor="chart"
+	></div>
 </div>
 
 <style>

@@ -347,7 +347,11 @@ onDestroy(() => {
 	});
 </script>
 
-<div class="treemap-container" bind:this={container}></div>
+<div
+	class="treemap-container"
+	bind:this={container}
+	data-participant-slider-anchor="chart"
+></div>
 
 <style>
 	.treemap-container {

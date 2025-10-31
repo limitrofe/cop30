@@ -23,9 +23,8 @@ export let reserveSpace = true;
 export let collapsible = false;
 
 const SORT_OPTIONS = [
-	{ value: 'original', label: 'Ordem original' },
-	{ value: 'asc', label: 'Nome A-Z' },
-	{ value: 'desc', label: 'Nome Z-A' }
+	{ value: 'asc', label: 'A-Z' },
+	{ value: 'desc', label: 'Z-A' }
 ];
 
 const FIXED_HEIGHT = 128;
@@ -37,7 +36,7 @@ const FIXED_HEIGHT = 128;
 	let lastGroup = null;
 let searchTerm = '';
 let locationFilter = '';
-let sortOrder = 'original';
+let sortOrder = '';
 let locations = [];
 let names = [];
 let matchedParticipant = null;
@@ -204,12 +203,12 @@ function compareParticipantsByName(a, b) {
 
 function sortParticipants(list = [], order = 'original') {
 	if (!Array.isArray(list) || !list.length) return list;
-	if (order === 'asc') {
-		return [...list].sort(compareParticipantsByName);
-	}
-	if (order === 'desc') {
-		return [...list].sort(compareParticipantsByName).reverse();
-	}
+		if (order === 'asc') {
+			return [...list].sort(compareParticipantsByName);
+		}
+		if (order === 'desc') {
+			return [...list].sort(compareParticipantsByName).reverse();
+		}
 	return list;
 }
 
@@ -298,7 +297,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		location: locationFilter,
 		selected: matchedParticipant
 	});
-	$: sortedParticipants = sortParticipants(filteredParticipants || [], sortOrder);
+		$: sortedParticipants = sortParticipants(filteredParticipants || [], sortOrder || 'original');
 	$: roster =
 		currentGrouping?.type === 'optimism'
 			? reorderByOptimism(sortedParticipants || [], currentGrouping?.value)
@@ -450,14 +449,15 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 									aria-disabled={locationLocked}
 								/>
 							</label>
-							<label class="filter filter--sort">
-								<span class="sr-only">Ordenar participantes</span>
-								<select bind:value={sortOrder} aria-label="Ordenar participantes">
-									{#each SORT_OPTIONS as option}
-										<option value={option.value}>{option.label}</option>
-									{/each}
-								</select>
-							</label>
+								<label class="filter filter--sort">
+									<span class="sr-only">Ordenar participantes</span>
+									<select bind:value={sortOrder} aria-label="Ordenar participantes">
+										<option value="">Ordem original</option>
+										{#each SORT_OPTIONS as option}
+											<option value={option.value}>{option.label}</option>
+										{/each}
+									</select>
+								</label>
 						</div>
 					</div>
 					<button type="button" class="slider-collapse" on:click={() => dispatch('collapse')}>
@@ -579,22 +579,22 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		min-width: 0;
 	}
 
-	.filter-toggle {
-		display: none;
-		align-items: center;
-		justify-content: center;
-		padding: 0.45rem 0.75rem;
-		border-radius: 999px;
-		border: 1px solid rgba(244, 232, 210, 0.25);
-		background: rgba(9, 26, 34, 0.5);
-		color: inherit;
-		font-size: 0.8rem;
-		font-weight: 500;
-		cursor: pointer;
-		transition:
-			background 160ms ease,
-			border-color 160ms ease;
-	}
+.filter-toggle {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	padding: 0.45rem 0.75rem;
+	border-radius: 999px;
+	border: 1px solid rgba(244, 232, 210, 0.25);
+	background: rgba(9, 26, 34, 0.5);
+	color: inherit;
+	font-size: 0.8rem;
+	font-weight: 400;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		border-color 160ms ease;
+}
 
 	.filter-toggle[aria-expanded='true'] {
 		background: rgba(9, 26, 34, 0.7);
@@ -639,7 +639,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	border-radius: 999px;
 	background: rgba(6, 18, 27, 0.18);
 	border: 1px solid rgba(141, 168, 182, 0.24);
-	color: inherit;
+	color: #f8fafc;
 	font-size: 0.82rem;
 	transition:
 		border-color 160ms ease,
@@ -651,8 +651,8 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	appearance: none;
 	cursor: pointer;
 	padding-right: 2rem;
-	background-image: linear-gradient(45deg, transparent 50%, rgba(200, 212, 220, 0.7) 50%),
-		linear-gradient(135deg, rgba(200, 212, 220, 0.7) 50%, transparent 50%);
+	background-image: linear-gradient(45deg, transparent 50%, rgba(248, 250, 252, 0.8) 50%),
+		linear-gradient(135deg, rgba(248, 250, 252, 0.8) 50%, transparent 50%);
 	background-position:
 		calc(100% - 1.2rem) calc(50% - 0.35rem),
 		calc(100% - 0.6rem) calc(50% - 0.35rem);
@@ -661,7 +661,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 }
 
 .filter input::placeholder {
-	color: rgba(200, 212, 220, 0.7);
+	color: rgba(248, 250, 252, 0.6);
 }
 
 .filter input:focus-visible,
@@ -672,23 +672,23 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
 }
 
-	.slider-collapse {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		white-space: nowrap;
-		padding: 0.45rem 0.9rem;
-		border-radius: 999px;
-		background: rgba(9, 26, 34, 0.45);
-		border: 1px solid rgba(244, 232, 210, 0.18);
-		color: inherit;
-		font-size: 0.82rem;
-		font-weight: 500;
-		cursor: pointer;
-		transition:
-			background 160ms ease,
-			transform 160ms ease,
-			border-color 160ms ease;
+.slider-collapse {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	white-space: nowrap;
+	padding: 0.45rem 0.9rem;
+	border-radius: 999px;
+	background: rgba(9, 26, 34, 0.45);
+	border: 1px solid rgba(244, 232, 210, 0.18);
+	color: inherit;
+	font-size: 0.82rem;
+	font-weight: 400;
+	cursor: pointer;
+	transition:
+		background 160ms ease,
+		transform 160ms ease,
+		border-color 160ms ease;
 	}
 
 	.slider-collapse:hover {
@@ -825,20 +825,24 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		bottom: clamp(0.75rem, 3vw, 1.5rem);
 	}
 
-	.slider-shell--fixed {
-		position: fixed;
-		left: 0;
-		right: 0;
-		transform: none;
-		width: 100%;
-		z-index: 1200;
-		margin: 0;
-		border-radius: 0;
-	}
+.slider-shell--fixed {
+	position: fixed;
+	left: 0;
+	right: 0;
+	transform: none;
+	width: 100%;
+	z-index: 1200;
+	margin: 0;
+	border-radius: 0;
+	background: rgba(30, 46, 55, 0.68);
+	backdrop-filter: blur(28px) saturate(150%);
+	border-color: rgba(244, 232, 210, 0.28);
+	box-shadow: 0 32px 60px rgba(3, 10, 18, 0.45);
+}
 
-	.slider-shell--fixed .slider-content {
-		width: 100%;
-		max-width: none;
+.slider-shell--fixed .slider-content {
+	width: 100%;
+	max-width: none;
 	}
 
 	.slider-shell--fixed.slider-shell--top {
@@ -1031,43 +1035,44 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 			border-color 180ms ease;
 	}
 
-	.initials {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 600;
-		font-size: 1.1rem;
-		color: rgba(248, 250, 252, 0.82);
-	}
+.initials {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 400;
+	font-size: 1.1rem;
+	color: #f8fafc;
+}
 
-	.label {
-		font-size: 0.78rem;
-		text-align: center;
-		line-height: 1.2;
-		color: rgba(248, 250, 252, 0.72);
-	}
+.label {
+	font-size: 0.78rem;
+	text-align: center;
+	line-height: 1.2;
+	color: #f8fafc;
+	font-weight: 400;
+}
 
-	.story-item.active .story-trigger .label {
-		color: #f8fafc;
-		font-weight: 600;
-	}
+.story-item.active .story-trigger .label {
+	color: #f8fafc;
+	font-weight: 400;
+}
 
-	.story-more {
-		position: absolute;
-		top: calc(var(--ring-size) / 2);
+.story-more {
+	position: absolute;
+	top: calc(var(--ring-size) / 2);
 		left: 50%;
 		transform: translate(calc(var(--ring-size) / 2 - 8px), -50%);
 		width: 28px;
 		height: 28px;
 		border-radius: 50%;
-		border: 1px solid rgba(244, 232, 210, 0.3);
-		background: rgba(9, 26, 34, 0.72);
-		color: rgba(248, 250, 252, 0.9);
-		font-size: 1rem;
-		line-height: 1;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
+	border: 1px solid rgba(244, 232, 210, 0.3);
+	background: rgba(9, 26, 34, 0.72);
+	color: #f8fafc;
+	font-size: 1rem;
+	line-height: 1;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 		cursor: pointer;
 		z-index: 2;
 		transition:
