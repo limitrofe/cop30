@@ -1508,6 +1508,18 @@ export const componentRegistry = [
 					'linear-gradient(180deg, rgba(17,24,39,0.45) 0%, rgba(17,24,39,0.32) 55%, rgba(17,24,39,0.18) 100%)',
 				mobileChromeTextColor: null,
 				mobileChromeActiveColor: null,
+				mobileBottomBarBackground:
+					'linear-gradient(180deg, rgba(6,8,18,0.08) 0%, rgba(6,8,18,0.95) 100%)',
+				mobileBottomBarButtonBackground: 'rgba(254, 247, 234, 0.92)',
+				mobileBottomBarButtonColor: 'rgba(12, 18, 36, 0.78)',
+				mobileBottomBarButtonBorderColor: 'rgba(255, 255, 255, 0.08)',
+				mobileBottomBarButtonActiveBackground: 'rgba(255, 250, 241, 0.98)',
+				mobileBottomBarButtonActiveColor: '#060a15',
+				mobileBottomBarShortzBackground: 'rgba(226, 66, 46, 0.08)',
+				mobileBottomBarShortzColor: 'rgba(252, 243, 234, 0.95)',
+				mobileBottomBarShortzBorderColor: 'rgba(255, 255, 255, 0.16)',
+				mobileBottomBarShortzActiveBackground: '#e34832',
+				mobileBottomBarShortzActiveColor: '#ffffff',
 				controlsBackground: 'transparent',
 				controlsBorderColor: 'transparent',
 				controlsShadow: 'none',
@@ -1945,6 +1957,24 @@ export const componentRegistry = [
 				placeholder: 'Título curtinho para a tarja'
 			},
 			{
+				path: 'layoutConfig.mobileChromeBackground',
+				label: 'Tarja fixa mobile • fundo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileChromeTextColor',
+				label: 'Tarja fixa mobile • texto',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileChromeActiveColor',
+				label: 'Tarja fixa mobile • destaques ativos',
+				type: 'color',
+				showAlpha: true
+			},
+			{
 				path: 'layoutConfig.desktopTopbarBackground',
 				label: 'Tarja fixa desktop • fundo',
 				type: 'color',
@@ -2005,6 +2035,72 @@ export const componentRegistry = [
 					{ label: 'Feed vertical', value: 'feed' },
 					{ label: 'Grade (3 colunas)', value: 'grid' }
 				]
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarBackground',
+				label: 'Bottom bar mobile • fundo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarButtonBackground',
+				label: 'Bottom bar mobile • botão (fundo)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarButtonColor',
+				label: 'Bottom bar mobile • botão (texto)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarButtonBorderColor',
+				label: 'Bottom bar mobile • botão (borda)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarButtonActiveBackground',
+				label: 'Bottom bar mobile • botão ativo (fundo)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarButtonActiveColor',
+				label: 'Bottom bar mobile • botão ativo (texto)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarShortzBackground',
+				label: 'Bottom bar mobile • shortz (fundo)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarShortzColor',
+				label: 'Bottom bar mobile • shortz (texto)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarShortzBorderColor',
+				label: 'Bottom bar mobile • shortz (borda)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarShortzActiveBackground',
+				label: 'Bottom bar mobile • shortz ativo (fundo)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileBottomBarShortzActiveColor',
+				label: 'Bottom bar mobile • shortz ativo (texto)',
+				type: 'color',
+				showAlpha: true
 			},
 			{
 				path: 'layoutConfig.mobileFeedMaxWidth',

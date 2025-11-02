@@ -105,6 +105,7 @@ let isMuted = startMuted;
 let playerReady = false;
 let resolvedPosterAlt = 'Prévia do vídeo';
 let showPoster = false;
+let playerWrapperStyle = '';
 const dispatch = createEventDispatcher();
 const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
 let unregisterPlayback = null;
@@ -380,6 +381,13 @@ let unregisterPlayback = null;
 	$: resolvedPosterAlt =
 		typeof posterAlt === 'string' && posterAlt.trim().length ? posterAlt : 'Prévia do vídeo';
 	$: showPoster = Boolean(poster) && !playerReady;
+	$: playerWrapperStyle = [
+		`--aspect-ratio-desktop:${aspectRatio}`,
+		`--aspect-ratio-mobile:${aspectRatioMobile}`,
+		poster ? `background-image:url(${JSON.stringify(poster)})` : null
+	]
+		.filter(Boolean)
+		.join(';');
 
 	// Criar o player
 	function createPlayer(shouldAutoplayOnCreate = false, options = {}) {
@@ -451,6 +459,12 @@ let unregisterPlayback = null;
 		config.controls = shouldShowControls;
 		config.showControls = shouldShowControls;
 		config.ui = { ...(config.ui || {}), controls: shouldShowControls };
+	}
+
+	if (poster) {
+		config.poster = poster;
+		config.posterMobile = poster;
+		config.posterDesktop = poster;
 	}
 
 	// Limpar propriedades nulas
@@ -668,7 +682,8 @@ async function initializePlayer(shouldPlay) {
 	>
 		<div
 			class="player-wrapper"
-			style="--aspect-ratio-desktop: {aspectRatio}; --aspect-ratio-mobile: {aspectRatioMobile};"
+			class:player-wrapper--has-poster={Boolean(poster)}
+			style={playerWrapperStyle}
 			bind:this={playerContainerElement}
 		>
 			{#if poster}
@@ -761,6 +776,13 @@ async function initializePlayer(shouldPlay) {
 		background: #000;
 		border-radius: 4px;
 		overflow: hidden;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.player-wrapper--has-poster {
+		background-color: #000;
 	}
 
 	.player-surface {
