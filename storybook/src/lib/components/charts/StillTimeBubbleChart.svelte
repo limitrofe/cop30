@@ -4,13 +4,13 @@
 	import { hierarchy, pack } from 'd3-hierarchy';
 	import { scaleOrdinal } from 'd3-scale';
 	import { select } from 'd3-selection';
-import {
-	participantActions,
-	participantsList,
-	selectedParticipant,
-	selectedStillTime,
-	activeGrouping as activeGroupingStore
-} from '$lib/stores/participantStore.js';
+	import {
+		participantActions,
+		participantsList,
+		selectedParticipant,
+		selectedStillTime,
+		activeGrouping as activeGroupingStore
+	} from '$lib/stores/participantStore.js';
 	import { buildStillTimeTree } from '$lib/utils/participantsData.js';
 
 	const formatter = format('d');
@@ -43,18 +43,18 @@ import {
 	let svg;
 	let width = 0;
 	let height = 0;
-let participantsData = [];
-let activeStillTime = null;
-let participantStillTime = null;
-let groupingMode = 'participant';
-let resizeObserver;
-let needsRender = false;
-let legendEntries = [];
-let currentGroup = null;
-let localSelection = null;
-let intersectionObserver;
+	let participantsData = [];
+	let activeStillTime = null;
+	let participantStillTime = null;
+	let groupingMode = 'participant';
+	let resizeObserver;
+	let needsRender = false;
+	let legendEntries = [];
+	let currentGroup = null;
+	let localSelection = null;
+	let intersectionObserver;
 
-const { selectStillTimeGroup } = participantActions;
+	const { selectStillTimeGroup } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
@@ -85,31 +85,31 @@ const { selectStillTimeGroup } = participantActions;
 		return trimmed.length ? trimmed : null;
 	}
 
-function setLocalSelection(value) {
-	const normalized = normalizeCategory(value);
-	if (!normalized) {
-		clearLocalSelection();
-		return;
+	function setLocalSelection(value) {
+		const normalized = normalizeCategory(value);
+		if (!normalized) {
+			clearLocalSelection();
+			return;
+		}
+		if (localSelection === normalized && groupingMode === 'stillTime') {
+			clearLocalSelection();
+			return;
+		}
+		localSelection = normalized;
+		selectStillTimeGroup(normalized);
+		updateSelectionHighlight();
 	}
-	if (localSelection === normalized && groupingMode === 'stillTime') {
-		clearLocalSelection();
-		return;
-	}
-	localSelection = normalized;
-	selectStillTimeGroup(normalized);
-	updateSelectionHighlight();
-}
 
-function clearLocalSelection() {
-	if (localSelection === null) return;
-	const shouldResetStore =
-		groupingMode === 'stillTime' && normalizeCategory(activeStillTime) === localSelection;
-	localSelection = null;
-	updateSelectionHighlight();
-	if (shouldResetStore) {
-		selectStillTimeGroup(null);
+	function clearLocalSelection() {
+		if (localSelection === null) return;
+		const shouldResetStore =
+			groupingMode === 'stillTime' && normalizeCategory(activeStillTime) === localSelection;
+		localSelection = null;
+		updateSelectionHighlight();
+		if (shouldResetStore) {
+			selectStillTimeGroup(null);
+		}
 	}
-}
 
 	function requestRender() {
 		if (!container) return;
@@ -194,9 +194,8 @@ function clearLocalSelection() {
 	}
 
 	function updateSelectionHighlight() {
-	const participantHighlight =
-		groupingMode === 'participant-focus' ? participantStillTime : null;
-	const highlightGroup = participantHighlight || localSelection;
+		const participantHighlight = groupingMode === 'participant-focus' ? participantStillTime : null;
+		const highlightGroup = participantHighlight || localSelection;
 		currentGroup = highlightGroup;
 
 		if (!svg) return;
@@ -205,7 +204,10 @@ function clearLocalSelection() {
 		svg
 			.selectAll('g.bubble')
 			.classed('active', (d) => normalizeCategory(d.data.name) === highlightGroup)
-			.classed('dimmed', (d) => highlightGroup && normalizeCategory(d.data.name) !== highlightGroup);
+			.classed(
+				'dimmed',
+				(d) => highlightGroup && normalizeCategory(d.data.name) !== highlightGroup
+			);
 	}
 
 	function render() {
@@ -225,12 +227,12 @@ function clearLocalSelection() {
 			return;
 		}
 
-	if (
-		localSelection !== null &&
-		!data.some((item) => normalizeCategory(item.name) === localSelection)
-	) {
-		clearLocalSelection();
-	}
+		if (
+			localSelection !== null &&
+			!data.some((item) => normalizeCategory(item.name) === localSelection)
+		) {
+			clearLocalSelection();
+		}
 
 		const categories = data.map((d) => d.name);
 		const colorScale = getColorScale(categories);
@@ -255,14 +257,10 @@ function clearLocalSelection() {
 				}
 			: baseMargin;
 
-		const availableWidth = Math.max(
-			160,
-			width - effectiveMargin.left - effectiveMargin.right
-		);
+		const availableWidth = Math.max(160, width - effectiveMargin.left - effectiveMargin.right);
 		const diameterRatio = useMobileLayout ? 1 : 0.6;
 		const chartDiameter = Math.max(140, availableWidth * diameterRatio);
-		const chartOffsetX =
-			effectiveMargin.left + Math.max(0, (availableWidth - chartDiameter) / 2);
+		const chartOffsetX = effectiveMargin.left + Math.max(0, (availableWidth - chartDiameter) / 2);
 		const chartOffsetY = effectiveMargin.top;
 		height = Math.max(minHeight, chartDiameter + effectiveMargin.top + effectiveMargin.bottom);
 
@@ -351,35 +349,35 @@ function clearLocalSelection() {
 				const maxWidth = Math.max(labelBox.width, valueBox.width);
 				const fitsInside = totalHeight <= radius * 1.85 && maxWidth <= radius * 1.85;
 
-			if (fitsInside) {
-				const labelY = -valueBox.height / 2 - spacing / 2;
-				const valueY = labelBox.height / 2 + spacing / 2;
-				label
-					.attr('text-anchor', 'middle')
-					.attr('x', 0)
-					.attr('y', labelY)
-					.classed('outside', false);
-				valueText
-					.attr('text-anchor', 'middle')
-					.attr('x', 0)
-					.attr('y', valueY)
-					.attr('dy', null)
-					.classed('outside', false);
-			} else {
-				const outsideSpacing = Math.max(4, Math.min(12, radius * 0.16));
-				const labelBaseline = -(radius + outsideSpacing) + labelBox.height;
-				label
-					.attr('text-anchor', 'middle')
-					.attr('x', 0)
-					.attr('y', labelBaseline)
-					.classed('outside', true);
-				valueText
-					.attr('text-anchor', 'middle')
-					.attr('x', 0)
-					.attr('y', 0)
-					.attr('dy', '0.35em')
-					.classed('outside', false);
-			}
+				if (fitsInside) {
+					const labelY = -valueBox.height / 2 - spacing / 2;
+					const valueY = labelBox.height / 2 + spacing / 2;
+					label
+						.attr('text-anchor', 'middle')
+						.attr('x', 0)
+						.attr('y', labelY)
+						.classed('outside', false);
+					valueText
+						.attr('text-anchor', 'middle')
+						.attr('x', 0)
+						.attr('y', valueY)
+						.attr('dy', null)
+						.classed('outside', false);
+				} else {
+					const outsideSpacing = Math.max(4, Math.min(12, radius * 0.16));
+					const labelBaseline = -(radius + outsideSpacing) + labelBox.height;
+					label
+						.attr('text-anchor', 'middle')
+						.attr('x', 0)
+						.attr('y', labelBaseline)
+						.classed('outside', true);
+					valueText
+						.attr('text-anchor', 'middle')
+						.attr('x', 0)
+						.attr('y', 0)
+						.attr('dy', '0.35em')
+						.classed('outside', false);
+				}
 
 				group.select('title').text(`${d.data.name}: ${formatter(d.data.value)} participante(s)`);
 			})
@@ -410,19 +408,19 @@ function clearLocalSelection() {
 		empty.exit().remove();
 	}
 
-onMount(() => {
-	setupResizeObserver();
-	setupIntersectionObserver();
-	requestRender();
-});
+	onMount(() => {
+		setupResizeObserver();
+		setupIntersectionObserver();
+		requestRender();
+	});
 
-onDestroy(() => {
-	clearLocalSelection();
-	resizeObserver?.disconnect();
-	intersectionObserver?.disconnect();
-	unsubscribeParticipants();
-	unsubscribeStillTime();
-	unsubscribeSelectedParticipant();
+	onDestroy(() => {
+		clearLocalSelection();
+		resizeObserver?.disconnect();
+		intersectionObserver?.disconnect();
+		unsubscribeParticipants();
+		unsubscribeStillTime();
+		unsubscribeSelectedParticipant();
 		unsubscribeGrouping();
 	});
 </script>
@@ -442,11 +440,7 @@ onDestroy(() => {
 			{/each}
 		</div>
 	{/if}
-	<div
-		class="chart-surface"
-		bind:this={container}
-		data-participant-slider-anchor="chart"
-	></div>
+	<div class="chart-surface" bind:this={container} data-participant-slider-anchor="chart"></div>
 </div>
 
 <style>

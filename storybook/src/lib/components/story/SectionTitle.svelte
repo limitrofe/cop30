@@ -35,10 +35,10 @@
 	export let titleFontWeight = '';
 	export let titleFontStyle = '';
 	export let subtitleFontWeight = '';
-export let subtitleFontStyle = '';
-export let titleShadow = false;
-export let subtitleShadow = false;
-export let disableParticipantSlider = false;
+	export let subtitleFontStyle = '';
+	export let titleShadow = false;
+	export let subtitleShadow = false;
+	export let disableParticipantSlider = false;
 
 	// Lógica reativa para determinar se há mídia
 	$: hasMedia = !!(backgroundImage || backgroundVideo);

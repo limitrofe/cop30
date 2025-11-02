@@ -271,10 +271,7 @@
 			--section-content-width-mobile,
 			var(--section-content-width-desktop, 100%)
 		);
-		--story-text-container-max-width-desktop: var(
-			--section-content-max-width-desktop,
-			100%
-		);
+		--story-text-container-max-width-desktop: var(--section-content-max-width-desktop, 100%);
 		--story-text-container-max-width-mobile: var(
 			--section-content-max-width-mobile,
 			var(--section-content-max-width-desktop, 100%)

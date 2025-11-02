@@ -16,8 +16,8 @@
 	export let loop = false;
 	export let showCaption = true;
 	export let alignment = 'center';
-export let customWidthDesktop = 'var(--section-content-max-width-desktop, 800px)';
-export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
+	export let customWidthDesktop = 'var(--section-content-max-width-desktop, 800px)';
+	export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
 	export let aspectRatioDesktop = '16/9';
 	export let aspectRatioMobile = '9/16';
 	export let backgroundColor = '#1a1a1a';

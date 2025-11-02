@@ -3,13 +3,13 @@
 	import { scaleLinear, scaleOrdinal } from 'd3-scale';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-import {
-	participantActions,
-	participantsList,
-	selectedChallenge,
-	selectedParticipant,
-	activeGrouping as activeGroupingStore
-} from '$lib/stores/participantStore.js';
+	import {
+		participantActions,
+		participantsList,
+		selectedChallenge,
+		selectedParticipant,
+		activeGrouping as activeGroupingStore
+	} from '$lib/stores/participantStore.js';
 	import { buildChallengeTree } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 260;
@@ -348,11 +348,7 @@ import {
 	});
 </script>
 
-<div
-	class="bars-container"
-	bind:this={container}
-	data-participant-slider-anchor="chart"
-></div>
+<div class="bars-container" bind:this={container} data-participant-slider-anchor="chart"></div>
 
 <style>
 	.bars-container {

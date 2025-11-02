@@ -3,20 +3,20 @@
 	import { afterUpdate, onMount } from 'svelte';
 	import { loadFlourishScript, waitForFlourish } from '$lib/utils/flourish.js';
 
-export let src = '';
-export let url = ''; // Alias para src
-export let height = 'auto';
-export let width = '100%';
+	export let src = '';
+	export let url = ''; // Alias para src
+	export let height = 'auto';
+	export let width = '100%';
 
-const DEFAULT_MAX_WIDTH_DESKTOP = 'var(--section-content-max-width-desktop, 800px)';
-const DEFAULT_MAX_WIDTH_MOBILE = 'var(--section-content-max-width-mobile, 100%)';
+	const DEFAULT_MAX_WIDTH_DESKTOP = 'var(--section-content-max-width-desktop, 800px)';
+	const DEFAULT_MAX_WIDTH_MOBILE = 'var(--section-content-max-width-mobile, 100%)';
 
-export let maxWidth = DEFAULT_MAX_WIDTH_DESKTOP;
-export let heightMobile = 'auto';
-export let widthMobile = '100%';
-export let maxWidthMobile = DEFAULT_MAX_WIDTH_MOBILE;
-export let caption = '';
-export let credit = '';
+	export let maxWidth = DEFAULT_MAX_WIDTH_DESKTOP;
+	export let heightMobile = 'auto';
+	export let widthMobile = '100%';
+	export let maxWidthMobile = DEFAULT_MAX_WIDTH_MOBILE;
+	export let caption = '';
+	export let credit = '';
 
 	// Resolver src (pode vir como 'src' ou 'url')
 	$: actualSrc = src || url;
@@ -154,10 +154,7 @@ export let credit = '';
 <style>
 	.flourish-embed-container {
 		width: var(--flourish-width, 100%);
-		max-width: var(
-			--flourish-max-width,
-			var(--section-content-max-width-desktop, 800px)
-		);
+		max-width: var(--flourish-max-width, var(--section-content-max-width-desktop, 800px));
 		margin: 2rem auto;
 		min-height: var(--flourish-min-height, 0);
 		background-color: var(--color-highlight-bg, #f9fafb);

@@ -3,13 +3,13 @@
 	import { hierarchy, treemap as d3Treemap } from 'd3-hierarchy';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-import {
-	participantActions,
-	participantsList,
-	selectedEmergency,
-	selectedParticipant,
-	activeGrouping as activeGroupingStore
-} from '$lib/stores/participantStore.js';
+	import {
+		participantActions,
+		participantsList,
+		selectedEmergency,
+		selectedParticipant,
+		activeGrouping as activeGroupingStore
+	} from '$lib/stores/participantStore.js';
 	import { buildEmergencyFocusTree } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 320;
@@ -56,13 +56,13 @@ import {
 	let width = 0;
 	let height = 0;
 
-let participantsData = [];
-let activeGroup = null;
-let focusedParticipant = null;
-let groupingMode = 'participant';
-let localSelection = null;
+	let participantsData = [];
+	let activeGroup = null;
+	let focusedParticipant = null;
+	let groupingMode = 'participant';
+	let localSelection = null;
 
-const { selectEmergencyGroup } = participantActions;
+	const { selectEmergencyGroup } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
@@ -98,31 +98,31 @@ const { selectEmergencyGroup } = participantActions;
 		return trimmed.length ? trimmed : null;
 	}
 
-function setLocalSelection(value) {
-	const normalized = normalizeGroup(value);
-	if (!normalized) {
-		clearLocalSelection();
-		return;
+	function setLocalSelection(value) {
+		const normalized = normalizeGroup(value);
+		if (!normalized) {
+			clearLocalSelection();
+			return;
+		}
+		if (localSelection === normalized && groupingMode === 'emergency') {
+			clearLocalSelection();
+			return;
+		}
+		localSelection = normalized;
+		selectEmergencyGroup(normalized);
+		updateSelectionHighlight();
 	}
-	if (localSelection === normalized && groupingMode === 'emergency') {
-		clearLocalSelection();
-		return;
-	}
-	localSelection = normalized;
-	selectEmergencyGroup(normalized);
-	updateSelectionHighlight();
-}
 
-function clearLocalSelection() {
-	if (localSelection === null) return;
-	const shouldResetStore =
-		groupingMode === 'emergency' && normalizeGroup(activeGroup) === localSelection;
-	localSelection = null;
-	updateSelectionHighlight();
-	if (shouldResetStore) {
-		selectEmergencyGroup(null);
+	function clearLocalSelection() {
+		if (localSelection === null) return;
+		const shouldResetStore =
+			groupingMode === 'emergency' && normalizeGroup(activeGroup) === localSelection;
+		localSelection = null;
+		updateSelectionHighlight();
+		if (shouldResetStore) {
+			selectEmergencyGroup(null);
+		}
 	}
-}
 
 	function requestRender() {
 		if (!container) return;
@@ -181,12 +181,12 @@ function clearLocalSelection() {
 			.sum((d) => d.value || 0)
 			.sort((a, b) => b.value - a.value);
 
-	if (
-		localSelection !== null &&
-		!treeData.children?.some((node) => normalizeGroup(node.name) === localSelection)
-	) {
-		clearLocalSelection();
-	}
+		if (
+			localSelection !== null &&
+			!treeData.children?.some((node) => normalizeGroup(node.name) === localSelection)
+		) {
+			clearLocalSelection();
+		}
 
 		const layout = d3Treemap().size([width, height]).paddingInner(paddingInner).round(true);
 		layout(root);
@@ -209,7 +209,7 @@ function clearLocalSelection() {
 			.attr('class', 'cell')
 			.attr('data-category', (d) => d.data.name);
 
-	nodesEnter.append('rect').attr('rx', 0).attr('ry', 0);
+		nodesEnter.append('rect').attr('rx', 0).attr('ry', 0);
 
 		nodesEnter
 			.append('foreignObject')
@@ -223,15 +223,15 @@ function clearLocalSelection() {
 			.attr('transform', (d) => `translate(${d.x0},${d.y0})`)
 			.each(function (d, index) {
 				const fillColor = getColorHex(d.data.name, index);
-		const textColor = getContrastingTextColor(fillColor);
-		const node = select(this);
-		node
-			.select('rect')
-			.attr('width', Math.max(0, d.x1 - d.x0))
-			.attr('height', Math.max(0, d.y1 - d.y0))
-			.attr('fill', fillColor)
-			.attr('rx', 0)
-			.attr('ry', 0);
+				const textColor = getContrastingTextColor(fillColor);
+				const node = select(this);
+				node
+					.select('rect')
+					.attr('width', Math.max(0, d.x1 - d.x0))
+					.attr('height', Math.max(0, d.y1 - d.y0))
+					.attr('fill', fillColor)
+					.attr('rx', 0)
+					.attr('ry', 0);
 
 				const innerWidth = Math.max(0, d.x1 - d.x0);
 				const innerHeight = Math.max(0, d.y1 - d.y0);
@@ -307,11 +307,11 @@ function clearLocalSelection() {
 
 	function updateSelectionHighlight() {
 		if (!svg) return;
-	const participantHighlight =
-		groupingMode === 'participant-focus'
-			? normalizeGroup(focusedParticipant?.emergencyFocus)
-			: null;
-	const highlightGroup = participantHighlight || localSelection;
+		const participantHighlight =
+			groupingMode === 'participant-focus'
+				? normalizeGroup(focusedParticipant?.emergencyFocus)
+				: null;
+		const highlightGroup = participantHighlight || localSelection;
 		svg.classed('has-selection', Boolean(highlightGroup));
 		svg.selectAll('g.cell').classed('active', (d) => {
 			const category = normalizeGroup(d.data.name);
@@ -328,30 +328,26 @@ function clearLocalSelection() {
 		select(container).selectAll('.empty-state').remove();
 	}
 
-onMount(() => {
-	setupResizeObserver();
-	setupIntersectionObserver();
-	requestRender();
-});
+	onMount(() => {
+		setupResizeObserver();
+		setupIntersectionObserver();
+		requestRender();
+	});
 
-onDestroy(() => {
-	clearLocalSelection();
-	resizeObserver?.disconnect();
-	intersectionObserver?.disconnect();
-	unsubscribeParticipants();
-	unsubscribeGroup();
-	unsubscribeParticipant();
+	onDestroy(() => {
+		clearLocalSelection();
+		resizeObserver?.disconnect();
+		intersectionObserver?.disconnect();
+		unsubscribeParticipants();
+		unsubscribeGroup();
+		unsubscribeParticipant();
 		unsubscribeGrouping();
 		hideTooltip();
 		tooltipEl?.remove();
 	});
 </script>
 
-<div
-	class="treemap-container"
-	bind:this={container}
-	data-participant-slider-anchor="chart"
-></div>
+<div class="treemap-container" bind:this={container} data-participant-slider-anchor="chart"></div>
 
 <style>
 	.treemap-container {
@@ -432,17 +428,17 @@ onDestroy(() => {
 		font-size: clamp(0.95rem, 1.8vw, 1.35rem);
 	}
 
-		.treemap-tooltip {
-			position: absolute;
-			background: rgba(15, 23, 42, 0.88);
-			color: #f8fafc;
-			padding: 0.75rem 1rem;
-			border-radius: 0;
-			pointer-events: none;
-			transition: opacity 120ms ease;
-			opacity: 0;
-			max-width: min(260px, 70vw);
-			font-size: 0.85rem;
+	.treemap-tooltip {
+		position: absolute;
+		background: rgba(15, 23, 42, 0.88);
+		color: #f8fafc;
+		padding: 0.75rem 1rem;
+		border-radius: 0;
+		pointer-events: none;
+		transition: opacity 120ms ease;
+		opacity: 0;
+		max-width: min(260px, 70vw);
+		font-size: 0.85rem;
 		display: flex;
 		flex-direction: column;
 		gap: 0.35rem;
@@ -458,10 +454,10 @@ onDestroy(() => {
 		font-size: 0.8rem;
 	}
 
-		.empty-state {
-			width: 100%;
-			min-height: 220px;
-			border-radius: 0;
+	.empty-state {
+		width: 100%;
+		min-height: 220px;
+		border-radius: 0;
 		border: 1px dashed rgba(148, 163, 184, 0.35);
 		display: flex;
 		align-items: center;

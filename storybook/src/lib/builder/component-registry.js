@@ -1466,7 +1466,7 @@ export const componentRegistry = [
 				link: 'Links',
 				searchTokensExtra: []
 			},
-				layoutConfig: {
+			layoutConfig: {
 				stickyOffset: 0,
 				showCounts: false,
 				highlightLimit: null,
@@ -1556,10 +1556,10 @@ export const componentRegistry = [
 				desktopOverlaySurfaceBlur: '22px',
 				desktopOverlaySurfaceBorder: 'rgba(255, 255, 255, 0.18)',
 				desktopOverlaySurfaceShadow: '0 32px 80px rgba(5, 8, 25, 0.65)',
-					desktopOverlayAccent:
-						'linear-gradient(135deg, rgba(236, 72, 153, 0.32) 0%, rgba(59, 130, 246, 0.32) 35%, rgba(45, 212, 191, 0.25) 100%)',
-					desktopOverlayPlayerBackground: 'rgba(5, 9, 18, 0.88)',
-					desktopOverlayCardBackground:
+				desktopOverlayAccent:
+					'linear-gradient(135deg, rgba(236, 72, 153, 0.32) 0%, rgba(59, 130, 246, 0.32) 35%, rgba(45, 212, 191, 0.25) 100%)',
+				desktopOverlayPlayerBackground: 'rgba(5, 9, 18, 0.88)',
+				desktopOverlayCardBackground:
 					'linear-gradient(145deg, rgba(9, 14, 26, 0.95) 0%, rgba(17, 25, 46, 0.82) 100%)',
 				desktopOverlayCardShadow: '0 32px 64px rgba(5, 9, 18, 0.58)',
 				desktopOverlayCardPadding: '1.85rem',
@@ -1611,29 +1611,29 @@ export const componentRegistry = [
 			{ path: 'videoConfig.subtitle', label: 'Coluna subtítulo', type: 'text' },
 			{ path: 'videoConfig.description', label: 'Coluna descrição', type: 'text' },
 			{ path: 'videoConfig.tag', label: 'Coluna tag/selo', type: 'text' },
-		{
-			path: 'videoConfig.section',
-			label: 'Coluna que define a seção',
-			type: 'text',
-			placeholder: 'secao'
-		},
-		{
-			path: 'videoConfig.publishedAt',
-			label: 'Coluna data de publicação',
-			type: 'text',
-			placeholder: 'Data de publicação'
-		},
-		{
-			path: 'videoConfig.link',
-			label: 'Coluna link/CTA',
-			type: 'text',
-			placeholder: 'Links'
-		},
-		{
-			path: 'videoConfig.searchTokensExtra',
-			label: 'Colunas extras para busca (JSON)',
-			type: 'json',
-			rows: 3,
+			{
+				path: 'videoConfig.section',
+				label: 'Coluna que define a seção',
+				type: 'text',
+				placeholder: 'secao'
+			},
+			{
+				path: 'videoConfig.publishedAt',
+				label: 'Coluna data de publicação',
+				type: 'text',
+				placeholder: 'Data de publicação'
+			},
+			{
+				path: 'videoConfig.link',
+				label: 'Coluna link/CTA',
+				type: 'text',
+				placeholder: 'Links'
+			},
+			{
+				path: 'videoConfig.searchTokensExtra',
+				label: 'Colunas extras para busca (JSON)',
+				type: 'json',
+				rows: 3,
 				placeholder: '["palavra_chave","resumo"]',
 				emptyValue: []
 			},

@@ -3,12 +3,12 @@
 	import { scaleBand, scaleLinear } from 'd3-scale';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-import {
-	participantActions,
-	participantsList,
-	selectedOptimismScore,
-	activeGrouping as activeGroupingStore
-} from '$lib/stores/participantStore.js';
+	import {
+		participantActions,
+		participantsList,
+		selectedOptimismScore,
+		activeGrouping as activeGroupingStore
+	} from '$lib/stores/participantStore.js';
 	import { buildOptimismHistogram } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 320;
@@ -37,20 +37,20 @@ import {
 			? globalThis.requestAnimationFrame.bind(globalThis)
 			: (callback) => callback();
 
-let container;
-let svg;
-let width = 0;
-let height = 0;
-let resizeObserver;
-let histogram = [];
-let activeOptimismScore = null;
-let xAxisGroup;
-let barsGroup;
-let labelsGroup;
-let localSelection = null;
-let intersectionObserver;
-let groupingMode = 'participant';
-const { selectOptimismScore } = participantActions;
+	let container;
+	let svg;
+	let width = 0;
+	let height = 0;
+	let resizeObserver;
+	let histogram = [];
+	let activeOptimismScore = null;
+	let xAxisGroup;
+	let barsGroup;
+	let labelsGroup;
+	let localSelection = null;
+	let intersectionObserver;
+	let groupingMode = 'participant';
+	const { selectOptimismScore } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((participants) => {
 		updateHistogram(participants);
@@ -193,12 +193,12 @@ const { selectOptimismScore } = participantActions;
 		} else {
 			histogram = buildOptimismHistogram(participants);
 		}
-	if (
-		localSelection !== null &&
-		!histogram.some((bucket) => Number(bucket.scale) === Number(localSelection))
-	) {
-		clearLocalSelection();
-	}
+		if (
+			localSelection !== null &&
+			!histogram.some((bucket) => Number(bucket.scale) === Number(localSelection))
+		) {
+			clearLocalSelection();
+		}
 		update();
 	}
 
@@ -287,61 +287,57 @@ const { selectOptimismScore } = participantActions;
 		updateHistogram();
 	}
 
-function updateHighlight() {
-	if (!barsGroup || !labelsGroup) return;
-	const participantHighlight =
-		groupingMode === 'participant-focus' && Number.isFinite(activeOptimismScore)
-			? Number(activeOptimismScore)
-			: null;
-	const highlightScale = participantHighlight ?? localSelection;
-	const shouldDim = highlightScale !== null;
-
-	scheduleFrame(() => {
+	function updateHighlight() {
 		if (!barsGroup || !labelsGroup) return;
-		if (svg) {
-			svg.classed('has-selection', shouldDim);
-		}
-		const bars = barsGroup.selectAll('rect.bar');
-		if (!bars.size()) return;
+		const participantHighlight =
+			groupingMode === 'participant-focus' && Number.isFinite(activeOptimismScore)
+				? Number(activeOptimismScore)
+				: null;
+		const highlightScale = participantHighlight ?? localSelection;
+		const shouldDim = highlightScale !== null;
 
-		bars
-			.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
-			.classed(
-				'dimmed',
-				(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
-			);
+		scheduleFrame(() => {
+			if (!barsGroup || !labelsGroup) return;
+			if (svg) {
+				svg.classed('has-selection', shouldDim);
+			}
+			const bars = barsGroup.selectAll('rect.bar');
+			if (!bars.size()) return;
 
-		labelsGroup
-			.selectAll('text.value')
-			.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
-			.classed(
-				'dimmed',
-				(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
-			);
+			bars
+				.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
+				.classed(
+					'dimmed',
+					(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
+				);
+
+			labelsGroup
+				.selectAll('text.value')
+				.classed('active', (d) => highlightScale !== null && Number(d.scale) === highlightScale)
+				.classed(
+					'dimmed',
+					(d) => shouldDim && highlightScale !== null && Number(d.scale) !== highlightScale
+				);
+		});
+	}
+
+	onMount(() => {
+		setupResizeObserver();
+		setupIntersectionObserver();
+		updateHistogram();
 	});
-}
 
-onMount(() => {
-	setupResizeObserver();
-	setupIntersectionObserver();
-	updateHistogram();
-});
-
-onDestroy(() => {
-	clearLocalSelection();
-	resizeObserver?.disconnect();
-	intersectionObserver?.disconnect();
-	unsubscribeParticipants();
-	unsubscribeOptimism();
-	unsubscribeGrouping();
+	onDestroy(() => {
+		clearLocalSelection();
+		resizeObserver?.disconnect();
+		intersectionObserver?.disconnect();
+		unsubscribeParticipants();
+		unsubscribeOptimism();
+		unsubscribeGrouping();
 	});
 </script>
 
-<div
-	class="histogram-container"
-	bind:this={container}
-	data-participant-slider-anchor="chart"
-></div>
+<div class="histogram-container" bind:this={container} data-participant-slider-anchor="chart"></div>
 
 <style>
 	.histogram-container {

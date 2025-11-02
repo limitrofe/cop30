@@ -174,7 +174,10 @@
 
 		.section-wrapper__content {
 			padding: 0 1.5rem;
-			max-width: var(--section-content-max-width-mobile, var(--section-content-max-width-desktop, 800px));
+			max-width: var(
+				--section-content-max-width-mobile,
+				var(--section-content-max-width-desktop, 800px)
+			);
 		}
 
 		/* Remove background-attachment fixed no mobile para melhor performance */

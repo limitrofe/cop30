@@ -63,11 +63,11 @@
 	export let skipDFP = false;
 	export let loop = false;
 	export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
-export let height = '100%';
-export let chromeless = null;
-export let allowRestrictedContent = true;
-export let allowLocation = true;
-export let exitFullscreenOnEnd = true;
+	export let height = '100%';
+	export let chromeless = null;
+	export let allowRestrictedContent = true;
+	export let allowLocation = true;
+	export let exitFullscreenOnEnd = true;
 	export let isLiveContent = false;
 	export let preventBlackBars = false;
 	export let includeResetStyle = true;
@@ -84,31 +84,32 @@ export let exitFullscreenOnEnd = true;
 	export let adUnit = null;
 	export let adCustomData = null;
 	export let siteName = null;
-export let ga4 = null;
-export let caption = '';
-export let credit = '';
-export let fullWidth = false;
-export let autoplay = false;
-export let controls = true;
-export let forceControls = false;
-export let showCaption = true;
-export let poster = null;
-export let posterAlt = 'Prévia do vídeo';
+	export let ga4 = null;
+	export let caption = '';
+	export let credit = '';
+	export let fullWidth = false;
+	export let autoplay = false;
+	export let controls = true;
+	export let forceControls = false;
+	export let showCaption = true;
+	export let poster = null;
+	export let posterAlt = 'Prévia do vídeo';
+	export let eagerInit = false;
 
-// --- VARIÁVEIS INTERNAS ---
-let playerElement;
-let playerContainerElement;
-let playerInstance = null;
-let isLoading = false;
-let error = null;
-let isMuted = startMuted;
-let playerReady = false;
-let resolvedPosterAlt = 'Prévia do vídeo';
-let showPoster = false;
-let playerWrapperStyle = '';
-const dispatch = createEventDispatcher();
-const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
-let unregisterPlayback = null;
+	// --- VARIÁVEIS INTERNAS ---
+	let playerElement;
+	let playerContainerElement;
+	let playerInstance = null;
+	let isLoading = false;
+	let error = null;
+	let isMuted = startMuted;
+	let playerReady = false;
+	let resolvedPosterAlt = 'Prévia do vídeo';
+	let showPoster = false;
+	let playerWrapperStyle = '';
+	const dispatch = createEventDispatcher();
+	const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
+	let unregisterPlayback = null;
 
 	// Controle de estado
 	let observer = null;
@@ -118,6 +119,7 @@ let unregisterPlayback = null;
 	let lastPropStartMuted = startMuted;
 	let isRecreatingForMute = false;
 	let muteButtonObserver = null;
+	let muteObserverCleanupTimeout = null;
 
 	function resolveChromeless() {
 		if (typeof chromeless === 'boolean') {
@@ -231,6 +233,12 @@ let unregisterPlayback = null;
 		try {
 			muteButtonObserver = new MutationObserver(() => hideMuteButton());
 			muteButtonObserver.observe(playerElement, { childList: true, subtree: true });
+			hideMuteButton();
+			clearTimeout(muteObserverCleanupTimeout);
+			muteObserverCleanupTimeout = setTimeout(() => {
+				muteButtonObserver?.disconnect();
+				muteButtonObserver = null;
+			}, 2000);
 		} catch (error) {
 			console.warn('GloboPlayer: falha ao observar botão de som', error);
 		}
@@ -374,9 +382,9 @@ let unregisterPlayback = null;
 			if (videoIdMobile) return videoIdMobile;
 		}
 
-	// Fallbacks de compatibilidade
-	return videoId || videosIDs || null;
-}
+		// Fallbacks de compatibilidade
+		return videoId || videosIDs || null;
+	}
 
 	$: resolvedPosterAlt =
 		typeof posterAlt === 'string' && posterAlt.trim().length ? posterAlt : 'Prévia do vídeo';
@@ -391,53 +399,53 @@ let unregisterPlayback = null;
 
 	// Criar o player
 	function createPlayer(shouldAutoplayOnCreate = false, options = {}) {
-	const { preserveMuteState = false } = options;
-	if (!browser || !window.WM || !window.WM.Player) {
-		error = new Error('A API do player da Globo (WM) não está disponível.');
-		isLoading = false;
+		const { preserveMuteState = false } = options;
+		if (!browser || !window.WM || !window.WM.Player) {
+			error = new Error('A API do player da Globo (WM) não está disponível.');
+			isLoading = false;
+			playerReady = false;
+			return;
+		}
+
+		const actualVideoId = getVideoId();
+		if (!actualVideoId) {
+			error = new Error('É necessário informar o videoId para criar o player!');
+			isLoading = false;
+			playerReady = false;
+			return;
+		}
+
+		// Destruir player anterior se existir
+		if (playerInstance && typeof playerInstance.destroy === 'function') {
+			playerInstance.destroy();
+			deactivateVideo(playbackId);
+		}
+		playerInstance = null;
+		publicControls = null;
+		if (!preserveMuteState) {
+			lastPropStartMuted = startMuted;
+			isMuted = !!lastPropStartMuted;
+		}
+		isLoading = true;
+		error = null;
 		playerReady = false;
-		return;
-	}
 
-	const actualVideoId = getVideoId();
-	if (!actualVideoId) {
-		error = new Error('É necessário informar o videoId para criar o player!');
-		isLoading = false;
-		playerReady = false;
-		return;
-	}
+		const chromelessSetting = resolveChromeless();
+		const shouldShowControls = forceControls ? true : controls !== false;
 
-	// Destruir player anterior se existir
-	if (playerInstance && typeof playerInstance.destroy === 'function') {
-		playerInstance.destroy();
-		deactivateVideo(playbackId);
-	}
-	playerInstance = null;
-	publicControls = null;
-	if (!preserveMuteState) {
-		lastPropStartMuted = startMuted;
-		isMuted = !!lastPropStartMuted;
-	}
-	isLoading = true;
-	error = null;
-	playerReady = false;
-
-	const chromelessSetting = resolveChromeless();
-	const shouldShowControls = forceControls ? true : controls !== false;
-
-	const config = {
-		source: Number(actualVideoId),
-		autoPlay: shouldAutoplayOnCreate,
-		startMuted: isMuted,
-		skipDFP,
-		width: '100%',
-		height: '100%',
-		chromeless: chromelessSetting,
-		allowRestrictedContent,
-		allowLocation,
-		exitFullscreenOnEnd,
-		isLiveContent,
-		preventBlackBars,
+		const config = {
+			source: Number(actualVideoId),
+			autoPlay: shouldAutoplayOnCreate,
+			startMuted: isMuted,
+			skipDFP,
+			width: '100%',
+			height: '100%',
+			chromeless: chromelessSetting,
+			allowRestrictedContent,
+			allowLocation,
+			exitFullscreenOnEnd,
+			isLiveContent,
+			preventBlackBars,
 			includeResetStyle,
 			disasterRecoveryMode,
 			env,
@@ -451,26 +459,26 @@ let unregisterPlayback = null;
 			adCmsId,
 			adUnit,
 			adCustomData,
-		siteName,
-		ga4
-	};
+			siteName,
+			ga4
+		};
 
-	if (forceControls) {
-		config.controls = shouldShowControls;
-		config.showControls = shouldShowControls;
-		config.ui = { ...(config.ui || {}), controls: shouldShowControls };
-	}
+		if (forceControls) {
+			config.controls = shouldShowControls;
+			config.showControls = shouldShowControls;
+			config.ui = { ...(config.ui || {}), controls: shouldShowControls };
+		}
 
-	if (poster) {
-		config.poster = poster;
-		config.posterMobile = poster;
-		config.posterDesktop = poster;
-	}
+		if (poster) {
+			config.poster = poster;
+			config.posterMobile = poster;
+			config.posterDesktop = poster;
+		}
 
-	// Limpar propriedades nulas
-	Object.keys(config).forEach(
-		(key) => (config[key] === null || config[key] === undefined) && delete config[key]
-	);
+		// Limpar propriedades nulas
+		Object.keys(config).forEach(
+			(key) => (config[key] === null || config[key] === undefined) && delete config[key]
+		);
 
 		// Eventos
 		config.events = {
@@ -541,21 +549,21 @@ let unregisterPlayback = null;
 	}
 
 	// Inicializar player
-async function initializePlayer(shouldPlay) {
-	if (hasBeenInitialized || !browser) return;
-	hasBeenInitialized = true;
-	isLoading = true;
-	playerReady = false;
-
-	try {
-		await loadGloboScript();
-		createPlayer(shouldPlay);
-	} catch (err) {
-		error = err;
-		isLoading = false;
+	async function initializePlayer(shouldPlay) {
+		if (hasBeenInitialized || !browser) return;
+		hasBeenInitialized = true;
+		isLoading = true;
 		playerReady = false;
+
+		try {
+			await loadGloboScript();
+			createPlayer(shouldPlay);
+		} catch (err) {
+			error = err;
+			isLoading = false;
+			playerReady = false;
+		}
 	}
-}
 
 	// ✅ DETECTAR MOBILE E CONFIGURAR OBSERVER
 	onMount(() => {
@@ -572,8 +580,8 @@ async function initializePlayer(shouldPlay) {
 		// Intersection Observer para lazy loading
 		const options = {
 			root: null,
-			rootMargin: '0px',
-			threshold: 0.5
+			rootMargin: '40% 0px 40% 0px',
+			threshold: [0, 0.35, 0.7]
 		};
 
 		observer = new IntersectionObserver((entries) => {
@@ -612,9 +620,10 @@ async function initializePlayer(shouldPlay) {
 		}
 		muteButtonObserver?.disconnect();
 		muteButtonObserver = null;
+		clearTimeout(muteObserverCleanupTimeout);
+		muteObserverCleanupTimeout = null;
 		if (playerInstance && typeof playerInstance.destroy === 'function') {
 			playerInstance.destroy();
-			console.log('🗑️ GloboPlayer destruído');
 		}
 		dispatch('destroyed', { player: playerInstance, controls: publicControls });
 		unregisterPlayback?.();
@@ -624,6 +633,10 @@ async function initializePlayer(shouldPlay) {
 		publicControls = null;
 		playerReady = false;
 	});
+
+	$: if (browser && eagerInit && !hasBeenInitialized) {
+		initializePlayer(false);
+	}
 
 	// Reativo: recriar player quando IDs mudarem
 	$: if (
@@ -797,7 +810,9 @@ async function initializePlayer(shouldPlay) {
 		height: 100%;
 		object-fit: cover;
 		pointer-events: none;
-		transition: opacity 0.2s ease, visibility 0.2s ease;
+		transition:
+			opacity 0.2s ease,
+			visibility 0.2s ease;
 	}
 
 	.player-poster--hidden {

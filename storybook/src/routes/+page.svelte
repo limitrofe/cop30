@@ -12,11 +12,11 @@
 	let loading = !currentStory;
 	$: participants = data?.participants ?? [];
 	$: participantActions.setParticipants(participants);
-let showParticipantProfile = false;
-let sliderVisible = false;
-let sliderCollapsed = false;
-let sliderStopActive = false;
-let sliderStopElement = null;
+	let showParticipantProfile = false;
+	let sliderVisible = false;
+	let sliderCollapsed = false;
+	let sliderStopActive = false;
+	let sliderStopElement = null;
 	$: if (!participants?.length && showParticipantProfile) {
 		showParticipantProfile = false;
 	}
@@ -52,34 +52,34 @@ let sliderStopElement = null;
 		syncSliderVisibility();
 	}
 
-function syncSliderVisibility() {
-	if (typeof window === 'undefined') {
-		sliderVisible = false;
-		sliderStopActive = false;
-		return;
-	}
-	const chartAnchor = document.querySelector('[data-participant-slider-anchor="chart"]');
-
-	if (chartAnchor) {
-		const anchorRect = chartAnchor.getBoundingClientRect();
-		const anchorTop = anchorRect.top + window.scrollY;
-		const viewportBottom = window.scrollY + window.innerHeight;
-		const triggerOffset = 64;
-		sliderVisible = viewportBottom >= anchorTop + triggerOffset;
-	} else {
-		const header = document.querySelector('.story-header');
-		if (!header) {
-			sliderVisible = window.scrollY > 0;
-		} else {
-			const headerRect = header.getBoundingClientRect();
-			sliderVisible = headerRect.top <= -8;
+	function syncSliderVisibility() {
+		if (typeof window === 'undefined') {
+			sliderVisible = false;
+			sliderStopActive = false;
+			return;
 		}
-	}
+		const chartAnchor = document.querySelector('[data-participant-slider-anchor="chart"]');
 
-	sliderStopElement = document.querySelector('[data-slider-stop="true"]');
+		if (chartAnchor) {
+			const anchorRect = chartAnchor.getBoundingClientRect();
+			const anchorTop = anchorRect.top + window.scrollY;
+			const viewportBottom = window.scrollY + window.innerHeight;
+			const triggerOffset = 64;
+			sliderVisible = viewportBottom >= anchorTop + triggerOffset;
+		} else {
+			const header = document.querySelector('.story-header');
+			if (!header) {
+				sliderVisible = window.scrollY > 0;
+			} else {
+				const headerRect = header.getBoundingClientRect();
+				sliderVisible = headerRect.top <= -8;
+			}
+		}
 
-	if (sliderStopElement) {
-		const rect = sliderStopElement.getBoundingClientRect();
+		sliderStopElement = document.querySelector('[data-slider-stop="true"]');
+
+		if (sliderStopElement) {
+			const rect = sliderStopElement.getBoundingClientRect();
 			const viewportBottom = window.innerHeight;
 			const sliderBuffer = 180;
 			sliderStopActive = rect.top <= viewportBottom - sliderBuffer;
@@ -194,45 +194,45 @@ function syncSliderVisibility() {
 		data-theme={appearance.colorScheme || 'default'}
 		style={`--bg-desktop:${backgroundDesktop}; --bg-mobile:${backgroundMobile}; --page-padding-desktop:${paddingDesktop}; --page-padding-mobile:${paddingMobile}; --surface-color:${surfaceColor}; --accent-color:${accentColor}; color:${textColor};`}
 	>
-			<StoryRenderer storyData={currentStory} />
-			{#if participants.length}
-				<ParticipantModal open={showParticipantProfile} on:close={handleProfileClose} />
-			{/if}
+		<StoryRenderer storyData={currentStory} />
+		{#if participants.length}
+			<ParticipantModal open={showParticipantProfile} on:close={handleProfileClose} />
+		{/if}
 		{#if participants.length && sliderVisible && !sliderCollapsed && !sliderStopActive}
 			<section class="participants-hub" data-slider-mode="fixed">
 				<ParticipantSlider
 					mode="fixed"
 					position="bottom"
-						maxWidth={1280}
-						background="#374953"
-						blur={true}
-						reserveSpace={false}
-						collapsible={true}
-						on:openProfile={handleProfileOpen}
-						on:collapse={handleSliderCollapse}
-					/>
-				</section>
-			{/if}
+					maxWidth={1280}
+					background="#374953"
+					blur={true}
+					reserveSpace={false}
+					collapsible={true}
+					on:openProfile={handleProfileOpen}
+					on:collapse={handleSliderCollapse}
+				/>
+			</section>
+		{/if}
 		{#if participants.length && sliderCollapsed && sliderVisible && !sliderStopActive}
 			<button
 				type="button"
 				class="participants-toggle"
 				on:click={handleSliderExpand}
 				aria-label="Reabrir lista de participantes"
-				>
-					<span class="participants-toggle__icon" aria-hidden="true">+</span>
-					<span>Mostrar participantes</span>
-				</button>
-			{/if}
-			{#if participants.length}
+			>
+				<span class="participants-toggle__icon" aria-hidden="true">+</span>
+				<span>Mostrar participantes</span>
+			</button>
+		{/if}
+		{#if participants.length}
 			<div
 				class="page-bottom-spacer"
 				class:page-bottom-spacer--active={sliderVisible && !sliderCollapsed && !sliderStopActive}
 				aria-hidden="true"
 			></div>
 		{/if}
-		</div>
-	{/if}
+	</div>
+{/if}
 
 <style>
 	.loading {

@@ -37,11 +37,11 @@
 	import ContentGrid from './story/ContentGrid.svelte';
 	// 🎨 NOVO: ResponsiveMediaLayout
 	import ResponsiveMediaLayout from './story/ResponsiveMediaLayout.svelte';
-import MediaTextLayout from './story/MediaTextLayout.svelte';
-import FreeCanvas from './story/FreeCanvas.svelte';
-import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
-import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
-import ChartBar from './story/ChartBar.svelte';
+	import MediaTextLayout from './story/MediaTextLayout.svelte';
+	import FreeCanvas from './story/FreeCanvas.svelte';
+	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
+	import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
+	import ChartBar from './story/ChartBar.svelte';
 	import ChartLine from './story/ChartLine.svelte';
 	import ParticipantHighlight from './story/ParticipantHighlight.svelte';
 	import EmergencyTreemap from './charts/EmergencyTreemap.svelte';
@@ -1983,28 +1983,19 @@ import ChartBar from './story/ChartBar.svelte';
 
 	@media (min-width: 640px) {
 		.chart-shell {
-			width: min(
-				100%,
-				var(--chart-width-tablet, var(--chart-width-tablet-default))
-			);
+			width: min(100%, var(--chart-width-tablet, var(--chart-width-tablet-default)));
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.chart-shell {
-			width: min(
-				100%,
-				var(--chart-width-desktop, var(--chart-width-desktop-default))
-			);
+			width: min(100%, var(--chart-width-desktop, var(--chart-width-desktop-default)));
 		}
 	}
 
 	@media (min-width: 1440px) {
 		.chart-shell {
-			width: min(
-				100%,
-				var(--chart-width-large, var(--chart-width-large-default))
-			);
+			width: min(100%, var(--chart-width-large, var(--chart-width-large-default)));
 		}
 	}
 

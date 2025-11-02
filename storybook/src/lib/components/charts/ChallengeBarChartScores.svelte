@@ -3,12 +3,12 @@
 	import { scaleLinear } from 'd3-scale';
 	import { select } from 'd3-selection';
 	import { format } from 'd3-format';
-import {
-	participantActions,
-	participantsList,
-	selectedOptimismScore,
-	activeGrouping as activeGroupingStore
-} from '$lib/stores/participantStore.js';
+	import {
+		participantActions,
+		participantsList,
+		selectedOptimismScore,
+		activeGrouping as activeGroupingStore
+	} from '$lib/stores/participantStore.js';
 	import { buildOptimismHistogram } from '$lib/utils/participantsData.js';
 
 	export let minHeight = 260;
@@ -43,12 +43,12 @@ import {
 	let width = 0;
 	let height = 0;
 
-let participantsData = [];
-let activeScore = null;
-let groupingMode = 'participant';
-let barsData = [];
-let localSelection = null;
-const { selectOptimismScore } = participantActions;
+	let participantsData = [];
+	let activeScore = null;
+	let groupingMode = 'participant';
+	let barsData = [];
+	let localSelection = null;
+	const { selectOptimismScore } = participantActions;
 
 	const unsubscribeParticipants = participantsList.subscribe((value) => {
 		participantsData = value || [];
@@ -72,33 +72,33 @@ const { selectOptimismScore } = participantActions;
 	let needsRender = false;
 	let intersectionObserver;
 
-function setLocalSelection(value) {
-	const numeric = Number(value);
-	if (!Number.isFinite(numeric)) {
-		clearLocalSelection();
-		return;
+	function setLocalSelection(value) {
+		const numeric = Number(value);
+		if (!Number.isFinite(numeric)) {
+			clearLocalSelection();
+			return;
+		}
+		if (localSelection === numeric && groupingMode === 'optimism') {
+			clearLocalSelection();
+			return;
+		}
+		localSelection = numeric;
+		selectOptimismScore(numeric);
+		updateSelectionHighlight();
 	}
-	if (localSelection === numeric && groupingMode === 'optimism') {
-		clearLocalSelection();
-		return;
-	}
-	localSelection = numeric;
-	selectOptimismScore(numeric);
-	updateSelectionHighlight();
-}
 
-function clearLocalSelection() {
-	if (localSelection === null) return;
-	const shouldResetStore =
-		groupingMode === 'optimism' &&
-		Number.isFinite(activeScore) &&
-		Number(activeScore) === Number(localSelection);
-	localSelection = null;
-	updateSelectionHighlight();
-	if (shouldResetStore) {
-		selectOptimismScore(null);
+	function clearLocalSelection() {
+		if (localSelection === null) return;
+		const shouldResetStore =
+			groupingMode === 'optimism' &&
+			Number.isFinite(activeScore) &&
+			Number(activeScore) === Number(localSelection);
+		localSelection = null;
+		updateSelectionHighlight();
+		if (shouldResetStore) {
+			selectOptimismScore(null);
+		}
 	}
-}
 
 	function updateBarsData() {
 		if (participantsData?.length) {
@@ -114,12 +114,12 @@ function clearLocalSelection() {
 		} else {
 			barsData = [];
 		}
-	if (
-		localSelection !== null &&
-		!barsData.some((item) => Number(item.name) === Number(localSelection))
-	) {
-		clearLocalSelection();
-	}
+		if (
+			localSelection !== null &&
+			!barsData.some((item) => Number(item.name) === Number(localSelection))
+		) {
+			clearLocalSelection();
+		}
 		requestRender();
 	}
 
@@ -325,11 +325,7 @@ function clearLocalSelection() {
 	});
 </script>
 
-<div
-	class="bars-container"
-	bind:this={container}
-	data-participant-slider-anchor="chart"
-></div>
+<div class="bars-container" bind:this={container} data-participant-slider-anchor="chart"></div>
 
 <style>
 	.bars-container {

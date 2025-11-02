@@ -190,10 +190,7 @@
 	.before-after {
 		position: relative;
 		width: var(--before-after-width, 100%);
-		max-width: var(
-			--before-after-max-width,
-			var(--section-content-max-width-desktop, none)
-		);
+		max-width: var(--before-after-max-width, var(--section-content-max-width-desktop, none));
 		margin: 2rem auto;
 		border-radius: 12px;
 		overflow: hidden;

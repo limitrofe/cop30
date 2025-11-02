@@ -6,11 +6,11 @@
 	import StoryHeader from './StoryHeader.svelte';
 	import StoryText from './StoryText.svelte';
 	import SectionTitle from './story/SectionTitle.svelte';
-import PhotoWithCaption from './story/PhotoWithCaption.svelte';
-import VideoPlayer from './story/VideoPlayer.svelte';
-import GloboPlayer from './story/GloboPlayer.svelte';
-import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
-import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
+	import PhotoWithCaption from './story/PhotoWithCaption.svelte';
+	import VideoPlayer from './story/VideoPlayer.svelte';
+	import GloboPlayer from './story/GloboPlayer.svelte';
+	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
+	import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
 	import { getSectionStyling } from './story/sectionStyle.js';
 	import { gsapAnimator } from '$lib/utils/gsapAnimator.js';
 	import { extractGsapOptions } from '$lib/utils/gsapConfig.js';

@@ -9,17 +9,21 @@ const GOOGLE_SHEETS_ID_REGEX = /\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/;
  * @returns {string}
  */
 export function sanitizeHeader(header = '') {
-	const base = String(header).normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-	return base
-		.trim()
-		.toLowerCase()
-		.replace(/[^a-z0-9]+/g, '_')
-		.replace(/^_+|_+$/g, '') || 'coluna';
+	const base = String(header)
+		.normalize('NFD')
+		.replace(/[\u0300-\u036f]/g, '');
+	return (
+		base
+			.trim()
+			.toLowerCase()
+			.replace(/[^a-z0-9]+/g, '_')
+			.replace(/^_+|_+$/g, '') || 'coluna'
+	);
 }
 
 /**
-	 * Extrai sheetId e gid de uma URL do Google Sheets.
-	 * Aceita URLs dos modos visualizacao/edicao.
+ * Extrai sheetId e gid de uma URL do Google Sheets.
+ * Aceita URLs dos modos visualizacao/edicao.
  * @param {string} url
  * @returns {{ sheetId: string | null, gid: string | null }}
  */
@@ -46,8 +50,8 @@ export function parseGoogleSheetUrl(url = '') {
  * @returns {string}
  */
 export function buildGoogleSheetCsvUrl({ sheetId, gid, sheetName, query } = {}) {
-		if (!sheetId) {
-			throw new Error('buildGoogleSheetCsvUrl: sheetId e obrigatorio.');
+	if (!sheetId) {
+		throw new Error('buildGoogleSheetCsvUrl: sheetId e obrigatorio.');
 	}
 
 	const url = new URL(`https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq`);
@@ -162,7 +166,7 @@ export async function fetchGoogleSheet(options = {}) {
 
 	if (errors?.length) {
 		const sample = errors.slice(0, 2).map((err) => `${err.code ?? 'ERRO'}: ${err.message ?? ''}`);
-			throw new Error(`Google Sheets retornou erros na conversao CSV: ${sample.join(' | ')}`);
+		throw new Error(`Google Sheets retornou erros na conversao CSV: ${sample.join(' | ')}`);
 	}
 
 	// Limpa linhas totalmente vazias e remove espacos nas strings

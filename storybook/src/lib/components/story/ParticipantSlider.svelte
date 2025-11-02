@@ -17,30 +17,30 @@
 	export let mode = 'sticky'; // 'static' | 'sticky' | 'fixed'
 	export let position = 'bottom'; // 'top' | 'bottom'
 	export let maxWidth = 1280;
-export let background = '#0c1d27';
-export let blur = true;
-export let reserveSpace = true;
-export let collapsible = false;
+	export let background = '#0c1d27';
+	export let blur = true;
+	export let reserveSpace = true;
+	export let collapsible = false;
 
-const FIXED_HEIGHT = 128;
+	const FIXED_HEIGHT = 128;
 	const MOBILE_BREAKPOINT = 768;
 	const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT}px)`;
 	const FILTER_CONTROLS_ID = 'participant-slider-filters';
 
 	let scroller;
 	let lastGroup = null;
-let searchTerm = '';
-let locationFilter = '';
-let sortOrder = '';
-let locations = [];
-let names = [];
-let matchedParticipant = null;
-let locationLocked = false;
-let normalizedLocationFilter = null;
-let participantsForLocationOptions = [];
-let participantsForNameOptions = [];
-let isMobileViewport = false;
-let mobileFiltersOpen = true;
+	let searchTerm = '';
+	let locationFilter = '';
+	let sortOrder = '';
+	let locations = [];
+	let names = [];
+	let matchedParticipant = null;
+	let locationLocked = false;
+	let normalizedLocationFilter = null;
+	let participantsForLocationOptions = [];
+	let participantsForNameOptions = [];
+	let isMobileViewport = false;
+	let mobileFiltersOpen = true;
 
 	onMount(() => {
 		if (typeof window === 'undefined') return;
@@ -71,15 +71,15 @@ let mobileFiltersOpen = true;
 		mobileFiltersOpen = !mobileFiltersOpen;
 	}
 
-function normalizeGroup(value) {
-	if (value === undefined || value === null) return null;
-	const normalized = String(value)
-		.normalize('NFD')
-		.replace(/[\u0300-\u036f]/g, '')
-		.toLowerCase()
-		.trim();
-	return normalized.length ? normalized : null;
-}
+	function normalizeGroup(value) {
+		if (value === undefined || value === null) return null;
+		const normalized = String(value)
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.toLowerCase()
+			.trim();
+		return normalized.length ? normalized : null;
+	}
 
 	function normalizeScore(value) {
 		const numeric = Number(value);
@@ -152,82 +152,80 @@ function normalizeGroup(value) {
 			.trim();
 	}
 
-function buildDistinctOptions(list = [], field) {
-	const map = new Map();
-	for (const participant of list) {
-		const raw = participant?.[field];
-		if (raw === undefined || raw === null) continue;
-		const normalized = normalizeGroup(raw);
-		if (!normalized || map.has(normalized)) continue;
-		map.set(normalized, String(raw).trim());
+	function buildDistinctOptions(list = [], field) {
+		const map = new Map();
+		for (const participant of list) {
+			const raw = participant?.[field];
+			if (raw === undefined || raw === null) continue;
+			const normalized = normalizeGroup(raw);
+			if (!normalized || map.has(normalized)) continue;
+			map.set(normalized, String(raw).trim());
+		}
+		return Array.from(map.values()).sort((a, b) => a.localeCompare(b));
 	}
-	return Array.from(map.values()).sort((a, b) => a.localeCompare(b));
-}
 
-function buildDistinctNames(list = []) {
-	const items = [];
-	const seen = new Set();
-	for (const participant of list) {
-		if (!participant?.name) continue;
-		const trimmed = participant.name.trim();
-		if (!trimmed) continue;
-		const key = normalizeText(trimmed);
-		if (seen.has(key)) continue;
-		seen.add(key);
-		items.push(trimmed);
+	function buildDistinctNames(list = []) {
+		const items = [];
+		const seen = new Set();
+		for (const participant of list) {
+			if (!participant?.name) continue;
+			const trimmed = participant.name.trim();
+			if (!trimmed) continue;
+			const key = normalizeText(trimmed);
+			if (seen.has(key)) continue;
+			seen.add(key);
+			items.push(trimmed);
+		}
+		return items.sort((a, b) => a.localeCompare(b));
 	}
-	return items.sort((a, b) => a.localeCompare(b));
-}
 
-function findParticipantByName(list = [], name = '') {
-	const normalized = normalizeText(name);
-	if (!normalized) return null;
-	return (
-		list.find((participant) => normalizeText(participant?.name) === normalized) || null
-	);
-}
+	function findParticipantByName(list = [], name = '') {
+		const normalized = normalizeText(name);
+		if (!normalized) return null;
+		return list.find((participant) => normalizeText(participant?.name) === normalized) || null;
+	}
 
-function compareParticipantsByName(a, b) {
-	const nameA = normalizeText(a?.name);
-	const nameB = normalizeText(b?.name);
-	if (!nameA && !nameB) return 0;
-	if (!nameA) return 1;
-	if (!nameB) return -1;
-	return nameA.localeCompare(nameB);
-}
+	function compareParticipantsByName(a, b) {
+		const nameA = normalizeText(a?.name);
+		const nameB = normalizeText(b?.name);
+		if (!nameA && !nameB) return 0;
+		if (!nameA) return 1;
+		if (!nameB) return -1;
+		return nameA.localeCompare(nameB);
+	}
 
-function sortParticipants(list = [], order = 'original') {
-	if (!Array.isArray(list) || !list.length) return list;
+	function sortParticipants(list = [], order = 'original') {
+		if (!Array.isArray(list) || !list.length) return list;
 		if (order === 'asc') {
 			return [...list].sort(compareParticipantsByName);
 		}
 		if (order === 'desc') {
 			return [...list].sort(compareParticipantsByName).reverse();
 		}
-	return list;
-}
-
-function applyFilters(list = [], { search = '', location = '', selected = null } = {}) {
-	if (!list.length) return list;
-	if (selected?.id) {
-		return list.filter((participant) => participant.id === selected.id);
+		return list;
 	}
-	const searchNormalized = normalizeText(search);
-	const locationNormalized = normalizeGroup(location);
 
-	return list.filter((participant) => {
-		if (searchNormalized) {
-			const nameMatch = normalizeText(participant?.name).includes(searchNormalized);
-			if (!nameMatch) return false;
+	function applyFilters(list = [], { search = '', location = '', selected = null } = {}) {
+		if (!list.length) return list;
+		if (selected?.id) {
+			return list.filter((participant) => participant.id === selected.id);
 		}
-		if (locationNormalized) {
-			if (normalizeGroup(participant?.location) !== locationNormalized) {
-				return false;
+		const searchNormalized = normalizeText(search);
+		const locationNormalized = normalizeGroup(location);
+
+		return list.filter((participant) => {
+			if (searchNormalized) {
+				const nameMatch = normalizeText(participant?.name).includes(searchNormalized);
+				if (!nameMatch) return false;
 			}
-		}
-		return true;
-	});
-}
+			if (locationNormalized) {
+				if (normalizeGroup(participant?.location) !== locationNormalized) {
+					return false;
+				}
+			}
+			return true;
+		});
+	}
 
 	$: groupingMode = $activeGroupingMode;
 	$: activeEmergency = normalizeGroup($selectedEmergency);
@@ -292,7 +290,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		location: locationFilter,
 		selected: matchedParticipant
 	});
-		$: sortedParticipants = sortParticipants(filteredParticipants || [], sortOrder || 'original');
+	$: sortedParticipants = sortParticipants(filteredParticipants || [], sortOrder || 'original');
 	$: roster =
 		currentGrouping?.type === 'optimism'
 			? reorderByOptimism(sortedParticipants || [], currentGrouping?.value)
@@ -392,13 +390,13 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	}
 </script>
 
-	{#if allParticipants.length}
-		<div
-			class={`slider-shell slider-shell--${mode} slider-shell--${position} ${blur ? 'slider-shell--blur' : ''}`}
-			class:slider-shell--group-active={hasGroup}
-			class:slider-shell--participant-focus={groupingMode === 'participant-focus'}
-			style={shellStyle}
-		>
+{#if allParticipants.length}
+	<div
+		class={`slider-shell slider-shell--${mode} slider-shell--${position} ${blur ? 'slider-shell--blur' : ''}`}
+		class:slider-shell--group-active={hasGroup}
+		class:slider-shell--participant-focus={groupingMode === 'participant-focus'}
+		style={shellStyle}
+	>
 		<div class="slider-content">
 			{#if collapsible}
 				<div class="slider-header">
@@ -444,7 +442,7 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 									aria-disabled={locationLocked}
 								/>
 							</label>
-				<div class="sort-buttons" role="group" aria-label="Ordenar participantes">
+							<div class="sort-buttons" role="group" aria-label="Ordenar participantes">
 								<button
 									type="button"
 									class:active={sortOrder === 'asc'}
@@ -467,63 +465,63 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 					</button>
 				</div>
 			{/if}
-					{#if filteredParticipants.length}
-						<div class="stories-slider">
-							<button class="nav prev" aria-label="Participante anterior" on:click={handlePrevious}>
-								<span aria-hidden="true">‹</span>
-							</button>
+			{#if filteredParticipants.length}
+				<div class="stories-slider">
+					<button class="nav prev" aria-label="Participante anterior" on:click={handlePrevious}>
+						<span aria-hidden="true">‹</span>
+					</button>
 
-							<div class="stories-list" bind:this={scroller}>
-								{#each roster as participant (participant.id)}
-									<div
-										class="story-item"
-										class:active={participant.id === activeId}
-										class:same-group={hasGroup && isSameGroup(participant, groupValue, groupField)}
-										class:dimmed={hasGroup && !isSameGroup(participant, groupValue, groupField)}
-										data-participant-id={participant.id}
-									>
-										<button
-											class="story-trigger"
-											type="button"
-											on:click={() => handleSelect(participant.id)}
-										>
-											<span class="ring">
-												{#if participant.photo}
-													<img
-														src={participant.photo}
-														alt={`Foto de ${participant.name}`}
-														loading="lazy"
-													/>
-												{:else}
-													<span class="initials">{getInitials(participant.name)}</span>
-												{/if}
-											</span>
-											<span class="label">{getDisplayName(participant.name)}</span>
-										</button>
-										<button
-											class="story-more"
-											type="button"
-											on:click|stopPropagation={() => handleMore(participant)}
-											aria-label={`Abrir perfil de ${getDisplayName(participant.name)}`}
-										>
-											<span aria-hidden="true">+</span>
-										</button>
-									</div>
-								{/each}
+					<div class="stories-list" bind:this={scroller}>
+						{#each roster as participant (participant.id)}
+							<div
+								class="story-item"
+								class:active={participant.id === activeId}
+								class:same-group={hasGroup && isSameGroup(participant, groupValue, groupField)}
+								class:dimmed={hasGroup && !isSameGroup(participant, groupValue, groupField)}
+								data-participant-id={participant.id}
+							>
+								<button
+									class="story-trigger"
+									type="button"
+									on:click={() => handleSelect(participant.id)}
+								>
+									<span class="ring">
+										{#if participant.photo}
+											<img
+												src={participant.photo}
+												alt={`Foto de ${participant.name}`}
+												loading="lazy"
+											/>
+										{:else}
+											<span class="initials">{getInitials(participant.name)}</span>
+										{/if}
+									</span>
+									<span class="label">{getDisplayName(participant.name)}</span>
+								</button>
+								<button
+									class="story-more"
+									type="button"
+									on:click|stopPropagation={() => handleMore(participant)}
+									aria-label={`Abrir perfil de ${getDisplayName(participant.name)}`}
+								>
+									<span aria-hidden="true">+</span>
+								</button>
 							</div>
+						{/each}
+					</div>
 
-							<button class="nav next" aria-label="Próximo participante" on:click={handleNext}>
-								<span aria-hidden="true">›</span>
-							</button>
-						</div>
-					{:else}
-						<div class="slider-empty">
-							<p>Nenhum participante encontrado. Ajuste os filtros.</p>
-						</div>
-					{/if}
-			</div>
+					<button class="nav next" aria-label="Próximo participante" on:click={handleNext}>
+						<span aria-hidden="true">›</span>
+					</button>
+				</div>
+			{:else}
+				<div class="slider-empty">
+					<p>Nenhum participante encontrado. Ajuste os filtros.</p>
+				</div>
+			{/if}
 		</div>
-	{/if}
+	</div>
+{/if}
 
 {#if mode === 'fixed' && reserveSpace}
 	<div class="slider-spacer" style={`height:${FIXED_HEIGHT + 20}px`}></div>
@@ -581,22 +579,22 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		min-width: 0;
 	}
 
-.filter-toggle {
-	display: none;
-	align-items: center;
-	justify-content: center;
-	padding: 0.45rem 0.75rem;
-	border-radius: 999px;
-	border: 1px solid rgba(244, 232, 210, 0.25);
-	background: rgba(9, 26, 34, 0.5);
-	color: inherit;
-	font-size: 0.8rem;
-	font-weight: 400;
-	cursor: pointer;
-	transition:
-		background 160ms ease,
-		border-color 160ms ease;
-}
+	.filter-toggle {
+		display: none;
+		align-items: center;
+		justify-content: center;
+		padding: 0.45rem 0.75rem;
+		border-radius: 999px;
+		border: 1px solid rgba(244, 232, 210, 0.25);
+		background: rgba(9, 26, 34, 0.5);
+		color: inherit;
+		font-size: 0.8rem;
+		font-weight: 400;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			border-color 160ms ease;
+	}
 
 	.filter-toggle[aria-expanded='true'] {
 		background: rgba(9, 26, 34, 0.7);
@@ -624,95 +622,95 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		display: none !important;
 	}
 
-.filter {
-	position: relative;
-	flex: 1;
-	min-width: 0;
-}
+	.filter {
+		position: relative;
+		flex: 1;
+		min-width: 0;
+	}
 
-.filter input {
-	width: 100%;
-	padding: 0.4rem 0.75rem;
-	border-radius: 999px;
-	background: rgba(6, 18, 27, 0.18);
-	border: 1px solid rgba(141, 168, 182, 0.24);
-	color: #f8fafc;
-	font-size: 0.82rem;
-	transition:
-		border-color 160ms ease,
-		background 160ms ease,
-		box-shadow 160ms ease;
-}
+	.filter input {
+		width: 100%;
+		padding: 0.4rem 0.75rem;
+		border-radius: 999px;
+		background: rgba(6, 18, 27, 0.18);
+		border: 1px solid rgba(141, 168, 182, 0.24);
+		color: #f8fafc;
+		font-size: 0.82rem;
+		transition:
+			border-color 160ms ease,
+			background 160ms ease,
+			box-shadow 160ms ease;
+	}
 
-.filter input::placeholder {
-	color: rgba(248, 250, 252, 0.6);
-}
+	.filter input::placeholder {
+		color: rgba(248, 250, 252, 0.6);
+	}
 
-.filter input:focus-visible {
-	outline: none;
-	border-color: rgba(244, 232, 210, 0.4);
-	background: rgba(9, 26, 34, 0.4);
-	box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
-}
+	.filter input:focus-visible {
+		outline: none;
+		border-color: rgba(244, 232, 210, 0.4);
+		background: rgba(9, 26, 34, 0.4);
+		box-shadow: 0 0 0 2px rgba(244, 232, 210, 0.16);
+	}
 
-.sort-buttons {
-	display: inline-flex;
-	align-items: center;
-	gap: 0.4rem;
-	border-radius: 999px;
-	border: 1px solid rgba(244, 232, 210, 0.18);
-	background: rgba(6, 18, 27, 0.2);
-	padding: 0.25rem 0.3rem;
-	flex-shrink: 0;
-}
+	.sort-buttons {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		border-radius: 999px;
+		border: 1px solid rgba(244, 232, 210, 0.18);
+		background: rgba(6, 18, 27, 0.2);
+		padding: 0.25rem 0.3rem;
+		flex-shrink: 0;
+	}
 
-.sort-buttons button {
-	appearance: none;
-	border: none;
-	background: transparent;
-	color: #f8fafc;
-	font-size: 0.82rem;
-	font-weight: 400;
-	padding: 0.35rem 0.9rem;
-	border-radius: 999px;
-	cursor: pointer;
-	transition:
-		background 160ms ease,
-		color 160ms ease,
-		box-shadow 160ms ease;
-}
+	.sort-buttons button {
+		appearance: none;
+		border: none;
+		background: transparent;
+		color: #f8fafc;
+		font-size: 0.82rem;
+		font-weight: 400;
+		padding: 0.35rem 0.9rem;
+		border-radius: 999px;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			color 160ms ease,
+			box-shadow 160ms ease;
+	}
 
-.sort-buttons button:hover,
-.sort-buttons button:focus-visible {
-	background: rgba(9, 26, 34, 0.65);
-	box-shadow: 0 0 0 1px rgba(244, 232, 210, 0.25);
-	outline: none;
-}
+	.sort-buttons button:hover,
+	.sort-buttons button:focus-visible {
+		background: rgba(9, 26, 34, 0.65);
+		box-shadow: 0 0 0 1px rgba(244, 232, 210, 0.25);
+		outline: none;
+	}
 
-.sort-buttons button.active {
-	background: rgba(244, 232, 210, 0.22);
-	color: #0f172a;
-	font-weight: 600;
-	box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.45);
-}
+	.sort-buttons button.active {
+		background: rgba(244, 232, 210, 0.22);
+		color: #0f172a;
+		font-weight: 600;
+		box-shadow: 0 0 0 1px rgba(248, 250, 252, 0.45);
+	}
 
-.slider-collapse {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	white-space: nowrap;
-	padding: 0.45rem 0.9rem;
-	border-radius: 999px;
-	background: rgba(9, 26, 34, 0.45);
-	border: 1px solid rgba(244, 232, 210, 0.18);
-	color: inherit;
-	font-size: 0.82rem;
-	font-weight: 400;
-	cursor: pointer;
-	transition:
-		background 160ms ease,
-		transform 160ms ease,
-		border-color 160ms ease;
+	.slider-collapse {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		white-space: nowrap;
+		padding: 0.45rem 0.9rem;
+		border-radius: 999px;
+		background: rgba(9, 26, 34, 0.45);
+		border: 1px solid rgba(244, 232, 210, 0.18);
+		color: inherit;
+		font-size: 0.82rem;
+		font-weight: 400;
+		cursor: pointer;
+		transition:
+			background 160ms ease,
+			transform 160ms ease,
+			border-color 160ms ease;
 	}
 
 	.slider-collapse:hover {
@@ -761,69 +759,69 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 	}
 
 	@media (max-width: 768px) {
-	.slider-content {
-		gap: 0.4rem;
-	}
+		.slider-content {
+			gap: 0.4rem;
+		}
 
-	.slider-header {
-		display: grid;
-		grid-template-columns: 1fr auto;
-		grid-template-areas:
-			'filters_toggle collapse'
-			'filters filters';
-		gap: 0.4rem;
-		align-items: center;
-	}
+		.slider-header {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			grid-template-areas:
+				'filters_toggle collapse'
+				'filters filters';
+			gap: 0.4rem;
+			align-items: center;
+		}
 
-	.slider-header__filters {
-		display: contents;
-	}
+		.slider-header__filters {
+			display: contents;
+		}
 
-	.filter-toggle {
-		display: inline-flex;
-		grid-area: filters_toggle;
-		width: auto;
-		justify-content: center;
-	}
+		.filter-toggle {
+			display: inline-flex;
+			grid-area: filters_toggle;
+			width: auto;
+			justify-content: center;
+		}
 
-	.slider-collapse {
-		grid-area: collapse;
-		width: auto;
-		justify-content: center;
-	}
+		.slider-collapse {
+			grid-area: collapse;
+			width: auto;
+			justify-content: center;
+		}
 
-	.filter-pill {
-		grid-area: filters;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		align-items: stretch;
-		gap: 0.45rem;
-		padding: 0.55rem clamp(0.6rem, 4vw, 1rem);
-		border-radius: 18px;
-	}
+		.filter-pill {
+			grid-area: filters;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: 0.45rem;
+			padding: 0.55rem clamp(0.6rem, 4vw, 1rem);
+			border-radius: 18px;
+		}
 
-	.filter {
-		width: 100%;
-	}
+		.filter {
+			width: 100%;
+		}
 
-	.filter input {
-		width: 100%;
-		padding: 0.42rem 0.7rem;
-		font-size: 0.85rem;
-	}
+		.filter input {
+			width: 100%;
+			padding: 0.42rem 0.7rem;
+			font-size: 0.85rem;
+		}
 
-	.sort-buttons {
-		width: 100%;
-		justify-content: space-between;
-	}
+		.sort-buttons {
+			width: 100%;
+			justify-content: space-between;
+		}
 
-	.sort-buttons button {
-		flex: 1;
-		padding: 0.45rem 0.7rem;
-		font-size: 0.85rem;
+		.sort-buttons button {
+			flex: 1;
+			padding: 0.45rem 0.7rem;
+			font-size: 0.85rem;
+		}
 	}
-}
 
 	.slider-shell--blur {
 		backdrop-filter: blur(14px);
@@ -842,24 +840,24 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		bottom: clamp(0.75rem, 3vw, 1.5rem);
 	}
 
-.slider-shell--fixed {
-	position: fixed;
-	left: 0;
-	right: 0;
-	transform: none;
-	width: 100%;
-	z-index: 1200;
-	margin: 0;
-	border-radius: 0;
-	background: rgba(30, 46, 55, 0.68);
-	backdrop-filter: blur(28px) saturate(150%);
-	border-color: rgba(244, 232, 210, 0.28);
-	box-shadow: 0 32px 60px rgba(3, 10, 18, 0.45);
-}
+	.slider-shell--fixed {
+		position: fixed;
+		left: 0;
+		right: 0;
+		transform: none;
+		width: 100%;
+		z-index: 1200;
+		margin: 0;
+		border-radius: 0;
+		background: rgba(30, 46, 55, 0.68);
+		backdrop-filter: blur(28px) saturate(150%);
+		border-color: rgba(244, 232, 210, 0.28);
+		box-shadow: 0 32px 60px rgba(3, 10, 18, 0.45);
+	}
 
-.slider-shell--fixed .slider-content {
-	width: 100%;
-	max-width: none;
+	.slider-shell--fixed .slider-content {
+		width: 100%;
+		max-width: none;
 	}
 
 	.slider-shell--fixed.slider-shell--top {
@@ -1052,44 +1050,44 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 			border-color 180ms ease;
 	}
 
-.initials {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	font-weight: 400;
-	font-size: 1.1rem;
-	color: #f8fafc;
-}
+	.initials {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		font-weight: 400;
+		font-size: 1.1rem;
+		color: #f8fafc;
+	}
 
-.label {
-	font-size: 0.78rem;
-	text-align: center;
-	line-height: 1.2;
-	color: #f8fafc;
-	font-weight: 400;
-}
+	.label {
+		font-size: 0.78rem;
+		text-align: center;
+		line-height: 1.2;
+		color: #f8fafc;
+		font-weight: 400;
+	}
 
-.story-item.active .story-trigger .label {
-	color: #f8fafc;
-	font-weight: 400;
-}
+	.story-item.active .story-trigger .label {
+		color: #f8fafc;
+		font-weight: 400;
+	}
 
-.story-more {
-	position: absolute;
-	top: calc(var(--ring-size) / 2);
+	.story-more {
+		position: absolute;
+		top: calc(var(--ring-size) / 2);
 		left: 50%;
 		transform: translate(calc(var(--ring-size) / 2 - 8px), -50%);
 		width: 28px;
 		height: 28px;
 		border-radius: 50%;
-	border: 1px solid rgba(244, 232, 210, 0.3);
-	background: rgba(9, 26, 34, 0.72);
-	color: #f8fafc;
-	font-size: 1rem;
-	line-height: 1;
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
+		border: 1px solid rgba(244, 232, 210, 0.3);
+		background: rgba(9, 26, 34, 0.72);
+		color: #f8fafc;
+		font-size: 1rem;
+		line-height: 1;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
 		cursor: pointer;
 		z-index: 2;
 		transition:
@@ -1175,6 +1173,5 @@ function applyFilters(list = [], { search = '', location = '', selected = null }
 		.label {
 			font-size: 0.78rem;
 		}
-
 	}
 </style>

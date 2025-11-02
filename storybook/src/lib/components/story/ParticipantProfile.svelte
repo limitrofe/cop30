@@ -35,25 +35,25 @@
 		return { name: normalized, role: '' };
 	}
 
-function getFirstName(name = '') {
-	return name.split(/\s+/)[0] || '';
-}
+	function getFirstName(name = '') {
+		return name.split(/\s+/)[0] || '';
+	}
 
-function normalizeNameKey(value = '') {
-	return String(value || '')
-		.normalize('NFD')
-		.replace(/[\u0300-\u036f]/g, '')
-		.replace(/[^a-zA-Z0-9\s]/g, ' ')
-		.replace(/\s+/g, ' ')
-		.trim()
-		.toLowerCase();
-}
+	function normalizeNameKey(value = '') {
+		return String(value || '')
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.replace(/[^a-zA-Z0-9\s]/g, ' ')
+			.replace(/\s+/g, ' ')
+			.trim()
+			.toLowerCase();
+	}
 
-function hasContent(value) {
-	return value !== null && value !== undefined && String(value).trim().length > 0;
-}
+	function hasContent(value) {
+		return value !== null && value !== undefined && String(value).trim().length > 0;
+	}
 
-function deriveArea(participant, nameBlock) {
+	function deriveArea(participant, nameBlock) {
 		if (hasContent(participant?.area)) {
 			return String(participant.area).trim();
 		}
@@ -74,24 +74,24 @@ function deriveArea(participant, nameBlock) {
 			}
 		}
 
-	return '';
-}
-
-let participant = null;
-let nameBlock = { name: '', role: '' };
-let area = '';
-let headerSubtitle = '';
-
-$: participant = $selectedParticipant;
-$: nameBlock = parseNameBlock(participant?.name || '');
-$: area = deriveArea(participant, nameBlock);
-$: headerSubtitle = (() => {
-	const key = normalizeNameKey(nameBlock?.name || participant?.name || '');
-	if (key === 'kongjian yu') {
-		return 'Morto em um acidente em setembro de 2025';
+		return '';
 	}
-	return '';
-})();
+
+	let participant = null;
+	let nameBlock = { name: '', role: '' };
+	let area = '';
+	let headerSubtitle = '';
+
+	$: participant = $selectedParticipant;
+	$: nameBlock = parseNameBlock(participant?.name || '');
+	$: area = deriveArea(participant, nameBlock);
+	$: headerSubtitle = (() => {
+		const key = normalizeNameKey(nameBlock?.name || participant?.name || '');
+		if (key === 'kongjian yu') {
+			return 'Morto em um acidente em setembro de 2025';
+		}
+		return '';
+	})();
 </script>
 
 {#if participant}
@@ -112,59 +112,59 @@ $: headerSubtitle = (() => {
 					<p class="role">{headerSubtitle}</p>
 				{/if}
 			</header>
-			</div>
+		</div>
 
-			<div class="chips">
-				{#if hasContent(area)}
-					<span class="chip">
-						<small>Biografia</small>
-						<strong>{area}</strong>
-					</span>
-				{/if}
-				{#if participant.location}
-					<span class="chip">
-						<small>Localização</small>
-						<strong>{participant.location}</strong>
-					</span>
-				{/if}
-				{#if hasContent(participant.stillTime)}
-					<span class="chip highlight">
-						<small>Ainda dá tempo?</small>
-						<strong>{participant.stillTime}</strong>
-					</span>
-				{/if}
-			</div>
-
-			{#if participant.emergencyFocus || participant.challenge2050}
-				<div class="insights">
-					{#if participant.emergencyFocus}
-						<div>
-							<h3>Botão de emergência</h3>
-							<p>{participant.emergencyFocus}</p>
-						</div>
-					{/if}
-					{#if participant.challenge2050}
-						<div>
-							<h3>Maior desafio até 2050</h3>
-							<p>{participant.challenge2050}</p>
-						</div>
-					{/if}
-				</div>
+		<div class="chips">
+			{#if hasContent(area)}
+				<span class="chip">
+					<small>Biografia</small>
+					<strong>{area}</strong>
+				</span>
 			{/if}
+			{#if participant.location}
+				<span class="chip">
+					<small>Localização</small>
+					<strong>{participant.location}</strong>
+				</span>
+			{/if}
+			{#if hasContent(participant.stillTime)}
+				<span class="chip highlight">
+					<small>Ainda dá tempo?</small>
+					<strong>{participant.stillTime}</strong>
+				</span>
+			{/if}
+		</div>
 
-			{#if hasContent(participant.optimismScore)}
+		{#if participant.emergencyFocus || participant.challenge2050}
+			<div class="insights">
+				{#if participant.emergencyFocus}
+					<div>
+						<h3>Botão de emergência</h3>
+						<p>{participant.emergencyFocus}</p>
+					</div>
+				{/if}
+				{#if participant.challenge2050}
+					<div>
+						<h3>Maior desafio até 2050</h3>
+						<p>{participant.challenge2050}</p>
+					</div>
+				{/if}
+			</div>
+		{/if}
+
+		{#if hasContent(participant.optimismScore)}
 			<div class="optimism">
 				<div class="optimism-header">
 					<h3>Nível de otimismo</h3>
 					<span>{participant.optimismScore}</span>
 				</div>
 				<div class="optimism-bar">
-						<div
-							class="optimism-fill"
-							style={`width:${
-								Math.max(0, Math.min(Number(participant.optimismScore) || 0, 10)) * 10
-							}%;`}
-						></div>
+					<div
+						class="optimism-fill"
+						style={`width:${
+							Math.max(0, Math.min(Number(participant.optimismScore) || 0, 10)) * 10
+						}%;`}
+					></div>
 				</div>
 				<p class="optimism-caption">0 = mais pessimista &middot; 10 = mais otimista</p>
 
@@ -192,7 +192,7 @@ $: headerSubtitle = (() => {
 {/if}
 
 <style>
-.profile-card {
+	.profile-card {
 		display: flex;
 		flex-direction: column;
 		gap: clamp(1.1rem, 3vw, 2.25rem);
