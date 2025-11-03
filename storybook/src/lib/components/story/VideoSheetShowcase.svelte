@@ -3862,18 +3862,18 @@ feedMetaHoldVideoId = videoId;
 						{#each highlightSection.videos as video (video.uuid)}
 							<article class="video-card">
 								<div class="video-card__player">
-									<GloboPlayer
-										videoId={video.globoId}
-										videoIdDesktop={video.globoIdDesktop}
-										videoIdMobile={video.globoIdMobile}
-										autoPlay={false}
-										startMuted={shouldMuteInitially}
-										controls={true}
-										aspectRatio="9 / 16"
-										aspectRatioMobile="9 / 16"
-										containerBackgroundColor="#0b0d17"
-										preventBlackBars={true}
-									/>
+									{#if video.thumbnail}
+										<img
+											class="video-card__poster"
+											src={video.thumbnail}
+											alt={video.title}
+											loading="lazy"
+										/>
+									{:else}
+										<div class="video-card__placeholder">
+											<span>{video.title}</span>
+										</div>
+									{/if}
 									<button
 										type="button"
 										class="video-card__overlay-trigger"
@@ -3913,18 +3913,18 @@ feedMetaHoldVideoId = videoId;
 							{#each section.videos as video (video.uuid)}
 								<article class="video-card">
 									<div class="video-card__player">
-										<GloboPlayer
-											videoId={video.globoId}
-											videoIdDesktop={video.globoIdDesktop}
-											videoIdMobile={video.globoIdMobile}
-											autoPlay={false}
-											startMuted={shouldMuteInitially}
-											controls={true}
-											aspectRatio="9 / 16"
-											aspectRatioMobile="9 / 16"
-											containerBackgroundColor="#0b0d17"
-											preventBlackBars={true}
-										/>
+										{#if video.thumbnail}
+											<img
+												class="video-card__poster"
+												src={video.thumbnail}
+												alt={video.title}
+												loading="lazy"
+											/>
+										{:else}
+											<div class="video-card__placeholder">
+												<span>{video.title}</span>
+											</div>
+										{/if}
 										<button
 											type="button"
 											class="video-card__overlay-trigger"
@@ -4083,6 +4083,59 @@ feedMetaHoldVideoId = videoId;
 								/>
 							{/key}
 						</div>
+						{#if desktopOverlayVideos.length > 1}
+							<button
+								type="button"
+								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-prev"
+								on:click|stopPropagation={showPreviousDesktopOverlay}
+								aria-label="Ver vídeo anterior"
+							>
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M15 5L8 12L15 19"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							</button>
+							<button
+								type="button"
+								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-next"
+								on:click|stopPropagation={showNextDesktopOverlay}
+								aria-label="Ver próximo vídeo"
+							>
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path
+										d="M9 5L16 12L9 19"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							</button>
+						{/if}
+						<button
+							type="button"
+							class="desktop-overlay__close desktop-overlay__close--inline"
+							on:click|stopPropagation={() => closeDesktopOverlay()}
+							aria-label="Fechar vídeo"
+						>
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path
+									d="M6 6L18 18M18 6L6 18"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								/>
+							</svg>
+						</button>
 					</div>
 				</div>
 
@@ -4240,7 +4293,7 @@ feedMetaHoldVideoId = videoId;
 		top: 0;
 		left: 0;
 		right: 0;
-		z-index: 60;
+		z-index: var(--mobile-topbar-z-index, 9999);
 		pointer-events: none;
 	}
 
@@ -5413,6 +5466,27 @@ feedMetaHoldVideoId = videoId;
 		justify-content: center;
 	}
 
+	.video-card__poster {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	.video-card__placeholder {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		padding: 1rem;
+		font-size: 0.95rem;
+		font-weight: 600;
+		color: #fff;
+		background: linear-gradient(180deg, #7c4dff 0%, #5a31c1 100%);
+	}
+
 	.video-card__overlay-trigger {
 		display: none;
 	}
@@ -5504,7 +5578,7 @@ feedMetaHoldVideoId = videoId;
 	.desktop-overlay {
 		position: fixed;
 		inset: 0;
-		z-index: 90;
+		z-index: 999;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -5613,6 +5687,7 @@ feedMetaHoldVideoId = videoId;
 		border-radius: var(--desktop-overlay-player-radius, 1.5rem);
 		background: var(--desktop-overlay-player-background, rgba(5, 9, 18, 0.88));
 		box-shadow: var(--desktop-overlay-player-shadow, 0 24px 46px rgba(12, 18, 36, 0.42));
+		position: relative;
 	}
 
 	.desktop-overlay__player-inner {
@@ -5850,6 +5925,11 @@ feedMetaHoldVideoId = videoId;
 		pointer-events: none;
 	}
 
+	.desktop-overlay__nav--inline,
+	.desktop-overlay__close--inline {
+		display: none;
+	}
+
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__surface::before {
 		content: '';
 		position: absolute;
@@ -5971,6 +6051,72 @@ feedMetaHoldVideoId = videoId;
 
 	.desktop-overlay[data-variant='card'] .desktop-overlay__col--right {
 		align-items: flex-end;
+	}
+
+	@media (max-width: 1200px) {
+		.desktop-overlay {
+			--desktop-overlay-padding-inline: clamp(1rem, 5vw, 2.5rem);
+		}
+
+		.desktop-overlay__surface {
+			width: min(900px, 94vw);
+			min-height: auto;
+			max-height: none;
+			padding: clamp(1.25rem, 4vw, 2.25rem);
+		}
+
+		.desktop-overlay__grid {
+			grid-template-columns: minmax(0, 1fr);
+			grid-template-rows: auto auto;
+			gap: clamp(1rem, 3vw, 1.75rem);
+		}
+
+		.desktop-overlay__col--left,
+		.desktop-overlay__col--right {
+			display: none;
+		}
+
+		.desktop-overlay__player {
+			max-height: none;
+		}
+
+		.desktop-overlay__player-inner {
+			width: min(100%, clamp(320px, 70vw, 520px));
+			max-width: 100%;
+			height: auto;
+			max-height: min(var(--desktop-overlay-viewport-height, 90vh), 640px);
+		}
+
+		.desktop-overlay__meta {
+			align-items: flex-start;
+			text-align: left;
+		}
+
+		.desktop-overlay__nav--inline,
+		.desktop-overlay__close--inline {
+			display: flex;
+			position: absolute;
+			z-index: 3;
+		}
+
+		.desktop-overlay__nav--inline {
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		.desktop-overlay__nav--inline-prev {
+			left: 0.35rem;
+		}
+
+		.desktop-overlay__nav--inline-next {
+			right: 0.35rem;
+		}
+
+		.desktop-overlay__close--inline {
+			top: 0.45rem;
+			right: 0.45rem;
+			transform: none;
+		}
 	}
 
 	.status {
