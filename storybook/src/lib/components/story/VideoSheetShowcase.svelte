@@ -192,6 +192,7 @@ let feedMetaHoldEndHandler = null;
 	let desktopOverlayPendingAutoplay = false;
 	let desktopOverlayTransitionLock = false;
 	let desktopOverlayTransitionToken = 0;
+	let desktopOverlayLoading = false;
 	const DESKTOP_SKIP_PATTERN = [false];
 	let desktopPlaybackCount = 0;
 	const desktopAdDecisions = new Map();
@@ -3051,6 +3052,7 @@ feedMetaHoldVideoId = videoId;
 				}
 				desktopOverlayControls = null;
 				desktopOverlayVideoId = target.uuid;
+				desktopOverlayLoading = true;
 			} else if (autoplay && desktopOverlayControls) {
 				try {
 					desktopOverlayControls.play?.();
@@ -3261,6 +3263,7 @@ feedMetaHoldVideoId = videoId;
 		desktopOverlayPendingAutoplay = false;
 		desktopOverlayTransitionToken += 1;
 		desktopOverlayTransitionLock = false;
+		desktopOverlayLoading = false;
 		overlayKeydownCleanup?.();
 		overlayKeydownCleanup = null;
 
@@ -3291,13 +3294,17 @@ feedMetaHoldVideoId = videoId;
 	}
 
 	function showNextDesktopOverlay() {
-		if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock) return;
+		if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock || desktopOverlayLoading) {
+			return;
+		}
 		const nextIndex = desktopOverlayIndex >= 0 ? desktopOverlayIndex + 1 : 0;
 		activateDesktopOverlayAt(nextIndex, { autoplay: true });
 	}
 
 	function showPreviousDesktopOverlay() {
-		if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock) return;
+		if (!desktopOverlayVideos?.length || desktopOverlayTransitionLock || desktopOverlayLoading) {
+			return;
+		}
 		const prevIndex =
 			desktopOverlayIndex >= 0 ? desktopOverlayIndex - 1 : (desktopOverlayVideos.length || 1) - 1;
 		activateDesktopOverlayAt(prevIndex, { autoplay: true });
@@ -3307,9 +3314,11 @@ feedMetaHoldVideoId = videoId;
 		const controls = event?.detail?.controls ?? null;
 		if (!controls) {
 			desktopOverlayControls = null;
+			desktopOverlayLoading = false;
 			return;
 		}
 		desktopOverlayControls = controls;
+		desktopOverlayLoading = false;
 		try {
 			controls.setMuted?.(false);
 		} catch (error) {
@@ -3325,6 +3334,10 @@ feedMetaHoldVideoId = videoId;
 				desktopOverlayPendingAutoplay = false;
 			}
 		}
+	}
+
+	function handleDesktopOverlayError() {
+		desktopOverlayLoading = false;
 	}
 
 	function snapActiveFeedVideo({ behavior = 'smooth', force = false } = {}) {
@@ -4048,6 +4061,8 @@ feedMetaHoldVideoId = videoId;
 							class="desktop-overlay__nav desktop-overlay__nav--prev"
 							on:click|stopPropagation={showPreviousDesktopOverlay}
 							aria-label="Ver vídeo anterior"
+							disabled={desktopOverlayLoading}
+							aria-disabled={desktopOverlayLoading ? 'true' : undefined}
 						>
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path
@@ -4080,16 +4095,19 @@ feedMetaHoldVideoId = videoId;
 									preventBlackBars={true}
 									skipDFP={desktopOverlaySkipDFP}
 									on:controls={handleDesktopOverlayControls}
+									on:error={handleDesktopOverlayError}
 								/>
 							{/key}
 						</div>
-						{#if desktopOverlayVideos.length > 1}
-							<button
-								type="button"
-								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-prev"
-								on:click|stopPropagation={showPreviousDesktopOverlay}
-								aria-label="Ver vídeo anterior"
-							>
+				{#if desktopOverlayVideos.length > 1}
+					<button
+						type="button"
+						class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-prev"
+						on:click|stopPropagation={showPreviousDesktopOverlay}
+						aria-label="Ver vídeo anterior"
+						disabled={desktopOverlayLoading}
+						aria-disabled={desktopOverlayLoading ? 'true' : undefined}
+					>
 								<svg viewBox="0 0 24 24" aria-hidden="true">
 									<path
 										d="M15 5L8 12L15 19"
@@ -4101,12 +4119,14 @@ feedMetaHoldVideoId = videoId;
 									/>
 								</svg>
 							</button>
-							<button
-								type="button"
-								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-next"
-								on:click|stopPropagation={showNextDesktopOverlay}
-								aria-label="Ver próximo vídeo"
-							>
+					<button
+						type="button"
+						class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-next"
+						on:click|stopPropagation={showNextDesktopOverlay}
+						aria-label="Ver próximo vídeo"
+						disabled={desktopOverlayLoading}
+						aria-disabled={desktopOverlayLoading ? 'true' : undefined}
+					>
 								<svg viewBox="0 0 24 24" aria-hidden="true">
 									<path
 										d="M9 5L16 12L9 19"
@@ -4217,6 +4237,8 @@ feedMetaHoldVideoId = videoId;
 							class="desktop-overlay__nav desktop-overlay__nav--next"
 							on:click|stopPropagation={showNextDesktopOverlay}
 							aria-label="Ver próximo vídeo"
+							disabled={desktopOverlayLoading}
+							aria-disabled={desktopOverlayLoading ? 'true' : undefined}
 						>
 							<svg viewBox="0 0 24 24" aria-hidden="true">
 								<path
@@ -5917,6 +5939,19 @@ feedMetaHoldVideoId = videoId;
 		transform: translateY(-50%) scale(1.04);
 		box-shadow: 0 20px 42px rgba(15, 23, 42, 0.45);
 		outline: none;
+	}
+
+	.desktop-overlay__nav:disabled,
+	.desktop-overlay__nav[aria-disabled='true'] {
+		cursor: not-allowed;
+		opacity: 0.4;
+		box-shadow: none;
+		background: rgba(255, 255, 255, 0.16);
+	}
+
+	.desktop-overlay__nav:disabled svg,
+	.desktop-overlay__nav[aria-disabled='true'] svg {
+		opacity: 0.8;
 	}
 
 	.desktop-overlay__nav svg {
