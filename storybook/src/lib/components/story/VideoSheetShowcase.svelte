@@ -5973,10 +5973,10 @@ feedMetaHoldVideoId = videoId;
 
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__meta {
 		align-items: flex-start;
-		max-height: calc(90vh - clamp(3.5rem, 8vw, 5rem));
-		overflow-y: auto;
-		padding-right: 0.4rem;
-		scrollbar-gutter: stable;
+		max-height: none;
+		overflow: visible;
+		padding-right: 0;
+		scrollbar-gutter: auto;
 	}
 
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__meta::-webkit-scrollbar {
