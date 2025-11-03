@@ -110,7 +110,6 @@
 	let controlsFloatingStateToken = 0;
 
 	let viewportObserver;
-	let componentInViewport = false;
 
 	let viewportWidth = 1280;
 	let isMobileFeed = false;
@@ -127,12 +126,15 @@
 	let feedOrderToken = 0;
 	let feedAdsDisabled = false;
 	let headerInViewport = false;
-	let creditsInViewport = false;
-	let mobileChromeSuppressed = false;
-	let headerObserver = null;
-	let headerObserverTarget = null;
-	let creditsObserver = null;
-	let creditsObserverTarget = null;
+let creditsInViewport = false;
+let mobileChromeSuppressed = false;
+let headerObserver = null;
+let headerObserverTarget = null;
+let creditsObserver = null;
+let creditsObserverTarget = null;
+let creditsObserverRetryId = null;
+let creditsObserverRetryCount = 0;
+let hideControlsForCredits = false;
 	let feedVideosBase = [];
 	let feedVideos = [];
 	let feedVideosKey = null;
@@ -196,8 +198,9 @@ let feedMetaHoldEndHandler = null;
 	const desktopStartedPlaybacks = new Set();
 	const BODY_SCROLL_LOCK_CLASS = 'video-sheet-showcase--lock-scroll';
 	const DESKTOP_CARD_SCALE = 0.85;
-	const FEED_META_HIDE_DELAY = 5000;
-	const AD_CYCLE_LENGTH = 4;
+const FEED_META_HIDE_DELAY = 5000;
+const AD_CYCLE_LENGTH = 4;
+const CREDITS_OBSERVER_MAX_RETRIES = 20;
 	const AD_SCROLL_LOCK_DURATION = 5000;
 	const DESKTOP_TOPBAR_OFFSET = 'calc(48px + env(safe-area-inset-top, 0px))';
 	const MOBILE_INTRO_DURATION = 15;
@@ -1200,12 +1203,14 @@ let feedMetaHoldEndHandler = null;
 		}
 		tick().then(() => {
 			setupRevealObserver();
+			setupCreditsObserver();
 		});
 	});
 
 	onDestroy(() => {
 		abortController?.abort();
 		teardownRevealObserver();
+		teardownCreditsObserver();
 		resizeCleanup?.();
 		teardownFeedObserver();
 		clearFeedMetaTimer();
@@ -2426,6 +2431,110 @@ let feedMetaHoldEndHandler = null;
 		}
 	}
 
+	function handleCreditsIntersection(entries = []) {
+		let visible = false;
+		for (const entry of entries ?? []) {
+			if (entry?.isIntersecting && entry.intersectionRatio > 0) {
+				visible = true;
+				break;
+			}
+		}
+		creditsInViewport = visible;
+	}
+
+	function findCreditsElement() {
+		if (!browser) return null;
+		if (creditsObserverTarget && document.contains(creditsObserverTarget)) {
+			return creditsObserverTarget;
+		}
+		const selectors = [
+			'[data-story-section="creditos"]',
+			'[data-story-section="credits"]',
+			'.final-credits',
+			'footer.final-credits'
+		];
+		for (const selector of selectors) {
+			const node = document.querySelector(selector);
+			if (node) {
+				return node;
+			}
+		}
+		return null;
+	}
+
+	function setupCreditsObserver() {
+		if (!browser) return;
+		if (!creditsObserver) {
+			try {
+				creditsObserver = new IntersectionObserver(handleCreditsIntersection, {
+					root: null,
+					threshold: [0, 0.15],
+					rootMargin: '0px 0px -35% 0px'
+				});
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao criar observer de créditos', error);
+				return;
+			}
+		}
+
+		const target = findCreditsElement();
+		if (!target) {
+			if (
+				creditsObserverRetryCount < CREDITS_OBSERVER_MAX_RETRIES &&
+				!creditsObserverRetryId
+			) {
+				creditsObserverRetryId = setTimeout(() => {
+					creditsObserverRetryId = null;
+					creditsObserverRetryCount += 1;
+					setupCreditsObserver();
+				}, 500);
+			}
+			return;
+		}
+
+		creditsObserverRetryCount = 0;
+
+		if (creditsObserverRetryId) {
+			clearTimeout(creditsObserverRetryId);
+			creditsObserverRetryId = null;
+		}
+
+		if (creditsObserverTarget === target) return;
+
+		if (creditsObserverTarget) {
+			try {
+				creditsObserver.unobserve(creditsObserverTarget);
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao atualizar observer de créditos', error);
+			}
+		}
+
+		try {
+			creditsObserver.observe(target);
+			creditsObserverTarget = target;
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao observar créditos', error);
+		}
+	}
+
+	function teardownCreditsObserver() {
+		if (creditsObserverRetryId) {
+			clearTimeout(creditsObserverRetryId);
+			creditsObserverRetryId = null;
+		}
+		if (creditsObserver) {
+			try {
+				creditsObserver.disconnect();
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao desconectar observer de créditos', error);
+			}
+		}
+		creditsObserver = null;
+		creditsObserverTarget = null;
+		creditsObserverRetryCount = 0;
+		creditsInViewport = false;
+	}
+
 	function setupRevealObserver() {
 		if (!browser || !controlsRevealSentinelElement) return;
 		if (!revealObserver) {
@@ -3343,6 +3452,7 @@ feedMetaHoldVideoId = videoId;
 
 	$: hasSearch = resolvedSearchColumns.length > 0;
 	$: showControls = (filterOptions.length > 0 || hasSearch) && totalVideos > 0;
+	$: hideControlsForCredits = !isMobileViewport && creditsInViewport && controlsFixed;
 	$: if (browser) {
 		if (isMobileFeed) {
 			ensureFeedObserver();
@@ -3366,7 +3476,7 @@ feedMetaHoldVideoId = videoId;
 		style={controlsPlaceholderStyle}
 	></div>
 
-	{#if isMobileViewport && componentInViewport && pageTitle}
+	{#if isMobileViewport && pageTitle}
 		<header
 			class="video-sheet-topbar"
 			data-context={isMobileViewport ? 'mobile' : 'desktop'}
@@ -3393,9 +3503,11 @@ feedMetaHoldVideoId = videoId;
 			class:controls--desktop-stuck={controlsStuck && !isMobileViewport}
 			class:controls--floating={controlsFixed && !isMobileViewport}
 			class:controls--floating-visible={controlsFloatingVisible && !isMobileViewport}
+			class:controls--hidden-for-credits={hideControlsForCredits}
 			data-mobile={isMobileViewport ? 'true' : 'false'}
 			data-mobile-view={isMobileViewport ? mobileViewMode : 'desktop'}
 			data-overlay={feedOverlayVisible ? 'open' : 'closed'}
+			aria-hidden={hideControlsForCredits ? 'true' : undefined}
 			bind:this={controlsElement}
 			style={controlsInlineStyle}
 		>
@@ -4760,6 +4872,20 @@ feedMetaHoldVideoId = videoId;
 			box-shadow 0.3s ease;
 	}
 
+	.controls--hidden-for-credits {
+		opacity: 0;
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			opacity 0.18s ease,
+			visibility 0s linear 0.18s;
+	}
+
+	.controls--floating.controls--hidden-for-credits {
+		box-shadow: none;
+		animation: none;
+	}
+
 	.controls__inner {
 		width: 100%;
 		max-width: var(--sheet-container-max, 100%);
@@ -4818,6 +4944,12 @@ feedMetaHoldVideoId = videoId;
 		transform: translateY(0);
 		pointer-events: auto;
 		animation: controls-floating-in 0.58s cubic-bezier(0.18, 0.88, 0.24, 1.12);
+	}
+
+	.controls--floating-visible.controls--hidden-for-credits {
+		opacity: 0;
+		pointer-events: none;
+		animation: none;
 	}
 
 	.controls--floating .controls-heading,
