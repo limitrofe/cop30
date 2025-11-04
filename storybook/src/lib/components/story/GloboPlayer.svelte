@@ -120,7 +120,7 @@
 	let lastPropStartMuted = startMuted;
 	let isRecreatingForMute = false;
 	let muteButtonObserver = null;
-	let muteObserverCleanupTimeout = null;
+	const muteButtonListeners = new Map();
 
 	function resolveChromeless() {
 		if (typeof chromeless === 'boolean') {
@@ -208,7 +208,23 @@
 		}
 	}
 
-	function hideMuteButton() {
+	function cleanupMuteButtonListeners() {
+		muteButtonListeners.forEach((handler, button) => {
+			button.removeEventListener('click', handler);
+			button.removeEventListener('touchend', handler);
+		});
+		muteButtonListeners.clear();
+	}
+
+	function handleExternalAudioUnlock() {
+		queueMicrotask(() => {
+			setMutedState(false, { allowRecreate: true });
+			const controls = notifyControls('audio-unlock');
+			dispatch('audiounlock', { controls, player: playerInstance });
+		});
+	}
+
+	function attachMuteButtonListeners() {
 		if (!playerElement) return;
 		const selectors = [
 			"button[aria-label='Ativar som']",
@@ -219,12 +235,18 @@
 			"button[aria-label*='audio']"
 		];
 		for (const selector of selectors) {
-			const button = playerElement.querySelector(selector);
-			if (button) {
-				button.style.display = 'none';
-				button.setAttribute('aria-hidden', 'true');
-				button.setAttribute('tabindex', '-1');
-			}
+			const buttons = playerElement.querySelectorAll(selector);
+			if (!buttons?.length) continue;
+			buttons.forEach((button) => {
+				if (muteButtonListeners.has(button)) return;
+				button.removeAttribute('aria-hidden');
+				button.style.removeProperty('display');
+				button.removeAttribute('tabindex');
+				const handler = () => handleExternalAudioUnlock();
+				button.addEventListener('click', handler, { passive: true });
+				button.addEventListener('touchend', handler, { passive: true });
+				muteButtonListeners.set(button, handler);
+			});
 		}
 	}
 
@@ -232,18 +254,12 @@
 		if (!browser || !playerElement) return;
 		muteButtonObserver?.disconnect();
 		try {
-			muteButtonObserver = new MutationObserver(() => hideMuteButton());
+			muteButtonObserver = new MutationObserver(() => attachMuteButtonListeners());
 			muteButtonObserver.observe(playerElement, { childList: true, subtree: true });
-			hideMuteButton();
-			clearTimeout(muteObserverCleanupTimeout);
-			muteObserverCleanupTimeout = setTimeout(() => {
-				muteButtonObserver?.disconnect();
-				muteButtonObserver = null;
-			}, 2000);
+			attachMuteButtonListeners();
 		} catch (error) {
-			console.warn('GloboPlayer: falha ao observar botão de som', error);
+			console.warn('GloboPlayer: falha ao observar botão de áudio', error);
 		}
-		hideMuteButton();
 	}
 
 	function ensurePlaybackRegistration() {
@@ -648,8 +664,7 @@
 		}
 		muteButtonObserver?.disconnect();
 		muteButtonObserver = null;
-		clearTimeout(muteObserverCleanupTimeout);
-		muteObserverCleanupTimeout = null;
+		cleanupMuteButtonListeners();
 		if (playerInstance && typeof playerInstance.destroy === 'function') {
 			playerInstance.destroy();
 		}

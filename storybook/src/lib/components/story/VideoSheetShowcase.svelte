@@ -7,6 +7,8 @@
 	const dispatch = createEventDispatcher();
 	const SHORTZ_SEEN_STORAGE_KEY = 'video-sheet-showcase:shortz-seen';
 	const SHORTZ_LAST_LEAD_STORAGE_KEY = 'video-sheet-showcase:last-shortz-lead';
+	const SHORTZ_AUDIO_UNLOCKED_KEY = 'video-sheet-showcase:shortz-audio-unlocked';
+	const SHORTZ_SHARE_PARAM = 'shortz';
 
 	export let sheetUrl = '';
 	export let sheetId = '';
@@ -159,6 +161,8 @@
 	let shortzSeenIds = new Set();
 	let shortzSeenHydrated = false;
 	let shortzSeenInitial = new Set();
+	let feedAudioUnlocked = false;
+	let pendingShortzShareId = null;
 	let feedPosterVisible = new Map();
 	let shortzLastLeadId = null;
 	let shortzLastLeadPersistedId = null;
@@ -1068,6 +1072,29 @@
 
 	$: isMobileViewport = viewportWidth <= (layoutResolved.mobileFeedMaxWidth ?? 768);
 	$: isMobileFeed = layoutResolved.enableMobileFeed !== false && isMobileViewport;
+	$: if (!isMobileFeed && feedAudioUnlocked) {
+		feedAudioUnlocked = false;
+		persistFeedAudioUnlocked(false);
+	}
+	$: {
+		if (!pendingShortzShareId) {
+			// nothing to do
+		} else if (isMobileFeed) {
+			const hasMobileVideo = feedVideos.some((video) => video.uuid === pendingShortzShareId);
+			if (hasMobileVideo) {
+				openShortzWithLead(pendingShortzShareId);
+				pendingShortzShareId = null;
+			}
+		} else {
+			const hasDesktopVideo = desktopOverlayVideos.some(
+				(video) => video.uuid === pendingShortzShareId
+			);
+			if (hasDesktopVideo) {
+				openDesktopOverlay(pendingShortzShareId);
+				pendingShortzShareId = null;
+			}
+		}
+	}
 
 	$: feedOverlayVisible = isMobileViewport && feedOverlayMode !== 'none';
 	$: shouldAutoFocusSearch = !isMobileViewport;
@@ -1174,6 +1201,17 @@
 
 		if (browser) {
 			hydrateShortzSeen();
+			const url = new URL(window.location.href);
+			const sharedId = url.searchParams.get(SHORTZ_SHARE_PARAM);
+			if (sharedId) {
+				pendingShortzShareId = sharedId;
+			}
+			try {
+				const audioFlag = localStorage.getItem(SHORTZ_AUDIO_UNLOCKED_KEY);
+				feedAudioUnlocked = audioFlag === '1';
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao ler estado de áudio', error);
+			}
 			const updateViewport = () => {
 				viewportWidth = window.innerWidth || 0;
 			};
@@ -2693,6 +2731,19 @@
 		feedPosterVisible = next;
 	}
 
+	function persistFeedAudioUnlocked(flag) {
+		if (!browser) return;
+		try {
+			if (flag) {
+				localStorage.setItem(SHORTZ_AUDIO_UNLOCKED_KEY, '1');
+			} else {
+				localStorage.removeItem(SHORTZ_AUDIO_UNLOCKED_KEY);
+			}
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao registrar estado de áudio', error);
+		}
+	}
+
 	function isFeedPosterVisible(videoId) {
 		return feedPosterVisible.get(videoId) ?? true;
 	}
@@ -2818,6 +2869,39 @@
 		}
 	}
 
+	function syncFeedAudioState() {
+		if (!isMobileFeed) return;
+		const shouldMuteActive = shouldAutoMute && !feedAudioUnlocked;
+		feedPlayerControls.forEach((controls, videoId) => {
+			if (!controls) return;
+			const targetMute = videoId === activeFeedId ? shouldMuteActive : true;
+			try {
+				controls.setMuted?.(targetMute);
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao sincronizar áudio', error);
+			}
+		});
+	}
+
+	function handleFeedAudioUnlock(videoId, event, { persist = true } = {}) {
+		if (!isMobileFeed) return;
+		feedAudioUnlocked = true;
+		if (persist) {
+			persistFeedAudioUnlocked(true);
+		}
+		const detailControls = event?.detail?.controls ?? null;
+		const controls = detailControls || feedPlayerControls.get(videoId) || null;
+		if (controls) {
+			try {
+				controls.setMuted?.(false);
+				controls.play?.();
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao ativar áudio do feed', error);
+			}
+		}
+		syncFeedAudioState();
+	}
+
 	function handlePlayerControls(videoId, controls, reason = 'update') {
 		if (!videoId || !controls) return;
 		if (reason !== 'ready') {
@@ -2839,12 +2923,19 @@
 		}
 		const isActive = videoId === activeFeedId;
 		if (isMobileFeed) {
+			const shouldMuteActive = shouldAutoMute && !feedAudioUnlocked;
+			const targetMute = isActive ? shouldMuteActive : true;
+			try {
+				controls.setMuted?.(targetMute);
+				if (!targetMute) {
+					controls.play?.();
+				}
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao ajustar áudio do feed', error);
+			}
 			if (!isActive) {
 				try {
 					controls.pause?.();
-					if (shouldAutoMute) {
-						controls.setMuted?.(true);
-					}
 				} catch (error) {
 					console.warn('VideoSheetShowcase: falha ao pausar player não ativo', error);
 				}
@@ -2893,6 +2984,7 @@
 		}
 
 		const nextActiveId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
+		const shouldMuteActive = shouldAutoMute && !feedAudioUnlocked;
 		if (!nextActiveId) {
 			feedPlayerControls.forEach((controls, videoId) => {
 				if (!feedPlayerReady.has(videoId)) return;
@@ -2933,8 +3025,9 @@
 		if (nextControls) {
 			try {
 				nextControls.play?.();
-				if (shouldAutoMute && !isMobileFeed) {
-					nextControls.setMuted?.(false);
+				const targetMute = isMobileFeed ? shouldMuteActive : shouldAutoMute;
+				if (shouldAutoMute || isMobileFeed) {
+					nextControls.setMuted?.(!!targetMute);
 				}
 				setFeedPosterState(nextActiveId, false);
 			} catch (error) {
@@ -2955,9 +3048,7 @@
 			}
 			try {
 				controls.pause?.();
-				if (shouldAutoMute) {
-					controls.setMuted?.(true);
-				}
+				controls.setMuted?.(true);
 			} catch (error) {
 				console.warn('VideoSheetShowcase: falha ao pausar player secundário', error);
 			} finally {
@@ -3118,6 +3209,72 @@
 			} catch (fallbackError) {
 				window.scrollTo({ top: 0 });
 			}
+		}
+	}
+
+	function buildShortzShareUrl(videoId) {
+		if (!browser || !videoId) return '';
+		try {
+			const url = new URL(window.location.href);
+			url.searchParams.set(SHORTZ_SHARE_PARAM, videoId);
+			return url.toString();
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao montar link de compartilhamento', error);
+			return '';
+		}
+	}
+
+	async function handleShortzShare(video) {
+		if (!browser || !video?.uuid) return;
+		const shareUrl = buildShortzShareUrl(video.uuid);
+		if (!shareUrl) return;
+		const shareMessage = [
+			video.title || pageTitle || document?.title || 'Shortz',
+			video.subtitle || video.description || `Confira "${video.title}" na nossa experiência shortz`,
+			shareUrl
+		]
+			.filter(Boolean)
+			.join('\n');
+		const shareData = {
+			title: video.title || pageTitle || document?.title || 'Shortz',
+			text:
+				video.subtitle ||
+				video.description ||
+				`Confira "${video.title}" na nossa experiência shortz` ||
+				'',
+			url: shareUrl,
+			files: undefined
+		};
+		if (navigator.canShare?.({ files: [] }) && video.thumbnail) {
+			try {
+				const response = await fetch(video.thumbnail, { mode: 'cors' });
+				const blob = await response.blob();
+				const fileName = video.thumbnail.split('/').pop() || 'thumb.jpg';
+				const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+				const fileShare = { ...shareData, files: [file] };
+				await navigator.share(fileShare);
+				return;
+			} catch (error) {
+				console.warn('VideoSheetShowcase: falha ao anexar thumbnail no share', error);
+			}
+		}
+		try {
+			if (navigator.share) {
+				await navigator.share(shareData);
+				return;
+			}
+		} catch (error) {
+			console.warn('VideoSheetShowcase: Web Share API falhou', error);
+		}
+		try {
+			if (navigator.clipboard?.writeText) {
+				await navigator.clipboard.writeText(shareMessage);
+				alert('Copy: link e texto do vídeo foram copiados.');
+			} else {
+				window.prompt('Copie o texto para compartilhar:', shareMessage);
+			}
+		} catch (error) {
+			window.prompt('Copie o texto para compartilhar:', shareMessage);
 		}
 	}
 
@@ -3658,7 +3815,13 @@
 	{:else if isMobileFeed}
 		{#if feedVideos.length}
 			<div class="mobile-feed-shell">
-				<div class="mobile-feed" bind:this={mobileFeedContainer} aria-live="polite" role="list">
+				<div
+					class="mobile-feed"
+					bind:this={mobileFeedContainer}
+					aria-live="polite"
+					role="list"
+					data-feed-audio={feedAudioUnlocked ? 'unlocked' : 'locked'}
+				>
 					{#each feedVideos as video, index (video.uuid)}
 						<article
 							role="listitem"
@@ -3690,7 +3853,7 @@
 									autoPlay={false}
 									poster={video.thumbnail || undefined}
 									posterAlt={video.title}
-									startMuted={true}
+									startMuted={isMobileFeed ? shouldAutoMute && !feedAudioUnlocked : shouldAutoMute}
 									controls={true}
 									aspectRatio="9 / 16"
 									aspectRatioMobile="9 / 16"
@@ -3703,10 +3866,10 @@
 									on:ready={() => setFeedPosterState(video.uuid, false)}
 									on:error={() => setFeedPosterState(video.uuid, true)}
 									on:destroyed={() => setFeedPosterState(video.uuid, true)}
+									on:audiounlock={(event) => handleFeedAudioUnlock(video.uuid, event)}
 								/>
 							</div>
 							<div class="mobile-feed__overlay">
-								<div class="mobile-feed__gradient"></div>
 								<div class="mobile-feed__content">
 									<div
 										class="mobile-feed__top"
@@ -3740,16 +3903,36 @@
 											<span class="mobile-feed__section">{video.section.label}</span>
 										{/if}
 									</div>
-									{#if video.link}
-										<a
-											class="mobile-feed__cta"
-											href={video.link}
-											target="_blank"
-											rel="noopener noreferrer"
+									<div class="mobile-feed__actions">
+										{#if shouldAutoMute && !feedAudioUnlocked}
+											<button
+												type="button"
+												class="mobile-feed__audio-unlock"
+												on:click={() => handleFeedAudioUnlock(video.uuid)}
+												aria-label="Ativar som para todos os vídeos"
+											>
+												Ativar áudio
+											</button>
+										{/if}
+										{#if video.link}
+											<a
+												class="mobile-feed__cta"
+												href={video.link}
+												target="_blank"
+												rel="noopener noreferrer"
+											>
+												Saiba mais
+											</a>
+										{/if}
+										<button
+											type="button"
+											class="mobile-feed__share"
+											on:click={() => handleShortzShare(video)}
+											aria-label={`Compartilhar ${video.title}`}
 										>
-											Saiba mais
-										</a>
-									{/if}
+											Compartilhar
+										</button>
+									</div>
 								</div>
 							</div>
 						</article>
@@ -4072,16 +4255,34 @@
 							</div>
 						{/if}
 
-						{#if desktopOverlayVideo.link}
-							<a
-								class="desktop-overlay__cta"
-								href={desktopOverlayVideo.link}
-								target="_blank"
-								rel="noopener noreferrer"
+						<div class="desktop-overlay__actions">
+							{#if desktopOverlayVideo.link}
+								<a
+									class="desktop-overlay__cta"
+									href={desktopOverlayVideo.link}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Saiba mais
+								</a>
+							{/if}
+							<button
+								type="button"
+								class="desktop-overlay__share"
+								on:click|stopPropagation={() => handleShortzShare(desktopOverlayVideo)}
+								aria-label={`Compartilhar ${desktopOverlayVideo.title}`}
 							>
-								Saiba mais
-							</a>
-						{/if}
+								<span class="desktop-overlay__share-icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24">
+										<path
+											fill="currentColor"
+											d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a2.5 2.5 0 0 0 0-1.39l7.02-4.11A2.99 2.99 0 1 0 14 5a3 3 0 0 0 .04.48L7.01 9.59a3 3 0 1 0 0 4.83l7.05 4.12c-.03.19-.06.38-.06.58a3 3 0 1 0 3-3.04Z"
+										/>
+									</svg>
+								</span>
+								<span>Compartilhar</span>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -4602,24 +4803,34 @@
 		height: 100%;
 	}
 
+	.mobile-feed__player :global(button[aria-label='Ativar som']) {
+		display: none !important;
+	}
+
+	.mobile-feed__player :global(button[aria-label='Ativar áudio']) {
+		display: none !important;
+	}
+
+	.mobile-feed__player :global(button[aria-label='Ativar audio']) {
+		display: none !important;
+	}
+
+	.mobile-feed__player :global(button[aria-label*='som']) {
+		display: none !important;
+	}
+
+	.mobile-feed__player :global(button[aria-label*='áudio']) {
+		display: none !important;
+	}
+
+	.mobile-feed__player :global(button[aria-label*='audio']) {
+		display: none !important;
+	}
+
 	.mobile-feed__overlay {
 		position: absolute;
 		inset: 0;
 		pointer-events: none;
-	}
-
-	.mobile-feed__gradient {
-		position: absolute;
-		inset: 0;
-		background: var(
-			--mobile-feed-overlay,
-			linear-gradient(
-				180deg,
-				rgba(0, 0, 0, 0) 0%,
-				rgba(8, 12, 24, 0.78) 62%,
-				rgba(8, 12, 24, 0.92) 100%
-			)
-		);
 	}
 
 	.mobile-feed__content {
@@ -4697,6 +4908,69 @@
 		background: rgba(15, 23, 42, 0.45);
 		border-radius: 999px;
 		padding: 0.35rem 0.9rem;
+	}
+
+	.mobile-feed__actions {
+		display: flex;
+		gap: 0.65rem;
+		flex-wrap: wrap;
+		align-items: center;
+		margin-top: 0.5rem;
+		pointer-events: auto;
+	}
+
+	.mobile-feed__share {
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		background: transparent;
+		color: var(--mobile-feed-title, #ffffff);
+		border-radius: 999px;
+		padding: 0.55rem 1.35rem;
+		font-size: 0.85rem;
+		font-weight: 600;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		cursor: pointer;
+		pointer-events: auto;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease,
+			border-color 0.2s ease;
+	}
+
+	.mobile-feed__share:hover,
+	.mobile-feed__share:focus-visible {
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+		border-color: rgba(255, 255, 255, 0.75);
+		outline: none;
+	}
+
+	.mobile-feed__audio-unlock {
+		border: 1px solid rgba(255, 255, 255, 0.55);
+		background: rgba(8, 12, 24, 0.6);
+		color: #ffffff;
+		border-radius: 999px;
+		padding: 0.55rem 1.35rem;
+		font-size: 0.85rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		cursor: pointer;
+		pointer-events: auto;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease,
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.mobile-feed__audio-unlock:hover,
+	.mobile-feed__audio-unlock:focus-visible {
+		background: rgba(255, 255, 255, 0.2);
+		color: #ffffff;
+		border-color: rgba(255, 255, 255, 0.85);
+		transform: translateY(-1px);
+		outline: none;
 	}
 
 	.mobile-feed__cta {
@@ -5415,11 +5689,6 @@
 		height: 100%;
 	}
 
-	.video-card__player :global(button[aria-label='Ativar som']),
-	.mobile-feed__player :global(button[aria-label='Ativar som']) {
-		display: none !important;
-	}
-
 	.video-card__meta {
 		display: flex;
 		flex-direction: column;
@@ -5592,10 +5861,6 @@
 		height: 100%;
 	}
 
-	.desktop-overlay__player-inner :global(button[aria-label='Ativar som']) {
-		display: none !important;
-	}
-
 	.desktop-overlay__meta {
 		display: flex;
 		flex-direction: column;
@@ -5724,6 +5989,52 @@
 		transform: translateY(-2px) scale(1.01);
 		box-shadow: 0 24px 52px rgba(59, 130, 246, 0.38);
 		outline: none;
+	}
+
+	.desktop-overlay__actions {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 0.85rem;
+		margin-top: 0.5rem;
+		justify-content: flex-start;
+	}
+
+	.desktop-overlay__share {
+		border: 1px solid rgba(255, 255, 255, 0.35);
+		border-radius: 999px;
+		background: transparent;
+		color: rgba(248, 250, 252, 0.92);
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.12em;
+		font-size: 0.72rem;
+		padding: 0.55rem 1.25rem;
+		cursor: pointer;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		justify-content: center;
+		transition:
+			background 0.2s ease,
+			color 0.2s ease,
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.desktop-overlay__share:hover,
+	.desktop-overlay__share:focus-visible {
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+		border-color: rgba(255, 255, 255, 0.6);
+		outline: none;
+		transform: translateY(-1px);
+	}
+
+	.desktop-overlay__share-icon svg {
+		width: 18px;
+		height: 18px;
+		display: block;
 	}
 
 	.desktop-overlay__close {
