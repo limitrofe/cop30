@@ -351,6 +351,7 @@
         "cardsPerRowDesktop": 4,
         "cardGap": "1rem",
         "enableMobileFeed": true,
+        "mobileFeedSkipDFP": true,
         "mobileDefaultView": "feed",
         "mobileFeedMaxWidth": 820,
         "mobileFeedTitleColor": "#f0e7d6",

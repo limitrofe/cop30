@@ -5,10 +5,6 @@
 	import { fetchGoogleSheet, sanitizeHeader } from '$lib/utils/googleSheets.js';
 
 	const dispatch = createEventDispatcher();
-	const MobileView = {
-		SHORTZ: 'shortz',
-		FEED: 'feed'
-	};
 	const SHORTZ_SEEN_STORAGE_KEY = 'video-sheet-showcase:shortz-seen';
 	const SHORTZ_LAST_LEAD_STORAGE_KEY = 'video-sheet-showcase:last-shortz-lead';
 
@@ -113,7 +109,6 @@
 
 	let viewportWidth = 1280;
 	let isMobileFeed = false;
-	let isMobileFeedGrid = false;
 	let isMobileViewport = false;
 	let mobileChromeVisible = false;
 	let topbarVisible = false;
@@ -126,15 +121,15 @@
 	let feedOrderToken = 0;
 	let feedAdsDisabled = false;
 	let headerInViewport = false;
-let creditsInViewport = false;
-let mobileChromeSuppressed = false;
-let headerObserver = null;
-let headerObserverTarget = null;
-let creditsObserver = null;
-let creditsObserverTarget = null;
-let creditsObserverRetryId = null;
-let creditsObserverRetryCount = 0;
-let hideControlsForCredits = false;
+	let creditsInViewport = false;
+	let mobileChromeSuppressed = false;
+	let headerObserver = null;
+	let headerObserverTarget = null;
+	let creditsObserver = null;
+	let creditsObserverTarget = null;
+	let creditsObserverRetryId = null;
+	let creditsObserverRetryCount = 0;
+	let hideControlsForCredits = false;
 	let feedVideosBase = [];
 	let feedVideos = [];
 	let feedVideosKey = null;
@@ -142,6 +137,7 @@ let hideControlsForCredits = false;
 	let overlayKeydownCleanup = null;
 	let mobileFeedStyles = '';
 	const feedPlayerControls = new Map();
+	const feedPlayerReady = new Set();
 	let feedPlaybackVersion = 0;
 	let feedOverlayMode = 'none';
 	let feedOverlayVisible = false;
@@ -149,29 +145,28 @@ let hideControlsForCredits = false;
 	let snapInProgress = false;
 	let snapTimeoutId;
 	let searchInputRef;
-	let mobileViewMode = MobileView.SHORTZ;
 	let videoMetaVisibleMobile = true;
-let feedMetaHidden = new Set();
-let feedMetaTimerId = null;
-let feedMetaTimerVideoId = null;
-let lastFeedMetaActiveId = null;
-let feedMetaHoldActive = false;
-let feedMetaHoldVideoId = null;
-let feedMetaHoldEndHandler = null;
+	let feedMetaHidden = new Set();
+	let feedMetaTimerId = null;
+	let feedMetaTimerVideoId = null;
+	let lastFeedMetaActiveId = null;
+	let feedMetaHoldActive = false;
+	let feedMetaHoldVideoId = null;
+	let feedMetaHoldEndHandler = null;
 	let feedIndexLookup = new Map();
 	let mobileFeedLocked = false;
 	let mobileFeedLockTimerId = null;
 	let shortzSeenIds = new Set();
 	let shortzSeenHydrated = false;
 	let shortzSeenInitial = new Set();
-	let hideControlsForMobileFeed = false;
 	let feedPosterVisible = new Map();
 	let shortzLastLeadId = null;
 	let shortzLastLeadPersistedId = null;
 	let shortzLeadAvoidId = null;
 	let lastActiveFeedId = null;
 	let feedPlayerWindow = new Set();
-	const FEED_PLAYER_BUFFER = 1;
+	// Keep at least two neighbours ready to avoid blank states when the user swipes quickly.
+	const FEED_PLAYER_BUFFER = 2;
 	const feedAdSlots = new Set();
 	const desktopPlayerControls = new Map();
 	const desktopVideoElements = new Map();
@@ -199,9 +194,9 @@ let feedMetaHoldEndHandler = null;
 	const desktopStartedPlaybacks = new Set();
 	const BODY_SCROLL_LOCK_CLASS = 'video-sheet-showcase--lock-scroll';
 	const DESKTOP_CARD_SCALE = 0.85;
-const FEED_META_HIDE_DELAY = 5000;
-const AD_CYCLE_LENGTH = 4;
-const CREDITS_OBSERVER_MAX_RETRIES = 20;
+	const FEED_META_HIDE_DELAY = 5000;
+	const AD_CYCLE_LENGTH = 4;
+	const CREDITS_OBSERVER_MAX_RETRIES = 20;
 	const AD_SCROLL_LOCK_DURATION = 5000;
 	const DESKTOP_TOPBAR_OFFSET = 'calc(48px + env(safe-area-inset-top, 0px))';
 	const MOBILE_INTRO_DURATION = 15;
@@ -339,6 +334,7 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		cardMinWidthDesktop: '240px',
 		cardMaxWidthDesktop: '320px',
 		enableMobileFeed: true,
+		mobileFeedSkipDFP: false,
 		mobileDefaultView: 'shortz',
 		showVideoMeta: true,
 		mobileFeedMaxWidth: 768,
@@ -479,6 +475,10 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 	$: showCountsEnabled = resolveBoolean(layoutResolved.showCounts, false);
 	$: shouldMuteInitially = resolveBoolean(layoutResolved.controlsStartMuted, true);
 	$: shouldAutoMute = resolveBoolean(layoutResolved.controlsAutoMute, true);
+	$: feedAdsDisabled = resolveBoolean(
+		layoutResolved.mobileFeedSkipDFP ?? layoutResolved.feedAdsDisabled,
+		false
+	);
 	$: searchStyleVars = buildSearchStyleVars(searchResolved);
 
 	$: sectionsResolved = {
@@ -752,12 +752,8 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		}
 	}
 
-	$: if (!hasMounted) {
-		const initialView = resolveMobileViewMode(layoutResolved.mobileDefaultView);
-		mobileViewMode = initialView;
-		if (initialView === MobileView.SHORTZ && !feedOrderToken) {
-			feedOrderToken = nextShortzSeed();
-		}
+	$: if (!hasMounted && !feedOrderToken) {
+		feedOrderToken = nextShortzSeed();
 	}
 
 	$: filterMode = filtersResolved.mode === 'multiple' ? 'multiple' : 'single';
@@ -951,12 +947,14 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		sectionsResolved
 	});
 	$: {
+		const shouldShuffleFeed = defaultShuffleActive && !isMobileFeed;
 		const nextFeedVideos = buildShortzVideos({
 			base: feedVideosBase,
 			leadVideoId: feedLeadVideoId,
 			seenSet: shortzSeenInitial,
 			seed: feedOrderToken,
-			lastLeadId: shortzLeadAvoidId
+			lastLeadId: shortzLeadAvoidId,
+			shuffle: shouldShuffleFeed
 		});
 		feedVideos = nextFeedVideos;
 		feedIndexLookup = new Map(nextFeedVideos.map((video, index) => [video.uuid, index]));
@@ -977,12 +975,12 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		}
 	}
 	$: if (isMobileFeed) {
-	feedPlayerControls.forEach((_, videoId) => {
-		if (videoId === activeFeedId) return;
-		if (!feedPlayerWindow.has(videoId)) {
-			dropPlayerControls(videoId);
-		}
-	});
+		feedPlayerControls.forEach((_, videoId) => {
+			if (videoId === activeFeedId) return;
+			if (!feedPlayerWindow.has(videoId)) {
+				dropPlayerControls(videoId);
+			}
+		});
 	}
 	$: {
 		const base = Array.isArray(feedVideosBase) ? [...feedVideosBase] : [];
@@ -1068,15 +1066,10 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		openSearchSuggestions();
 	}
 
-	$: isMobileFeed =
-		layoutResolved.enableMobileFeed !== false &&
-		mobileViewMode === MobileView.SHORTZ &&
-		viewportWidth <= (layoutResolved.mobileFeedMaxWidth ?? 768);
 	$: isMobileViewport = viewportWidth <= (layoutResolved.mobileFeedMaxWidth ?? 768);
-	$: isMobileFeedGrid = isMobileViewport && mobileViewMode === MobileView.FEED;
+	$: isMobileFeed = layoutResolved.enableMobileFeed !== false && isMobileViewport;
 
 	$: feedOverlayVisible = isMobileViewport && feedOverlayMode !== 'none';
-	$: hideControlsForMobileFeed = isMobileFeedGrid && !feedOverlayVisible;
 	$: shouldAutoFocusSearch = !isMobileViewport;
 
 	$: if (!isMobileViewport && feedOverlayMode !== 'none') {
@@ -1466,6 +1459,14 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		if (['false', '0', 'no', 'off', 'nao', 'não'].includes(normalized)) return false;
 		if (['true', '1', 'yes', 'on', 'sim'].includes(normalized)) return true;
 		return fallback;
+	}
+
+	function resolveSkipDFPFlag(video) {
+		if (!video) return false;
+		const candidate =
+			video.skipDFP ?? video.skipdfp ?? video.row?.skipDFP ?? video.row?.skipdfp ?? null;
+		if (candidate === null || candidate === undefined) return false;
+		return resolveBoolean(candidate, false);
 	}
 
 	function createColumnResolver(meta, rows) {
@@ -2078,7 +2079,8 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		leadVideoId = null,
 		seenSet = new Set(),
 		seed = 0,
-		lastLeadId = null
+		lastLeadId = null,
+		shuffle = true
 	}) {
 		if (!base?.length) return [];
 
@@ -2108,18 +2110,18 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 			output.push(leadVideo);
 		}
 
-		const unseenShuffled = shuffleList(unseen, random);
+		const unseenOrdered = shuffle ? shuffleList(unseen, random) : unseen;
 		if (!leadVideo) {
-			moveFirstDifferent(unseenShuffled, lastLeadId);
+			moveFirstDifferent(unseenOrdered, lastLeadId);
 		}
 
-		const seenShuffled = shuffleList(seen, random);
-		if (!leadVideo && unseenShuffled.length === 0) {
-			moveFirstDifferent(seenShuffled, lastLeadId);
+		const seenOrdered = shuffle ? shuffleList(seen, random) : seen;
+		if (!leadVideo && unseenOrdered.length === 0) {
+			moveFirstDifferent(seenOrdered, lastLeadId);
 		}
 
-		output.push(...unseenShuffled);
-		output.push(...seenShuffled);
+		output.push(...unseenOrdered);
+		output.push(...seenOrdered);
 
 		if (!output.length && leadVideo) {
 			output.push(leadVideo);
@@ -2181,17 +2183,6 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		}
 		const fallback = Math.floor(Math.random() * 0xffffffff) >>> 0;
 		return fallback || 0x8e3779b9;
-	}
-
-	function resolveMobileViewMode(value) {
-		const normalized = normalizeValue(value);
-		if (normalized === 'grid' || normalized === 'desktop') {
-			return MobileView.FEED;
-		}
-		if (normalized === 'feed' || normalized === 'shortz') {
-			return MobileView.SHORTZ;
-		}
-		return MobileView.SHORTZ;
 	}
 
 	function persistShortzSeen(nextSet) {
@@ -2480,10 +2471,7 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 
 		const target = findCreditsElement();
 		if (!target) {
-			if (
-				creditsObserverRetryCount < CREDITS_OBSERVER_MAX_RETRIES &&
-				!creditsObserverRetryId
-			) {
+			if (creditsObserverRetryCount < CREDITS_OBSERVER_MAX_RETRIES && !creditsObserverRetryId) {
 				creditsObserverRetryId = setTimeout(() => {
 					creditsObserverRetryId = null;
 					creditsObserverRetryCount += 1;
@@ -2709,132 +2697,135 @@ const CREDITS_OBSERVER_MAX_RETRIES = 20;
 		return feedPosterVisible.get(videoId) ?? true;
 	}
 
-	function shouldRenderFeedPlayer(videoId) {
-		if (!isMobileFeed) return true;
+	function shouldEagerInitFeedPlayer(videoId) {
+		if (!isMobileFeed) return false;
+		if (!videoId) return false;
+		if (videoId === activeFeedId) return true;
 		return feedPlayerWindow.has(videoId);
 	}
 
-	function shouldEagerInitFeedPlayer(videoId) {
-	if (!isMobileFeed) return false;
-	if (!videoId) return false;
-	if (videoId === activeFeedId) return true;
-	return feedPlayerWindow.has(videoId);
-	}
-
 	function isFeedMetaHidden(videoId) {
-	return feedMetaHidden.has(videoId);
+		return feedMetaHidden.has(videoId);
 	}
 
 	function showFeedMeta(videoId) {
-	if (!videoId) return;
-	if (!feedMetaHidden.has(videoId)) return;
-	const next = new Set(feedMetaHidden);
-	next.delete(videoId);
-	feedMetaHidden = next;
+		if (!videoId) return;
+		if (!feedMetaHidden.has(videoId)) return;
+		const next = new Set(feedMetaHidden);
+		next.delete(videoId);
+		feedMetaHidden = next;
 	}
 
 	function clearFeedMetaTimer() {
-	if (feedMetaTimerId) {
-		clearTimeout(feedMetaTimerId);
-		feedMetaTimerId = null;
-	}
-	feedMetaTimerVideoId = null;
+		if (feedMetaTimerId) {
+			clearTimeout(feedMetaTimerId);
+			feedMetaTimerId = null;
+		}
+		feedMetaTimerVideoId = null;
 	}
 
 	function scheduleFeedMetaHide(videoId) {
-	if (!videoId) return;
-	clearFeedMetaTimer();
-	feedMetaTimerVideoId = videoId;
-	feedMetaTimerId = setTimeout(() => {
-		const next = new Set(feedMetaHidden);
-		next.add(videoId);
-		feedMetaHidden = next;
-		feedMetaTimerId = null;
+		if (!videoId) return;
+		clearFeedMetaTimer();
 		feedMetaTimerVideoId = videoId;
-	}, FEED_META_HIDE_DELAY);
+		feedMetaTimerId = setTimeout(() => {
+			const next = new Set(feedMetaHidden);
+			next.add(videoId);
+			feedMetaHidden = next;
+			feedMetaTimerId = null;
+			feedMetaTimerVideoId = videoId;
+		}, FEED_META_HIDE_DELAY);
 	}
 
 	function cleanupFeedMetaHoldListeners() {
-	if (feedMetaHoldEndHandler) {
-		window.removeEventListener('pointerup', feedMetaHoldEndHandler);
-		window.removeEventListener('pointercancel', feedMetaHoldEndHandler);
-		feedMetaHoldEndHandler = null;
-	}
+		if (feedMetaHoldEndHandler) {
+			window.removeEventListener('pointerup', feedMetaHoldEndHandler);
+			window.removeEventListener('pointercancel', feedMetaHoldEndHandler);
+			feedMetaHoldEndHandler = null;
+		}
 	}
 
-function handleFeedMetaHoldStart(videoId, event) {
-if (!isMobileFeed || !videoId) return;
-const pointerType = event?.pointerType;
-if (pointerType && pointerType !== 'touch' && pointerType !== 'pen') {
-	return;
-}
-	if (event?.isPrimary === false) {
-		return;
-	}
-if (feedMetaHoldActive && feedMetaHoldVideoId === videoId) {
-	return;
-}
-feedMetaHoldActive = true;
-feedMetaHoldVideoId = videoId;
-	showFeedMeta(videoId);
-	clearFeedMetaTimer();
-	cleanupFeedMetaHoldListeners();
-	const endHandler = () => {
+	function handleFeedMetaHoldStart(videoId, event) {
+		if (!isMobileFeed || !videoId) return;
+		const pointerType = event?.pointerType;
+		if (pointerType && pointerType !== 'touch' && pointerType !== 'pen') {
+			return;
+		}
+		if (event?.isPrimary === false) {
+			return;
+		}
+		if (feedMetaHoldActive && feedMetaHoldVideoId === videoId) {
+			return;
+		}
+		feedMetaHoldActive = true;
+		feedMetaHoldVideoId = videoId;
+		showFeedMeta(videoId);
+		clearFeedMetaTimer();
 		cleanupFeedMetaHoldListeners();
-		handleFeedMetaHoldEnd(videoId);
-	};
-	feedMetaHoldEndHandler = endHandler;
-	window.addEventListener('pointerup', endHandler, { once: true });
-	window.addEventListener('pointercancel', endHandler, { once: true });
+		const endHandler = () => {
+			cleanupFeedMetaHoldListeners();
+			handleFeedMetaHoldEnd(videoId);
+		};
+		feedMetaHoldEndHandler = endHandler;
+		window.addEventListener('pointerup', endHandler, { once: true });
+		window.addEventListener('pointercancel', endHandler, { once: true });
 	}
 
 	function handleFeedMetaHoldEnd(videoId) {
-	if (!isMobileFeed || !videoId) return;
-	feedMetaHoldActive = false;
-	feedMetaHoldVideoId = null;
-	clearFeedMetaTimer();
-	const next = new Set(feedMetaHidden);
-	next.add(videoId);
-	feedMetaHidden = next;
-	feedMetaTimerVideoId = videoId;
+		if (!isMobileFeed || !videoId) return;
+		feedMetaHoldActive = false;
+		feedMetaHoldVideoId = null;
+		clearFeedMetaTimer();
+		const next = new Set(feedMetaHidden);
+		next.add(videoId);
+		feedMetaHidden = next;
+		feedMetaTimerVideoId = videoId;
 	}
 
 	$: {
-	if (!isMobileFeed) {
-		if (feedMetaHidden.size) {
-			feedMetaHidden = new Set();
-		}
-		clearFeedMetaTimer();
-		cleanupFeedMetaHoldListeners();
-		feedMetaHoldActive = false;
-		feedMetaHoldVideoId = null;
-		lastFeedMetaActiveId = null;
-	} else {
-		const activeId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
-		if (!activeId) {
+		if (!isMobileFeed) {
+			if (feedMetaHidden.size) {
+				feedMetaHidden = new Set();
+			}
+			if (feedPlayerReady.size) {
+				feedPlayerReady.clear();
+			}
 			clearFeedMetaTimer();
 			cleanupFeedMetaHoldListeners();
 			feedMetaHoldActive = false;
 			feedMetaHoldVideoId = null;
 			lastFeedMetaActiveId = null;
-		} else if (lastFeedMetaActiveId !== activeId) {
-			showFeedMeta(activeId);
-			if (!feedMetaHoldActive || feedMetaHoldVideoId !== activeId) {
-				scheduleFeedMetaHide(activeId);
-			} else {
+		} else {
+			const activeId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
+			if (!activeId) {
+				clearFeedMetaTimer();
+				cleanupFeedMetaHoldListeners();
+				feedMetaHoldActive = false;
+				feedMetaHoldVideoId = null;
+				lastFeedMetaActiveId = null;
+			} else if (lastFeedMetaActiveId !== activeId) {
+				showFeedMeta(activeId);
+				if (!feedMetaHoldActive || feedMetaHoldVideoId !== activeId) {
+					scheduleFeedMetaHide(activeId);
+				} else {
+					clearFeedMetaTimer();
+				}
+				lastFeedMetaActiveId = activeId;
+			} else if (feedMetaHoldActive && feedMetaHoldVideoId === activeId) {
+				showFeedMeta(activeId);
 				clearFeedMetaTimer();
 			}
-			lastFeedMetaActiveId = activeId;
-		} else if (feedMetaHoldActive && feedMetaHoldVideoId === activeId) {
-			showFeedMeta(activeId);
-			clearFeedMetaTimer();
 		}
 	}
-	}
 
-	function handlePlayerControls(videoId, controls) {
+	function handlePlayerControls(videoId, controls, reason = 'update') {
 		if (!videoId || !controls) return;
+		if (reason !== 'ready') {
+			feedPlayerControls.set(videoId, controls);
+			return;
+		}
 		feedPlayerControls.set(videoId, controls);
+		feedPlayerReady.add(videoId);
 		if (!isMobileFeed) {
 			desktopPlayerControls.set(videoId, controls);
 			try {
@@ -2865,6 +2856,7 @@ feedMetaHoldVideoId = videoId;
 	function dropPlayerControls(videoId) {
 		const controls = feedPlayerControls.get(videoId) || desktopPlayerControls.get(videoId);
 		feedPlayerControls.delete(videoId);
+		feedPlayerReady.delete(videoId);
 		desktopPlayerControls.delete(videoId);
 		feedPlaybackVersion += 1;
 		setFeedPosterState(videoId, true);
@@ -2885,6 +2877,7 @@ feedMetaHoldVideoId = videoId;
 			!isMobileFeed || !feedVideos.length || feedOverlayVisible || snapInProgress;
 		if (shouldPauseAll) {
 			feedPlayerControls.forEach((controls, videoId) => {
+				if (!feedPlayerReady.has(videoId)) return;
 				try {
 					controls.pause?.();
 					if (shouldAutoMute) {
@@ -2902,6 +2895,7 @@ feedMetaHoldVideoId = videoId;
 		const nextActiveId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
 		if (!nextActiveId) {
 			feedPlayerControls.forEach((controls, videoId) => {
+				if (!feedPlayerReady.has(videoId)) return;
 				try {
 					controls.pause?.();
 					if (shouldAutoMute) {
@@ -2917,7 +2911,9 @@ feedMetaHoldVideoId = videoId;
 		}
 
 		if (lastActiveFeedId && lastActiveFeedId !== nextActiveId) {
-			const previousControls = feedPlayerControls.get(lastActiveFeedId);
+			const previousControls = feedPlayerReady.has(lastActiveFeedId)
+				? feedPlayerControls.get(lastActiveFeedId)
+				: null;
 			if (previousControls) {
 				try {
 					previousControls.pause?.();
@@ -2931,11 +2927,13 @@ feedMetaHoldVideoId = videoId;
 			setFeedPosterState(lastActiveFeedId, true);
 		}
 
-		const nextControls = feedPlayerControls.get(nextActiveId);
+		const nextControls = feedPlayerReady.has(nextActiveId)
+			? feedPlayerControls.get(nextActiveId)
+			: null;
 		if (nextControls) {
 			try {
 				nextControls.play?.();
-				if (shouldAutoMute) {
+				if (shouldAutoMute && !isMobileFeed) {
 					nextControls.setMuted?.(false);
 				}
 				setFeedPosterState(nextActiveId, false);
@@ -2950,6 +2948,7 @@ feedMetaHoldVideoId = videoId;
 		}
 
 		feedPlayerControls.forEach((controls, videoId) => {
+			if (!feedPlayerReady.has(videoId)) return;
 			if (videoId === nextActiveId || videoId === lastActiveFeedId) return;
 			if (!feedPlayerWindow.has(videoId)) {
 				return;
@@ -3085,22 +3084,17 @@ feedMetaHoldVideoId = videoId;
 		feedLeadVideoId = videoId;
 		const ensureSnap = () => {
 			tick().then(() => {
-				if (mobileViewMode !== MobileView.SHORTZ) return;
+				if (!isMobileFeed) return;
 				scrollShowcaseToTop({ behavior: 'auto' });
 				activeFeedId = videoId;
 				snapActiveFeedVideo({ behavior: 'instant', force: true });
 			});
 		};
-		if (mobileViewMode === MobileView.SHORTZ) {
-			shortzSeenInitial = new Set(shortzSeenIds);
-			shortzLeadAvoidId = shortzLastLeadId;
-			feedOrderToken = nextShortzSeed();
-			feedInitialized = false;
-			queueMicrotask(ensureSnap);
-		} else {
-			setMobileViewMode(MobileView.SHORTZ);
-			ensureSnap();
-		}
+		shortzSeenInitial = new Set(shortzSeenIds);
+		shortzLeadAvoidId = shortzLastLeadId;
+		feedOrderToken = nextShortzSeed();
+		feedInitialized = false;
+		queueMicrotask(ensureSnap);
 	}
 
 	function scrollShowcaseToTop({ behavior = 'auto' } = {}) {
@@ -3206,9 +3200,6 @@ feedMetaHoldVideoId = videoId;
 		const overlayWasOpen = !!desktopOverlayVideoId;
 		if (overlayWasOpen) {
 			closeDesktopOverlay({ restoreScroll: false });
-		}
-		if (isMobileViewport) {
-			setMobileViewMode(MobileView.FEED);
 		}
 		await tick();
 		if (browser) {
@@ -3385,7 +3376,7 @@ feedMetaHoldVideoId = videoId;
 			}
 		}
 
-		setMobileViewMode(MobileView.FEED);
+		closeFeedOverlay();
 	}
 
 	const normalizeOverlayMode = (mode) => {
@@ -3395,69 +3386,15 @@ feedMetaHoldVideoId = videoId;
 		return mode;
 	};
 
-	function toggleOverlay(mode, options = {}) {
+	function toggleOverlay(mode) {
 		const normalizedMode = normalizeOverlayMode(mode);
 		const targetMode = feedOverlayMode === normalizedMode ? 'none' : normalizedMode;
-
-		if (!isMobileViewport) {
-			feedOverlayMode = targetMode;
-			return;
-		}
-
-		if (targetMode === 'none') {
-			feedOverlayMode = 'none';
-			return;
-		}
-
-		const preserveView = options?.preserveView;
-
-		if (!preserveView && mobileViewMode !== MobileView.SHORTZ) {
-			setMobileViewMode(MobileView.SHORTZ);
-			tick().then(() => {
-				if (mobileViewMode === MobileView.SHORTZ) {
-					feedOverlayMode = targetMode;
-				}
-			});
-			return;
-		}
-
-		if (!preserveView && !isMobileFeed) {
-			queueMicrotask(() => {
-				if (mobileViewMode === MobileView.SHORTZ) {
-					feedOverlayMode = targetMode;
-				}
-			});
-			return;
-		}
-
 		feedOverlayMode = targetMode;
 	}
 
-	function handleSearchFiltersToggle(preserveView = mobileViewMode === MobileView.FEED) {
+	function handleSearchFiltersToggle() {
 		if (!hasSearch && !filterOptions.length) return;
-		toggleOverlay('search-filters', { preserveView });
-	}
-
-	function setMobileViewMode(mode) {
-		if (mode !== MobileView.SHORTZ && mode !== MobileView.FEED) return;
-		feedOverlayMode = 'none';
-		feedOverlayVisible = false;
-		if (mobileViewMode === mode) return;
-		mobileViewMode = mode;
-		if (mode === MobileView.SHORTZ) {
-			shortzSeenInitial = new Set(shortzSeenIds);
-			shortzLeadAvoidId = shortzLastLeadId;
-			feedOrderToken = nextShortzSeed();
-			feedInitialized = false;
-			queueMicrotask(() => {
-				if (isMobileFeed) {
-					snapActiveFeedVideo({ behavior: 'instant', force: true });
-				}
-			});
-		} else {
-			activeFeedId = null;
-			updateFeedPlayback();
-		}
+		toggleOverlay('search-filters');
 	}
 
 	const gridStyle = () =>
@@ -3518,7 +3455,7 @@ feedMetaHoldVideoId = videoId;
 			class:controls--floating-visible={controlsFloatingVisible && !isMobileViewport}
 			class:controls--hidden-for-credits={hideControlsForCredits}
 			data-mobile={isMobileViewport ? 'true' : 'false'}
-			data-mobile-view={isMobileViewport ? mobileViewMode : 'desktop'}
+			data-mobile-view={isMobileViewport ? 'shortz' : 'desktop'}
 			data-overlay={feedOverlayVisible ? 'open' : 'closed'}
 			aria-hidden={hideControlsForCredits ? 'true' : undefined}
 			bind:this={controlsElement}
@@ -3617,7 +3554,7 @@ feedMetaHoldVideoId = videoId;
 						{/if}
 					</div>
 				{/if}
-			{:else if !hideControlsForMobileFeed}
+			{:else}
 				<div class="controls__inner">
 					{#if showHeadingDesktop}
 						<div
@@ -3746,56 +3683,53 @@ feedMetaHoldVideoId = videoId;
 										aria-hidden={!isFeedPosterVisible(video.uuid)}
 									/>
 								{/if}
-								{#if shouldRenderFeedPlayer(video.uuid)}
-									<GloboPlayer
-										videoId={video.globoId}
-										videoIdDesktop={video.globoIdDesktop}
-										videoIdMobile={video.globoIdMobile}
-										autoPlay={false}
-										poster={video.thumbnail || undefined}
-										posterAlt={video.title}
-										startMuted={shouldMuteInitially}
-										controls={true}
-										aspectRatio="9 / 16"
-										aspectRatioMobile="9 / 16"
-										containerBackgroundColor="#0b0d17"
-										preventBlackBars={true}
-										eagerInit={shouldEagerInitFeedPlayer(video.uuid)}
-										on:controls={(event) =>
-											handlePlayerControls(video.uuid, event.detail?.controls)}
-										on:ready={() => setFeedPosterState(video.uuid, false)}
-										on:error={() => setFeedPosterState(video.uuid, true)}
-										on:destroyed={() => setFeedPosterState(video.uuid, true)}
-									/>
-								{:else}
-									<div class="mobile-feed__player-placeholder" aria-hidden="true"></div>
-								{/if}
+								<GloboPlayer
+									videoId={video.globoId}
+									videoIdDesktop={video.globoIdDesktop}
+									videoIdMobile={video.globoIdMobile}
+									autoPlay={false}
+									poster={video.thumbnail || undefined}
+									posterAlt={video.title}
+									startMuted={true}
+									controls={true}
+									aspectRatio="9 / 16"
+									aspectRatioMobile="9 / 16"
+									containerBackgroundColor="#0b0d17"
+									preventBlackBars={true}
+									skipDFP={feedAdsDisabled || resolveSkipDFPFlag(video)}
+									eagerInit={shouldEagerInitFeedPlayer(video.uuid)}
+									on:controls={(event) =>
+										handlePlayerControls(video.uuid, event.detail?.controls, event.detail?.reason)}
+									on:ready={() => setFeedPosterState(video.uuid, false)}
+									on:error={() => setFeedPosterState(video.uuid, true)}
+									on:destroyed={() => setFeedPosterState(video.uuid, true)}
+								/>
 							</div>
-						<div class="mobile-feed__overlay">
-							<div class="mobile-feed__gradient"></div>
-							<div class="mobile-feed__content">
-								<div
-									class="mobile-feed__top"
-									class:mobile-feed__meta-hidden={isFeedMetaHidden(video.uuid)}
-									aria-hidden={isFeedMetaHidden(video.uuid) ? 'true' : undefined}
-								>
-							{#if showCountsEnabled}
-								<span class="mobile-feed__counter">{index + 1}/{feedVideos.length}</span>
-							{/if}
-									{#if video.tag || video.section?.label}
-										<span class="mobile-feed__tag">{video.tag || video.section?.label}</span>
-									{/if}
-								</div>
-							<div
-								class="mobile-feed__text"
-								class:mobile-feed__meta-hidden={isFeedMetaHidden(video.uuid)}
-								aria-hidden={isFeedMetaHidden(video.uuid) ? 'true' : undefined}
-							>
-								<h2>{video.title}</h2>
-								{#if video.subtitle}
-									<p>{video.subtitle}</p>
-								{:else if video.description}
-									<p>{video.description}</p>
+							<div class="mobile-feed__overlay">
+								<div class="mobile-feed__gradient"></div>
+								<div class="mobile-feed__content">
+									<div
+										class="mobile-feed__top"
+										class:mobile-feed__meta-hidden={isFeedMetaHidden(video.uuid)}
+										aria-hidden={isFeedMetaHidden(video.uuid) ? 'true' : undefined}
+									>
+										{#if showCountsEnabled}
+											<span class="mobile-feed__counter">{index + 1}/{feedVideos.length}</span>
+										{/if}
+										{#if video.tag || video.section?.label}
+											<span class="mobile-feed__tag">{video.tag || video.section?.label}</span>
+										{/if}
+									</div>
+									<div
+										class="mobile-feed__text"
+										class:mobile-feed__meta-hidden={isFeedMetaHidden(video.uuid)}
+										aria-hidden={isFeedMetaHidden(video.uuid) ? 'true' : undefined}
+									>
+										<h2>{video.title}</h2>
+										{#if video.subtitle}
+											<p>{video.subtitle}</p>
+										{:else if video.description}
+											<p>{video.description}</p>
 										{/if}
 									</div>
 									<div class="mobile-feed__meta">
@@ -3825,34 +3759,6 @@ feedMetaHoldVideoId = videoId;
 		{:else}
 			<div class="status status--empty">{emptyStateMessage}</div>
 		{/if}
-	{:else if isMobileFeedGrid}
-		{#if feedVideosBase.length}
-			<div class="mobile-feed-grid" aria-live="polite" role="list">
-				{#each feedVideosBase as video (video.uuid)}
-					<div class="mobile-feed-grid__item" role="listitem">
-						<button
-							type="button"
-							class="mobile-feed-grid__button"
-							on:click={() => handleVideoCardClick(video.uuid)}
-							aria-label={`Abrir ${video.title} no shortz`}
-						>
-							{#if video.thumbnail}
-								<img
-									src={video.thumbnail}
-									alt={video.title}
-									loading="lazy"
-									class="mobile-feed-grid__thumb"
-								/>
-							{:else}
-								<span class="mobile-feed-grid__fallback">{video.title}</span>
-							{/if}
-						</button>
-					</div>
-				{/each}
-			</div>
-		{:else}
-			<div class="status status--empty">{emptyStateMessage}</div>
-		{/if}
 	{:else}
 		{#if highlightSection}
 			<section
@@ -3868,10 +3774,7 @@ feedMetaHoldVideoId = videoId;
 							<span class="section-count">{highlightSection.videos.length}</span>
 						{/if}
 					</header>
-					<div
-						class="video-grid"
-						data-mobile-grid={mobileViewMode === MobileView.FEED ? 'true' : undefined}
-					>
+					<div class="video-grid">
 						{#each highlightSection.videos as video (video.uuid)}
 							<article class="video-card">
 								<div class="video-card__player">
@@ -3919,10 +3822,7 @@ feedMetaHoldVideoId = videoId;
 								<span class="section-count">{section.videos.length}</span>
 							{/if}
 						</header>
-						<div
-							class="video-grid"
-							data-mobile-grid={mobileViewMode === MobileView.FEED ? 'true' : undefined}
-						>
+						<div class="video-grid">
 							{#each section.videos as video (video.uuid)}
 								<article class="video-card">
 									<div class="video-card__player">
@@ -3964,50 +3864,24 @@ feedMetaHoldVideoId = videoId;
 		{/if}
 	{/if}
 
-	{#if layoutResolved.enableMobileFeed !== false && isMobileViewport}
+	{#if layoutResolved.enableMobileFeed !== false && isMobileViewport && (hasSearch || filterOptions.length)}
 		<nav
 			class="mobile-bottom-bar"
-			aria-label="Controles de visualização e filtros"
+			aria-label="Filtros e busca"
 			class:mobile-bottom-bar--hidden={feedOverlayVisible}
 			style={mobileChromeStyle || undefined}
 		>
 			<button
 				type="button"
-				class="mobile-bottom-bar__button mobile-bottom-bar__button--shortz"
-				class:mobile-bottom-bar__button--active={mobileViewMode === MobileView.SHORTZ}
-				class:mobile-bottom-bar__button--active-shortz={mobileViewMode === MobileView.SHORTZ}
-				on:click={() => setMobileViewMode(MobileView.SHORTZ)}
-				aria-pressed={mobileViewMode === MobileView.SHORTZ}
-				aria-label="Ver vídeos em shortz (lista infinita)"
+				class="mobile-bottom-bar__button mobile-bottom-bar__button--search"
+				class:mobile-bottom-bar__button--active={feedOverlayMode === 'search-filters'}
+				class:mobile-bottom-bar__button--active-search={feedOverlayMode === 'search-filters'}
+				on:click={handleSearchFiltersToggle}
+				aria-pressed={feedOverlayMode === 'search-filters'}
+				aria-label="Abrir busca e filtros de vídeos"
 			>
-				shortz
+				busca
 			</button>
-			<button
-				type="button"
-				class="mobile-bottom-bar__button mobile-bottom-bar__button--feed"
-				class:mobile-bottom-bar__button--active={mobileViewMode === MobileView.FEED &&
-					feedOverlayMode === 'none'}
-				class:mobile-bottom-bar__button--active-feed={mobileViewMode === MobileView.FEED &&
-					feedOverlayMode === 'none'}
-				on:click={() => setMobileViewMode(MobileView.FEED)}
-				aria-pressed={mobileViewMode === MobileView.FEED && feedOverlayMode === 'none'}
-				aria-label="Ver vídeos em grade"
-			>
-				feed
-			</button>
-			{#if hasSearch || filterOptions.length}
-				<button
-					type="button"
-					class="mobile-bottom-bar__button mobile-bottom-bar__button--search"
-					class:mobile-bottom-bar__button--active={feedOverlayMode === 'search-filters'}
-					class:mobile-bottom-bar__button--active-search={feedOverlayMode === 'search-filters'}
-					on:click={() => handleSearchFiltersToggle(mobileViewMode === MobileView.FEED)}
-					aria-pressed={feedOverlayMode === 'search-filters'}
-					aria-label="Abrir busca e filtros de vídeos"
-				>
-					busca
-				</button>
-			{/if}
 		</nav>
 	{/if}
 
@@ -4022,7 +3896,6 @@ feedMetaHoldVideoId = videoId;
 					feedOverlayMode,
 					activeFeedId,
 					feedInitialized,
-					mobileViewMode,
 					activeFilterId,
 					activeFilterIds: Array.from(activeFilterIds),
 					activeSearchTerm,
@@ -4099,15 +3972,15 @@ feedMetaHoldVideoId = videoId;
 								/>
 							{/key}
 						</div>
-				{#if desktopOverlayVideos.length > 1}
-					<button
-						type="button"
-						class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-prev"
-						on:click|stopPropagation={showPreviousDesktopOverlay}
-						aria-label="Ver vídeo anterior"
-						disabled={desktopOverlayLoading}
-						aria-disabled={desktopOverlayLoading ? 'true' : undefined}
-					>
+						{#if desktopOverlayVideos.length > 1}
+							<button
+								type="button"
+								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-prev"
+								on:click|stopPropagation={showPreviousDesktopOverlay}
+								aria-label="Ver vídeo anterior"
+								disabled={desktopOverlayLoading}
+								aria-disabled={desktopOverlayLoading ? 'true' : undefined}
+							>
 								<svg viewBox="0 0 24 24" aria-hidden="true">
 									<path
 										d="M15 5L8 12L15 19"
@@ -4119,14 +3992,14 @@ feedMetaHoldVideoId = videoId;
 									/>
 								</svg>
 							</button>
-					<button
-						type="button"
-						class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-next"
-						on:click|stopPropagation={showNextDesktopOverlay}
-						aria-label="Ver próximo vídeo"
-						disabled={desktopOverlayLoading}
-						aria-disabled={desktopOverlayLoading ? 'true' : undefined}
-					>
+							<button
+								type="button"
+								class="desktop-overlay__nav desktop-overlay__nav--inline desktop-overlay__nav--inline-next"
+								on:click|stopPropagation={showNextDesktopOverlay}
+								aria-label="Ver próximo vídeo"
+								disabled={desktopOverlayLoading}
+								aria-disabled={desktopOverlayLoading ? 'true' : undefined}
+							>
 								<svg viewBox="0 0 24 24" aria-hidden="true">
 									<path
 										d="M9 5L16 12L9 19"
@@ -4688,15 +4561,11 @@ feedMetaHoldVideoId = videoId;
 		background-repeat: no-repeat;
 	}
 
-	.mobile-feed__player-placeholder {
-		position: absolute;
-		inset: 0;
-		pointer-events: none;
-	}
-
 	.mobile-feed__top,
 	.mobile-feed__text {
-		transition: opacity 0.35s ease, transform 0.35s ease;
+		transition:
+			opacity 0.35s ease,
+			transform 0.35s ease;
 		will-change: opacity, transform;
 	}
 
@@ -5427,25 +5296,6 @@ feedMetaHoldVideoId = videoId;
 		align-items: stretch;
 	}
 
-	@media (max-width: 820px) {
-		.video-grid[data-mobile-grid='true'] {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-			gap: 0;
-		}
-
-		.video-grid[data-mobile-grid='true'] .video-card {
-			gap: 0;
-		}
-
-		.video-grid[data-mobile-grid='true'] .video-card__player {
-			border-radius: 0;
-		}
-
-		.video-grid[data-mobile-grid='true'] .video-card__meta {
-			padding: 0.65rem 0.75rem 0.85rem;
-		}
-	}
-
 	@media (min-width: 640px) {
 		.video-grid {
 			grid-template-columns: repeat(var(--cards-tablet, 2), minmax(0, 1fr));
@@ -5639,10 +5489,9 @@ feedMetaHoldVideoId = videoId;
 
 	.desktop-overlay__grid {
 		display: grid;
-		grid-template-columns: auto minmax(0, clamp(380px, 48vw, 620px)) minmax(
-				0,
-				clamp(260px, 30vw, 420px)
-			) auto;
+		grid-template-columns:
+			auto minmax(0, clamp(380px, 48vw, 620px)) minmax(0, clamp(260px, 30vw, 420px))
+			auto;
 		align-items: stretch;
 		gap: clamp(1.5rem, 4vw, 3rem);
 		height: 100%;
@@ -6000,10 +5849,9 @@ feedMetaHoldVideoId = videoId;
 	}
 
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__grid {
-		grid-template-columns: auto minmax(0, clamp(360px, 40vw, 520px)) minmax(
-				0,
-				clamp(260px, 30vw, 440px)
-			) auto;
+		grid-template-columns:
+			auto minmax(0, clamp(360px, 40vw, 520px)) minmax(0, clamp(260px, 30vw, 440px))
+			auto;
 	}
 
 	.desktop-overlay[data-variant='glass'] .desktop-overlay__meta {

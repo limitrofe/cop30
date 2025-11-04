@@ -104,6 +104,7 @@
 	let error = null;
 	let isMuted = startMuted;
 	let playerReady = false;
+	let pendingMuteState = null;
 	let resolvedPosterAlt = 'Prévia do vídeo';
 	let showPoster = false;
 	let playerWrapperStyle = '';
@@ -311,10 +312,23 @@
 	function setMutedState(nextMuted, options = {}) {
 		const { allowRecreate = false } = options;
 		isMuted = nextMuted;
+		const inlineVideo = playerElement?.querySelector('video');
 
-		if (!playerInstance) {
+		if (!playerInstance || !playerReady) {
+			pendingMuteState = nextMuted;
+			if (inlineVideo) {
+				inlineVideo.muted = nextMuted;
+				inlineVideo.volume = nextMuted ? 0 : 1;
+				if (nextMuted) {
+					inlineVideo.setAttribute('muted', 'muted');
+				} else {
+					inlineVideo.removeAttribute('muted');
+				}
+			}
 			return false;
 		}
+
+		pendingMuteState = null;
 
 		let applied = false;
 		try {
@@ -360,6 +374,16 @@
 				applied = true;
 			} finally {
 				isRecreatingForMute = false;
+			}
+		}
+
+		if (!applied && inlineVideo) {
+			inlineVideo.muted = nextMuted;
+			inlineVideo.volume = nextMuted ? 0 : 1;
+			if (nextMuted) {
+				inlineVideo.setAttribute('muted', 'muted');
+			} else {
+				inlineVideo.removeAttribute('muted');
 			}
 		}
 
@@ -421,6 +445,7 @@
 			deactivateVideo(playbackId);
 		}
 		playerInstance = null;
+		pendingMuteState = isMuted;
 		publicControls = null;
 		if (!preserveMuteState) {
 			lastPropStartMuted = startMuted;
@@ -492,6 +517,9 @@
 			onReady: () => {
 				isLoading = false;
 				playerReady = true;
+				if (pendingMuteState !== null) {
+					isMuted = pendingMuteState;
+				}
 				if (shouldAutoplayOnCreate) {
 					ensurePlaybackRegistration();
 					activateVideo(playbackId, { source: 'globo-autoplay-ready' });

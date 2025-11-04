@@ -1496,6 +1496,7 @@ export const componentRegistry = [
 				headingAlignmentDesktop: 'center',
 				headingAlignmentMobile: 'left',
 				enableMobileFeed: true,
+				mobileFeedSkipDFP: false,
 				mobileDefaultView: 'feed',
 				mobileFeedMaxWidth: 768,
 				mobileFeedTitleColor: '#ffffff',
@@ -2026,6 +2027,12 @@ export const componentRegistry = [
 				path: 'layoutConfig.enableMobileFeed',
 				label: 'Ativar feed mobile em tela cheia',
 				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.mobileFeedSkipDFP',
+				label: 'Feed mobile • pular anúncios DFP',
+				type: 'boolean',
+				helpText: 'Remove publicidade dos players no modo shortz.'
 			},
 			{
 				path: 'layoutConfig.mobileDefaultView',
