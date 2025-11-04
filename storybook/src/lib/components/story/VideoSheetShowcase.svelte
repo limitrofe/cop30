@@ -3228,6 +3228,8 @@
 		if (!browser || !video?.uuid) return;
 		const shareUrl = buildShortzShareUrl(video.uuid);
 		if (!shareUrl) return;
+		const shareImage =
+			'https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumb_cop30.webp';
 		const shareMessage = [
 			video.title || pageTitle || document?.title || 'Shortz',
 			video.subtitle || video.description || `Confira "${video.title}" na nossa experiência shortz`,
@@ -3245,11 +3247,11 @@
 			url: shareUrl,
 			files: undefined
 		};
-		if (navigator.canShare?.({ files: [] }) && video.thumbnail) {
+		if (navigator.canShare?.({ files: [] })) {
 			try {
-				const response = await fetch(video.thumbnail, { mode: 'cors' });
+				const response = await fetch(shareImage, { mode: 'cors' });
 				const blob = await response.blob();
-				const fileName = video.thumbnail.split('/').pop() || 'thumb.jpg';
+				const fileName = shareImage.split('/').pop() || 'thumb.jpg';
 				const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
 				const fileShare = { ...shareData, files: [file] };
 				await navigator.share(fileShare);
