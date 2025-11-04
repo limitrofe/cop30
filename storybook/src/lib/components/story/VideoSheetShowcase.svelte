@@ -5,10 +5,15 @@
 	import { fetchGoogleSheet, sanitizeHeader } from '$lib/utils/googleSheets.js';
 
 	const dispatch = createEventDispatcher();
+	const MobileView = {
+		SHORTZ: 'shortz',
+		FEED: 'feed'
+	};
 	const SHORTZ_SEEN_STORAGE_KEY = 'video-sheet-showcase:shortz-seen';
 	const SHORTZ_LAST_LEAD_STORAGE_KEY = 'video-sheet-showcase:last-shortz-lead';
 	const SHORTZ_AUDIO_UNLOCKED_KEY = 'video-sheet-showcase:shortz-audio-unlocked';
 	const SHORTZ_SHARE_PARAM = 'shortz';
+	const SHORTZ_VIEW_PARAM = 'view';
 
 	export let sheetUrl = '';
 	export let sheetId = '';
@@ -169,6 +174,8 @@
 	let shortzLeadAvoidId = null;
 	let lastActiveFeedId = null;
 	let feedPlayerWindow = new Set();
+	let mobileViewMode = MobileView.SHORTZ;
+	let isMobileFeedGrid = false;
 	// Keep at least two neighbours ready to avoid blank states when the user swipes quickly.
 	const FEED_PLAYER_BUFFER = 2;
 	const feedAdSlots = new Set();
@@ -1071,7 +1078,14 @@
 	}
 
 	$: isMobileViewport = viewportWidth <= (layoutResolved.mobileFeedMaxWidth ?? 768);
-	$: isMobileFeed = layoutResolved.enableMobileFeed !== false && isMobileViewport;
+	$: if (!isMobileViewport && mobileViewMode !== MobileView.SHORTZ) {
+		mobileViewMode = MobileView.SHORTZ;
+	}
+	$: isMobileFeed =
+		layoutResolved.enableMobileFeed !== false &&
+		isMobileViewport &&
+		mobileViewMode === MobileView.SHORTZ;
+	$: isMobileFeedGrid = isMobileViewport && mobileViewMode === MobileView.FEED;
 	$: if (!isMobileFeed && feedAudioUnlocked) {
 		feedAudioUnlocked = false;
 		persistFeedAudioUnlocked(false);
@@ -1079,6 +1093,8 @@
 	$: {
 		if (!pendingShortzShareId) {
 			// nothing to do
+		} else if (isMobileViewport && mobileViewMode !== MobileView.SHORTZ) {
+			setMobileViewMode(MobileView.SHORTZ);
 		} else if (isMobileFeed) {
 			const hasMobileVideo = feedVideos.some((video) => video.uuid === pendingShortzShareId);
 			if (hasMobileVideo) {
@@ -1205,6 +1221,10 @@
 			const sharedId = url.searchParams.get(SHORTZ_SHARE_PARAM);
 			if (sharedId) {
 				pendingShortzShareId = sharedId;
+			}
+			const viewParam = url.searchParams.get(SHORTZ_VIEW_PARAM);
+			if (viewParam && isMobileViewport) {
+				mobileViewMode = resolveMobileViewMode(viewParam);
 			}
 			try {
 				const audioFlag = localStorage.getItem(SHORTZ_AUDIO_UNLOCKED_KEY);
@@ -2869,6 +2889,33 @@
 		}
 	}
 
+	function resolveMobileViewMode(value) {
+		const normalized = typeof value === 'string' ? value.trim().toLowerCase() : '';
+		if (['feed', 'grid', 'grade'].includes(normalized)) {
+			return MobileView.FEED;
+		}
+		return MobileView.SHORTZ;
+	}
+
+	function setMobileViewMode(mode) {
+		if (mode !== MobileView.SHORTZ && mode !== MobileView.FEED) return;
+		if (mobileViewMode === mode) return;
+		mobileViewMode = mode;
+		if (mode === MobileView.SHORTZ) {
+			queueMicrotask(() => {
+				if (isMobileFeed) {
+					if (!activeFeedId && feedVideos.length) {
+						activeFeedId = feedVideos[0].uuid;
+					}
+					snapActiveFeedVideo({ behavior: 'instant', force: true });
+				}
+			});
+		} else {
+			activeFeedId = null;
+			updateFeedPlayback();
+		}
+	}
+
 	function syncFeedAudioState() {
 		if (!isMobileFeed) return;
 		const shouldMuteActive = shouldAutoMute && !feedAudioUnlocked;
@@ -3181,6 +3228,9 @@
 				snapActiveFeedVideo({ behavior: 'instant', force: true });
 			});
 		};
+		if (isMobileViewport && mobileViewMode !== MobileView.SHORTZ) {
+			setMobileViewMode(MobileView.SHORTZ);
+		}
 		shortzSeenInitial = new Set(shortzSeenIds);
 		shortzLeadAvoidId = shortzLastLeadId;
 		feedOrderToken = nextShortzSeed();
@@ -3535,6 +3585,7 @@
 			}
 		}
 
+		setMobileViewMode(MobileView.FEED);
 		closeFeedOverlay();
 	}
 
@@ -3614,7 +3665,7 @@
 			class:controls--floating-visible={controlsFloatingVisible && !isMobileViewport}
 			class:controls--hidden-for-credits={hideControlsForCredits}
 			data-mobile={isMobileViewport ? 'true' : 'false'}
-			data-mobile-view={isMobileViewport ? 'shortz' : 'desktop'}
+			data-mobile-view={isMobileViewport ? mobileViewMode : 'desktop'}
 			data-overlay={feedOverlayVisible ? 'open' : 'closed'}
 			aria-hidden={hideControlsForCredits ? 'true' : undefined}
 			bind:this={controlsElement}
@@ -3910,7 +3961,7 @@
 											<button
 												type="button"
 												class="mobile-feed__audio-unlock"
-												on:click={() => handleFeedAudioUnlock(video.uuid)}
+												on:click={() => handleFeedAudioUnlock(video.uuid, null, { persist: true })}
 												aria-label="Ativar som para todos os vídeos"
 											>
 												Ativar áudio
@@ -3940,6 +3991,41 @@
 						</article>
 					{/each}
 				</div>
+			</div>
+		{:else}
+			<div class="status status--empty">{emptyStateMessage}</div>
+		{/if}
+	{:else if isMobileFeedGrid}
+		{#if regularSections.length}
+			<div class="mobile-feed-grid-panels">
+				{#each regularSections as section (section.anchor)}
+					<section class="mobile-feed-grid-section" aria-label={`Seção ${section.label}`}>
+						<h3>{section.label}</h3>
+						<div class="mobile-feed-grid" role="list">
+							{#each section.videos as video (video.uuid)}
+								<div class="mobile-feed-grid__item" role="listitem">
+									<button
+										type="button"
+										class="mobile-feed-grid__button"
+										on:click={() => handleVideoCardClick(video.uuid)}
+										aria-label={`Abrir ${video.title} no shortz`}
+									>
+										{#if video.thumbnail}
+											<img
+												src={video.thumbnail}
+												alt={video.title}
+												loading="lazy"
+												class="mobile-feed-grid__thumb"
+											/>
+										{:else}
+											<span class="mobile-feed-grid__fallback">{video.title}</span>
+										{/if}
+									</button>
+								</div>
+							{/each}
+						</div>
+					</section>
+				{/each}
 			</div>
 		{:else}
 			<div class="status status--empty">{emptyStateMessage}</div>
@@ -4049,7 +4135,7 @@
 		{/if}
 	{/if}
 
-	{#if layoutResolved.enableMobileFeed !== false && isMobileViewport && (hasSearch || filterOptions.length)}
+	{#if layoutResolved.enableMobileFeed !== false && isMobileViewport}
 		<nav
 			class="mobile-bottom-bar"
 			aria-label="Filtros e busca"
@@ -4058,12 +4144,38 @@
 		>
 			<button
 				type="button"
+				class="mobile-bottom-bar__button mobile-bottom-bar__button--shortz"
+				class:mobile-bottom-bar__button--active={mobileViewMode === MobileView.SHORTZ}
+				class:mobile-bottom-bar__button--active-shortz={mobileViewMode === MobileView.SHORTZ}
+				on:click={() => setMobileViewMode(MobileView.SHORTZ)}
+				aria-pressed={mobileViewMode === MobileView.SHORTZ}
+				aria-label="Ver vídeos em shortz"
+			>
+				shortz
+			</button>
+			<button
+				type="button"
+				class="mobile-bottom-bar__button mobile-bottom-bar__button--feed"
+				class:mobile-bottom-bar__button--active={mobileViewMode === MobileView.FEED &&
+					feedOverlayMode === 'none'}
+				class:mobile-bottom-bar__button--active-feed={mobileViewMode === MobileView.FEED &&
+					feedOverlayMode === 'none'}
+				on:click={() => setMobileViewMode(MobileView.FEED)}
+				aria-pressed={mobileViewMode === MobileView.FEED && feedOverlayMode === 'none'}
+				aria-label="Ver vídeos em feed"
+			>
+				feed
+			</button>
+			<button
+				type="button"
 				class="mobile-bottom-bar__button mobile-bottom-bar__button--search"
 				class:mobile-bottom-bar__button--active={feedOverlayMode === 'search-filters'}
 				class:mobile-bottom-bar__button--active-search={feedOverlayMode === 'search-filters'}
 				on:click={handleSearchFiltersToggle}
 				aria-pressed={feedOverlayMode === 'search-filters'}
 				aria-label="Abrir busca e filtros de vídeos"
+				disabled={!hasSearch && !filterOptions.length}
+				aria-disabled={!hasSearch && !filterOptions.length ? 'true' : undefined}
 			>
 				busca
 			</button>
@@ -4997,12 +5109,31 @@
 		box-shadow: 0 18px 36px rgba(15, 23, 42, 0.28);
 	}
 
+	.mobile-feed-grid-panels {
+		padding: var(--mobile-feed-controls-offset, 0) 0
+			calc(var(--mobile-bottom-bar-height, 0) + 1.25rem);
+		display: flex;
+		flex-direction: column;
+		gap: 1.75rem;
+	}
+
+	.mobile-feed-grid-section {
+		padding: 0 1rem;
+	}
+
+	.mobile-feed-grid-section h3 {
+		margin: 0 0 0.75rem;
+		font-size: 1rem;
+		font-weight: 700;
+		color: var(--mobile-feed-title, #ffffff);
+	}
+
 	.mobile-feed-grid {
 		display: grid;
 		grid-template-columns: repeat(3, minmax(0, 1fr));
 		gap: 1px;
-		padding: calc(var(--mobile-feed-controls-offset, 4.6rem) + 0.5rem) 0
-			calc(var(--mobile-bottom-bar-height, 0) + 0.75rem);
+		padding: calc(0.1 * var(--mobile-feed-controls-offset, 4.6rem) + 0.2rem) 0
+			calc(var(--mobile-bottom-bar-height, 0) / 2 + 0.375rem);
 		width: 100vw;
 		margin-left: calc(50% - 50vw);
 		margin-right: calc(50% - 50vw);
