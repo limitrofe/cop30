@@ -1437,7 +1437,8 @@ export const componentRegistry = [
 				clearButtonColor: '#111827',
 				clearButtonHoverBackground: 'rgba(17,24,39,0.12)',
 				clearButtonBorderColor: 'transparent',
-				clearButtonHoverBorderColor: 'transparent'
+				clearButtonHoverBorderColor: 'transparent',
+				modalBackground: 'rgba(6,10,21,0.96)'
 			},
 			sectionsConfig: {
 				column: '',
@@ -1489,6 +1490,7 @@ export const componentRegistry = [
 				desktopTopbarColor: '#111827',
 				controlsHeadingColorDesktop: '#b91c1c',
 				controlsHeadingSubtitleDesktop: 'rgba(15, 23, 42, 0.65)',
+				controlsHeadingColorMobile: '',
 				headingEyebrowDesktop: '',
 				headingEyebrowMobile: '',
 				headingEyebrowColor: '#c2410c',
@@ -1846,6 +1848,12 @@ export const componentRegistry = [
 				showAlpha: true
 			},
 			{
+				path: 'searchConfig.modalBackground',
+				label: 'Busca • cor de fundo do modal (mobile)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
 				path: 'sectionsConfig.column',
 				label: 'Coluna usada para criar seções',
 				type: 'text',
@@ -1996,6 +2004,12 @@ export const componentRegistry = [
 			{
 				path: 'layoutConfig.controlsHeadingColorDesktop',
 				label: 'Título principal • cor (desktop)',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.controlsHeadingColorMobile',
+				label: 'Título principal • cor (mobile)',
 				type: 'color',
 				showAlpha: true
 			},

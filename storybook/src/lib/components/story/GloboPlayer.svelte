@@ -92,9 +92,10 @@
 	export let controls = true;
 	export let forceControls = false;
 	export let showCaption = true;
-	export let poster = null;
-	export let posterAlt = 'Prévia do vídeo';
-	export let eagerInit = false;
+export let poster = null;
+export let posterAlt = 'Prévia do vídeo';
+export let eagerInit = false;
+export let hideNativeAudioButton = false;
 
 	// --- VARIÁVEIS INTERNAS ---
 	let playerElement;
@@ -111,6 +112,16 @@
 	const dispatch = createEventDispatcher();
 	const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
 	let unregisterPlayback = null;
+	const nativeAudioButtonSelectors = [
+		"button[data-globoplayer-audio-button='true']",
+		"button[aria-label='Ativar som']",
+		"button[aria-label='Ativar áudio']",
+		"button[aria-label='Ativar audio']",
+		"button[aria-label*='som']",
+		"button[aria-label*='áudio']",
+		"button[aria-label*='audio']"
+	];
+	const nativeAudioButtonSelector = nativeAudioButtonSelectors.join(',');
 
 	// Controle de estado
 	let observer = null;
@@ -210,44 +221,84 @@
 
 	function cleanupMuteButtonListeners() {
 		muteButtonListeners.forEach((handler, button) => {
-			button.removeEventListener('click', handler);
-			button.removeEventListener('touchend', handler);
+			button.removeEventListener('click', handler, true);
 		});
 		muteButtonListeners.clear();
 	}
 
-	function handleExternalAudioUnlock() {
-		queueMicrotask(() => {
-			setMutedState(false, { allowRecreate: true });
-			const controls = notifyControls('audio-unlock');
+	function getNativeAudioButtons() {
+		if (!playerElement) return [];
+		try {
+			return Array.from(playerElement.querySelectorAll(nativeAudioButtonSelector));
+		} catch (error) {
+			console.warn('GloboPlayer: falha ao localizar botão nativo de áudio', error);
+			return [];
+		}
+	}
+
+	function applyNativeAudioButtonState(button) {
+		if (!button) return;
+		if (hideNativeAudioButton) {
+			button.setAttribute('aria-hidden', 'true');
+			button.setAttribute('tabindex', '-1');
+			button.style.setProperty('display', 'none', 'important');
+			button.style.setProperty('pointer-events', 'none', 'important');
+			return;
+		}
+		button.dataset.globoplayerAudioButton = 'true';
+		button.hidden = false;
+		button.removeAttribute('aria-hidden');
+		button.removeAttribute('hidden');
+		button.removeAttribute('tabindex');
+		button.style.removeProperty('display');
+		button.style.removeProperty('opacity');
+		button.style.removeProperty('visibility');
+		button.style.removeProperty('pointer-events');
+		const label = isMuted ? 'Ativar áudio' : 'Mutar áudio';
+		button.setAttribute('aria-label', label);
+		button.setAttribute('title', label);
+		button.setAttribute('data-audio-state', isMuted ? 'muted' : 'unmuted');
+	}
+
+	function updateNativeAudioButtonsState() {
+		const buttons = getNativeAudioButtons();
+		if (!buttons.length) return;
+		buttons.forEach((button) => applyNativeAudioButtonState(button));
+	}
+
+	function toggleNativeAudioState(nextMuted = !isMuted) {
+		setMutedState(nextMuted, { allowRecreate: true });
+		const controls = notifyControls(nextMuted ? 'audio-lock' : 'audio-unlock');
+		if (nextMuted) {
+			dispatch('audiolock', { controls, player: playerInstance });
+		} else {
 			dispatch('audiounlock', { controls, player: playerInstance });
-		});
+		}
+		updateNativeAudioButtonsState();
+	}
+
+	function handleNativeAudioButtonClick(event) {
+		if (hideNativeAudioButton) return;
+		event?.preventDefault?.();
+		event?.stopPropagation?.();
+		event?.stopImmediatePropagation?.();
+		toggleNativeAudioState(!isMuted);
 	}
 
 	function attachMuteButtonListeners() {
 		if (!playerElement) return;
-		const selectors = [
-			"button[aria-label='Ativar som']",
-			"button[aria-label='Ativar áudio']",
-			"button[aria-label='Ativar audio']",
-			"button[aria-label*='som']",
-			"button[aria-label*='áudio']",
-			"button[aria-label*='audio']"
-		];
-		for (const selector of selectors) {
-			const buttons = playerElement.querySelectorAll(selector);
-			if (!buttons?.length) continue;
-			buttons.forEach((button) => {
-				if (muteButtonListeners.has(button)) return;
-				button.removeAttribute('aria-hidden');
-				button.style.removeProperty('display');
-				button.removeAttribute('tabindex');
-				const handler = () => handleExternalAudioUnlock();
-				button.addEventListener('click', handler, { passive: true });
-				button.addEventListener('touchend', handler, { passive: true });
-				muteButtonListeners.set(button, handler);
-			});
-		}
+		const buttons = getNativeAudioButtons();
+		if (!buttons.length) return;
+		buttons.forEach((button) => {
+			const handler = muteButtonListeners.get(button);
+			applyNativeAudioButtonState(button);
+			if (handler || hideNativeAudioButton) {
+				return;
+			}
+			const clickHandler = (event) => handleNativeAudioButtonClick(event);
+			button.addEventListener('click', clickHandler, { passive: false, capture: true });
+			muteButtonListeners.set(button, clickHandler);
+		});
 	}
 
 	function setupMuteButtonObserver() {
@@ -255,7 +306,12 @@
 		muteButtonObserver?.disconnect();
 		try {
 			muteButtonObserver = new MutationObserver(() => attachMuteButtonListeners());
-			muteButtonObserver.observe(playerElement, { childList: true, subtree: true });
+			muteButtonObserver.observe(playerElement, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['style', 'class', 'hidden', 'aria-hidden']
+			});
 			attachMuteButtonListeners();
 		} catch (error) {
 			console.warn('GloboPlayer: falha ao observar botão de áudio', error);
@@ -403,6 +459,7 @@
 			}
 		}
 
+		updateNativeAudioButtonsState();
 		return applied;
 	}
 

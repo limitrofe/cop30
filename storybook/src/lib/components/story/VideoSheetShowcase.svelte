@@ -69,9 +69,10 @@
 	let activeSearchNormalized = '';
 	let shouldApplySearch = false;
 	let searchHasSubmitted = false;
-	let searchTermNormalized = '';
-	let searchSuggestions = [];
-	let filterShortcutOptions = [];
+let searchTermNormalized = '';
+let searchSuggestions = [];
+let filterShortcutOptions = [];
+let filterNavActiveId = null;
 
 	let filterMode = 'single';
 	let filterMatchStrategy = 'OR';
@@ -155,27 +156,29 @@
 	let videoMetaVisibleMobile = true;
 	let feedMetaHidden = new Set();
 	let feedMetaTimerId = null;
-	let feedMetaTimerVideoId = null;
-	let lastFeedMetaActiveId = null;
-	let feedMetaHoldActive = false;
-	let feedMetaHoldVideoId = null;
-	let feedMetaHoldEndHandler = null;
-	let feedIndexLookup = new Map();
-	let mobileFeedLocked = false;
-	let mobileFeedLockTimerId = null;
-	let shortzSeenIds = new Set();
-	let shortzSeenHydrated = false;
-	let shortzSeenInitial = new Set();
-	let feedAudioUnlocked = false;
-	let pendingShortzShareId = null;
-	let feedPosterVisible = new Map();
-	let shortzLastLeadId = null;
-	let shortzLastLeadPersistedId = null;
-	let shortzLeadAvoidId = null;
-	let lastActiveFeedId = null;
-	let feedPlayerWindow = new Set();
-	let mobileViewMode = MobileView.SHORTZ;
-	let isMobileFeedGrid = false;
+let feedMetaTimerVideoId = null;
+let lastFeedMetaActiveId = null;
+let feedMetaHoldActive = false;
+let feedMetaHoldVideoId = null;
+let feedMetaHoldEndHandler = null;
+let feedIndexLookup = new Map();
+let mobileFeedLocked = false;
+let mobileFeedLockTimerId = null;
+let shortzSeenIds = new Set();
+let shortzSeenHydrated = false;
+let shortzSeenInitial = new Set();
+let feedAudioUnlocked = false;
+let pendingShortzShareId = null;
+let feedPosterVisible = new Map();
+let shortzLastLeadId = null;
+let shortzLastLeadPersistedId = null;
+let shortzLeadAvoidId = null;
+let lastActiveFeedId = null;
+let feedPlayerWindow = new Set();
+let mobileViewMode = MobileView.SHORTZ;
+let isMobileFeedGrid = false;
+let hideMobileBottomBarForCredits = false;
+let mobileBottomBarHidden = false;
 	// Keep at least two neighbours ready to avoid blank states when the user swipes quickly.
 	const FEED_PLAYER_BUFFER = 2;
 	const feedAdSlots = new Set();
@@ -271,7 +274,8 @@
 		clearButtonColor: '#111827',
 		clearButtonHoverBackground: 'rgba(17,24,39,0.12)',
 		clearButtonBorderColor: 'transparent',
-		clearButtonHoverBorderColor: 'transparent'
+		clearButtonHoverBorderColor: 'transparent',
+		modalBackground: 'rgba(6,10,21,0.96)'
 	};
 
 	const defaultSectionsConfig = {
@@ -374,6 +378,7 @@
 		searchMaxWidthDesktop: '100%',
 		controlsHeadingColorDesktop: '#b91c1c',
 		controlsHeadingSubtitleDesktop: 'rgba(15, 23, 42, 0.65)',
+		controlsHeadingColorMobile: '',
 		controlsBackground: 'var(--sheet-background, #fdf4ed)',
 		controlsBorderColor: 'transparent',
 		controlsShadow: 'none',
@@ -491,6 +496,7 @@
 		false
 	);
 	$: searchStyleVars = buildSearchStyleVars(searchResolved);
+	$: controlsStyle = [controlsInlineStyle, searchStyleVars].filter(Boolean).join(';');
 
 	$: sectionsResolved = {
 		...defaultSectionsConfig,
@@ -538,6 +544,10 @@
 			: (desktopOverlayMetaAlignRaw || '').toLowerCase() === 'bottom'
 				? 'flex-end'
 				: 'center';
+	$: controlsHeadingColorMobileResolved = firstMeaningful(
+		layoutResolved.controlsHeadingColorMobile,
+		layoutResolved.controlsHeadingColorDesktop
+	);
 	$: layoutStyleVars = [
 		isMeaningful(layoutResolved.backgroundColor)
 			? `--sheet-background:${layoutResolved.backgroundColor}`
@@ -556,6 +566,9 @@
 			: null,
 		isMeaningful(layoutResolved.controlsHeadingSubtitleDesktop)
 			? `--controls-heading-desktop-subtitle:${layoutResolved.controlsHeadingSubtitleDesktop}`
+			: null,
+		isMeaningful(controlsHeadingColorMobileResolved)
+			? `--controls-heading-mobile:${controlsHeadingColorMobileResolved}`
 			: null,
 		isMeaningful(layoutResolved.headingEyebrowColor)
 			? `--controls-heading-eyebrow:${layoutResolved.headingEyebrowColor}`
@@ -676,7 +689,9 @@
 		.filter(Boolean)
 		.join(';');
 	$: showcaseStyles =
-		[isMobileFeed ? mobileFeedStyles : null, layoutStyleVars].filter(Boolean).join(';') ||
+		[(isMobileViewport || isMobileFeed) ? mobileFeedStyles : null, layoutStyleVars]
+			.filter(Boolean)
+			.join(';') ||
 		undefined;
 	$: fallbackTitle = firstMeaningful(
 		layoutResolved.desktopTitle,
@@ -850,6 +865,13 @@
 	$: totalVideos = videos.length;
 
 	$: filterOptions = buildFilterOptions(videos, resolvedFilterColumns, filtersResolved);
+	$: {
+		const navOptionExists = filterOptions?.some((option) => option.id === filterNavActiveId);
+		if (!navOptionExists) {
+			filterNavActiveId =
+				filterOptions?.find((option) => option.isAll)?.id ?? filterOptions?.[0]?.id ?? null;
+		}
+	}
 
 	$: reconcileFilterSelection();
 
@@ -1415,7 +1437,8 @@
 			'--search-clear-button-color': config.clearButtonColor,
 			'--search-clear-button-hover-background': config.clearButtonHoverBackground,
 			'--search-clear-button-border-color': config.clearButtonBorderColor,
-			'--search-clear-button-hover-border-color': config.clearButtonHoverBorderColor
+			'--search-clear-button-hover-border-color': config.clearButtonHoverBorderColor,
+			'--search-modal-background': config.modalBackground
 		};
 
 		return Object.entries(entries)
@@ -2315,40 +2338,45 @@
 		}
 	}
 
-	function handleFilterClick(option) {
-		if (!option) return;
-		userTouchedFilters = true;
-		if (filterMode === 'single') {
-			activeFilterId = option.id;
-		} else {
-			if (option.isAll) {
-				activeFilterIds = new Set();
-				revealMobileResults({ type: 'filter' });
-				return;
-			}
-			const next = new Set(activeFilterIds);
-			if (next.has(option.id)) {
-				next.delete(option.id);
-			} else {
-				next.add(option.id);
-			}
-			activeFilterIds = next;
+	function findNavigationAnchorForOption(option) {
+		if (!option) return null;
+		if (option.isAll) {
+			return highlightSection?.anchor ?? regularSections?.[0]?.anchor ?? null;
 		}
-		revealMobileResults({ type: 'filter' });
+		const match = videos.find((video) => video.filterIds?.has(option.id));
+		return match?.section?.anchor ?? null;
+	}
+
+	function scrollToAnchor(anchor, { behavior = 'smooth' } = {}) {
+		if (!browser || !anchor) return false;
+		const node = document.getElementById(anchor);
+		if (!node) return false;
+		try {
+			node.scrollIntoView({ behavior, block: 'start' });
+			return true;
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao rolar até a âncora', error);
+			return false;
+		}
+	}
+
+	async function handleFilterNavigation(option) {
+		if (!option) return;
+		filterNavActiveId = option.id ?? null;
+		if (isMobileViewport) {
+			revealMobileResults({ type: 'filter' });
+			await tick();
+		}
+		const anchor = findNavigationAnchorForOption(option);
+		if (anchor && scrollToAnchor(anchor)) {
+			return;
+		}
+		scrollShowcaseToTop({ behavior: 'smooth' });
 	}
 
 	function isFilterActive(option) {
 		if (!option) return false;
-		if (filterMode === 'single') {
-			if (option.isAll) {
-				return !activeFilterId || activeFilterId === 'all';
-			}
-			return activeFilterId === option.id;
-		}
-		if (option.isAll) {
-			return !activeFilterIds || activeFilterIds.size === 0;
-		}
-		return activeFilterIds.has(option.id);
+		return filterNavActiveId === option.id;
 	}
 
 	function clearSearchSuggestionsHideTimeout() {
@@ -2949,6 +2977,22 @@
 		syncFeedAudioState();
 	}
 
+	function handleFeedAudioLock(videoId, event, { persist = true } = {}) {
+		if (!isMobileFeed) return;
+		feedAudioUnlocked = false;
+		if (persist) {
+			persistFeedAudioUnlocked(false);
+		}
+		const detailControls = event?.detail?.controls ?? null;
+		const controls = detailControls || feedPlayerControls.get(videoId) || null;
+		try {
+			controls?.setMuted?.(true);
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao mutar áudio do feed', error);
+		}
+		syncFeedAudioState();
+	}
+
 	function handlePlayerControls(videoId, controls, reason = 'update') {
 		if (!videoId || !controls) return;
 		if (reason !== 'ready') {
@@ -3374,58 +3418,14 @@
 		return null;
 	}
 
-	function clearSearchStateForFilterJump() {
-		if (!searchTerm && !activeSearchTerm && !searchHasSubmitted) return;
-		searchTerm = '';
-		activeSearchTerm = '';
-		searchHasSubmitted = false;
-	}
-
-	function applyFilterOption(option) {
-		if (!option || !filterOptions?.length) return false;
-		const exists = filterOptions.some((candidate) => candidate.id === option.id);
-		if (!exists) return false;
-		userTouchedFilters = true;
-		if (filterMode === 'single') {
-			activeFilterId = option.id;
-		} else {
-			activeFilterId = null;
-			const next = new Set();
-			if (!option.isAll) {
-				next.add(option.id);
-			}
-			activeFilterIds = next;
-		}
-		revealMobileResults({ type: 'filter' });
-		return true;
-	}
-
 	async function handleVideoLabelFilter(video) {
 		const option = resolveFilterOptionForVideo(video);
 		if (!option) return;
-		clearSearchStateForFilterJump();
-		const applied = applyFilterOption(option);
-		if (!applied) return;
-		const overlayWasOpen = !!desktopOverlayVideoId;
-		if (overlayWasOpen) {
+		if (desktopOverlayVideoId) {
 			closeDesktopOverlay({ restoreScroll: false });
+			await tick();
 		}
-		await tick();
-		if (browser) {
-			try {
-				if (controlsElement) {
-					controlsElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-				} else {
-					window.scrollTo({ top: 0, behavior: 'smooth' });
-				}
-			} catch (error) {
-				try {
-					window.scrollTo({ top: 0, behavior: 'smooth' });
-				} catch (scrollError) {
-					// ignore fallback failures
-				}
-			}
-		}
+		await handleFilterNavigation(option);
 	}
 
 	async function openDesktopOverlay(videoId) {
@@ -3610,14 +3610,17 @@
 	const gridStyle = () =>
 		`--card-gap:${layoutResolved.cardGap}; --cards-mobile:${layoutResolved.cardsPerRowMobile}; --cards-tablet:${layoutResolved.cardsPerRowTablet}; --cards-desktop:${layoutResolved.cardsPerRowDesktop}; --card-desktop-min:${layoutResolved.cardMinWidthDesktop}; --card-desktop-max:${layoutResolved.cardMaxWidthDesktop};`;
 
-	$: hasSearch = resolvedSearchColumns.length > 0;
-	$: showControls = (filterOptions.length > 0 || hasSearch) && totalVideos > 0;
-	$: hideControlsForCredits = !isMobileViewport && creditsInViewport && controlsFixed;
-	$: if (browser) {
-		if (isMobileFeed) {
-			ensureFeedObserver();
-		} else {
-			teardownFeedObserver();
+$: hasSearch = resolvedSearchColumns.length > 0;
+$: showControls = (filterOptions.length > 0 || hasSearch) && totalVideos > 0;
+$: hideControlsForCredits = !isMobileViewport && creditsInViewport && controlsFixed;
+$: hideMobileBottomBarForCredits =
+	isMobileViewport && creditsInViewport && layoutResolved.enableMobileFeed !== false;
+$: mobileBottomBarHidden = feedOverlayVisible || hideMobileBottomBarForCredits;
+$: if (browser) {
+	if (isMobileFeed) {
+		ensureFeedObserver();
+	} else {
+		teardownFeedObserver();
 		}
 	}
 </script>
@@ -3669,99 +3672,98 @@
 			data-overlay={feedOverlayVisible ? 'open' : 'closed'}
 			aria-hidden={hideControlsForCredits ? 'true' : undefined}
 			bind:this={controlsElement}
-			style={controlsInlineStyle}
+			style={controlsStyle}
 		>
 			{#if isMobileViewport}
 				{#if feedOverlayVisible}
-					<div class="controls__header">
-						<h2>Buscar e filtrar vídeos</h2>
-						<button
-							type="button"
-							class="controls__close"
-							on:click={closeFeedOverlay}
-							aria-label="Fechar painel"
-						>
-							Fechar
-						</button>
-					</div>
+					<div class="controls__drawer">
+						<div class="controls__header">
+							<h2>Buscar e filtrar vídeos</h2>
+						</div>
 
-					<div class="controls__modal">
-						{#if showHeadingEyebrow}
-							<span class="controls__modal-eyebrow">{headingEyebrow}</span>
-						{/if}
+						<div class="controls__modal">
+							{#if showHeadingEyebrow}
+								<span class="controls__modal-eyebrow">{headingEyebrow}</span>
+							{/if}
 
-						{#if hasSearch}
-							<div class="search-wrapper controls__modal-search">
-								<form
-									class="search-bar"
-									role="search"
-									on:submit={handleSearchSubmit}
-									style={searchStyleVars}
-								>
-									<input
-										type="search"
-										name="video-search"
-										placeholder={searchResolved.placeholder}
-										aria-label={searchResolved.placeholder}
-										bind:value={searchTerm}
-										on:input={handleSearchInput}
-										on:focus={handleSearchFocus}
-										on:blur={handleSearchBlur}
-										bind:this={searchInputRef}
-									/>
-									<button type="submit">{searchResolved.submitLabel}</button>
-									{#if searchTerm && searchResolved.showClearButton !== false}
-										<button type="button" class="alt" on:click={handleSearchClear}>
-											{searchResolved.clearLabel}
-										</button>
+							{#if hasSearch}
+								<div class="search-wrapper controls__modal-search">
+									<form
+										class="search-bar"
+										role="search"
+										on:submit={handleSearchSubmit}
+										style={searchStyleVars}
+									>
+										<input
+											type="search"
+											name="video-search"
+											placeholder={searchResolved.placeholder}
+											aria-label={searchResolved.placeholder}
+											bind:value={searchTerm}
+											on:input={handleSearchInput}
+											on:focus={handleSearchFocus}
+											on:blur={handleSearchBlur}
+											bind:this={searchInputRef}
+										/>
+										<button type="submit">{searchResolved.submitLabel}</button>
+										{#if searchTerm && searchResolved.showClearButton !== false}
+											<button type="button" class="alt" on:click={handleSearchClear}>
+												{searchResolved.clearLabel}
+											</button>
+										{/if}
+									</form>
+									{#if searchSuggestionsVisible && searchSuggestions.length}
+										<ul class="search-suggestions" role="listbox" aria-label="Sugestões de busca">
+											{#each searchSuggestions as suggestion (suggestion.id)}
+												<li role="presentation">
+													<button
+														type="button"
+														role="option"
+														class="search-suggestions__item"
+														on:mousedown|preventDefault
+														on:click={() => handleSuggestionSelect(suggestion)}
+													>
+														{suggestion.label}
+													</button>
+												</li>
+											{/each}
+										</ul>
 									{/if}
-								</form>
-								{#if searchSuggestionsVisible && searchSuggestions.length}
-									<ul class="search-suggestions" role="listbox" aria-label="Sugestões de busca">
-										{#each searchSuggestions as suggestion (suggestion.id)}
-											<li role="presentation">
-												<button
-													type="button"
-													role="option"
-													class="search-suggestions__item"
-													on:mousedown|preventDefault
-													on:click={() => handleSuggestionSelect(suggestion)}
-												>
-													{suggestion.label}
-												</button>
-											</li>
-										{/each}
-									</ul>
-								{/if}
-							</div>
-						{/if}
-
-						{#if filterOptions.length}
-							<div class="controls__modal-section">
-								<p class="controls__modal-section-title">Temas:</p>
-								<div
-									class="filter-carousel filter-carousel--modal"
-									role="tablist"
-									aria-label="Filtros da narrativa"
-								>
-									{#each filterOptions as option (option.id)}
-										<button
-											type="button"
-											role="tab"
-											class="filter-chip"
-											class:filter-chip--active={isFilterActive(option)}
-											on:click={() => handleFilterClick(option)}
-											aria-pressed={isFilterActive(option)}
-										>
-											{option.label}
-											{#if filtersResolved.includeCounts && option.count !== undefined}
-												<span class="filter-chip__count">{option.count}</span>
-											{/if}
-										</button>
-									{/each}
 								</div>
-							</div>
-						{/if}
+							{/if}
+
+							{#if filterOptions.length}
+								<div class="controls__modal-section">
+									<p class="controls__modal-section-title">Temas:</p>
+									<div
+										class="filter-carousel filter-carousel--modal"
+										role="tablist"
+										aria-label="Filtros da narrativa"
+									>
+										{#each filterOptions as option (option.id)}
+											<button
+												type="button"
+												role="tab"
+												class="filter-chip"
+												class:filter-chip--active={isFilterActive(option)}
+												on:click={() => handleFilterNavigation(option)}
+												aria-pressed={isFilterActive(option)}
+											>
+												{option.label}
+												{#if filtersResolved.includeCounts && option.count !== undefined}
+													<span class="filter-chip__count">{option.count}</span>
+												{/if}
+											</button>
+										{/each}
+									</div>
+								</div>
+							{/if}
+						</div>
+						<div class="controls__modal-footer">
+							<button type="button" class="controls__close-secondary" on:click={closeFeedOverlay}>
+								Fechar
+							</button>
+						</div>
 					</div>
 				{/if}
 			{:else}
@@ -3838,7 +3840,7 @@
 									role="tab"
 									class="filter-chip"
 									class:filter-chip--active={isFilterActive(option)}
-									on:click={() => handleFilterClick(option)}
+									on:click={() => handleFilterNavigation(option)}
 									aria-pressed={isFilterActive(option)}
 								>
 									{option.label}
@@ -3920,6 +3922,7 @@
 									on:error={() => setFeedPosterState(video.uuid, true)}
 									on:destroyed={() => setFeedPosterState(video.uuid, true)}
 									on:audiounlock={(event) => handleFeedAudioUnlock(video.uuid, event)}
+									on:audiolock={(event) => handleFeedAudioLock(video.uuid, event)}
 								/>
 							</div>
 							<div class="mobile-feed__overlay">
@@ -3957,16 +3960,6 @@
 										{/if}
 									</div>
 									<div class="mobile-feed__actions">
-										{#if shouldAutoMute && !feedAudioUnlocked}
-											<button
-												type="button"
-												class="mobile-feed__audio-unlock"
-												on:click={() => handleFeedAudioUnlock(video.uuid, null, { persist: true })}
-												aria-label="Ativar som para todos os vídeos"
-											>
-												Ativar áudio
-											</button>
-										{/if}
 										{#if video.link}
 											<a
 												class="mobile-feed__cta"
@@ -3999,7 +3992,11 @@
 		{#if regularSections.length}
 			<div class="mobile-feed-grid-panels">
 				{#each regularSections as section (section.anchor)}
-					<section class="mobile-feed-grid-section" aria-label={`Seção ${section.label}`}>
+					<section
+						class="mobile-feed-grid-section"
+						id={section.anchor}
+						aria-label={`Seção ${section.label}`}
+					>
 						<h3>{section.label}</h3>
 						<div class="mobile-feed-grid" role="list">
 							{#each section.videos as video (video.uuid)}
@@ -4139,7 +4136,8 @@
 		<nav
 			class="mobile-bottom-bar"
 			aria-label="Filtros e busca"
-			class:mobile-bottom-bar--hidden={feedOverlayVisible}
+			class:mobile-bottom-bar--hidden={mobileBottomBarHidden}
+			aria-hidden={mobileBottomBarHidden ? 'true' : undefined}
 			style={mobileChromeStyle || undefined}
 		>
 			<button
@@ -4464,6 +4462,7 @@
 		gap: 0;
 		background: #000000;
 		color: var(--mobile-feed-title, #ffffff);
+		--mobile-feed-title: #ce463c;
 		--mobile-feed-controls-offset: env(safe-area-inset-top, 0);
 		padding: 0 0 var(--mobile-bottom-bar-height, 0) 0;
 	}
@@ -4693,11 +4692,11 @@
 		z-index: 50;
 		display: flex;
 		flex-direction: column;
-		gap: 1.1rem;
-		padding: calc(env(safe-area-inset-top, 0) + 1.5rem) 0
-			calc(env(safe-area-inset-bottom, 0) + 2rem);
-		background: rgba(6, 10, 21, 0.9);
-		backdrop-filter: blur(24px);
+		justify-content: flex-end;
+		align-items: stretch;
+		padding: calc(env(safe-area-inset-top, 0) + 0.5rem) 0 0;
+		background: rgba(6, 10, 21, 0.78);
+		backdrop-filter: blur(28px);
 		border: none;
 		box-shadow: none;
 		height: 100vh;
@@ -4705,6 +4704,31 @@
 		min-height: 100vh;
 		min-height: 100dvh;
 		overflow: hidden;
+	}
+
+.controls__drawer {
+	background: var(--search-modal-background, rgba(6, 10, 21, 0.96));
+		border-radius: 1.5rem 1.5rem 0 0;
+		box-shadow: 0 -28px 56px rgba(3, 4, 12, 0.65);
+		padding: clamp(1rem, 4vw, 1.75rem);
+		padding-bottom: calc(clamp(1rem, 4vw, 1.75rem) + env(safe-area-inset-bottom, 0));
+		display: flex;
+		flex-direction: column;
+		gap: 1.25rem;
+		width: 100%;
+		max-height: min(92vh, 720px);
+		animation: controls-drawer-in 0.32s ease-out forwards;
+		transform: translateY(100%);
+		overflow: hidden;
+	}
+
+	@keyframes controls-drawer-in {
+		from {
+			transform: translateY(100%);
+		}
+		to {
+			transform: translateY(0%);
+		}
 	}
 
 	.controls__header {
@@ -4743,9 +4767,9 @@
 		padding-inline: 0;
 	}
 
-	.controls[data-mobile='true'][data-overlay='open'] .search-bar input {
-		background: rgba(255, 255, 255, 0.92);
-	}
+.controls[data-mobile='true'][data-overlay='open'] .search-bar input {
+	background: var(--search-input-background, rgba(255, 255, 255, 0.92));
+}
 
 	.controls[data-mobile='true'][data-overlay='open'] .filter-carousel {
 		margin-inline: 0;
@@ -4756,10 +4780,42 @@
 		display: flex;
 		flex-direction: column;
 		gap: 1.5rem;
-		padding: 0 1rem 2rem;
-		flex: 1;
+		padding: 0;
+		flex: initial;
 		overflow-y: auto;
+		max-height: min(60vh, 520px);
 		min-height: 0;
+		padding-right: 0.35rem;
+	}
+
+	.controls__modal-dismiss {
+		position: sticky;
+		top: -0.5rem;
+		align-self: flex-end;
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		padding: 0.4rem 0.9rem;
+		border-radius: 999px;
+		border: 1px solid rgba(255, 255, 255, 0.38);
+		background: rgba(6, 10, 21, 0.65);
+		color: var(--mobile-feed-title, #ffffff);
+		font-size: 0.85rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		cursor: pointer;
+		z-index: 2;
+		box-shadow: 0 12px 24px rgba(5, 8, 16, 0.45);
+	}
+
+	.controls__modal-dismiss:hover,
+	.controls__modal-dismiss:focus-visible {
+		border-color: rgba(255, 255, 255, 0.7);
+		background: rgba(255, 255, 255, 0.18);
+		color: #ffffff;
+		outline: none;
+		transform: translateY(-1px);
 	}
 
 	.controls__modal-eyebrow {
@@ -4789,6 +4845,36 @@
 		font-size: 0.9rem;
 		font-weight: 600;
 		color: var(--mobile-feed-title, #ffffff);
+	}
+
+	.controls__modal-footer {
+		margin-top: auto;
+		padding-top: 1rem;
+		display: flex;
+		justify-content: center;
+	}
+
+	.controls__close-secondary {
+		border: 1px solid rgba(255, 255, 255, 0.32);
+		border-radius: 999px;
+		background: rgba(6, 10, 21, 0.35);
+		color: var(--mobile-feed-title, #ffffff);
+		font-size: 0.9rem;
+		font-weight: 600;
+		padding: 0.65rem 1.75rem;
+		cursor: pointer;
+		transition:
+			background 0.2s ease,
+			border-color 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.controls__close-secondary:hover,
+	.controls__close-secondary:focus-visible {
+		background: rgba(255, 255, 255, 0.18);
+		border-color: rgba(255, 255, 255, 0.6);
+		transform: translateY(-1px);
+		outline: none;
 	}
 
 	.filter-carousel.filter-carousel--modal {
@@ -4917,30 +5003,6 @@
 		height: 100%;
 	}
 
-	.mobile-feed__player :global(button[aria-label='Ativar som']) {
-		display: none !important;
-	}
-
-	.mobile-feed__player :global(button[aria-label='Ativar áudio']) {
-		display: none !important;
-	}
-
-	.mobile-feed__player :global(button[aria-label='Ativar audio']) {
-		display: none !important;
-	}
-
-	.mobile-feed__player :global(button[aria-label*='som']) {
-		display: none !important;
-	}
-
-	.mobile-feed__player :global(button[aria-label*='áudio']) {
-		display: none !important;
-	}
-
-	.mobile-feed__player :global(button[aria-label*='audio']) {
-		display: none !important;
-	}
-
 	.mobile-feed__overlay {
 		position: absolute;
 		inset: 0;
@@ -5034,9 +5096,9 @@
 	}
 
 	.mobile-feed__share {
-		border: 1px solid rgba(255, 255, 255, 0.35);
-		background: transparent;
-		color: var(--mobile-feed-title, #ffffff);
+		border: 1px solid rgba(255, 255, 255, 0.38);
+		background: rgba(255, 255, 255, 0.14);
+		color: #ffffff;
 		border-radius: 999px;
 		padding: 0.55rem 1.35rem;
 		font-size: 0.85rem;
@@ -5045,6 +5107,9 @@
 		text-transform: uppercase;
 		cursor: pointer;
 		pointer-events: auto;
+		margin-left: auto;
+		backdrop-filter: blur(16px) saturate(150%);
+		-webkit-backdrop-filter: blur(16px) saturate(150%);
 		transition:
 			background 0.2s ease,
 			color 0.2s ease,
@@ -5053,37 +5118,9 @@
 
 	.mobile-feed__share:hover,
 	.mobile-feed__share:focus-visible {
-		background: rgba(255, 255, 255, 0.18);
-		color: #ffffff;
-		border-color: rgba(255, 255, 255, 0.75);
-		outline: none;
-	}
-
-	.mobile-feed__audio-unlock {
-		border: 1px solid rgba(255, 255, 255, 0.55);
-		background: rgba(8, 12, 24, 0.6);
-		color: #ffffff;
-		border-radius: 999px;
-		padding: 0.55rem 1.35rem;
-		font-size: 0.85rem;
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		cursor: pointer;
-		pointer-events: auto;
-		transition:
-			background 0.2s ease,
-			color 0.2s ease,
-			border-color 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.mobile-feed__audio-unlock:hover,
-	.mobile-feed__audio-unlock:focus-visible {
-		background: rgba(255, 255, 255, 0.2);
+		background: rgba(255, 255, 255, 0.26);
 		color: #ffffff;
 		border-color: rgba(255, 255, 255, 0.85);
-		transform: translateY(-1px);
 		outline: none;
 	}
 
@@ -6489,5 +6526,13 @@
 		font-weight: 600;
 		text-transform: none;
 		letter-spacing: 0.01em;
+	}
+
+	@media (max-width: 768px) {
+		:global([data-story-section='credits']),
+		:global(.final-credits) {
+			padding-bottom: calc(var(--mobile-bottom-bar-height, 0) + 2.5rem + 100px);
+			margin-bottom: calc(var(--mobile-bottom-bar-height, 0) + 2.5rem + 100px);
+		}
 	}
 </style>
