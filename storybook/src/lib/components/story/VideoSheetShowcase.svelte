@@ -113,16 +113,20 @@ let filterNavActiveId = null;
 	let revealObservedElement = null;
 	let controlsFloatingStateToken = 0;
 
-	let viewportObserver;
+let viewportObserver;
 
-	let viewportWidth = 1280;
-	let isMobileFeed = false;
-	let isMobileViewport = false;
-	let mobileChromeVisible = false;
-	let topbarVisible = false;
-	let mobileFeedContainer = null;
-	let lastMobileFeedContainer = null;
-	let feedObserver = null;
+let viewportWidth = 1280;
+let isMobileFeed = false;
+let isMobileViewport = false;
+const MOBILE_AUTOSCROLL_DELAY_MS = 2000;
+const MOBILE_AUTOSCROLL_MIN_OFFSET = 64;
+let mobileAutoScrollTimeoutId = null;
+let mobileAutoScrollApplied = false;
+let mobileChromeVisible = false;
+let topbarVisible = false;
+let mobileFeedContainer = null;
+let lastMobileFeedContainer = null;
+let feedObserver = null;
 	const feedItemElements = new Map();
 	let activeFeedId = null;
 	let feedLeadVideoId = null;
@@ -1303,6 +1307,7 @@ let mobileBottomBarHidden = false;
 		});
 		closeDesktopOverlay({ restoreScroll: false });
 		feedPlayerControls.clear();
+		cancelMobileAutoScrollCompensation();
 	});
 
 	$: if (hasMounted && fetchOnMount) {
@@ -3607,6 +3612,49 @@ let mobileBottomBarHidden = false;
 		toggleOverlay('search-filters');
 	}
 
+	function scheduleMobileAutoScrollCompensation() {
+		if (
+			!browser ||
+			mobileAutoScrollApplied ||
+			mobileAutoScrollTimeoutId ||
+			!isMobileViewport ||
+			!rootElement
+		) {
+			return;
+		}
+
+		mobileAutoScrollTimeoutId = window.setTimeout(() => {
+			mobileAutoScrollTimeoutId = null;
+			runMobileAutoScrollCompensation();
+		}, MOBILE_AUTOSCROLL_DELAY_MS);
+	}
+
+	function runMobileAutoScrollCompensation() {
+		if (!browser || mobileAutoScrollApplied || !isMobileViewport || !rootElement) return;
+
+		const userAlreadyScrolled = window.scrollY > 16;
+		if (userAlreadyScrolled) {
+			mobileAutoScrollApplied = true;
+			return;
+		}
+
+		const offset = rootElement.getBoundingClientRect().top;
+		if (offset <= MOBILE_AUTOSCROLL_MIN_OFFSET) {
+			mobileAutoScrollApplied = true;
+			return;
+		}
+
+		mobileAutoScrollApplied = true;
+		window.scrollBy({ top: offset, behavior: 'smooth' });
+	}
+
+	function cancelMobileAutoScrollCompensation() {
+		if (mobileAutoScrollTimeoutId) {
+			clearTimeout(mobileAutoScrollTimeoutId);
+			mobileAutoScrollTimeoutId = null;
+		}
+	}
+
 	const gridStyle = () =>
 		`--card-gap:${layoutResolved.cardGap}; --cards-mobile:${layoutResolved.cardsPerRowMobile}; --cards-tablet:${layoutResolved.cardsPerRowTablet}; --cards-desktop:${layoutResolved.cardsPerRowDesktop}; --card-desktop-min:${layoutResolved.cardMinWidthDesktop}; --card-desktop-max:${layoutResolved.cardMaxWidthDesktop};`;
 
@@ -3621,8 +3669,16 @@ $: if (browser) {
 		ensureFeedObserver();
 	} else {
 		teardownFeedObserver();
-		}
 	}
+}
+
+$: if (browser && hasMounted) {
+	if (isMobileViewport) {
+		scheduleMobileAutoScrollCompensation();
+	} else {
+		cancelMobileAutoScrollCompensation();
+	}
+}
 </script>
 
 <div
