@@ -50,6 +50,14 @@
 	let layoutControlsAutoMute = true;
 	let desktopTopbarColorResolved = '';
 	let desktopTopbarBackgroundResolved = '';
+	let mobileFeedHeadingTitleResolved = '';
+	let mobileFeedHeadingSubtitleResolved = '';
+	let mobileFeedHeadingEyebrowResolved = '';
+	let mobileFeedHeadingStyle = '';
+	let mobileFeedHeadingAlignment = 'left';
+	let mobileFeedHeadingEnabled = true;
+	let mobileFeedHeadingShowDivider = true;
+	let showMobileFeedHeading = false;
 
 	export let emptyStateMessage = 'Nenhum video encontrado para os filtros selecionados.';
 	export let loadingMessage = 'Carregando videos...';
@@ -69,10 +77,10 @@
 	let activeSearchNormalized = '';
 	let shouldApplySearch = false;
 	let searchHasSubmitted = false;
-let searchTermNormalized = '';
-let searchSuggestions = [];
-let filterShortcutOptions = [];
-let filterNavActiveId = null;
+	let searchTermNormalized = '';
+	let searchSuggestions = [];
+	let filterShortcutOptions = [];
+	let filterNavActiveId = null;
 
 	let filterMode = 'single';
 	let filterMatchStrategy = 'OR';
@@ -113,20 +121,20 @@ let filterNavActiveId = null;
 	let revealObservedElement = null;
 	let controlsFloatingStateToken = 0;
 
-let viewportObserver;
+	let viewportObserver;
 
-let viewportWidth = 1280;
-let isMobileFeed = false;
-let isMobileViewport = false;
-const MOBILE_AUTOSCROLL_DELAY_MS = 2000;
-const MOBILE_AUTOSCROLL_MIN_OFFSET = 64;
-let mobileAutoScrollTimeoutId = null;
-let mobileAutoScrollApplied = false;
-let mobileChromeVisible = false;
-let topbarVisible = false;
-let mobileFeedContainer = null;
-let lastMobileFeedContainer = null;
-let feedObserver = null;
+	let viewportWidth = 1280;
+	let isMobileFeed = false;
+	let isMobileViewport = false;
+	const MOBILE_AUTOSCROLL_DELAY_MS = 2000;
+	const MOBILE_AUTOSCROLL_MIN_OFFSET = 64;
+	let mobileAutoScrollTimeoutId = null;
+	let mobileAutoScrollApplied = false;
+	let mobileChromeVisible = false;
+	let topbarVisible = false;
+	let mobileFeedContainer = null;
+	let lastMobileFeedContainer = null;
+	let feedObserver = null;
 	const feedItemElements = new Map();
 	let activeFeedId = null;
 	let feedLeadVideoId = null;
@@ -160,29 +168,29 @@ let feedObserver = null;
 	let videoMetaVisibleMobile = true;
 	let feedMetaHidden = new Set();
 	let feedMetaTimerId = null;
-let feedMetaTimerVideoId = null;
-let lastFeedMetaActiveId = null;
-let feedMetaHoldActive = false;
-let feedMetaHoldVideoId = null;
-let feedMetaHoldEndHandler = null;
-let feedIndexLookup = new Map();
-let mobileFeedLocked = false;
-let mobileFeedLockTimerId = null;
-let shortzSeenIds = new Set();
-let shortzSeenHydrated = false;
-let shortzSeenInitial = new Set();
-let feedAudioUnlocked = false;
-let pendingShortzShareId = null;
-let feedPosterVisible = new Map();
-let shortzLastLeadId = null;
-let shortzLastLeadPersistedId = null;
-let shortzLeadAvoidId = null;
-let lastActiveFeedId = null;
-let feedPlayerWindow = new Set();
-let mobileViewMode = MobileView.SHORTZ;
-let isMobileFeedGrid = false;
-let hideMobileBottomBarForCredits = false;
-let mobileBottomBarHidden = false;
+	let feedMetaTimerVideoId = null;
+	let lastFeedMetaActiveId = null;
+	let feedMetaHoldActive = false;
+	let feedMetaHoldVideoId = null;
+	let feedMetaHoldEndHandler = null;
+	let feedIndexLookup = new Map();
+	let mobileFeedLocked = false;
+	let mobileFeedLockTimerId = null;
+	let shortzSeenIds = new Set();
+	let shortzSeenHydrated = false;
+	let shortzSeenInitial = new Set();
+	let feedAudioUnlocked = false;
+	let pendingShortzShareId = null;
+	let feedPosterVisible = new Map();
+	let shortzLastLeadId = null;
+	let shortzLastLeadPersistedId = null;
+	let shortzLeadAvoidId = null;
+	let lastActiveFeedId = null;
+	let feedPlayerWindow = new Set();
+	let mobileViewMode = MobileView.SHORTZ;
+	let isMobileFeedGrid = false;
+	let hideMobileBottomBarForCredits = false;
+	let mobileBottomBarHidden = false;
 	// Keep at least two neighbours ready to avoid blank states when the user swipes quickly.
 	const FEED_PLAYER_BUFFER = 2;
 	const feedAdSlots = new Set();
@@ -363,6 +371,14 @@ let mobileBottomBarHidden = false;
 		mobileFeedTagBackground: 'rgba(255,255,255,0.92)',
 		mobileFeedOverlay:
 			'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)',
+		mobileShortzTitleColor: null,
+		mobileShortzMetaColor: null,
+		mobileShortzTagColor: null,
+		mobileFeedGridTitleColor: null,
+		mobileFeedGridMetaColor: null,
+		mobileSearchTitleColor: null,
+		mobileSearchTextColor: null,
+		mobileSearchFilterColor: null,
 		mobileFeedControlsOffset: '0px',
 		mobileIntroEnabled: true,
 		mobileIntroTitle: '',
@@ -379,6 +395,39 @@ let mobileBottomBarHidden = false;
 		headingDividerColor: 'rgba(194, 65, 12, 0.28)',
 		headingAlignmentDesktop: 'center',
 		headingAlignmentMobile: 'left',
+		mobileFeedHeadingEnabled: true,
+		mobileFeedHeadingEyebrow: '',
+		mobileFeedHeadingTitle: '',
+		mobileFeedHeadingSubtitle: '',
+		mobileFeedHeadingBackground: 'transparent',
+		mobileFeedHeadingTitleColor: null,
+		mobileFeedHeadingSubtitleColor: null,
+		mobileFeedHeadingEyebrowColor: null,
+		mobileFeedHeadingDividerColor: null,
+		mobileFeedHeadingPadding: '1.5rem 1.25rem 1.25rem',
+		mobileFeedHeadingBorderRadius: '0',
+		mobileFeedHeadingShadow: 'none',
+		mobileFeedHeadingAlignment: 'left',
+		mobileFeedHeadingGap: '0.5rem',
+		mobileFeedHeadingMaxWidth: '100%',
+		mobileFeedHeadingDividerWidth: '72px',
+		mobileFeedHeadingDividerHeight: '2px',
+		mobileFeedHeadingShowDivider: true,
+		mobileFeedHeadingEyebrowFontSize: '0.85rem',
+		mobileFeedHeadingEyebrowLetterSpacing: '0.18em',
+		mobileFeedHeadingEyebrowFontWeight: '600',
+		mobileFeedHeadingEyebrowFontFamily: null,
+		mobileFeedHeadingEyebrowTransform: 'uppercase',
+		mobileFeedHeadingTitleFontSize: '1.65rem',
+		mobileFeedHeadingTitleLineHeight: '1.2',
+		mobileFeedHeadingTitleFontWeight: '700',
+		mobileFeedHeadingTitleLetterSpacing: '-0.01em',
+		mobileFeedHeadingTitleFontFamily: null,
+		mobileFeedHeadingSubtitleFontSize: '1rem',
+		mobileFeedHeadingSubtitleLineHeight: '1.45',
+		mobileFeedHeadingSubtitleFontWeight: '400',
+		mobileFeedHeadingSubtitleLetterSpacing: '0',
+		mobileFeedHeadingSubtitleFontFamily: null,
 		searchMaxWidthDesktop: '100%',
 		controlsHeadingColorDesktop: '#b91c1c',
 		controlsHeadingSubtitleDesktop: 'rgba(15, 23, 42, 0.65)',
@@ -470,6 +519,99 @@ let mobileBottomBarHidden = false;
 	]
 		.filter(Boolean)
 		.join(';');
+	$: mobileFeedHeadingStyle =
+		[
+			`--mobile-feed-heading-align:${mobileFeedHeadingAlignment}`,
+			isMeaningful(layoutResolved.mobileFeedHeadingBackground)
+				? `--mobile-feed-heading-bg:${layoutResolved.mobileFeedHeadingBackground}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingPadding)
+				? `--mobile-feed-heading-padding:${layoutResolved.mobileFeedHeadingPadding}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingBorderRadius)
+				? `--mobile-feed-heading-radius:${layoutResolved.mobileFeedHeadingBorderRadius}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingShadow)
+				? `--mobile-feed-heading-shadow:${layoutResolved.mobileFeedHeadingShadow}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingGap)
+				? `--mobile-feed-heading-gap:${layoutResolved.mobileFeedHeadingGap}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingMaxWidth)
+				? `--mobile-feed-heading-max-width:${layoutResolved.mobileFeedHeadingMaxWidth}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleColor)
+				? `--mobile-feed-heading-title-color:${layoutResolved.mobileFeedHeadingTitleColor}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleColor)
+				? `--mobile-feed-heading-subtitle-color:${layoutResolved.mobileFeedHeadingSubtitleColor}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowColor)
+				? `--mobile-feed-heading-eyebrow-color:${layoutResolved.mobileFeedHeadingEyebrowColor}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingDividerColor)
+				? `--mobile-feed-heading-divider:${layoutResolved.mobileFeedHeadingDividerColor}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingDividerWidth)
+				? `--mobile-feed-heading-divider-width:${layoutResolved.mobileFeedHeadingDividerWidth}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingDividerHeight)
+				? `--mobile-feed-heading-divider-height:${layoutResolved.mobileFeedHeadingDividerHeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleFontSize)
+				? `--mobile-feed-heading-title-size:${layoutResolved.mobileFeedHeadingTitleFontSize}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleLineHeight)
+				? `--mobile-feed-heading-title-line:${layoutResolved.mobileFeedHeadingTitleLineHeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleFontWeight)
+				? `--mobile-feed-heading-title-weight:${layoutResolved.mobileFeedHeadingTitleFontWeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleLetterSpacing)
+				? `--mobile-feed-heading-title-letter:${layoutResolved.mobileFeedHeadingTitleLetterSpacing}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingTitleFontFamily)
+				? `--mobile-feed-heading-title-font:${layoutResolved.mobileFeedHeadingTitleFontFamily}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleFontSize)
+				? `--mobile-feed-heading-subtitle-size:${layoutResolved.mobileFeedHeadingSubtitleFontSize}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleLineHeight)
+				? `--mobile-feed-heading-subtitle-line:${layoutResolved.mobileFeedHeadingSubtitleLineHeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleFontWeight)
+				? `--mobile-feed-heading-subtitle-weight:${layoutResolved.mobileFeedHeadingSubtitleFontWeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleLetterSpacing)
+				? `--mobile-feed-heading-subtitle-letter:${layoutResolved.mobileFeedHeadingSubtitleLetterSpacing}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingSubtitleFontFamily)
+				? `--mobile-feed-heading-subtitle-font:${layoutResolved.mobileFeedHeadingSubtitleFontFamily}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowFontSize)
+				? `--mobile-feed-heading-eyebrow-size:${layoutResolved.mobileFeedHeadingEyebrowFontSize}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowLetterSpacing)
+				? `--mobile-feed-heading-eyebrow-letter:${layoutResolved.mobileFeedHeadingEyebrowLetterSpacing}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowFontWeight)
+				? `--mobile-feed-heading-eyebrow-weight:${layoutResolved.mobileFeedHeadingEyebrowFontWeight}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowFontFamily)
+				? `--mobile-feed-heading-eyebrow-font:${layoutResolved.mobileFeedHeadingEyebrowFontFamily}`
+				: null,
+			isMeaningful(layoutResolved.mobileFeedHeadingEyebrowTransform)
+				? `--mobile-feed-heading-eyebrow-transform:${layoutResolved.mobileFeedHeadingEyebrowTransform}`
+				: null
+		]
+			.filter(Boolean)
+			.join(';') || undefined;
+	$: showMobileFeedHeading =
+		mobileFeedHeadingEnabled &&
+		isMobileFeedGrid &&
+		(isMeaningful(mobileFeedHeadingTitleResolved) ||
+			isMeaningful(mobileFeedHeadingSubtitleResolved) ||
+			isMeaningful(mobileFeedHeadingEyebrowResolved));
 	$: controlsInlineStyle = buildControlsInlineStyle(layoutResolved, {
 		fixed: controlsFixed && !isMobileFeed,
 		bounds: controlsBounds,
@@ -501,6 +643,45 @@ let mobileBottomBarHidden = false;
 	);
 	$: searchStyleVars = buildSearchStyleVars(searchResolved);
 	$: controlsStyle = [controlsInlineStyle, searchStyleVars].filter(Boolean).join(';');
+	$: mobileShortzTitleColorResolved = firstMeaningful(
+		layoutResolved.mobileShortzTitleColor,
+		layoutResolved.mobileFeedTitleColor,
+		'#ffffff'
+	);
+	$: mobileShortzMetaColorResolved = firstMeaningful(
+		layoutResolved.mobileShortzMetaColor,
+		layoutResolved.mobileFeedMetaColor,
+		'rgba(255,255,255,0.78)'
+	);
+	$: mobileShortzTagColorResolved = firstMeaningful(
+		layoutResolved.mobileShortzTagColor,
+		layoutResolved.mobileFeedTagColor,
+		'#111827'
+	);
+	$: mobileFeedGridTitleColorResolved = firstMeaningful(
+		layoutResolved.mobileFeedGridTitleColor,
+		layoutResolved.sectionTitleColor,
+		layoutResolved.desktopTopbarColor,
+		mobileShortzTitleColorResolved
+	);
+	$: mobileFeedGridMetaColorResolved = firstMeaningful(
+		layoutResolved.mobileFeedGridMetaColor,
+		layoutResolved.sectionCountColor,
+		mobileShortzMetaColorResolved
+	);
+	$: mobileSearchTitleColorResolved = firstMeaningful(
+		layoutResolved.mobileSearchTitleColor,
+		mobileShortzTitleColorResolved
+	);
+	$: mobileSearchTextColorResolved = firstMeaningful(
+		layoutResolved.mobileSearchTextColor,
+		mobileShortzMetaColorResolved
+	);
+	$: mobileSearchFilterColorResolved = firstMeaningful(
+		layoutResolved.mobileSearchFilterColor,
+		layoutResolved.filterChipColor,
+		mobileSearchTextColorResolved
+	);
 
 	$: sectionsResolved = {
 		...defaultSectionsConfig,
@@ -511,13 +692,18 @@ let mobileBottomBarHidden = false;
 		: null;
 	$: videoResolved = { ...defaultVideoConfig, ...(videoConfig || {}) };
 	$: mobileFeedStyles = [
-		`--mobile-feed-title:${layoutResolved.mobileFeedTitleColor ?? '#ffffff'}`,
-		`--mobile-feed-meta:${layoutResolved.mobileFeedMetaColor ?? 'rgba(255,255,255,0.8)'}`,
-		`--mobile-feed-tag-color:${layoutResolved.mobileFeedTagColor ?? '#111827'}`,
+		`--mobile-feed-title:${mobileShortzTitleColorResolved}`,
+		`--mobile-feed-meta:${mobileShortzMetaColorResolved}`,
+		`--mobile-feed-tag-color:${mobileShortzTagColorResolved}`,
 		`--mobile-feed-tag-background:${
 			layoutResolved.mobileFeedTagBackground ?? 'rgba(255,255,255,0.92)'
 		}`,
-		`--mobile-feed-overlay:${layoutResolved.mobileFeedOverlay ?? 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)'}`
+		`--mobile-feed-overlay:${layoutResolved.mobileFeedOverlay ?? 'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)'}`,
+		`--mobile-feed-grid-title:${mobileFeedGridTitleColorResolved}`,
+		`--mobile-feed-grid-meta:${mobileFeedGridMetaColorResolved}`,
+		`--mobile-search-title:${mobileSearchTitleColorResolved}`,
+		`--mobile-search-text:${mobileSearchTextColorResolved}`,
+		`--mobile-search-filter:${mobileSearchFilterColorResolved}`
 	].join(';');
 	$: headingEyebrowDesktopResolved = firstMeaningful(
 		layoutResolved.headingEyebrowDesktop,
@@ -693,10 +879,9 @@ let mobileBottomBarHidden = false;
 		.filter(Boolean)
 		.join(';');
 	$: showcaseStyles =
-		[(isMobileViewport || isMobileFeed) ? mobileFeedStyles : null, layoutStyleVars]
+		[isMobileViewport || isMobileFeed ? mobileFeedStyles : null, layoutStyleVars]
 			.filter(Boolean)
-			.join(';') ||
-		undefined;
+			.join(';') || undefined;
 	$: fallbackTitle = firstMeaningful(
 		layoutResolved.desktopTitle,
 		layoutResolved.mobileTitle,
@@ -716,8 +901,36 @@ let mobileBottomBarHidden = false;
 		layoutResolved.mobileSubtitle,
 		layoutResolved.subtitle
 	);
+	$: mobileFeedHeadingEnabled = resolveBoolean(layoutResolved.mobileFeedHeadingEnabled, true);
+	$: mobileFeedHeadingTitleResolved = firstMeaningful(
+		layoutResolved.mobileFeedHeadingTitle,
+		layoutResolved.mobileTitle,
+		layoutResolved.desktopTitle,
+		fallbackTitle
+	);
+	$: mobileFeedHeadingSubtitleResolved = firstMeaningful(
+		layoutResolved.mobileFeedHeadingSubtitle,
+		layoutResolved.mobileSubtitle,
+		layoutResolved.subtitle,
+		layoutResolved.desktopSubtitle
+	);
+	$: mobileFeedHeadingEyebrowResolved = firstMeaningful(
+		layoutResolved.mobileFeedHeadingEyebrow,
+		layoutResolved.headingEyebrowMobile,
+		layoutResolved.headingEyebrowDesktop,
+		layoutResolved.mobileTopbarTitle
+	);
 	$: headingSubtitle = isMobileViewport ? '' : desktopSubtitleResolved;
 	$: showHeadingBlock = isMeaningful(headingTitle) || isMeaningful(headingSubtitle);
+	$: mobileFeedHeadingAlignment = firstMeaningful(
+		layoutResolved.mobileFeedHeadingAlignment,
+		layoutResolved.headingAlignmentMobile,
+		'left'
+	);
+	$: mobileFeedHeadingShowDivider = resolveBoolean(
+		layoutResolved.mobileFeedHeadingShowDivider,
+		true
+	);
 	$: pageTitle = headingTitle;
 	$: desktopTopbarColorResolved = firstMeaningful(
 		layoutResolved.desktopTopbarColor,
@@ -3328,21 +3541,15 @@ let mobileBottomBarHidden = false;
 		const shareUrl = buildShortzShareUrl(video.uuid);
 		if (!shareUrl) return;
 		const shareImage =
-			'https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumb_cop30.webp';
-		const shareMessage = [
-			video.title || pageTitle || document?.title || 'Shortz',
-			video.subtitle || video.description || `Confira "${video.title}" na nossa experiência shortz`,
-			shareUrl
-		]
-			.filter(Boolean)
-			.join('\n');
+			'https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/capashare-100videos.jpg';
+		const shareHeadline = video.title || pageTitle || document?.title || '';
+		const shareText = shareHeadline
+			? `g1: confira "${shareHeadline}" na nossa experiência shortz`
+			: 'g1: confira nossa experiência shortz';
+		const shareMessage = [shareText, shareUrl].filter(Boolean).join('\n');
 		const shareData = {
-			title: video.title || pageTitle || document?.title || 'Shortz',
-			text:
-				video.subtitle ||
-				video.description ||
-				`Confira "${video.title}" na nossa experiência shortz` ||
-				'',
+			title: shareHeadline || 'Shortz',
+			text: shareText,
 			url: shareUrl,
 			files: undefined
 		};
@@ -3658,27 +3865,27 @@ let mobileBottomBarHidden = false;
 	const gridStyle = () =>
 		`--card-gap:${layoutResolved.cardGap}; --cards-mobile:${layoutResolved.cardsPerRowMobile}; --cards-tablet:${layoutResolved.cardsPerRowTablet}; --cards-desktop:${layoutResolved.cardsPerRowDesktop}; --card-desktop-min:${layoutResolved.cardMinWidthDesktop}; --card-desktop-max:${layoutResolved.cardMaxWidthDesktop};`;
 
-$: hasSearch = resolvedSearchColumns.length > 0;
-$: showControls = (filterOptions.length > 0 || hasSearch) && totalVideos > 0;
-$: hideControlsForCredits = !isMobileViewport && creditsInViewport && controlsFixed;
-$: hideMobileBottomBarForCredits =
-	isMobileViewport && creditsInViewport && layoutResolved.enableMobileFeed !== false;
-$: mobileBottomBarHidden = feedOverlayVisible || hideMobileBottomBarForCredits;
-$: if (browser) {
-	if (isMobileFeed) {
-		ensureFeedObserver();
-	} else {
-		teardownFeedObserver();
+	$: hasSearch = resolvedSearchColumns.length > 0;
+	$: showControls = (filterOptions.length > 0 || hasSearch) && totalVideos > 0;
+	$: hideControlsForCredits = !isMobileViewport && creditsInViewport && controlsFixed;
+	$: hideMobileBottomBarForCredits =
+		isMobileViewport && creditsInViewport && layoutResolved.enableMobileFeed !== false;
+	$: mobileBottomBarHidden = feedOverlayVisible || hideMobileBottomBarForCredits;
+	$: if (browser) {
+		if (isMobileFeed) {
+			ensureFeedObserver();
+		} else {
+			teardownFeedObserver();
+		}
 	}
-}
 
-$: if (browser && hasMounted) {
-	if (isMobileViewport) {
-		scheduleMobileAutoScrollCompensation();
-	} else {
-		cancelMobileAutoScrollCompensation();
+	$: if (browser && hasMounted) {
+		if (isMobileViewport) {
+			scheduleMobileAutoScrollCompensation();
+		} else {
+			cancelMobileAutoScrollCompensation();
+		}
 	}
-}
 </script>
 
 <div
@@ -4047,6 +4254,28 @@ $: if (browser && hasMounted) {
 	{:else if isMobileFeedGrid}
 		{#if regularSections.length}
 			<div class="mobile-feed-grid-panels">
+				{#if showMobileFeedHeading}
+					<section
+						class="mobile-feed-heading"
+						data-align={mobileFeedHeadingAlignment}
+						style={mobileFeedHeadingStyle}
+					>
+						<div class="mobile-feed-heading__inner">
+							{#if isMeaningful(mobileFeedHeadingEyebrowResolved)}
+								<span class="mobile-feed-heading__eyebrow">{mobileFeedHeadingEyebrowResolved}</span>
+							{/if}
+							{#if isMeaningful(mobileFeedHeadingTitleResolved)}
+								<h2 class="mobile-feed-heading__title">{mobileFeedHeadingTitleResolved}</h2>
+								{#if mobileFeedHeadingShowDivider}
+									<span class="mobile-feed-heading__divider" aria-hidden="true"></span>
+								{/if}
+							{/if}
+							{#if isMeaningful(mobileFeedHeadingSubtitleResolved)}
+								<p class="mobile-feed-heading__subtitle">{mobileFeedHeadingSubtitleResolved}</p>
+							{/if}
+						</div>
+					</section>
+				{/if}
 				{#each regularSections as section (section.anchor)}
 					<section
 						class="mobile-feed-grid-section"
@@ -4731,7 +4960,7 @@ $: if (browser && hasMounted) {
 		z-index: 40;
 		opacity: 0;
 		pointer-events: none;
-		transform: translateY(-120%);
+		transform: translateY(120%);
 		transition:
 			opacity 0.25s ease,
 			transform 0.25s ease;
@@ -4762,8 +4991,8 @@ $: if (browser && hasMounted) {
 		overflow: hidden;
 	}
 
-.controls__drawer {
-	background: var(--search-modal-background, rgba(6, 10, 21, 0.96));
+	.controls__drawer {
+		background: var(--search-modal-background, rgba(6, 10, 21, 0.96));
 		border-radius: 1.5rem 1.5rem 0 0;
 		box-shadow: 0 -28px 56px rgba(3, 4, 12, 0.65);
 		padding: clamp(1rem, 4vw, 1.75rem);
@@ -4776,6 +5005,7 @@ $: if (browser && hasMounted) {
 		animation: controls-drawer-in 0.32s ease-out forwards;
 		transform: translateY(100%);
 		overflow: hidden;
+		color: var(--mobile-search-text, rgba(255, 255, 255, 0.85));
 	}
 
 	@keyframes controls-drawer-in {
@@ -4792,7 +5022,7 @@ $: if (browser && hasMounted) {
 		align-items: center;
 		justify-content: space-between;
 		gap: 1rem;
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-search-title, var(--mobile-feed-title, #ffffff));
 	}
 
 	.controls__header h2 {
@@ -4804,7 +5034,7 @@ $: if (browser && hasMounted) {
 	.controls__close {
 		border: none;
 		background: rgba(255, 255, 255, 0.12);
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-search-title, var(--mobile-feed-title, #ffffff));
 		padding: 0.45rem 1.1rem;
 		border-radius: 999px;
 		font-size: 0.9rem;
@@ -4823,9 +5053,9 @@ $: if (browser && hasMounted) {
 		padding-inline: 0;
 	}
 
-.controls[data-mobile='true'][data-overlay='open'] .search-bar input {
-	background: var(--search-input-background, rgba(255, 255, 255, 0.92));
-}
+	.controls[data-mobile='true'][data-overlay='open'] .search-bar input {
+		background: var(--search-input-background, rgba(255, 255, 255, 0.92));
+	}
 
 	.controls[data-mobile='true'][data-overlay='open'] .filter-carousel {
 		margin-inline: 0;
@@ -4855,7 +5085,7 @@ $: if (browser && hasMounted) {
 		border-radius: 999px;
 		border: 1px solid rgba(255, 255, 255, 0.38);
 		background: rgba(6, 10, 21, 0.65);
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-search-title, var(--mobile-feed-title, #ffffff));
 		font-size: 0.85rem;
 		font-weight: 600;
 		text-transform: uppercase;
@@ -4879,7 +5109,7 @@ $: if (browser && hasMounted) {
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
-		color: rgba(255, 255, 255, 0.68);
+		color: var(--mobile-search-text, rgba(255, 255, 255, 0.68));
 	}
 
 	.controls__modal-search {
@@ -4900,7 +5130,7 @@ $: if (browser && hasMounted) {
 		margin: 0;
 		font-size: 0.9rem;
 		font-weight: 600;
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-search-title, var(--mobile-feed-title, #ffffff));
 	}
 
 	.controls__modal-footer {
@@ -4914,7 +5144,7 @@ $: if (browser && hasMounted) {
 		border: 1px solid rgba(255, 255, 255, 0.32);
 		border-radius: 999px;
 		background: rgba(6, 10, 21, 0.35);
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-search-title, var(--mobile-feed-title, #ffffff));
 		font-size: 0.9rem;
 		font-weight: 600;
 		padding: 0.65rem 1.75rem;
@@ -4956,10 +5186,102 @@ $: if (browser && hasMounted) {
 		padding: 0.75rem 1rem;
 		gap: 0.25rem;
 		min-height: 4.25rem;
+		color: var(--mobile-search-filter, var(--filter-chip-color, rgba(15, 23, 42, 0.82)));
 	}
 
 	.filter-carousel.filter-carousel--modal .filter-chip__count {
 		margin-left: 0;
+	}
+
+	.mobile-feed-heading {
+		width: 100%;
+		margin: 0 auto 0.75rem;
+		background: var(--mobile-feed-heading-bg, transparent);
+		padding: var(--mobile-feed-heading-padding, 1.5rem 1.25rem 1.25rem);
+		border-radius: var(--mobile-feed-heading-radius, 0);
+		box-shadow: var(--mobile-feed-heading-shadow, none);
+		color: var(--mobile-feed-heading-title-color, var(--mobile-feed-title, #ffffff));
+	}
+
+	.mobile-feed-heading__inner {
+		display: flex;
+		flex-direction: column;
+		gap: var(--mobile-feed-heading-gap, 0.5rem);
+		margin: 0 auto;
+		max-width: var(--mobile-feed-heading-max-width, 640px);
+		text-align: var(--mobile-feed-heading-align, left);
+	}
+
+	.mobile-feed-heading[data-align='left'] .mobile-feed-heading__inner {
+		align-items: flex-start;
+		text-align: left;
+	}
+
+	.mobile-feed-heading[data-align='center'] .mobile-feed-heading__inner {
+		align-items: center;
+		text-align: center;
+	}
+
+	.mobile-feed-heading[data-align='right'] .mobile-feed-heading__inner {
+		align-items: flex-end;
+		text-align: right;
+	}
+
+	.mobile-feed-heading__eyebrow {
+		font-size: var(--mobile-feed-heading-eyebrow-size, 0.85rem);
+		letter-spacing: var(--mobile-feed-heading-eyebrow-letter, 0.18em);
+		font-weight: var(--mobile-feed-heading-eyebrow-weight, 600);
+		font-family: var(--mobile-feed-heading-eyebrow-font, inherit);
+		color: var(--mobile-feed-heading-eyebrow-color, currentColor);
+		text-transform: var(--mobile-feed-heading-eyebrow-transform, uppercase);
+		margin: 0;
+	}
+
+	.mobile-feed-heading__title {
+		font-size: var(--mobile-feed-heading-title-size, 1.65rem);
+		line-height: var(--mobile-feed-heading-title-line, 1.2);
+		letter-spacing: var(--mobile-feed-heading-title-letter, -0.01em);
+		font-weight: var(--mobile-feed-heading-title-weight, 700);
+		font-family: var(--mobile-feed-heading-title-font, inherit);
+		color: var(--mobile-feed-heading-title-color, var(--mobile-feed-title, #ffffff));
+		margin: 0;
+		text-transform: none;
+	}
+
+	.mobile-feed-heading__subtitle {
+		font-size: var(--mobile-feed-heading-subtitle-size, 1rem);
+		line-height: var(--mobile-feed-heading-subtitle-line, 1.45);
+		letter-spacing: var(--mobile-feed-heading-subtitle-letter, 0);
+		font-weight: var(--mobile-feed-heading-subtitle-weight, 400);
+		font-family: var(--mobile-feed-heading-subtitle-font, inherit);
+		color: var(
+			--mobile-feed-heading-subtitle-color,
+			var(--mobile-feed-meta, rgba(255, 255, 255, 0.85))
+		);
+		margin: 0;
+	}
+
+	.mobile-feed-heading__divider {
+		display: inline-block;
+		width: var(--mobile-feed-heading-divider-width, 72px);
+		height: var(--mobile-feed-heading-divider-height, 2px);
+		background: var(--mobile-feed-heading-divider, currentColor);
+		margin: 0.35rem 0;
+	}
+
+	.mobile-feed-heading[data-align='center'] .mobile-feed-heading__divider {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.mobile-feed-heading[data-align='right'] .mobile-feed-heading__divider {
+		margin-left: auto;
+		margin-right: 0;
+	}
+
+	.mobile-feed-heading[data-align='left'] .mobile-feed-heading__divider {
+		margin-left: 0;
+		margin-right: auto;
 	}
 
 	.mobile-feed-shell {
@@ -5218,7 +5540,7 @@ $: if (browser && hasMounted) {
 		margin: 0 0 0.75rem;
 		font-size: 1rem;
 		font-weight: 700;
-		color: var(--mobile-feed-title, #ffffff);
+		color: var(--mobile-feed-grid-title, var(--mobile-feed-title, #ffffff));
 	}
 
 	.mobile-feed-grid {
@@ -5271,7 +5593,7 @@ $: if (browser && hasMounted) {
 		text-align: center;
 		font-size: 0.75rem;
 		font-weight: 600;
-		color: rgba(255, 255, 255, 0.86);
+		color: var(--mobile-feed-grid-meta, rgba(255, 255, 255, 0.86));
 		background: linear-gradient(180deg, rgba(8, 12, 24, 0.84) 0%, rgba(8, 12, 24, 0.92) 100%);
 	}
 

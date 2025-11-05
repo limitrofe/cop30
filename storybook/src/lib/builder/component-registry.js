@@ -1497,6 +1497,39 @@ export const componentRegistry = [
 				headingDividerColor: 'rgba(194, 65, 12, 0.28)',
 				headingAlignmentDesktop: 'center',
 				headingAlignmentMobile: 'left',
+				mobileFeedHeadingEnabled: true,
+				mobileFeedHeadingEyebrow: '',
+				mobileFeedHeadingTitle: '',
+				mobileFeedHeadingSubtitle: '',
+				mobileFeedHeadingBackground: 'transparent',
+				mobileFeedHeadingTitleColor: null,
+				mobileFeedHeadingSubtitleColor: null,
+				mobileFeedHeadingEyebrowColor: null,
+				mobileFeedHeadingDividerColor: null,
+				mobileFeedHeadingPadding: '1.5rem 1.25rem 1.25rem',
+				mobileFeedHeadingBorderRadius: '0',
+				mobileFeedHeadingShadow: 'none',
+				mobileFeedHeadingAlignment: 'left',
+				mobileFeedHeadingGap: '0.5rem',
+				mobileFeedHeadingMaxWidth: '100%',
+				mobileFeedHeadingDividerWidth: '72px',
+				mobileFeedHeadingDividerHeight: '2px',
+				mobileFeedHeadingShowDivider: true,
+				mobileFeedHeadingEyebrowFontSize: '0.85rem',
+				mobileFeedHeadingEyebrowLetterSpacing: '0.18em',
+				mobileFeedHeadingEyebrowFontWeight: '600',
+				mobileFeedHeadingEyebrowFontFamily: null,
+				mobileFeedHeadingEyebrowTransform: 'uppercase',
+				mobileFeedHeadingTitleFontSize: '1.65rem',
+				mobileFeedHeadingTitleLineHeight: '1.2',
+				mobileFeedHeadingTitleFontWeight: '700',
+				mobileFeedHeadingTitleLetterSpacing: '-0.01em',
+				mobileFeedHeadingTitleFontFamily: null,
+				mobileFeedHeadingSubtitleFontSize: '1rem',
+				mobileFeedHeadingSubtitleLineHeight: '1.45',
+				mobileFeedHeadingSubtitleFontWeight: '400',
+				mobileFeedHeadingSubtitleLetterSpacing: '0',
+				mobileFeedHeadingSubtitleFontFamily: null,
 				enableMobileFeed: true,
 				mobileFeedSkipDFP: false,
 				mobileDefaultView: 'feed',
@@ -1505,6 +1538,14 @@ export const componentRegistry = [
 				mobileFeedMetaColor: 'rgba(255,255,255,0.78)',
 				mobileFeedTagColor: '#111827',
 				mobileFeedTagBackground: 'rgba(255,255,255,0.92)',
+				mobileShortzTitleColor: null,
+				mobileShortzMetaColor: null,
+				mobileShortzTagColor: null,
+				mobileFeedGridTitleColor: null,
+				mobileFeedGridMetaColor: null,
+				mobileSearchTitleColor: null,
+				mobileSearchTextColor: null,
+				mobileSearchFilterColor: null,
 				mobileFeedOverlay:
 					'linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(8,12,24,0.78) 62%, rgba(8,12,24,0.92) 100%)',
 				mobileChromeBackground:
@@ -2030,6 +2071,257 @@ export const componentRegistry = [
 				label: 'Título principal • divisor',
 				type: 'color',
 				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileShortzTitleColor',
+				label: 'Shortz (mobile) • texto principal',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileShortzMetaColor',
+				label: 'Shortz (mobile) • texto secundário',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileShortzTagColor',
+				label: 'Shortz (mobile) • texto dos selos',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedGridTitleColor',
+				label: 'Feed (mobile) • texto principal',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedGridMetaColor',
+				label: 'Feed (mobile) • texto secundário',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileSearchTitleColor',
+				label: 'Busca (mobile) • texto principal',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileSearchTextColor',
+				label: 'Busca (mobile) • texto secundário',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileSearchFilterColor',
+				label: 'Busca (mobile) • texto dos filtros',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEnabled',
+				label: 'Heading do feed mobile • mostrar bloco',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrow',
+				label: 'Heading do feed mobile • olho/eyebrow',
+				type: 'text',
+				placeholder: 'G1 meio ambiente'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitle',
+				label: 'Heading do feed mobile • título',
+				type: 'text'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitle',
+				label: 'Heading do feed mobile • linha fina',
+				type: 'textarea',
+				rows: 2
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingBackground',
+				label: 'Heading do feed mobile • fundo',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleColor',
+				label: 'Heading do feed mobile • cor do título',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleColor',
+				label: 'Heading do feed mobile • cor da linha fina',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowColor',
+				label: 'Heading do feed mobile • cor do olho',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingDividerColor',
+				label: 'Heading do feed mobile • cor do divisor',
+				type: 'color',
+				showAlpha: true
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingAlignment',
+				label: 'Heading do feed mobile • alinhamento',
+				type: 'select',
+				options: [
+					{ label: 'Esquerda', value: 'left' },
+					{ label: 'Centralizado', value: 'center' },
+					{ label: 'Direita', value: 'right' }
+				]
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingPadding',
+				label: 'Heading do feed mobile • padding',
+				type: 'text',
+				placeholder: '1.5rem 1.25rem 1.25rem'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingBorderRadius',
+				label: 'Heading do feed mobile • raio',
+				type: 'text',
+				placeholder: '0 ou 16px'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingShadow',
+				label: 'Heading do feed mobile • sombra',
+				type: 'text',
+				placeholder: '0 12px 32px rgba(0,0,0,0.18)'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingGap',
+				label: 'Heading do feed mobile • espaçamento interno',
+				type: 'text',
+				placeholder: '0.5rem'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingMaxWidth',
+				label: 'Heading do feed mobile • largura máxima',
+				type: 'text',
+				placeholder: '640px ou 100%'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingShowDivider',
+				label: 'Heading do feed mobile • mostrar linha divisória',
+				type: 'boolean'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingDividerWidth',
+				label: 'Heading do feed mobile • largura da linha',
+				type: 'text',
+				placeholder: '72px'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingDividerHeight',
+				label: 'Heading do feed mobile • espessura da linha',
+				type: 'text',
+				placeholder: '2px'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowFontSize',
+				label: 'Heading do feed mobile • tamanho do olho',
+				type: 'text',
+				placeholder: '0.85rem'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowLetterSpacing',
+				label: 'Heading do feed mobile • tracking do olho',
+				type: 'text',
+				placeholder: '0.18em'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowFontWeight',
+				label: 'Heading do feed mobile • peso do olho',
+				type: 'text',
+				placeholder: '600'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowFontFamily',
+				label: 'Heading do feed mobile • fonte do olho',
+				type: 'text',
+				placeholder: '\"Globotipo\", sans-serif'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingEyebrowTransform',
+				label: 'Heading do feed mobile • transformação do olho',
+				type: 'select',
+				options: [
+					{ label: 'Maiúsculas', value: 'uppercase' },
+					{ label: 'Minúsculas', value: 'none' },
+					{ label: 'Capitalizado', value: 'capitalize' }
+				]
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleFontSize',
+				label: 'Heading do feed mobile • tamanho do título',
+				type: 'text',
+				placeholder: '1.65rem'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleLineHeight',
+				label: 'Heading do feed mobile • line-height do título',
+				type: 'text',
+				placeholder: '1.2'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleFontWeight',
+				label: 'Heading do feed mobile • peso do título',
+				type: 'text',
+				placeholder: '700'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleLetterSpacing',
+				label: 'Heading do feed mobile • tracking do título',
+				type: 'text',
+				placeholder: '-0.01em'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingTitleFontFamily',
+				label: 'Heading do feed mobile • fonte do título',
+				type: 'text',
+				placeholder: '\"Globotipo\", sans-serif'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleFontSize',
+				label: 'Heading do feed mobile • tamanho da linha fina',
+				type: 'text',
+				placeholder: '1rem'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleLineHeight',
+				label: 'Heading do feed mobile • line-height da linha fina',
+				type: 'text',
+				placeholder: '1.45'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleFontWeight',
+				label: 'Heading do feed mobile • peso da linha fina',
+				type: 'text',
+				placeholder: '400'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleLetterSpacing',
+				label: 'Heading do feed mobile • tracking da linha fina',
+				type: 'text',
+				placeholder: '0'
+			},
+			{
+				path: 'layoutConfig.mobileFeedHeadingSubtitleFontFamily',
+				label: 'Heading do feed mobile • fonte da linha fina',
+				type: 'text',
+				placeholder: '\"Globotipo\", sans-serif'
 			},
 			{
 				path: 'layoutConfig.cardGap',
