@@ -9,6 +9,7 @@
 	import PhotoWithCaption from './story/PhotoWithCaption.svelte';
 	import VideoPlayer from './story/VideoPlayer.svelte';
 	import GloboPlayer from './story/GloboPlayer.svelte';
+	import G1AoVivo from './story/G1AoVivo.svelte';
 	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
 	import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
 	import { getSectionStyling } from './story/sectionStyle.js';
@@ -76,6 +77,15 @@
 			case 'globo-player':
 			case 'globo':
 				return 'globo-player';
+			case 'g1aovivo':
+			case 'g1-ao-vivo':
+			case 'g1_ao_vivo':
+			case 'g1 ao vivo':
+			case 'ao-vivo':
+			case 'aovivo':
+			case 'g1live':
+			case 'live-g1':
+				return 'g1aovivo';
 			case 'galeria':
 			case 'gallery':
 				return 'gallery';
@@ -474,6 +484,46 @@
 								height={parseInt(paragraph.height) || 450}
 								autoPlay={paragraph.autoplay === 'true'}
 								startMuted={paragraph.startMuted !== 'false'}
+							/>
+						{:else if componentType === 'g1aovivo'}
+							<G1AoVivo
+								sheetUrl={paragraph.sheetUrl || paragraph.sheetURL || ''}
+								refreshIntervalMinutes={parseInt(paragraph.refreshIntervalMinutes) || 30}
+								autoPlay={!(paragraph.autoPlay === false || paragraph.autoPlay === 'false')}
+								initialMuted={!(
+									paragraph.initialMuted === false || paragraph.initialMuted === 'false'
+								)}
+								backgroundColor={paragraph.backgroundColor ||
+									paragraph.containerBackgroundColor ||
+									'#000000'}
+								widthDesktop={paragraph.widthDesktop || '100%'}
+								widthMobile={paragraph.widthMobile || '100%'}
+								aspectRatio={paragraph.aspectRatio || '16 / 9'}
+								aspectRatioMobile={paragraph.aspectRatioMobile || '9 / 16'}
+								showCaption={paragraph.showCaption === true || paragraph.showCaption === 'true'}
+								restartOnRefresh={!(
+									paragraph.restartOnRefresh === false || paragraph.restartOnRefresh === 'false'
+								)}
+								hideNativeAudioButton={paragraph.hideNativeAudioButton === true ||
+									paragraph.hideNativeAudioButton === 'true'}
+								showHeader={paragraph.showHeader === true || paragraph.showHeader === 'true'}
+								showNowPlaying={paragraph.showNowPlaying === true ||
+									paragraph.showNowPlaying === 'true'}
+								showMeta={paragraph.showMeta === true || paragraph.showMeta === 'true'}
+								bannerText={paragraph.bannerText}
+								bannerBackgroundColor={paragraph.bannerBackgroundColor}
+								bannerTextColor={paragraph.bannerTextColor}
+								bannerFontSize={paragraph.bannerFontSize}
+								bannerHeight={paragraph.bannerHeight}
+								bannerVisibilityMode={paragraph.bannerVisibilityMode}
+								bannerDisplayDuration={parseInt(paragraph.bannerDisplayDuration) || 4000}
+								intervalMediaType={paragraph.intervalMediaType}
+								intervalImageUrl={paragraph.intervalImageUrl}
+								intervalVideoUrl={paragraph.intervalVideoUrl}
+								intervalDurationMs={parseInt(paragraph.intervalDurationMs) || 4000}
+								intervalCaption={paragraph.intervalCaption}
+								title={paragraph.title}
+								description={paragraph.description}
 							/>
 						{:else if componentType === 'globoplayer-grid-slider'}
 							<GloboPlayerGridSlider

@@ -5,6 +5,7 @@ import SectionTitle from '$lib/components/story/SectionTitle.svelte';
 import PhotoWithCaption from '$lib/components/story/PhotoWithCaption.svelte';
 import VideoPlayer from '$lib/components/story/VideoPlayer.svelte';
 import GloboPlayer from '$lib/components/story/GloboPlayer.svelte';
+import G1AoVivo from '$lib/components/story/G1AoVivo.svelte';
 import PhotoGallery from '$lib/components/story/PhotoGallery.svelte';
 import Carousel from '$lib/components/story/Carousel.svelte';
 import GloboPlayerCarousel from '$lib/components/story/GloboPlayerCarousel.svelte';
@@ -318,6 +319,179 @@ export const componentRegistry = [
 				label: 'Subtítulo • altura linha mobile',
 				type: 'text',
 				placeholder: 'herda do tema'
+			}
+		]
+	},
+	{
+		type: 'g1aovivo',
+		label: 'G1 Ao Vivo',
+		icon: '🔴',
+		category: 'Mídia',
+		description:
+			'Playlist automática de vídeos GloboPlay atualizada via Google Sheets em intervalos configuráveis.',
+		component: G1AoVivo,
+		defaultData: {
+			type: 'g1aovivo',
+			title: 'G1 Ao Vivo',
+			description: '',
+			sheetUrl: '',
+			refreshIntervalMinutes: 30,
+			autoPlay: true,
+			initialMuted: false,
+			backgroundColor: '#000000',
+			widthDesktop: '100%',
+			widthMobile: '100%',
+			aspectRatio: '16 / 9',
+			aspectRatioMobile: '9 / 16',
+			showCaption: false,
+			restartOnRefresh: true,
+			hideNativeAudioButton: false,
+			showHeader: false,
+			showNowPlaying: false,
+			showMeta: false,
+			bannerText: '',
+			bannerBackgroundColor: 'rgba(15, 23, 42, 0.85)',
+			bannerTextColor: '#ffffff',
+			bannerFontSize: '1rem',
+			bannerHeight: '60px',
+			bannerVisibilityMode: 'fixed',
+			bannerDisplayDuration: 4000
+		},
+		fields: [
+			{ path: 'title', label: 'Título', type: 'text' },
+			{ path: 'description', label: 'Descrição', type: 'richtext', rows: 2 },
+			{
+				path: 'sheetUrl',
+				label: 'Link do Google Sheets (CSV)',
+				type: 'url',
+				required: true,
+				description:
+					'Use a URL publicada do Google Sheets com output=csv (Ex: https://docs.google.com/.../pub?output=csv).'
+			},
+			{
+				path: 'refreshIntervalMinutes',
+				label: 'Atualizar playlist a cada (minutos)',
+				type: 'number',
+				min: 5,
+				step: 1,
+				description: 'Ao atualizar, a lista volta para o primeiro vídeo automaticamente.'
+			},
+			{
+				path: 'autoPlay',
+				label: 'Reproduzir automaticamente',
+				type: 'boolean',
+				helpText: 'Mantém os vídeos seguindo sem intervalo.'
+			},
+			{
+				path: 'initialMuted',
+				label: 'Iniciar sem som',
+				type: 'boolean',
+				helpText: 'O usuário ativa o áudio uma vez e ele permanece ligado.'
+			},
+			{
+				path: 'hideNativeAudioButton',
+				label: 'Esconder botão nativo de áudio',
+				type: 'boolean'
+			},
+			{
+				path: 'showCaption',
+				label: 'Mostrar legenda/crédito da planilha',
+				type: 'boolean'
+			},
+			{
+				path: 'showHeader',
+				label: 'Exibir título/descrição acima do player',
+				type: 'boolean'
+			},
+			{
+				path: 'showNowPlaying',
+				label: 'Mostrar selo “Agora”',
+				type: 'boolean'
+			},
+			{
+				path: 'showMeta',
+				label: 'Mostrar texto com horário da última atualização',
+				type: 'boolean'
+			},
+			{
+				path: 'bannerText',
+				label: 'Texto da tarja',
+				type: 'text',
+				placeholder: 'Últimos vídeos do ENEM 2025'
+			},
+			{ path: 'bannerBackgroundColor', label: 'Cor da tarja', type: 'color' },
+			{ path: 'bannerTextColor', label: 'Cor do texto da tarja', type: 'color' },
+			{
+				path: 'bannerFontSize',
+				label: 'Tamanho do texto da tarja',
+				type: 'text',
+				placeholder: '1rem'
+			},
+			{ path: 'bannerHeight', label: 'Altura da tarja', type: 'text', placeholder: '60px' },
+			{
+				path: 'bannerVisibilityMode',
+				label: 'Comportamento da tarja',
+				type: 'select',
+				options: [
+					{ label: 'Sempre visível', value: 'fixed' },
+					{ label: 'Só no início de cada vídeo', value: 'per-video' }
+				]
+			},
+			{
+				path: 'bannerDisplayDuration',
+				label: 'Tempo visível por vídeo (ms)',
+				type: 'number',
+				min: 500,
+				step: 500,
+				description: 'Usado quando a tarja aparece apenas no início de cada vídeo.'
+			},
+			{
+				path: 'intervalMediaType',
+				label: 'Mídia entre vídeos',
+				type: 'select',
+				options: [
+					{ label: 'Desativada', value: 'none' },
+					{ label: 'Imagem', value: 'image' },
+					{ label: 'Vídeo', value: 'video' }
+				]
+			},
+			{
+				path: 'intervalImageUrl',
+				label: 'Imagem do intervalo (JPG/PNG)',
+				type: 'url'
+			},
+			{
+				path: 'intervalDurationMs',
+				label: 'Duração da imagem (ms)',
+				type: 'number',
+				min: 500,
+				step: 500
+			},
+			{
+				path: 'intervalVideoUrl',
+				label: 'Vídeo do intervalo (MP4)',
+				type: 'url'
+			},
+			{
+				path: 'intervalCaption',
+				label: 'Legenda/descrição do intervalo',
+				type: 'text'
+			},
+			{ path: 'backgroundColor', label: 'Cor de fundo da seção', type: 'color' },
+			{ path: 'widthDesktop', label: 'Largura desktop', type: 'text', placeholder: '100%' },
+			{ path: 'widthMobile', label: 'Largura mobile', type: 'text', placeholder: '100%' },
+			{ path: 'aspectRatio', label: 'Aspect ratio desktop', type: 'text', placeholder: '16 / 9' },
+			{
+				path: 'aspectRatioMobile',
+				label: 'Aspect ratio mobile',
+				type: 'text',
+				placeholder: '9 / 16'
+			},
+			{
+				path: 'restartOnRefresh',
+				label: 'Reiniciar playlist ao atualizar',
+				type: 'boolean',
+				helpText: 'Mantém a transmissão começando do primeiro vídeo a cada sincronização.'
 			}
 		]
 	},

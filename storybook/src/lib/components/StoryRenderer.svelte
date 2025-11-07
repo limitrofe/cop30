@@ -11,6 +11,7 @@
 	import PhotoWithCaption from './story/PhotoWithCaption.svelte';
 	import VideoPlayer from './story/VideoPlayer.svelte';
 	import GloboPlayer from './story/GloboPlayer.svelte';
+	import G1AoVivo from './story/G1AoVivo.svelte';
 	import PhotoGallery from './story/PhotoGallery.svelte';
 	import Carousel from './story/Carousel.svelte';
 	import Parallax from './story/Parallax.svelte';
@@ -173,6 +174,16 @@
 			case 'globo-player':
 			case 'globo':
 				return 'globo-player';
+
+			case 'g1aovivo':
+			case 'g1-ao-vivo':
+			case 'g1_ao_vivo':
+			case 'g1 ao vivo':
+			case 'ao-vivo':
+			case 'aovivo':
+			case 'g1live':
+			case 'live-g1':
+				return 'g1aovivo';
 
 			case 'galeria':
 			case 'gallery':
@@ -1341,6 +1352,38 @@
 							adCustomData={props.adCustomData}
 							siteName={props.siteName}
 							ga4={props.ga4}
+						/>
+					{:else if componentType === 'g1aovivo'}
+						<G1AoVivo
+							sheetUrl={props.sheetUrl || props.sheetURL || ''}
+							refreshIntervalMinutes={parseInt(props.refreshIntervalMinutes) || 30}
+							autoPlay={stringToBoolean(props.autoPlay, true)}
+							initialMuted={stringToBoolean(props.initialMuted ?? props.startMuted, true)}
+							backgroundColor={props.backgroundColor ?? props.containerBackgroundColor ?? '#000000'}
+							widthDesktop={props.widthDesktop || '100%'}
+							widthMobile={props.widthMobile || '100%'}
+							aspectRatio={props.aspectRatio || '16 / 9'}
+							aspectRatioMobile={props.aspectRatioMobile || '9 / 16'}
+							showCaption={stringToBoolean(props.showCaption, false)}
+							restartOnRefresh={stringToBoolean(props.restartOnRefresh, true)}
+							hideNativeAudioButton={stringToBoolean(props.hideNativeAudioButton, false)}
+							showHeader={stringToBoolean(props.showHeader, false)}
+							showNowPlaying={stringToBoolean(props.showNowPlaying, false)}
+							showMeta={stringToBoolean(props.showMeta, false)}
+							bannerText={props.bannerText}
+							bannerBackgroundColor={props.bannerBackgroundColor}
+							bannerTextColor={props.bannerTextColor}
+							bannerFontSize={props.bannerFontSize}
+							bannerHeight={props.bannerHeight}
+							bannerVisibilityMode={props.bannerVisibilityMode}
+							bannerDisplayDuration={parseInt(props.bannerDisplayDuration) || 4000}
+							intervalMediaType={props.intervalMediaType}
+							intervalImageUrl={props.intervalImageUrl}
+							intervalVideoUrl={props.intervalVideoUrl}
+							intervalDurationMs={parseInt(props.intervalDurationMs) || 4000}
+							intervalCaption={props.intervalCaption}
+							title={props.title}
+							description={props.description}
 						/>
 
 						<!-- Gallery -->
