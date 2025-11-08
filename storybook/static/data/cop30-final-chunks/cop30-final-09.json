@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Qual é o papel dos EUA na crise climática?",
+      "tema": "Entenda o clima",
+      "data": "11/09/2025",
+      "numero_do_video": "41",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/11/qual-e-o-papel-dos-eua-na-crise-climatica.ghtml#:~:text=Carregando-,Qual%20%C3%A9%20o%20papel%20dos%20EUA%20na%20crise%20clim%C3%A1tica%3F,do%20que%20a%20m%C3%A9dia%20global.&text=e%20de%20gra%C3%A7a-,Hoje%2C%20cada%20cidad%C3%A3o%20dos%20Estados%20Unidos%20responde%20por%20cerca%20de,emiss%C3%B5es%20se%20mant%C3%A9m%20h%C3%A1%20d%C3%A9cadas.",
+      "id_inutil": "13904947",
+      "id_video": "13904954",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13904954.jpg"
+    },
+    {
+      "titulo": "Como a floresta produz chuva?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "12/09/2025",
+      "numero_do_video": "42",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/12/como-a-floresta-produz-chuva.ghtml",
+      "id_inutil": "13910680",
+      "id_video": "13910658",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13910658.jpg"
+    },
+    {
+      "titulo": "Qual a relação entre o uso de água e a inteligência artificial?",
+      "tema": "O planeta em transformação",
+      "data": "13/09/2025",
+      "numero_do_video": "43",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/13/fazer-perguntas-para-ia-pode-consumir-agua-suficiente-para-abastecer-cidades-brasileiras-veja-lista.ghtml",
+      "id_inutil": "13918253",
+      "id_video": "13918269",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13918269.jpg"
+    },
+    {
+      "titulo": "O que é o branqueamento de corais — e por que ele é tão grave?",
+      "tema": "O planeta em transformação",
+      "data": "14/09/2025",
+      "numero_do_video": "44",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/15/o-que-e-o-branqueamento-de-corais-e-por-que-ele-e-tao-grave.ghtml",
+      "id_inutil": "13921072",
+      "id_video": "13921078",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13921078.jpg"
+    },
+    {
+      "titulo": "O que é greenwashing?",
+      "tema": "O planeta em transformação",
+      "data": "15/09/2025",
+      "numero_do_video": "45",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/15/o-que-e-greenwashing.ghtml",
+      "id_inutil": "13921909",
+      "id_video": "13921918",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13921918.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 8,
+    "chunkNumber": 9,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 40,
+    "end": 45,
+    "count": 5,
+    "chunkFile": "cop30-final-09.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-09.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 9,
+      "nextChunk": 10
+    }
+  }
+}

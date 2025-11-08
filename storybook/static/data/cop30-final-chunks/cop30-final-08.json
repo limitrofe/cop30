@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Qual é o papel da China na crise climática?",
+      "tema": "Entenda o clima",
+      "data": "06/09/2025",
+      "numero_do_video": "36",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/06/qual-e-o-papel-da-china-na-crise-climatica.ghtml#:~:text=dispositivo%20Tela%20cheia-,Qual%20%C3%A9%20o%20papel%20da%20China%20na%20crise%20clim%C3%A1tica%3F,de%2030%25%20das%20emiss%C3%B5es%20globais.&text=%C3%89%20a%20primeira%20vez%20que,o%20CO%E2%82%82%20liberado%20no%20planeta.",
+      "id_inutil": "13895073",
+      "id_video": "13895106",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13895106.jpg"
+    },
+    {
+      "titulo": "Como projeto no Pará quer recuperar floresta desmatada vendendo crédito de carbono?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "07/09/2025",
+      "numero_do_video": "37",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/07/como-projeto-no-para-quer-recuperar-floresta-desmatada-vendendo-credito-de-carbono.ghtml",
+      "id_inutil": "13904846",
+      "id_video": "13904866",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13904866.jpg"
+    },
+    {
+      "titulo": "O que é Justiça Climática?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "08/09/2025",
+      "numero_do_video": "38",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/08/o-que-e-justica-climatica.ghtml",
+      "id_inutil": "13901149",
+      "id_video": "13901128",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13901128.jpg"
+    },
+    {
+      "titulo": "Como a mudança climática afeta o preço da comida?",
+      "tema": "Clima, comida e consumo",
+      "data": "09/09/2025",
+      "numero_do_video": "39",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/c0544ea5-3ef4-40d1-a3dc-ae4d00b9985f/",
+      "id_inutil": "13898339",
+      "id_video": "13898344",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13898344.jpg"
+    },
+    {
+      "titulo": "Quais são os países que mais emitem gases do efeito estufa?",
+      "tema": "Entenda o clima",
+      "data": "10/09/2025",
+      "numero_do_video": "40",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/10/por-que-o-brasil-aparece-entre-os-maiores-emissores-do-planeta-veja-o-ranking.ghtml",
+      "id_inutil": "13897933",
+      "id_video": "13897937",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13897937.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 7,
+    "chunkNumber": 8,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 35,
+    "end": 40,
+    "count": 5,
+    "chunkFile": "cop30-final-08.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-08.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 8,
+      "nextChunk": 9
+    }
+  }
+}

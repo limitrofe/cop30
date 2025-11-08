@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Combustíveis fósseis: quais os argumentos para abandonar o uso?",
+      "tema": "Transição energética e economia verde",
+      "data": "21/09/2025",
+      "numero_do_video": "51",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/21/o-mundo-pode-abandonar-os-combustiveis-fosseis-entenda-os-argumentos.ghtml",
+      "id_inutil": "13938736",
+      "id_video": "13938743",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13938743.jpg"
+    },
+    {
+      "titulo": "Por que a falta de saneamento básico é também um problema climático?",
+      "tema": "O planeta em transformação",
+      "data": "22/09/2025",
+      "numero_do_video": "52",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/22/por-que-a-falta-de-saneamento-basico-e-tambem-um-problema-climatico.ghtml",
+      "id_inutil": "13941264",
+      "id_video": "13941245",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941245.jpg"
+    },
+    {
+      "titulo": "O que é mitigação das mudanças climáticas e o que você pode fazer?",
+      "tema": "Entenda o clima",
+      "data": "23/09/2025",
+      "numero_do_video": "53",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/23/o-que-e-mitigacao-das-mudancas-climaticas-e-o-que-voce-pode-fazer.ghtml",
+      "id_inutil": "13941588",
+      "id_video": "13941589",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941589.jpg"
+    },
+    {
+      "titulo": "Por que a polinização está em risco e o que isso significa para a nossa comida?",
+      "tema": "Clima, comida e consumo",
+      "data": "24/09/2025",
+      "numero_do_video": "54",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/24/por-que-a-polinizacao-esta-em-risco-e-o-que-isso-significa-para-a-nossa-comida.ghtml",
+      "id_inutil": "13954005",
+      "id_video": "13954045",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954045.jpg"
+    },
+    {
+      "titulo": "Por que a dengue é a primeira doença com impacto ampliado por causa da crise do clima?",
+      "tema": "O planeta em transformação",
+      "data": "25/09/2025",
+      "numero_do_video": "55",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/25/por-que-a-dengue-e-a-primeira-doenca-com-impacto-ampliado-por-causa-da-crise-do-clima.ghtml#:~:text=Com%20o%20calor%2C%20o%20ciclo,ampliando%20o%20risco%20de%20surtos.",
+      "id_inutil": "13950832",
+      "id_video": "13950845",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13950845.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 10,
+    "chunkNumber": 11,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 50,
+    "end": 55,
+    "count": 5,
+    "chunkFile": "cop30-final-11.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-11.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 11,
+      "nextChunk": 12
+    }
+  }
+}

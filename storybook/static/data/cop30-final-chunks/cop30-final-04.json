@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O que são as mudanças climáticas?",
+      "tema": "Entenda o clima",
+      "data": "17/08/2025",
+      "numero_do_video": "16",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/17/o-que-sao-as-mudancas-climaticas.ghtml",
+      "id_inutil": "13836243",
+      "id_video": "13836246",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836246.jpg"
+    },
+    {
+      "titulo": "O que está acontecendo com o gelo da Antártida?",
+      "tema": "A ciência do aquecimento global",
+      "data": "18/08/2025",
+      "numero_do_video": "17",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/18/o-que-esta-acontecendo-com-o-gelo-da-antartida.ghtml",
+      "id_inutil": "13837569",
+      "id_video": "13837572",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837572.jpg"
+    },
+    {
+      "titulo": "Qual gás do efeito estufa é o maior vilão do clima?",
+      "tema": "A ciência do aquecimento global",
+      "data": "19/08/2025",
+      "numero_do_video": "18",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/19/qual-gas-do-efeito-estufa-e-o-maior-vilao-do-clima.ghtml",
+      "id_inutil": "13837587",
+      "id_video": "13837593",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837593.jpg"
+    },
+    {
+      "titulo": "Por que a temperatura do oceano importa tanto?",
+      "tema": "A ciência do aquecimento global",
+      "data": "20/08/2025",
+      "numero_do_video": "19",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/20/por-que-a-temperatura-do-oceano-importa-tanto.ghtml#:~:text=Quando%20o%20oceano%20fica%20mais,temporais%20cada%20vez%20mais%20intensos.",
+      "id_inutil": "13837601",
+      "id_video": "13837610",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837610.jpg"
+    },
+    {
+      "titulo": "O que é o Fundo Amazônia?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "21/08/2025",
+      "numero_do_video": "20",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/21/o-que-e-o-fundo-amazonia.ghtml",
+      "id_inutil": "13837621",
+      "id_video": "13837629",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837629.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 3,
+    "chunkNumber": 4,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 15,
+    "end": 20,
+    "count": 5,
+    "chunkFile": "cop30-final-04.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-04.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 4,
+      "nextChunk": 5
+    }
+  }
+}

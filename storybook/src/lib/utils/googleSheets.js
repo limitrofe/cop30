@@ -2,6 +2,46 @@ import Papa from 'papaparse';
 
 const GOOGLE_SHEETS_ID_REGEX = /\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/;
 
+function isGoogleSheetsUrl(candidate = '') {
+	if (!candidate) return false;
+	return candidate.includes('spreadsheets.google.com');
+}
+
+function shouldBypassGoogleBuilder(candidate = '') {
+	if (!candidate) return false;
+	const normalized = candidate.toLowerCase();
+	if (normalized.startsWith('/')) return true;
+	if (normalized.startsWith('./') || normalized.startsWith('../')) return true;
+	if (!isGoogleSheetsUrl(normalized)) return true;
+	return (
+		normalized.includes('output=csv') ||
+		normalized.includes('/gviz/tq') ||
+		normalized.includes('/pub') ||
+		normalized.includes('/export')
+	);
+}
+
+function ensureMeta(payload, fallbackUrl) {
+	const meta = typeof payload.meta === 'object' && payload.meta !== null ? payload.meta : {};
+	if (!meta.headerLookup || typeof meta.headerLookup !== 'object') {
+		meta.headerLookup = {};
+	}
+	if (!meta.headerMap || typeof meta.headerMap !== 'object') {
+		meta.headerMap = {};
+	}
+	if (!Object.keys(meta.headerLookup).length && Array.isArray(payload.rows) && payload.rows.length) {
+		for (const key of Object.keys(payload.rows[0])) {
+			meta.headerLookup[key] = key;
+			meta.headerMap[key] = key;
+		}
+	}
+	if (fallbackUrl && !meta.url) {
+		meta.url = fallbackUrl;
+	}
+	payload.meta = meta;
+	return payload;
+}
+
 /**
  * Normaliza o header removendo acentos/caracteres especiais e usando snake_case.
  * Mantemos apenas letras, numeros e underscores.
@@ -102,18 +142,7 @@ export async function fetchGoogleSheet(options = {}) {
 	let gid = explicitGid ?? null;
 	let finalUrl = null;
 
-	const isDirectCsvUrl = (candidate) => {
-		if (!candidate) return false;
-		const normalized = candidate.toLowerCase();
-		return (
-			normalized.includes('output=csv') ||
-			normalized.includes('/gviz/tq') ||
-			normalized.includes('/pub') ||
-			normalized.includes('/export')
-		);
-	};
-
-	if (sheetUrl && isDirectCsvUrl(sheetUrl)) {
+	if (sheetUrl && shouldBypassGoogleBuilder(sheetUrl)) {
 		finalUrl = sheetUrl;
 	}
 
@@ -138,7 +167,25 @@ export async function fetchGoogleSheet(options = {}) {
 		throw new Error(`Falha ao carregar Google Sheets (${response.status} ${response.statusText})`);
 	}
 
-	const csvText = await response.text();
+	const bodyText = await response.text();
+	const trimmedBody = bodyText.trim();
+	const contentType = response.headers.get('content-type')?.toLowerCase() ?? '';
+	const looksJson =
+		contentType.includes('application/json') ||
+		contentType.includes('text/json') ||
+		trimmedBody.startsWith('{') ||
+		trimmedBody.startsWith('[');
+
+	if (looksJson) {
+		try {
+			const parsed = JSON.parse(trimmedBody);
+			if (parsed && typeof parsed === 'object' && Array.isArray(parsed.rows)) {
+				return ensureMeta(parsed, url);
+			}
+		} catch (error) {
+			console.warn('fetchGoogleSheet: JSON esperado mas falhou ao fazer parse, fallback para CSV.', error);
+		}
+	}
 
 	const headerLookup = {};
 	const headerMap = {};
@@ -162,7 +209,7 @@ export async function fetchGoogleSheet(options = {}) {
 		}
 	};
 
-	const { data, errors } = Papa.parse(csvText, parseConfig);
+	const { data, errors } = Papa.parse(bodyText, parseConfig);
 
 	if (errors?.length) {
 		const sample = errors.slice(0, 2).map((err) => `${err.code ?? 'ERRO'}: ${err.message ?? ''}`);

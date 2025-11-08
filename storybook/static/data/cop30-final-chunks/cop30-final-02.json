@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O que são os 'pontos de não retorno' e por que eles colocam o planeta em risco?",
+      "tema": "A ciência do aquecimento global",
+      "data": "07/08/2025",
+      "numero_do_video": "6",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/07/o-que-sao-os-pontos-de-nao-retorno-e-por-que-eles-colocam-o-planeta-em-risco.ghtml",
+      "id_inutil": "13814563",
+      "id_video": "13820507",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820507.jpg"
+    },
+    {
+      "titulo": "Por que limitar o aquecimento a 1,5°C é a meta perseguida?",
+      "tema": "Entenda o clima",
+      "data": "08/08/2025",
+      "numero_do_video": "7",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/08/por-que-limitar-o-aquecimento-a-15c-e-a-meta-perseguida.ghtml",
+      "id_inutil": "13814574",
+      "id_video": "13820534",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820534.jpg"
+    },
+    {
+      "titulo": "Como a roupa que você usa causa impacto no meio ambiente?",
+      "tema": "Clima, comida e consumo",
+      "data": "09/08/2025",
+      "numero_do_video": "8",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/09/como-a-roupa-que-voce-usa-causa-impacto-no-meio-ambiente.ghtml",
+      "id_inutil": "13814587",
+      "id_video": "13820540",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820540.jpg"
+    },
+    {
+      "titulo": "O desmatamento é o maior vilão climático do Brasil?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "10/08/2025",
+      "numero_do_video": "9",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/10/o-desmatamento-e-o-maior-vilao-climatico-do-brasil.ghtml",
+      "id_inutil": "13827395",
+      "id_video": "13827827",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827827.jpg"
+    },
+    {
+      "titulo": "Quais doenças podem crescer com o aquecimento global?",
+      "tema": "O planeta em transformação",
+      "data": "11/08/2025",
+      "numero_do_video": "10",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/11/quais-doencas-podem-crescer-com-o-aquecimento-global.ghtml",
+      "id_inutil": "13827399",
+      "id_video": "13827828",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827828.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 1,
+    "chunkNumber": 2,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 5,
+    "end": 10,
+    "count": 5,
+    "chunkFile": "cop30-final-02.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-02.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 2,
+      "nextChunk": 3
+    }
+  }
+}

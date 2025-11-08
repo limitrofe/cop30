@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O que é o Protocolo de Kyoto?",
+      "tema": "Entenda o clima",
+      "data": "12/08/2025",
+      "numero_do_video": "11",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/12/o-que-e-o-protocolo-de-kyoto.ghtml",
+      "id_inutil": "13833786",
+      "id_video": "13833786",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13833786.jpg"
+    },
+    {
+      "titulo": "Qual a diferença entre carbono zero e carbono neutro?",
+      "tema": "Entenda o clima",
+      "data": "13/08/2025",
+      "numero_do_video": "12",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/08/13/-diferenca-entro-e-carbono-neutro-e-carbono-zero-entenda.ghtml",
+      "id_inutil": "13836219",
+      "id_video": "13836222",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836222.jpg"
+    },
+    {
+      "titulo": "A desertificação está avançando no Brasil? Qual a relação com o clima?",
+      "tema": "Clima, comida e consumo",
+      "data": "14/08/2025",
+      "numero_do_video": "13",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/14/entenda-desertificacao-avancando-no-brasil-relacao-com-o-clima.ghtml#:~:text=Cientistas%20afirmam%20que%20a%20crise,n%C3%A3o%20%C3%A9%20uma%20seca%20passageira",
+      "id_inutil": "13836210",
+      "id_video": "13836217",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836217.jpg"
+    },
+    {
+      "titulo": "Boi com chip: como saber se a carne está livre de desmatamento?",
+      "tema": "Clima, comida e consumo",
+      "data": "15/08/2025",
+      "numero_do_video": "14",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/15/boi-com-chip-como-saber-se-a-carne-esta-livre-de-desmatamento.ghtml",
+      "id_inutil": "13836242",
+      "id_video": "13836232",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836232.jpg"
+    },
+    {
+      "titulo": "O que o clima tem a ver com a conta de luz?",
+      "tema": "Transição energética e economia verde",
+      "data": "16/08/2025",
+      "numero_do_video": "15",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/16/conta-de-luz-mais-cara-entenda-como-a-mudanca-do-clima-afeta-o-seu-bolso.ghtml#:~:text=Se%20voc%C3%AA%20percebeu%20que%20a,e%20o%20quanto%20ela%20custa.",
+      "id_inutil": "13836238",
+      "id_video": "13836239",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836239.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 2,
+    "chunkNumber": 3,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 10,
+    "end": 15,
+    "count": 5,
+    "chunkFile": "cop30-final-03.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-03.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 3,
+      "nextChunk": 4
+    }
+  }
+}

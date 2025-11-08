@@ -1,0 +1,120 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o Reino Unido acabou com usinas movidas por carvão?",
+      "tema": "Transição energética e economia verde",
+      "data": "11/10/2025",
+      "numero_do_video": "71",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/11/como-o-reino-unido-acabou-com-usinas-movidas-por-carvao.ghtml",
+      "id_inutil": "13997780",
+      "id_video": "13997787",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13997787.jpg"
+    },
+    {
+      "titulo": "Entregar áreas degradadas ao agronegócio pode conter o desmatamento?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "12/10/2025",
+      "numero_do_video": "72",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/12/entenda-se-entregar-areas-degradadas-ao-agronegocio-funciona-para-conter-o-desmatamento.ghtml",
+      "id_inutil": "14003166",
+      "id_video": "14003127",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14003127.jpg"
+    },
+    {
+      "titulo": "Como a floresta é capaz de gerar fonte de renda?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "13/10/2025",
+      "numero_do_video": "73",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/13/como-a-floresta-e-capaz-de-gerar-fonte-de-renda.ghtml#:~:text=%2D%2D%3A%2D%2D-,Como%20a%20floresta%20%C3%A9%20capaz%20de%20gerar%20fonte%20de%20renda,produ%C3%A7%C3%A3o%20do%20fruto%20no%20Brasil.",
+      "id_inutil": "14001262",
+      "id_video": "14001263",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14001263.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Excesso de energia pode provocar apagão?",
+      "tema": "Transição energética e economia verde",
+      "data": "14/10/2025",
+      "numero_do_video": "74",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/14/para-evitar-apagao-brasil-corta-energia-limpa-e-aciona-termeletricas-entenda-o-paradoxo-chamado-curtailment.ghtml",
+      "id_inutil": "14009327",
+      "id_video": "14009331",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009331.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Vale a pena investir em energia solar para uso doméstico?",
+      "tema": "Transição energética e economia verde",
+      "data": "15/10/2025",
+      "numero_do_video": "75",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/15/vale-a-pena-investir-em-energia-solar-para-uso-domestico.ghtml",
+      "id_inutil": "14009362",
+      "id_video": "14009351",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009351.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 14,
+    "chunkNumber": 15,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 70,
+    "end": 75,
+    "count": 5,
+    "chunkFile": "cop30-final-15.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-15.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 15,
+      "nextChunk": 16
+    }
+  }
+}

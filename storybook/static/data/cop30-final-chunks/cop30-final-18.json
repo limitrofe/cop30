@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "titulo": "Transporte público verde: o que falta para os ônibus elétricos serem maioria?",
+      "tema": "Transição energética e economia verde",
+      "data": "26/10/2025",
+      "numero_do_video": "86",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/26/transporte-publico-verde-o-que-falta-para-os-onibus-eletricos-serem-maioria-no-brasil.ghtml",
+      "id_inutil": "14042307",
+      "id_video": "14042310",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042310.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que é o prêmio fóssil do dia?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "27/10/2025",
+      "numero_do_video": "87",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/27/fossil-do-dia-o-antipremio-que-destaca-quem-atrapalha-o-combate-a-crise-climatica.ghtml",
+      "id_inutil": "14042073",
+      "id_video": "14042086",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042086.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que diz o relatório da ONU sobre compromissos climáticos dias antes da COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "28/10/2025",
+      "numero_do_video": "88",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/28/onu-diz-que-emissoes-devem-cair-pela-1a-vez-antes-de-2030-mas-ritmo-ainda-e-insuficiente-para-o-limite-de-15c.ghtml",
+      "id_inutil": "14047754",
+      "id_video": "14047764",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14047764.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que as empresas estão fazendo para produzir riqueza causando menos impacto ambiental?",
+      "tema": "Transição energética e economia verde",
+      "data": "29/10/2025",
+      "numero_do_video": "89",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/video/o-que-as-empresas-estao-fazendo-para-produzir-riqueza-causando-menos-impacto-ambiental-14046897.ghtml",
+      "id_inutil": "14046897",
+      "id_video": "14046884",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14046884.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que as COPs já conseguiram na prática?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "30/10/2025",
+      "numero_do_video": "90",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/30/o-que-as-cops-ja-conseguiram-na-pratica.ghtml#:~:text=Entre%20as%20principais%20conquistas%20est%C3%A1,para%20sistemas%20de%20compensa%C3%A7%C3%A3o%20clim%C3%A1tica.",
+      "id_inutil": "14050949",
+      "id_video": "14050953",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050953.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 17,
+    "chunkNumber": 18,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 85,
+    "end": 90,
+    "count": 5,
+    "chunkFile": "cop30-final-18.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-18.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 18,
+      "nextChunk": 19
+    }
+  }
+}

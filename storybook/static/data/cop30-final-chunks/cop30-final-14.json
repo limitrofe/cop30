@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Dá pra salvar os recifes de coral do branqueamento? Quais soluções estão em teste?",
+      "tema": "O planeta em transformação",
+      "data": "06/10/2025",
+      "numero_do_video": "66",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/06/da-para-salvar-os-recifes-de-coral-do-branqueamento-quais-solucoes-estao-em-teste.ghtml",
+      "id_inutil": "13984723",
+      "id_video": "13984725",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984725.jpg"
+    },
+    {
+      "titulo": "Como o turismo pode ajudar a preservar áreas naturais?",
+      "tema": "Clima, comida e consumo",
+      "data": "07/10/2025",
+      "numero_do_video": "67",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/07/como-o-turismo-pode-ajudar-a-preservar-areas-naturais.ghtml",
+      "id_inutil": "13990606",
+      "id_video": "13990611",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990611.jpg"
+    },
+    {
+      "titulo": "Como Paris fez para diminuir a poluição mudando o modal do transporte?",
+      "tema": "Clima, comida e consumo",
+      "data": "08/10/2025",
+      "numero_do_video": "68",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/08/menos-carros-mais-ar-limpo-o-plano-que-transformou-paris-em-uma-cidade-respiravel.ghtml#:~:text=Al%C3%A9m%20das%20proibi%C3%A7%C3%B5es%2C%20a%20cidade,seja%20totalmente%20adaptada%20%C3%A0s%20bicicletas.",
+      "id_inutil": "13990486",
+      "id_video": "13990475",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990475.jpg"
+    },
+    {
+      "titulo": "Qual a relação do PL do Licenciamento com a crise do clima?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "09/10/2025",
+      "numero_do_video": "69",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/09/qual-a-relacao-do-pl-do-licenciamento-com-a-crise-do-clima.ghtml",
+      "id_inutil": "13995840",
+      "id_video": "13995823",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13995823.jpg"
+    },
+    {
+      "titulo": "O que é Transição Energética?",
+      "tema": "Transição energética e economia verde",
+      "data": "10/10/2025",
+      "numero_do_video": "70",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/10/o-que-e-transicao-energetica-e-por-que-ela-e-urgente.ghtml",
+      "id_inutil": "13991454",
+      "id_video": "13991459",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13991459.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 13,
+    "chunkNumber": 14,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 65,
+    "end": 70,
+    "count": 5,
+    "chunkFile": "cop30-final-14.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-14.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 14,
+      "nextChunk": 15
+    }
+  }
+}

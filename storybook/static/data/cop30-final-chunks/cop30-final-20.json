@@ -1,0 +1,102 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o garimpo ilegal ameaça os povos indígenas?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "05/11/2025",
+      "numero_do_video": "96",
+      "id_inutil": "14070042",
+      "id_video": "14070044",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14070044.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Você sabe se o seu lixo é mesmo reciclável?",
+      "tema": "Transição energética e economia verde",
+      "data": "06/11/2025",
+      "numero_do_video": "97",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/075e4501-915d-4736-b2f5-15d206abac74/",
+      "id_inutil": "14073167",
+      "id_video": "14073176",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14073176.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Qual é a expectativa para a COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "07/11/2025",
+      "numero_do_video": "98",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "A bicicleta vai salvar o planeta?",
+      "tema": "Transição energética e economia verde",
+      "data": "08/11/2025",
+      "numero_do_video": "99",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que o Brasil pode ter até 12 dias de racionamento de água por ano até 2050?",
+      "tema": "A ciência do aquecimento global",
+      "data": "09/11/2025",
+      "numero_do_video": "100",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 19,
+    "chunkNumber": 20,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 95,
+    "end": 100,
+    "count": 5,
+    "chunkFile": "cop30-final-20.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-20.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 20,
+      "nextChunk": null
+    }
+  }
+}

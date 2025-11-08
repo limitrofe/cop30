@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Quem é o responsável por fazer a COP dar certo?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "27/08/2025",
+      "numero_do_video": "26",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/27/quem-e-o-responsavel-por-fazer-a-cop-dar-certo.ghtml",
+      "id_inutil": "13871802",
+      "id_video": "13871844",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13871844.jpg"
+    },
+    {
+      "titulo": "A carne vai ficar mais cara com o aquecimento global?",
+      "tema": "Clima, comida e consumo",
+      "data": "28/08/2025",
+      "numero_do_video": "27",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/28/carne-custo-aquecimento-global-entenda.ghtml",
+      "id_inutil": "13875004",
+      "id_video": "13874986",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13874986.jpg"
+    },
+    {
+      "titulo": "Por que proteger territórios indígenas é importante para o equilíbrio do clima?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "29/08/2025",
+      "numero_do_video": "28",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/29/por-que-proteger-territorios-indigenas-e-importante-para-o-equilibrio-do-clima.ghtml",
+      "id_inutil": "13875809",
+      "id_video": "13875812",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13875812.jpg"
+    },
+    {
+      "titulo": "O que é o mercado de carbono e como ele funciona?",
+      "tema": "Transição energética e economia verde",
+      "data": "30/08/2025",
+      "numero_do_video": "29",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/30/o-que-e-e-como-funciona-o-mercado-de-carbono.ghtml",
+      "id_inutil": "13879780",
+      "id_video": "13879772",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13879772.jpg"
+    },
+    {
+      "titulo": "Quais são os principais eventos paralelos da COP?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "31/08/2025",
+      "numero_do_video": "30",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/31/quais-sao-os-principais-eventos-paralelos-da-cop.ghtml",
+      "id_inutil": "13881279",
+      "id_video": "13881285",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13881285.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 5,
+    "chunkNumber": 6,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 25,
+    "end": 30,
+    "count": 5,
+    "chunkFile": "cop30-final-06.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-06.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 6,
+      "nextChunk": 7
+    }
+  }
+}

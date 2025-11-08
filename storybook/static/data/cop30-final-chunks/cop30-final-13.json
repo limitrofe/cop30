@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O que é a canícula e como ela explica a onda de calor extremo?",
+      "tema": "A ciência do aquecimento global",
+      "data": "01/10/2025",
+      "numero_do_video": "61",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/01/o-que-e-a-canicula-e-como-ela-explica-ondas-de-calor-extremo.ghtml#:~:text=A%20explica%C3%A7%C3%A3o%20est%C3%A1%20em%20um,recebe%20o%20nome%20de%20can%C3%ADcula.",
+      "id_inutil": "13970673",
+      "id_video": "13970664",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13970664.jpg"
+    },
+    {
+      "titulo": "Qual é a crise de hospedagem na COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "02/10/2025",
+      "numero_do_video": "62",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/02/qual-e-a-crise-de-hospedagem-na-cop30.ghtml",
+      "id_inutil": "13976783",
+      "id_video": "13976797",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13976797.jpg"
+    },
+    {
+      "titulo": "Hidrogênio será o combustível do futuro?",
+      "tema": "Transição energética e economia verde",
+      "data": "03/10/2025",
+      "numero_do_video": "63",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/03/hidrogenio-verde-sera-o-combustivel-do-futuro.ghtml",
+      "id_inutil": "13971536",
+      "id_video": "13971537",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13971537.jpg"
+    },
+    {
+      "titulo": "Qual o tamanho da área do Brasil efetivamente protegida?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "04/10/2025",
+      "numero_do_video": "64",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/04/qual-o-tamanho-da-area-do-brasil-efetivamente-protegida.ghtml#:~:text=O%20Brasil%20possui%20hoje%20entre,efetivamente%20protegidas%2C%20segundo%20dados%20oficiais.&text=Isso%20equivale%20a%20aproximadamente%20um,extens%C3%A3o%20absoluta%20de%20%C3%A1reas%20conservadas.",
+      "id_inutil": "13979162",
+      "id_video": "13979143",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13979143.jpg"
+    },
+    {
+      "titulo": "Como o clima extremo afeta sua saúde mental?",
+      "tema": "O planeta em transformação",
+      "data": "05/10/2025",
+      "numero_do_video": "65",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/05/como-o-clima-extremo-afeta-sua-saude-mental.ghtml",
+      "id_inutil": "13984492",
+      "id_video": "13984494",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984494.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 12,
+    "chunkNumber": 13,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 60,
+    "end": 65,
+    "count": 5,
+    "chunkFile": "cop30-final-13.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-13.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 13,
+      "nextChunk": 14
+    }
+  }
+}

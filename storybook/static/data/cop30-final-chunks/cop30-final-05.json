@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Onde vai ser a COP 30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "22/08/2025",
+      "numero_do_video": "21",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/22/onde-vai-ser-a-cop30-veja-como-area-de-antigo-aeroporto-vai-receber-conferencia-em-belem.ghtml",
+      "id_inutil": "13851805",
+      "id_video": "13851808",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13851808.jpg"
+    },
+    {
+      "titulo": "Por que faz frio se o planeta está aquecendo?",
+      "tema": "Entenda o clima",
+      "data": "23/08/2025",
+      "numero_do_video": "22",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/23/se-faz-frio-nao-existe-aquecimento-global-g1-explica.ghtml",
+      "id_inutil": "13851811",
+      "id_video": "13851820",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13851820.jpg"
+    },
+    {
+      "titulo": "Como os cientistas medem o aquecimento global?",
+      "tema": "A ciência do aquecimento global",
+      "data": "24/08/2025",
+      "numero_do_video": "23",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/24/como-os-cientistas-medem-o-aquecimento-global.ghtml",
+      "id_inutil": "13860295",
+      "id_video": "13860303",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13860303.jpg"
+    },
+    {
+      "titulo": "Qual o documento mais relevante que a ciência tem sobre a mudança climática?",
+      "tema": "Entenda o clima",
+      "data": "25/08/2025",
+      "numero_do_video": "24",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/25/qual-o-documento-mais-relevante-que-a-ciencia-tem-sobre-a-mudanca-climatica.ghtml",
+      "id_inutil": "13863633",
+      "id_video": "13863622",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13863622.jpg"
+    },
+    {
+      "titulo": "Por que Belém foi escolhida para sediar a COP?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "26/08/2025",
+      "numero_do_video": "25",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/26/por-que-belem-foi-escolhida-para-sediar-a-cop30.ghtml",
+      "id_inutil": "13870944",
+      "id_video": "13870918",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13870918.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 4,
+    "chunkNumber": 5,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 20,
+    "end": 25,
+    "count": 5,
+    "chunkFile": "cop30-final-05.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-05.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 5,
+      "nextChunk": 6
+    }
+  }
+}

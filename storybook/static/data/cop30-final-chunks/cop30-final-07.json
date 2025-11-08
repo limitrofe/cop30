@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O aumento da temperatura afeta a produção de leite e ovos?",
+      "tema": "Clima, comida e consumo",
+      "data": "01/09/2025",
+      "numero_do_video": "31",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/01/o-aumento-da-temperatura-afeta-a-producao-de-leite-e-ovos.ghtml#:~:text=Segundo%20a%20especialista%2C%20quando%20esses,a%20qualidade%20deles%20tamb%C3%A9m%20cai.",
+      "id_inutil": "13883612",
+      "id_video": "13883603",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13883603.jpg"
+    },
+    {
+      "titulo": "Por que a Terra está batendo tantos recordes de calor?",
+      "tema": "A ciência do aquecimento global",
+      "data": "02/09/2025",
+      "numero_do_video": "32",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/09/02/por-que-o-planeta-esta-cada-vez-mais-quente-g1-explica-o-que-leva-o-mundo-a-recordes-de-calor.ghtml",
+      "id_inutil": "13881212",
+      "id_video": "13890914",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13890914.jpg"
+    },
+    {
+      "titulo": "Quem são os povos tradicionais do Brasil?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "03/09/2025",
+      "numero_do_video": "33",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/03/quem-sao-os-povos-tradicionais-do-brasil.ghtml",
+      "id_inutil": "13891287",
+      "id_video": "13891271",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891271.jpg"
+    },
+    {
+      "titulo": "Dá para tirar o plástico dos oceanos?",
+      "tema": "O planeta em transformação",
+      "data": "04/09/2025",
+      "numero_do_video": "34",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/04/sabia-que-o-seu-copinho-descartavel-pode-ir-parar-no-oceano-veja-quanto-tempo-leva-para-cada-item-se-decompor.ghtml",
+      "id_inutil": "13891831",
+      "id_video": "13891863",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891863.jpg"
+    },
+    {
+      "titulo": "Por que é importante uma COP na Amazônia?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "05/09/2025",
+      "numero_do_video": "35",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/05/por-que-e-importante-uma-cop-na-amazonia.ghtml#:~:text=%2D%2D%3A%2D%2D-,Por%20que%20%C3%A9%20importante%20uma%20COP%20na%20Amaz%C3%B4nia%3F,virada%20na%20pol%C3%ADtica%20ambiental%20mundial.",
+      "id_inutil": "13891531",
+      "id_video": "13891534",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891534.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 6,
+    "chunkNumber": 7,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 30,
+    "end": 35,
+    "count": 5,
+    "chunkFile": "cop30-final-07.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-07.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 7,
+      "nextChunk": 8
+    }
+  }
+}

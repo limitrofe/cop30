@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "titulo": "O que esperar da energia eólica no Brasil?",
+      "tema": "Transição energética e economia verde",
+      "data": "16/10/2025",
+      "numero_do_video": "76",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/16/energia-eolica-vive-crise-mas-projeta-retomada-com-data-centers-e-expansao-no-mar.ghtml",
+      "id_inutil": "14012887",
+      "id_video": "14012893",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14012893.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que acontece em Altamira?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "17/10/2025",
+      "numero_do_video": "77",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/17/o-que-acontece-em-altamira.ghtml",
+      "id_inutil": "14016307",
+      "id_video": "14016309",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14016309.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que a madeira é vista como o material do futuro?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "18/10/2025",
+      "numero_do_video": "78",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/18/por-que-a-madeira-e-vista-como-o-material-do-futuro.ghtml",
+      "id_inutil": "14018171",
+      "id_video": "14018165",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14018165.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Como uma série de cartas revelam os desafios da COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "19/10/2025",
+      "numero_do_video": "79",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/19/como-uma-serie-de-cartas-revelam-os-desafios-da-cop30.ghtml",
+      "id_inutil": "14022029",
+      "id_video": "14022047",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022047.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que o fogo passou a ter papel de destaque no desmatamento na Amazônia?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "20/10/2025",
+      "numero_do_video": "80",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/20/por-que-o-fogo-passou-a-ter-papel-de-destaque-no-desmatamento-na-amazonia.ghtml",
+      "id_inutil": "14022988",
+      "id_video": "14022992",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022992.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 15,
+    "chunkNumber": 16,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 75,
+    "end": 80,
+    "count": 5,
+    "chunkFile": "cop30-final-16.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-16.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 16,
+      "nextChunk": 17
+    }
+  }
+}

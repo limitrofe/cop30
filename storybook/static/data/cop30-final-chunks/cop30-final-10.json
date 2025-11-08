@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "Por que a poluição do ar é um problema climático e de saúde ao mesmo tempo?",
+      "tema": "O planeta em transformação",
+      "data": "16/09/2025",
+      "numero_do_video": "46",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/16/poluicao-do-ar-causa-doencas-e-ate-cancer-de-pulmao-mesmo-em-nao-fumantes-entenda.ghtml",
+      "id_inutil": "13921809",
+      "id_video": "13921821",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13921821.jpg"
+    },
+    {
+      "titulo": "O que é o “novo normal” do clima?",
+      "tema": "Entenda o clima",
+      "data": "17/09/2025",
+      "numero_do_video": "47",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/17/o-que-e-o-novo-normal-do-clima.ghtml#:~:text=Secas%20cada%20vez%20mais%20longas,%E2%80%9Cnovo%20normal%E2%80%9D%20do%20clima.",
+      "id_inutil": "13931387",
+      "id_video": "13931389",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13931389.jpg"
+    },
+    {
+      "titulo": "Como a mudança climática está fazendo um país desaparecer?",
+      "tema": "A ciência do aquecimento global",
+      "data": "18/09/2025",
+      "numero_do_video": "48",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/18/como-a-mudanca-climatica-esta-fazendo-um-pais-desaparecer.ghtml",
+      "id_inutil": "13934841",
+      "id_video": "13934844",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13934844.jpg"
+    },
+    {
+      "titulo": "O que é economia circular e quem já está lucrando com ela no Brasil?",
+      "tema": "Transição energética e economia verde",
+      "data": "19/09/2025",
+      "numero_do_video": "49",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/19/o-que-e-economia-circular-e-quem-ja-esta-lucrando-com-ela-no-brasil.ghtml",
+      "id_inutil": "13936440",
+      "id_video": "13936420",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13936420.jpg"
+    },
+    {
+      "titulo": "Por que o mar está avançando sobre as praias?",
+      "tema": "O planeta em transformação",
+      "data": "20/09/2025",
+      "numero_do_video": "50",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/20/brasil-perdeu-15percent-da-faixa-de-areia-em-30-anos-avanco-do-mar-ameaca-praias-e-casas.ghtml#:~:text=O%20principal%20motivo%3F,e%20pelas%20mudan%C3%A7as%20no%20clima.",
+      "id_inutil": "13935359",
+      "id_video": "13935365",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13935365.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 9,
+    "chunkNumber": 10,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 45,
+    "end": 50,
+    "count": 5,
+    "chunkFile": "cop30-final-10.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-10.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 10,
+      "nextChunk": 11
+    }
+  }
+}

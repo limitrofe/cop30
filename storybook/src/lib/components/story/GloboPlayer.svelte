@@ -122,6 +122,8 @@ export let hideNativeAudioButton = false;
 		"button[aria-label*='audio']"
 	];
 	const nativeAudioButtonSelector = nativeAudioButtonSelectors.join(',');
+	const PLAYER_RETRY_LIMIT = 3;
+	const PLAYER_RETRY_DELAY_MS = 1500;
 
 	// Controle de estado
 	let observer = null;
@@ -132,6 +134,8 @@ export let hideNativeAudioButton = false;
 	let isRecreatingForMute = false;
 	let muteButtonObserver = null;
 	const muteButtonListeners = new Map();
+	let playerRetryCount = 0;
+	let playerRetryTimeoutId = null;
 
 	function resolveChromeless() {
 		if (typeof chromeless === 'boolean') {
@@ -494,6 +498,36 @@ export let hideNativeAudioButton = false;
 		.filter(Boolean)
 		.join(';');
 
+	function resetPlayerRetry() {
+		playerRetryCount = 0;
+		if (playerRetryTimeoutId) {
+			clearTimeout(playerRetryTimeoutId);
+			playerRetryTimeoutId = null;
+		}
+	}
+
+	function schedulePlayerRetry() {
+		if (playerRetryTimeoutId) {
+			clearTimeout(playerRetryTimeoutId);
+		}
+		const delay = PLAYER_RETRY_DELAY_MS * playerRetryCount;
+		playerRetryTimeoutId = setTimeout(() => {
+			playerRetryTimeoutId = null;
+			createPlayer(false, { preserveMuteState: true });
+		}, delay);
+	}
+
+	function handlePlayerRetry(err) {
+		playerRetryCount += 1;
+		const fatal = playerRetryCount >= PLAYER_RETRY_LIMIT;
+		const detail = { error: err, fatal, attempt: playerRetryCount };
+		dispatch('error', detail);
+		if (fatal) {
+			return;
+		}
+		schedulePlayerRetry();
+	}
+
 	// Criar o player
 	function createPlayer(shouldAutoplayOnCreate = false, options = {}) {
 		const { preserveMuteState = false } = options;
@@ -520,6 +554,7 @@ export let hideNativeAudioButton = false;
 		playerInstance = null;
 		pendingMuteState = isMuted;
 		publicControls = null;
+		resetPlayerRetry();
 		if (!preserveMuteState) {
 			lastPropStartMuted = startMuted;
 			isMuted = !!lastPropStartMuted;
@@ -590,6 +625,7 @@ export let hideNativeAudioButton = false;
 			onReady: () => {
 				isLoading = false;
 				playerReady = true;
+				resetPlayerRetry();
 				if (pendingMuteState !== null) {
 					isMuted = pendingMuteState;
 				}
@@ -719,6 +755,7 @@ export let hideNativeAudioButton = false;
 		if (observer && playerContainerElement) {
 			observer.unobserve(playerContainerElement);
 		}
+		resetPlayerRetry();
 		muteButtonObserver?.disconnect();
 		muteButtonObserver = null;
 		cleanupMuteButtonListeners();

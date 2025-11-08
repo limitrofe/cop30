@@ -1,0 +1,117 @@
+{
+  "rows": [
+    {
+      "titulo": "O que cada país promete para a crise do clima? O que são NDCs?",
+      "tema": "Entenda o clima",
+      "data": "02/08/2025",
+      "numero_do_video": "1",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/02/a-100-dias-da-cop30-metas-climaticas-atrasadas-aumentam-a-pressao-por-resultados-em-belem.ghtml",
+      "id_inutil": "13808416",
+      "id_video": "13820467",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820467.jpg"
+    },
+    {
+      "titulo": "O que é a COP e por que ela importa?",
+      "tema": "Entenda o clima",
+      "data": "03/08/2025",
+      "numero_do_video": "2",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/03/o-que-e-a-cop-e-por-que-ela-importa.ghtml",
+      "id_inutil": "13808425",
+      "id_video": "13820477",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820477.jpg"
+    },
+    {
+      "titulo": "O que é o efeito estufa e o que ele tem a ver com a COP?",
+      "tema": "Entenda o clima",
+      "data": "04/08/2025",
+      "numero_do_video": "3",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/08/04/o-que-e-o-efeito-estufa-e-o-que-ela-tem-a-ver-com-a-cop.ghtml",
+      "id_inutil": "13808433",
+      "id_video": "13820496",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820496.jpg"
+    },
+    {
+      "titulo": "O que é o Acordo de Paris?",
+      "tema": "Entenda o clima",
+      "data": "05/08/2025",
+      "numero_do_video": "4",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/05/o-que-e-o-acordo-de-paris-entenda-cop30.ghtml",
+      "id_inutil": "13814623",
+      "id_video": "13820499",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820499.jpg"
+    },
+    {
+      "titulo": "O que o café mais caro tem a ver com o clima?",
+      "tema": "Clima, comida e consumo",
+      "data": "06/08/2025",
+      "numero_do_video": "5",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/06/o-que-o-cafe-mais-caro-tem-a-ver-com-o-clima.ghtml",
+      "id_inutil": "13814558",
+      "id_video": "13820533",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820533.jpg"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 0,
+    "chunkNumber": 1,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 0,
+    "end": 5,
+    "count": 5,
+    "chunkFile": "cop30-final-01.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-01.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 1,
+      "nextChunk": 2
+    }
+  }
+}

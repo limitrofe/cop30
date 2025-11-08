@@ -1,0 +1,122 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o homem que plantou uma floresta no bairro pode inspirar você?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "21/10/2025",
+      "numero_do_video": "81",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/21/como-o-homem-que-plantou-uma-floresta-no-bairro-pode-inspirar-voce.ghtml",
+      "id_inutil": "14028915",
+      "id_video": "14028920",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028920.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que as ondas de calor estão ficando cada vez mais frequentes?",
+      "tema": "A ciência do aquecimento global",
+      "data": "22/10/2025",
+      "numero_do_video": "82",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/22/por-que-as-ondas-de-calor-estao-cada-vez-mais-frequentes.ghtml#:~:text=E%20por%20que%20isso%20est%C3%A1,e%20deixando%20Terra%20mais%20quente.",
+      "id_inutil": "14028228",
+      "id_video": "14028230",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028230.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Floresta ou oceano: de onde vem o oxigênio que a gente respira?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "23/10/2025",
+      "numero_do_video": "83",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/23/floresta-ou-oceano-de-onde-vem-o-oxigenio-que-a-gente-respira.ghtml",
+      "id_inutil": "14029039",
+      "id_video": "14029041",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14029041.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Terras raras e mineração: qual o impacto ambiental?",
+      "tema": "Transição energética e economia verde",
+      "data": "24/10/2025",
+      "numero_do_video": "84",
+      "links_relacionados": "https://g1.globo.com/google/amp/meio-ambiente/cop-30/noticia/2025/10/24/mais-comum-que-ouro-terras-raras-estao-no-centro-de-disputa-geopolitica-entenda.ghtml#:~:text=Impactos%20ambientais&text=Al%C3%A9m%20da%20retirada%20da%20vegeta%C3%A7%C3%A3o,rios%20e%20comunidades%20do%20entorno.",
+      "id_inutil": "14035056",
+      "id_video": "14035090",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14035090.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que a desinformação também é um perigo para o clima?",
+      "tema": "A ciência do aquecimento global",
+      "data": "25/10/2025",
+      "numero_do_video": "85",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/25/desinformacao-pode-comprometer-todos-os-nossos-esforcos-diz-enviado-especial-da-cop30.ghtml",
+      "id_inutil": "14038941",
+      "id_video": "14038943",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14038943.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sourceFile": "static/data/cop30-final.csv",
+    "generatedAt": "2025-11-08T00:21:46.550Z",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "rowCount": 100,
+    "chunkIndex": 16,
+    "chunkNumber": 17,
+    "chunkSize": 5,
+    "totalChunks": 20,
+    "start": 80,
+    "end": 85,
+    "count": 5,
+    "chunkFile": "cop30-final-17.json",
+    "chunkUrl": "/data/cop30-final-chunks/cop30-final-17.json",
+    "chunking": {
+      "enabled": true,
+      "publicBase": "/data/cop30-final-chunks",
+      "prefix": "cop30-final",
+      "separator": "-",
+      "extension": ".json",
+      "padLength": 2,
+      "totalChunks": 20,
+      "chunkSize": 5,
+      "startChunk": 1,
+      "currentChunk": 17,
+      "nextChunk": 18
+    }
+  }
+}

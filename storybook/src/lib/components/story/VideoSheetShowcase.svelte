@@ -161,9 +161,10 @@
 	let feedPlaybackVersion = 0;
 	let feedOverlayMode = 'none';
 	let feedOverlayVisible = false;
-	let feedInitialized = false;
-	let snapInProgress = false;
-	let snapTimeoutId;
+let feedInitialized = false;
+let snapInProgress = false;
+let snapTimeoutId;
+let lastSnappedFeedId = null;
 	let searchInputRef;
 	let videoMetaVisibleMobile = true;
 	let feedMetaHidden = new Set();
@@ -174,7 +175,6 @@
 	let feedMetaHoldVideoId = null;
 	let feedMetaHoldEndHandler = null;
 	let feedIndexLookup = new Map();
-	let mobileFeedLocked = false;
 	let mobileFeedLockTimerId = null;
 	let shortzSeenIds = new Set();
 	let shortzSeenHydrated = false;
@@ -213,11 +213,27 @@
 	let desktopOverlayPendingAutoplay = false;
 	let desktopOverlayTransitionLock = false;
 	let desktopOverlayTransitionToken = 0;
-	let desktopOverlayLoading = false;
-	const DESKTOP_SKIP_PATTERN = [false];
-	let desktopPlaybackCount = 0;
-	const desktopAdDecisions = new Map();
-	const desktopStartedPlaybacks = new Set();
+let desktopOverlayLoading = false;
+const DESKTOP_SKIP_PATTERN = [false];
+let desktopPlaybackCount = 0;
+const desktopAdDecisions = new Map();
+const desktopStartedPlaybacks = new Set();
+let chunkConfig = null;
+let chunkQueue = [];
+let chunkLoaded = new Set();
+let chunkFetching = new Set();
+let chunkLoaderToken = 0;
+let chunkPrefetchActive = false;
+let chunkActiveFetches = 0;
+let chunkPendingRows = new Map();
+let chunkNextExpected = null;
+const CHUNK_MAX_CONCURRENT = 2;
+const CHUNK_PREFETCH_THRESHOLD = 2;
+const CHUNK_RETRY_LIMIT = 3;
+const CHUNK_RETRY_DELAY_MS = 1500;
+let chunkRetryCounts = new Map();
+let pageVisible = true;
+let visibilityCleanup = null;
 	const BODY_SCROLL_LOCK_CLASS = 'video-sheet-showcase--lock-scroll';
 	const DESKTOP_CARD_SCALE = 0.85;
 	const FEED_META_HIDE_DELAY = 5000;
@@ -639,8 +655,18 @@
 	$: shouldAutoMute = resolveBoolean(layoutResolved.controlsAutoMute, true);
 	$: feedAdsDisabled = resolveBoolean(
 		layoutResolved.mobileFeedSkipDFP ?? layoutResolved.feedAdsDisabled,
-		false
+		layoutResolved.mobileDefaultView === MobileView.SHORTZ
 	);
+	$: chunkPrefetchActive = Boolean(chunkConfig) && pageVisible;
+	$: if (chunkPrefetchActive) {
+		processChunkQueue();
+	}
+	$: if (isMobileFeed && chunkConfig && feedVideos.length) {
+		const activeIndex = activeFeedId ? feedIndexLookup.get(activeFeedId) ?? -1 : -1;
+		if (activeIndex >= 0) {
+			maybePrefetchNextChunkByIndex(activeIndex);
+		}
+	}
 	$: searchStyleVars = buildSearchStyleVars(searchResolved);
 	$: controlsStyle = [controlsInlineStyle, searchStyleVars].filter(Boolean).join(';');
 	$: mobileShortzTitleColorResolved = firstMeaningful(
@@ -1152,7 +1178,7 @@
 		filterMode === 'single'
 			? !activeFilterId || activeFilterId === 'all'
 			: !activeFilterIds || activeFilterIds.size === 0;
-	$: defaultShuffleActive = filtersIdle && !searchActive;
+	$: defaultShuffleActive = false;
 	$: {
 		// Shuffle the default listing until the user interacts with filters or search.
 		if (!filteredVideos?.length) {
@@ -1173,42 +1199,23 @@
 		}
 	}
 
-	$: highlightSection = buildHighlightSection(
-		filteredVideosOrdered,
-		sectionsResolved,
-		highlightValueSet,
-		layoutResolved
-	);
+	$: highlightSection = null;
 
-	$: highlightIds = new Set(
-		highlightSection ? highlightSection.videos.map((video) => video.uuid) : []
-	);
+	$: highlightIds = new Set();
 
-	$: videosForSections =
-		sectionsResolved.highlight && highlightSection && !sectionsResolved.highlight.retainInSections
-			? filteredVideosOrdered.filter((video) => !highlightIds.has(video.uuid))
-			: filteredVideosOrdered;
+	$: videosForSections = filteredVideosOrdered;
 
 	$: regularSections = buildSections(videosForSections, sectionsResolved);
-	$: feedVideosBase = buildFeedSourceVideos({
-		highlightSection,
-		regularSections,
-		filteredVideos: filteredVideosOrdered,
-		sectionsResolved
-	});
+	$: feedVideosBase = Array.isArray(filteredVideosOrdered) ? [...filteredVideosOrdered] : [];
 	$: {
-		const shouldShuffleFeed = defaultShuffleActive && !isMobileFeed;
-		const nextFeedVideos = buildShortzVideos({
-			base: feedVideosBase,
-			leadVideoId: feedLeadVideoId,
-			seenSet: shortzSeenInitial,
-			seed: feedOrderToken,
-			lastLeadId: shortzLeadAvoidId,
-			shuffle: shouldShuffleFeed
-		});
-		feedVideos = nextFeedVideos;
-		feedIndexLookup = new Map(nextFeedVideos.map((video, index) => [video.uuid, index]));
-		if (feedLeadVideoId && nextFeedVideos.length && nextFeedVideos[0]?.uuid === feedLeadVideoId) {
+		const base = Array.isArray(feedVideosBase) ? [...feedVideosBase] : [];
+		const leadId = feedLeadVideoId;
+		if (leadId) {
+			moveVideoToFront(base, leadId);
+		}
+		feedVideos = base;
+		feedIndexLookup = new Map(base.map((video, index) => [video.uuid, index]));
+		if (leadId && base.length && base[0]?.uuid === leadId) {
 			feedLeadVideoId = null;
 		}
 	}
@@ -1394,32 +1401,32 @@
 	}
 
 	$: if (isMobileFeed && feedVideos.length) {
-		if (!feedInitialized) {
-			feedInitialized = true;
-			if (!activeFeedId && feedVideos.length) {
-				activeFeedId = feedVideos[0].uuid;
-			}
-			queueMicrotask(() => {
-				if (!feedOverlayVisible) {
-					snapActiveFeedVideo({ behavior: 'instant', force: true });
-				}
-			});
-		}
+		bootstrapMobileFeed();
 	} else if (isMobileFeed && !feedVideos.length) {
 		activeFeedId = null;
 	} else if (!isMobileFeed && feedInitialized) {
 		feedInitialized = false;
 	}
 
+	$: if (!isMobileFeed || !feedVideos.length) {
+		lastSnappedFeedId = null;
+	}
+
 	$: if (
 		isMobileFeed &&
 		feedInitialized &&
 		activeFeedId &&
-		!snapInProgress &&
-		!feedOverlayVisible
+		!feedOverlayVisible &&
+		activeFeedId !== lastSnappedFeedId
 	) {
 		queueMicrotask(() => {
-			if (!snapInProgress && !feedOverlayVisible) {
+			if (
+				isMobileFeed &&
+				feedInitialized &&
+				activeFeedId &&
+				!feedOverlayVisible &&
+				activeFeedId !== lastSnappedFeedId
+			) {
 				snapActiveFeedVideo({ behavior: 'smooth' });
 			}
 		});
@@ -1486,6 +1493,18 @@
 				window.removeEventListener('resize', resizeHandler);
 				resizeCleanup = null;
 			};
+			const handleVisibility = () => {
+				pageVisible = document.visibilityState !== 'hidden';
+				if (pageVisible) {
+					processChunkQueue();
+				}
+			};
+			pageVisible = document.visibilityState !== 'hidden';
+			document.addEventListener('visibilitychange', handleVisibility);
+			visibilityCleanup = () => {
+				document.removeEventListener('visibilitychange', handleVisibility);
+				visibilityCleanup = null;
+			};
 		}
 
 		if (fetchOnMount) {
@@ -1499,10 +1518,12 @@
 	});
 
 	onDestroy(() => {
+		resetChunkLoader();
 		abortController?.abort();
 		teardownRevealObserver();
 		teardownCreditsObserver();
 		resizeCleanup?.();
+		visibilityCleanup?.();
 		teardownFeedObserver();
 		clearFeedMetaTimer();
 		cleanupFeedMetaHoldListeners();
@@ -1538,6 +1559,8 @@
 	async function loadSheet() {
 		if (!browser) return;
 
+		resetChunkLoader();
+
 		abortController?.abort();
 		abortController = new AbortController();
 
@@ -1566,6 +1589,10 @@
 		} finally {
 			loading = false;
 		}
+	}
+
+	$: if (browser && sheetMeta) {
+		updateChunkLoaderFromMeta(sheetMeta);
 	}
 
 	export async function refresh() {
@@ -1766,6 +1793,324 @@
 			video.skipDFP ?? video.skipdfp ?? video.row?.skipDFP ?? video.row?.skipdfp ?? null;
 		if (candidate === null || candidate === undefined) return false;
 		return resolveBoolean(candidate, false);
+	}
+
+	function resolveChunkPublicBase(base, referenceUrl, derivedBase) {
+		if (!base || typeof base !== 'string') {
+			return derivedBase ?? null;
+		}
+		const trimmed = base.trim();
+		if (!trimmed) return derivedBase ?? null;
+		const absolutePattern = /^https?:\/\//i;
+		if (absolutePattern.test(trimmed)) {
+			return trimmed.replace(/\/+$/, '');
+		}
+		// Relative path: prefer explicit derived base over origin root to keep nested dirs
+		if (derivedBase) {
+			return derivedBase.replace(/\/+$/, '');
+		}
+		const reference =
+			referenceUrl ||
+			(typeof window !== 'undefined' && window.location ? window.location.href : null);
+		if (!reference) {
+			return trimmed.replace(/\/+$/, '');
+		}
+		try {
+			const resolved = new URL(trimmed, reference);
+			return resolved.toString().replace(/\/+$/, '');
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao resolver base de chunk', error);
+			return trimmed.replace(/\/+$/, '');
+		}
+	}
+
+	function normalizeChunkingConfig(meta, options = {}) {
+		if (!meta) return null;
+		const chunking = meta.chunking ?? null;
+		if (!chunking) return null;
+		const totalChunks = Number(chunking.totalChunks ?? chunking.total ?? meta.totalChunks ?? 0);
+		const enabled =
+			chunking.enabled === undefined ? totalChunks > 1 : Boolean(chunking.enabled);
+		const fallbackBase =
+			options?.baseUrl && options.baseUrl.includes('/')
+				? options.baseUrl
+				: meta?.url && meta.url.includes('/')
+					? meta.url.slice(0, meta.url.lastIndexOf('/'))
+					: null;
+		const publicBaseRaw = firstMeaningful(
+			chunking.publicBase,
+			chunking.baseUrl,
+			chunking.basePath,
+			fallbackBase
+		);
+		const publicBase = resolveChunkPublicBase(publicBaseRaw, meta.url, fallbackBase);
+		if (!enabled || !publicBase || totalChunks <= 1) return null;
+		const prefix = firstMeaningful(chunking.prefix, chunking.filePrefix, 'chunk');
+		const separator =
+			chunking.separator === undefined || chunking.separator === null
+				? '-'
+				: String(chunking.separator);
+		const extensionRaw = firstMeaningful(chunking.extension, chunking.suffix, '.json');
+		const extension =
+			extensionRaw && extensionRaw.startsWith('.') ? extensionRaw : `.${extensionRaw || 'json'}`;
+		const padLength = Number(chunking.padLength ?? chunking.padding ?? 2) || 2;
+		const chunkSize =
+			Number(chunking.chunkSize ?? chunking.size ?? meta.chunkSize ?? 0) || 0;
+		const currentChunk =
+			Number(
+				chunking.currentChunk ??
+					meta.chunkNumber ??
+					meta.chunkIndex ??
+					chunking.startChunk ??
+					1
+			) || 1;
+		const datasetKey = [
+			publicBase.replace(/\/+$/, ''),
+			prefix,
+			separator,
+			extension,
+			padLength,
+			totalChunks,
+			chunkSize
+		].join('|');
+		return {
+			publicBase: publicBase.replace(/\/+$/, ''),
+			prefix,
+			separator,
+			extension,
+			padLength,
+			totalChunks,
+			chunkSize,
+			currentChunk,
+			datasetKey
+		};
+	}
+
+	function buildChunkUrlFromConfig(config, chunkNumber) {
+		if (!config?.publicBase) return null;
+		if (!chunkNumber || chunkNumber < 1 || chunkNumber > config.totalChunks) return null;
+		const padLength = Math.max(1, Number(config.padLength) || 1);
+		const label = String(chunkNumber).padStart(padLength, '0');
+		const separator =
+			config.separator === undefined || config.separator === null
+				? '-'
+				: String(config.separator);
+		const extension =
+			config.extension && config.extension.startsWith('.')
+				? config.extension
+				: `.${config.extension || 'json'}`;
+		const prefix = config.prefix ?? 'chunk';
+		const base = config.publicBase.endsWith('/')
+			? config.publicBase.slice(0, -1)
+			: config.publicBase;
+		const filename =
+			separator === ''
+				? `${prefix}${label}${extension}`
+				: `${prefix}${separator}${label}${extension}`;
+		return `${base}/${filename}`;
+	}
+
+	function resetChunkLoader() {
+		chunkConfig = null;
+		chunkQueue = [];
+		chunkLoaded = new Set();
+		chunkFetching.clear();
+		chunkPendingRows = new Map();
+		chunkNextExpected = null;
+		chunkLoaderToken += 1;
+		chunkActiveFetches = 0;
+		chunkRetryCounts = new Map();
+	}
+
+	function markChunkLoaded(chunkNumber) {
+		if (!chunkNumber || chunkLoaded.has(chunkNumber)) return;
+		const next = new Set(chunkLoaded);
+		next.add(chunkNumber);
+		chunkLoaded = next;
+	}
+
+	function ensureChunkQueued(config, chunkNumber) {
+		if (!browser || !config) return;
+		if (!chunkNumber || chunkNumber > config.totalChunks) return;
+		if (chunkLoaded.has(chunkNumber)) return;
+		if (chunkQueue.some((entry) => entry.chunkNumber === chunkNumber)) return;
+		const url = buildChunkUrlFromConfig(config, chunkNumber);
+		if (!url) return;
+		chunkQueue.push({ chunkNumber, url });
+		if (chunkPrefetchActive) {
+			processChunkQueue();
+		}
+	}
+
+	function enqueueRemainingChunks(config) {
+		if (!browser || !config) return;
+		const start = Math.max(config.currentChunk + 1, 1);
+		for (let chunkNumber = start; chunkNumber <= config.totalChunks; chunkNumber++) {
+			ensureChunkQueued(config, chunkNumber);
+		}
+	}
+
+	function getActiveFetcher() {
+		return typeof fetcher === 'function' ? fetcher : fetch;
+	}
+
+	function flushChunkBuffer() {
+		if (!chunkConfig) return;
+		if (chunkNextExpected === null) {
+			chunkNextExpected = (chunkConfig.currentChunk ?? 1) + 1;
+		}
+		let next = chunkNextExpected;
+		let appended = false;
+		while (chunkPendingRows.has(next)) {
+			const rows = chunkPendingRows.get(next);
+			chunkPendingRows.delete(next);
+			if (Array.isArray(rows) && rows.length) {
+				sheetRows = [...sheetRows, ...rows];
+			}
+			next += 1;
+			appended = true;
+		}
+		if (appended) {
+			chunkNextExpected = next;
+		}
+	}
+
+	function maybePrefetchNextChunkByIndex(index) {
+		if (!chunkConfig || !Number.isFinite(index) || index < 0) return;
+		const chunkSize = Number(chunkConfig.chunkSize ?? chunkConfig.size ?? 0);
+		if (!chunkSize || chunkSize <= 0) return;
+		const chunkNumber = Math.floor(index / chunkSize) + 1;
+		const position = index % chunkSize;
+		const threshold = Math.min(chunkSize - 1, Math.max(1, CHUNK_PREFETCH_THRESHOLD));
+		if (position >= chunkSize - threshold) {
+			const nextChunk = chunkNumber + 1;
+			ensureChunkQueued(chunkConfig, nextChunk);
+		}
+	}
+
+	async function fetchChunk(config, chunkNumber, url) {
+		const loaderToken = chunkLoaderToken;
+		const retryCount = chunkRetryCounts.get(chunkNumber) ?? 0;
+
+		try {
+			const activeFetcher = getActiveFetcher();
+			const response = await activeFetcher(url, {
+				headers: fetchHeaders,
+				signal: abortController?.signal
+			});
+			if (!response.ok) {
+				throw new Error(`HTTP error ${response.status}`);
+			}
+			const data = await response.json();
+			if (loaderToken !== chunkLoaderToken) {
+				chunkFetching.delete(chunkNumber);
+				return;
+			}
+
+			const rows = data?.rows ?? data ?? [];
+			if (Array.isArray(rows)) {
+				chunkPendingRows.set(chunkNumber, rows);
+				markChunkLoaded(chunkNumber);
+				flushChunkBuffer();
+			}
+			chunkFetching.delete(chunkNumber);
+		} catch (err) {
+			if (err?.name === 'AbortError' || loaderToken !== chunkLoaderToken) {
+				chunkFetching.delete(chunkNumber);
+				return;
+			}
+			console.error(`VideoSheetShowcase: falha ao carregar chunk ${chunkNumber} de ${url}`, err);
+			if (retryCount < CHUNK_RETRY_LIMIT) {
+				chunkRetryCounts.set(chunkNumber, retryCount + 1);
+				setTimeout(() => {
+					if (loaderToken !== chunkLoaderToken) {
+						chunkFetching.delete(chunkNumber);
+						return;
+					}
+					chunkFetching.delete(chunkNumber);
+					processChunkQueue();
+				}, CHUNK_RETRY_DELAY_MS * (retryCount + 1));
+			} else {
+				chunkFetching.delete(chunkNumber);
+			}
+		}
+	}
+
+	function scheduleChunkRetry(job, token) {
+		if (!job || token !== chunkLoaderToken) return;
+		const attempts = chunkRetryCounts.get(job.chunkNumber) ?? 0;
+		if (attempts >= CHUNK_RETRY_LIMIT) {
+			console.error(
+				`VideoSheetShowcase: chunk ${job.chunkNumber} atingiu o limite de tentativas (${CHUNK_RETRY_LIMIT}).`
+			);
+			chunkRetryCounts.delete(job.chunkNumber);
+			return;
+		}
+		chunkRetryCounts.set(job.chunkNumber, attempts + 1);
+		const delay = CHUNK_RETRY_DELAY_MS * (attempts + 1);
+		setTimeout(() => {
+			if (token !== chunkLoaderToken) return;
+			chunkQueue.unshift(job);
+			if (chunkPrefetchActive) {
+				processChunkQueue();
+			}
+		}, delay);
+	}
+
+		async function processChunkQueue() {
+		if (!browser || !chunkConfig) return;
+		if (chunkActiveFetches >= CHUNK_MAX_CONCURRENT) return;
+		const queue = chunkQueue.filter(
+			(entry) =>
+				!chunkLoaded.has(entry.chunkNumber) &&
+				!chunkPendingRows.has(entry.chunkNumber) &&
+				!chunkFetching.has(entry.chunkNumber)
+		);
+		if (!queue.length) return;
+
+		const availableSlots = CHUNK_MAX_CONCURRENT - chunkActiveFetches;
+		const toFetch = queue.slice(0, availableSlots);
+
+		if (!toFetch.length) return;
+
+		for (const entry of toFetch) {
+			chunkFetching.add(entry.chunkNumber);
+		}
+
+		chunkActiveFetches += toFetch.length;
+		await Promise.all(toFetch.map((entry) => fetchChunk(chunkConfig, entry.chunkNumber, entry.url)));
+		chunkActiveFetches -= toFetch.length;
+
+		if (chunkQueue.length > 0) {
+			processChunkQueue();
+		}
+	}
+
+	function updateChunkLoaderFromMeta(meta) {
+		if (!browser || !meta) return;
+		const expectedRows = Number(meta.rowCount ?? 0);
+		if (expectedRows && sheetRows.length >= expectedRows) {
+			return;
+		}
+		const sheetBase =
+			typeof sheetUrl === 'string' && sheetUrl.includes('/')
+				? sheetUrl.slice(0, sheetUrl.lastIndexOf('/'))
+				: null;
+		const normalized = normalizeChunkingConfig(meta, { baseUrl: sheetBase });
+		if (!normalized) return;
+		if (!chunkConfig || chunkConfig.datasetKey !== normalized.datasetKey) {
+			resetChunkLoader();
+			chunkConfig = normalized;
+		} else {
+			chunkConfig = { ...chunkConfig, ...normalized };
+		}
+		if (chunkNextExpected === null && normalized.currentChunk) {
+			chunkNextExpected = normalized.currentChunk + 1;
+		}
+		if (normalized.currentChunk) {
+			markChunkLoaded(normalized.currentChunk);
+		}
+		enqueueRemainingChunks(chunkConfig);
 	}
 
 	function createColumnResolver(meta, rows) {
@@ -2323,37 +2668,6 @@
 		return [...ordered, ...remaining];
 	}
 
-	function buildFeedSourceVideos({ highlightSection, regularSections, filteredVideos }) {
-		const sequence = [];
-		const seen = new Set();
-
-		const pushVideo = (video) => {
-			if (!video || seen.has(video.uuid)) return;
-			seen.add(video.uuid);
-			sequence.push(video);
-		};
-
-		if (highlightSection?.videos?.length) {
-			for (const video of highlightSection.videos) {
-				pushVideo(video);
-			}
-		}
-
-		if (regularSections?.length) {
-			for (const section of regularSections) {
-				for (const video of section.videos) {
-					pushVideo(video);
-				}
-			}
-		} else if (filteredVideos?.length) {
-			for (const video of filteredVideos) {
-				pushVideo(video);
-			}
-		}
-
-		return sequence;
-	}
-
 	function buildFeedPlayerWindow({ videos = [], activeId = null, buffer = 1 }) {
 		if (!Array.isArray(videos) || !videos.length) return new Set();
 		const activeIndex = activeId ? videos.findIndex((video) => video.uuid === activeId) : 0;
@@ -2373,60 +2687,17 @@
 		return windowSet;
 	}
 
-	function buildShortzVideos({
-		base = [],
-		leadVideoId = null,
-		seenSet = new Set(),
-		seed = 0,
-		lastLeadId = null,
-		shuffle = true
-	}) {
-		if (!base?.length) return [];
-
-		const activeSeenSet = seenSet instanceof Set ? seenSet : new Set();
-		const random = createSeededRandom(seed);
-
-		const unseen = [];
-		const seen = [];
-		let leadVideo = null;
-
-		for (const video of base) {
-			if (!video?.uuid) continue;
-			if (leadVideoId && video.uuid === leadVideoId) {
-				leadVideo = video;
-				continue;
-			}
-			if (activeSeenSet.has(video.uuid)) {
-				seen.push(video);
-			} else {
-				unseen.push(video);
-			}
+	function moveVideoToFront(list = [], targetId) {
+		if (!Array.isArray(list) || list.length <= 1 || !targetId) {
+			return list;
 		}
-
-		const output = [];
-
-		if (leadVideo) {
-			output.push(leadVideo);
+		const index = list.findIndex((video) => video?.uuid === targetId);
+		if (index <= 0) {
+			return list;
 		}
-
-		const unseenOrdered = shuffle ? shuffleList(unseen, random) : unseen;
-		if (!leadVideo) {
-			moveFirstDifferent(unseenOrdered, lastLeadId);
-		}
-
-		const seenOrdered = shuffle ? shuffleList(seen, random) : seen;
-		if (!leadVideo && unseenOrdered.length === 0) {
-			moveFirstDifferent(seenOrdered, lastLeadId);
-		}
-
-		output.push(...unseenOrdered);
-		output.push(...seenOrdered);
-
-		if (!output.length && leadVideo) {
-			output.push(leadVideo);
-		}
-
-		return output;
+		const [video] = list.splice(index, 1);
+		list.unshift(video);
+		return list;
 	}
 
 	function shuffleList(list = [], randomFn = Math.random) {
@@ -2441,21 +2712,6 @@
 			output[swapIndex] = temp;
 		}
 		return output;
-	}
-
-	function moveFirstDifferent(list, forbiddenId) {
-		if (!Array.isArray(list) || list.length <= 1) return;
-		if (!forbiddenId) return;
-		if (!list[0]?.uuid || list[0].uuid !== forbiddenId) return;
-		for (let index = 1; index < list.length; index += 1) {
-			const candidate = list[index];
-			if (candidate?.uuid && candidate.uuid !== forbiddenId) {
-				const first = list[0];
-				list[0] = candidate;
-				list[index] = first;
-				return;
-			}
-		}
 	}
 
 	function createSeededRandom(seedInput) {
@@ -3014,9 +3270,25 @@
 		return feedPosterVisible.get(videoId) ?? true;
 	}
 
+	function shouldRenderFeedPlayer(videoId) {
+		if (!isMobileFeed) return true;
+		if (!videoId) return false;
+		const leadId = feedVideos[0]?.uuid ?? null;
+		if (videoId === leadId) return true;
+		if (videoId === activeFeedId) return true;
+		if (feedPlayerWindow.has(videoId)) return true;
+		return false;
+	}
+
+	function getLeadFeedVideoId() {
+		return feedVideos[0]?.uuid ?? null;
+	}
+
 	function shouldEagerInitFeedPlayer(videoId) {
 		if (!isMobileFeed) return false;
 		if (!videoId) return false;
+		const leadId = feedVideos[0]?.uuid ?? null;
+		if (videoId === leadId) return true;
 		if (videoId === activeFeedId) return true;
 		return feedPlayerWindow.has(videoId);
 	}
@@ -3031,6 +3303,23 @@
 		const next = new Set(feedMetaHidden);
 		next.delete(videoId);
 		feedMetaHidden = next;
+	}
+
+	function handleFeedPlayerError(videoId, event) {
+		if (!videoId) return;
+		const fatal = Boolean(event?.detail?.fatal);
+		dropPlayerControls(videoId);
+		if (fatal && mobileFeedLocked && videoId === getLeadFeedVideoId()) {
+			mobileFeedLocked = false;
+		}
+		if (fatal && videoId === activeFeedId) {
+			mobileFeedLocked = false;
+		}
+	}
+
+	function handleFeedPlayerDestroyed(videoId) {
+		if (!videoId) return;
+		dropPlayerControls(videoId);
 	}
 
 	function clearFeedMetaTimer() {
@@ -3112,6 +3401,9 @@
 			feedMetaHoldActive = false;
 			feedMetaHoldVideoId = null;
 			lastFeedMetaActiveId = null;
+			if (mobileFeedLocked) {
+				mobileFeedLocked = false;
+			}
 		} else {
 			const activeId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
 			if (!activeId) {
@@ -3150,15 +3442,16 @@
 		if (mode === MobileView.SHORTZ) {
 			queueMicrotask(() => {
 				if (isMobileFeed) {
-					if (!activeFeedId && feedVideos.length) {
-						activeFeedId = feedVideos[0].uuid;
-					}
-					snapActiveFeedVideo({ behavior: 'instant', force: true });
+					bootstrapMobileFeed({ forceSnap: true });
 				}
 			});
 		} else {
 			activeFeedId = null;
 			updateFeedPlayback();
+			if (feedInitialized) {
+				feedInitialized = false;
+			}
+			mobileFeedLocked = true;
 		}
 	}
 
@@ -3219,6 +3512,11 @@
 		}
 		feedPlayerControls.set(videoId, controls);
 		feedPlayerReady.add(videoId);
+		const leadId = getLeadFeedVideoId();
+		if (isMobileFeed && leadId && videoId === leadId && mobileFeedLocked) {
+			mobileFeedLocked = false;
+			queueMicrotask(() => snapActiveFeedVideo({ behavior: 'instant', force: true }));
+		}
 		if (!isMobileFeed) {
 			desktopPlayerControls.set(videoId, controls);
 			try {
@@ -3294,6 +3592,22 @@
 
 		const nextActiveId = activeFeedId ?? feedVideos[0]?.uuid ?? null;
 		const shouldMuteActive = shouldAutoMute && !feedAudioUnlocked;
+		if (nextActiveId && !feedPlayerReady.has(nextActiveId)) {
+			feedPlayerControls.forEach((controls, videoId) => {
+				if (!feedPlayerReady.has(videoId)) return;
+				try {
+					controls.pause?.();
+					if (shouldAutoMute) {
+						controls.setMuted?.(true);
+					}
+				} catch (error) {
+					console.warn('VideoSheetShowcase: falha ao pausar player aguardando pronto', error);
+				}
+			});
+			setFeedPosterState(nextActiveId, true);
+			lastActiveFeedId = null;
+			return;
+		}
 		if (!nextActiveId) {
 			feedPlayerControls.forEach((controls, videoId) => {
 				if (!feedPlayerReady.has(videoId)) return;
@@ -3640,6 +3954,56 @@
 		await handleFilterNavigation(option);
 	}
 
+	function handleFeedVideoClick(video) {
+		if (!video || !isMobileFeed) return;
+
+		const controls = feedPlayerControls.get(video.uuid);
+		if (!controls) return;
+
+		activeFeedId = video.uuid;
+
+		try {
+			const isPlaying = controls.isPlaying?.();
+			if (isPlaying) {
+				controls.pause?.();
+			} else {
+				controls.play?.();
+				const shouldMute = shouldAutoMute && !feedAudioUnlocked;
+				controls.setMuted?.(shouldMute);
+				if (!shouldMute) {
+					handleFeedAudioUnlock(video.uuid, null, { persist: false });
+				}
+			}
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao controlar vídeo no clique', error);
+		}
+	}
+
+	function handleGeolocation(video) {
+		if (!video || !isMobileFeed) return;
+
+		const controls = feedPlayerControls.get(video.uuid);
+		if (!controls) return;
+
+		activeFeedId = video.uuid;
+
+		try {
+			const isPlaying = controls.isPlaying?.();
+			if (isPlaying) {
+				controls.pause?.();
+			} else {
+				controls.play?.();
+				const shouldMute = shouldAutoMute && !feedAudioUnlocked;
+				controls.setMuted?.(shouldMute);
+				if (!shouldMute) {
+					handleFeedAudioUnlock(video.uuid, null, { persist: false });
+				}
+			}
+		} catch (error) {
+			console.warn('VideoSheetShowcase: falha ao controlar vídeo no clique', error);
+		}
+	}
+
 	async function openDesktopOverlay(videoId) {
 		if (!videoId) return;
 		if (isMobileViewport || isMobileFeed) return;
@@ -3752,18 +4116,47 @@
 		desktopOverlayLoading = false;
 	}
 
+	function bootstrapMobileFeed({ forceSnap = false } = {}) {
+		if (!isMobileFeed || !feedVideos.length) return;
+		const leadId = getLeadFeedVideoId();
+		if (leadId) {
+			mobileFeedLocked = !feedPlayerReady.has(leadId);
+		}
+		let initializedNow = false;
+		if (!feedInitialized) {
+			feedInitialized = true;
+			if (!activeFeedId) {
+				activeFeedId = leadId;
+			}
+			initializedNow = true;
+		}
+		const shouldSnap = (forceSnap || initializedNow) && !feedOverlayVisible;
+		if (shouldSnap) {
+			queueMicrotask(() => {
+				if (!isMobileFeed || feedOverlayVisible) return;
+				snapActiveFeedVideo({ behavior: forceSnap ? 'instant' : 'smooth', force: true });
+			});
+		}
+	}
+
 	function snapActiveFeedVideo({ behavior = 'smooth', force = false } = {}) {
 		if (!browser || !isMobileFeed || !mobileFeedContainer) return;
 		if (feedOverlayVisible) return;
+		if (mobileFeedLocked && !force) return;
 		const targetId = activeFeedId ?? feedVideos[0]?.uuid;
 		if (!targetId) return;
+		if (!force && targetId === lastSnappedFeedId) return;
 		const targetNode = feedItemElements.get(targetId);
 		if (!targetNode) return;
 		const targetTop = targetNode.offsetTop;
 		const current = mobileFeedContainer.scrollTop ?? 0;
 		const diff = Math.abs(current - targetTop);
-		if (!force && diff < 2) return;
+		if (!force && diff < 2) {
+			lastSnappedFeedId = targetId;
+			return;
+		}
 		snapInProgress = true;
+		lastSnappedFeedId = targetId;
 		const scrollBehavior = behavior === 'instant' ? 'auto' : behavior;
 		requestAnimationFrame(() => {
 			mobileFeedContainer.scrollTo({ top: targetTop, behavior: scrollBehavior });
@@ -4164,29 +4557,34 @@
 										aria-hidden={!isFeedPosterVisible(video.uuid)}
 									/>
 								{/if}
-								<GloboPlayer
-									videoId={video.globoId}
-									videoIdDesktop={video.globoIdDesktop}
-									videoIdMobile={video.globoIdMobile}
-									autoPlay={false}
-									poster={video.thumbnail || undefined}
-									posterAlt={video.title}
-									startMuted={isMobileFeed ? shouldAutoMute && !feedAudioUnlocked : shouldAutoMute}
-									controls={true}
-									aspectRatio="9 / 16"
-									aspectRatioMobile="9 / 16"
-									containerBackgroundColor="#0b0d17"
-									preventBlackBars={true}
-									skipDFP={feedAdsDisabled || resolveSkipDFPFlag(video)}
-									eagerInit={shouldEagerInitFeedPlayer(video.uuid)}
-									on:controls={(event) =>
-										handlePlayerControls(video.uuid, event.detail?.controls, event.detail?.reason)}
-									on:ready={() => setFeedPosterState(video.uuid, false)}
-									on:error={() => setFeedPosterState(video.uuid, true)}
-									on:destroyed={() => setFeedPosterState(video.uuid, true)}
-									on:audiounlock={(event) => handleFeedAudioUnlock(video.uuid, event)}
-									on:audiolock={(event) => handleFeedAudioLock(video.uuid, event)}
-								/>
+										{#if shouldRenderFeedPlayer(video.uuid)}
+											{#key video.uuid}
+												<GloboPlayer
+													videoId={video.globoId}
+													videoIdDesktop={video.globoIdDesktop}
+													videoIdMobile={video.globoIdMobile}
+													autoPlay={false}
+													allowLocation={false}
+													poster={video.thumbnail || undefined}
+													posterAlt={video.title}
+													startMuted={isMobileFeed ? shouldAutoMute && !feedAudioUnlocked : shouldAutoMute}
+													controls={true}
+													aspectRatio="9 / 16"
+											aspectRatioMobile="9 / 16"
+											containerBackgroundColor="#0b0d17"
+											preventBlackBars={true}
+											skipDFP={feedAdsDisabled || resolveSkipDFPFlag(video)}
+											eagerInit={shouldEagerInitFeedPlayer(video.uuid)}
+											on:controls={(event) =>
+												handlePlayerControls(video.uuid, event.detail?.controls, event.detail?.reason)}
+											on:ready={() => setFeedPosterState(video.uuid, false)}
+											on:error={(event) => handleFeedPlayerError(video.uuid, event)}
+											on:destroyed={() => handleFeedPlayerDestroyed(video.uuid)}
+											on:audiounlock={(event) => handleFeedAudioUnlock(video.uuid, event)}
+											on:audiolock={(event) => handleFeedAudioLock(video.uuid, event)}
+										/>
+									{/key}
+								{/if}
 							</div>
 							<div class="mobile-feed__overlay">
 								<div class="mobile-feed__content">
