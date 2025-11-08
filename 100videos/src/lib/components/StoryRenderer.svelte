@@ -42,6 +42,7 @@
 	import FreeCanvas from './story/FreeCanvas.svelte';
 	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
 	import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
+	import VideoThemeFeed from './story/VideoThemeFeed.svelte';
 	import ChartBar from './story/ChartBar.svelte';
 	import ChartLine from './story/ChartLine.svelte';
 	import ParticipantHighlight from './story/ParticipantHighlight.svelte';
@@ -50,12 +51,15 @@
 	import ChallengeBarChartScores from './charts/ChallengeBarChartScores.svelte';
 	import OptimismHistogram from './charts/OptimismHistogram.svelte';
 	import StillTimeBubbleChart from './charts/StillTimeBubbleChart.svelte';
+	import { provideGloboPlayerLoader } from './story/globoPlayerContext.js';
 
 	export let previewDevice = null;
 
 	let device = 'desktop';
 	const KEYHOLE_CLIP_CLOSED =
 		'polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 100% 100%, 100% 0%)';
+
+	provideGloboPlayerLoader();
 
 	function determineDevice() {
 		if (previewDevice && typeof previewDevice === 'string') return previewDevice;
@@ -219,6 +223,17 @@
 			case 'videosheet':
 			case 'videosheets':
 				return 'video-sheet-showcase';
+			case 'video-theme-feed':
+			case 'video-feed':
+			case 'videos-feed':
+			case 'feed-de-videos':
+			case 'feed-video':
+			case 'feed-videos':
+			case 'video-tematico':
+			case 'videos-tematicos':
+			case 'feed-tematico':
+			case 'globoplay-feed':
+				return 'video-theme-feed';
 
 			// 🆕 NOVO: Itens Recomendados
 			case 'recomendados':
@@ -1440,6 +1455,34 @@
 							debug={stringToBoolean(props.debug, false)}
 							fetchOnMount={stringToBoolean(props.fetchOnMount, true)}
 							initialData={props.initialData}
+						/>
+
+						<!-- Video Theme Feed -->
+					{:else if componentType === 'video-theme-feed'}
+						<VideoThemeFeed
+							sheetUrl={props.sheetUrl}
+							sheetId={props.sheetId}
+							sheetName={props.sheetName}
+							gid={props.gid}
+							query={props.query}
+							datasetUrl={props.datasetUrl}
+							themeField={props.themeField}
+							titleField={props.titleField}
+							thumbField={props.thumbField}
+							videoIdField={props.videoIdField}
+							orderField={props.orderField}
+							desktopMaxWidth={props.desktopMaxWidth}
+							mobileWidth={props.mobileWidth}
+							gapDesktop={props.gapDesktop}
+							gapMobile={props.gapMobile}
+							headingTag={props.headingTag}
+							showThemeHeading={stringToBoolean(props.showThemeHeading, true)}
+							showTitleDesktop={stringToBoolean(props.showTitleDesktop, true)}
+							loadingMessage={props.loadingMessage}
+							emptyStateMessage={props.emptyStateMessage}
+							modalPrevLabel={props.modalPrevLabel}
+							modalNextLabel={props.modalNextLabel}
+							modalCloseLabel={props.modalCloseLabel}
 						/>
 
 						<!-- 🆕 NOVO: Recommended Items -->

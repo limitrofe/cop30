@@ -292,6 +292,11 @@ export function registerStoryComponents() {
 	);
 
 	componentManager.registerComponent(
+		'video-theme-feed',
+		() => import('../components/story/VideoThemeFeed.svelte')
+	);
+
+	componentManager.registerComponent(
 		'character-presentation',
 		() => import('../components/story/CharacterPresentation.svelte')
 	);
@@ -399,6 +404,17 @@ export const componentTypeMap = {
 	videosheet: 'video-sheet-showcase',
 	videosheets: 'video-sheet-showcase',
 	'globoplay-sheet': 'video-sheet-showcase',
+	'video-theme-feed': 'video-theme-feed',
+	'video-feed': 'video-theme-feed',
+	'videos-feed': 'video-theme-feed',
+	'feed-de-videos': 'video-theme-feed',
+	'feed-video': 'video-theme-feed',
+	'feed-videos': 'video-theme-feed',
+	'grade-videos': 'video-theme-feed',
+	'video-tematico': 'video-theme-feed',
+	'videos-tematicos': 'video-theme-feed',
+	'feed-tematico': 'video-theme-feed',
+	'globoplay-feed': 'video-theme-feed',
 	recomendados: 'recommended-items',
 	recommended: 'recommended-items',
 	'itens-recomendados': 'recommended-items',

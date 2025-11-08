@@ -11,6 +11,7 @@ import Carousel from '$lib/components/story/Carousel.svelte';
 import GloboPlayerCarousel from '$lib/components/story/GloboPlayerCarousel.svelte';
 import GloboPlayerGridSlider from '$lib/components/story/GloboPlayerGridSlider.svelte';
 import VideoSheetShowcase from '$lib/components/story/VideoSheetShowcase.svelte';
+import VideoThemeFeed from '$lib/components/story/VideoThemeFeed.svelte';
 import Parallax from '$lib/components/story/Parallax.svelte';
 import BeforeAfter from '$lib/components/story/BeforeAfter.svelte';
 import ScrollyTelling from '$lib/components/story/ScrollyTelling.svelte';
@@ -1576,6 +1577,7 @@ export const componentRegistry = [
 			sheetName: '',
 			gid: '',
 			query: '',
+			datasetUrl: '',
 			filtersConfig: {
 				columns: [],
 				includeAll: true,
@@ -1794,6 +1796,12 @@ export const componentRegistry = [
 				label: 'URL pública do Google Sheets',
 				type: 'url',
 				placeholder: 'https://docs.google.com/spreadsheets/d/...'
+			},
+			{
+				path: 'datasetUrl',
+				label: 'Dataset local (JSON ou CSV)',
+				type: 'text',
+				placeholder: '/data/cop30-final.json'
 			},
 			{ path: 'sheetId', label: 'Sheet ID (opcional)', type: 'text' },
 			{ path: 'sheetName', label: 'Nome da aba (sheet)', type: 'text' },
@@ -2892,6 +2900,151 @@ export const componentRegistry = [
 			},
 			{ path: 'loadingMessage', label: 'Mensagem de carregamento', type: 'text' },
 			{ path: 'emptyStateMessage', label: 'Mensagem sem resultados', type: 'text' }
+		]
+	},
+	{
+		type: 'video-theme-feed',
+		label: 'Feed temático (Sheets)',
+		icon: '🎬',
+		category: 'Video',
+		description:
+			'Grade responsiva de vídeos verticais agrupados por tema a partir de um Google Sheets, com modal em Globoplay.',
+		component: VideoThemeFeed,
+		defaultData: {
+			type: 'video-theme-feed',
+			sheetUrl: '',
+			sheetId: '',
+			sheetName: '',
+			gid: '',
+			query: '',
+			datasetUrl: '',
+			themeField: 'tema',
+			titleField: 'titulo',
+			thumbField: 'thumb',
+			videoIdField: 'id_video',
+			orderField: 'numero_do_video',
+			desktopMaxWidth: 300,
+			mobileWidth: 100,
+			gapDesktop: 16,
+			gapMobile: 12,
+			headingTag: 'h3',
+			showThemeHeading: true,
+			showTitleDesktop: true,
+			loadingMessage: 'Carregando vídeos...',
+			emptyStateMessage: 'Nenhum vídeo disponível no momento.',
+			modalPrevLabel: 'Anterior',
+			modalNextLabel: 'Próximo',
+			modalCloseLabel: 'Fechar'
+		},
+		fields: [
+			{
+				path: 'sheetUrl',
+				label: 'URL pública do Google Sheets',
+				type: 'url',
+				placeholder: 'https://docs.google.com/spreadsheets/d/...'
+			},
+			{
+				path: 'datasetUrl',
+				label: 'Dataset local (JSON ou CSV)',
+				type: 'text',
+				placeholder: '/data/cop30-final.json'
+			},
+			{ path: 'sheetId', label: 'Sheet ID (opcional)', type: 'text' },
+			{ path: 'sheetName', label: 'Nome da aba (sheet)', type: 'text' },
+			{ path: 'gid', label: 'GID da aba', type: 'text' },
+			{
+				path: 'query',
+				label: 'Query (tq) opcional',
+				type: 'text',
+				placeholder: 'select A,B where ...'
+			},
+			{
+				path: 'themeField',
+				label: 'Coluna usada como tema',
+				type: 'text',
+				placeholder: 'tema'
+			},
+			{
+				path: 'titleField',
+				label: 'Coluna do título',
+				type: 'text',
+				placeholder: 'titulo'
+			},
+			{
+				path: 'videoIdField',
+				label: 'Coluna do ID do vídeo (Globoplay)',
+				type: 'text',
+				placeholder: 'id_video'
+			},
+			{
+				path: 'thumbField',
+				label: 'Coluna da thumbnail',
+				type: 'text',
+				placeholder: 'thumb'
+			},
+			{
+				path: 'orderField',
+				label: 'Coluna para ordenação',
+				type: 'text',
+				placeholder: 'numero_do_video'
+			},
+			{
+				path: 'desktopMaxWidth',
+				label: 'Largura máxima do card (desktop, px)',
+				type: 'number',
+				min: 160,
+				step: 10
+			},
+			{
+				path: 'mobileWidth',
+				label: 'Largura do card (mobile, px)',
+				type: 'number',
+				min: 60,
+				step: 5
+			},
+			{
+				path: 'gapDesktop',
+				label: 'Espaçamento horizontal no desktop (px)',
+				type: 'number',
+				min: 0,
+				step: 1
+			},
+			{
+				path: 'gapMobile',
+				label: 'Espaçamento horizontal no mobile (px)',
+				type: 'number',
+				min: 0,
+				step: 1
+			},
+			{
+				path: 'headingTag',
+				label: 'Tag HTML do título de tema',
+				type: 'text',
+				placeholder: 'h3'
+			},
+			{
+				path: 'showThemeHeading',
+				label: 'Mostrar rótulo do tema',
+				type: 'boolean'
+			},
+			{
+				path: 'showTitleDesktop',
+				label: 'Mostrar título do vídeo abaixo do thumb (desktop)',
+				type: 'boolean'
+			},
+			{
+				path: 'loadingMessage',
+				label: 'Mensagem de carregamento',
+				type: 'text'
+			},
+			{
+				path: 'emptyStateMessage',
+				label: 'Mensagem quando não há vídeos',
+				type: 'text'
+			},
+			{ path: 'modalPrevLabel', label: 'Texto do botão “Anterior”', type: 'text' },
+			{ path: 'modalNextLabel', label: 'Texto do botão “Próximo”', type: 'text' },
+			{ path: 'modalCloseLabel', label: 'Texto do botão “Fechar”', type: 'text' }
 		]
 	},
 	{

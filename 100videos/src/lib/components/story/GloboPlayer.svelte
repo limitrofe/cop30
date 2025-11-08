@@ -3,42 +3,7 @@
 	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 	import { browser } from '$app/environment';
 	import { activateVideo, deactivateVideo, registerVideo } from './videoPlaybackManager.js';
-
-	// Script Loading Promise (Singleton)
-	let scriptLoadPromise = null;
-	function loadGloboScript() {
-		if (scriptLoadPromise) {
-			return scriptLoadPromise;
-		}
-		scriptLoadPromise = new Promise((resolve, reject) => {
-			if (window.WM && window.WM.playerAvailable) {
-				return resolve();
-			}
-			const scriptUrl =
-				'https://s3.glbimg.com/v1/AUTH_e1b09a2d222b4900a437a46914be81e5/api/stable/web/api.min.js';
-			const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
-			if (existingScript) {
-				existingScript.addEventListener('load', () => resolve(window.WM.playerAvailable));
-				existingScript.addEventListener('error', (e) =>
-					reject(new Error('Falha ao carregar script da Globo (existente).', e))
-				);
-				return;
-			}
-			const script = document.createElement('script');
-			script.src = scriptUrl;
-			script.async = true;
-			script.onload = () => {
-				resolve(window.WM.playerAvailable);
-			};
-			script.onerror = (e) => {
-				reject(
-					new Error('Falha ao carregar a API do player da Globo. Verifique seu Ad Blocker.', e)
-				);
-			};
-			document.body.appendChild(script);
-		});
-		return scriptLoadPromise;
-	}
+	import { useGloboPlayerLoader } from './globoPlayerContext.js';
 
 	// --- 🎯 PROPS PRINCIPAIS (MOBILE FIRST) ---
 
@@ -98,8 +63,8 @@ export let eagerInit = false;
 export let hideNativeAudioButton = false;
 
 	// --- VARIÁVEIS INTERNAS ---
+	const globoPlayerLoader = useGloboPlayerLoader();
 	let playerElement;
-	let playerContainerElement;
 	let playerInstance = null;
 	let isLoading = false;
 	let error = null;
@@ -126,16 +91,15 @@ export let hideNativeAudioButton = false;
 	const PLAYER_RETRY_DELAY_MS = 1500;
 
 	// Controle de estado
-	let observer = null;
 	let hasBeenInitialized = false;
+	let isInitializing = false;
 	let isMobile = false;
 	let publicControls;
 	let lastPropStartMuted = startMuted;
-	let isRecreatingForMute = false;
-	let muteButtonObserver = null;
-	const muteButtonListeners = new Map();
+	let lastResolvedVideoId = null;
 	let playerRetryCount = 0;
 	let playerRetryTimeoutId = null;
+	let nativeAudioDelegationCleanup = null;
 
 	function resolveChromeless() {
 		if (typeof chromeless === 'boolean') {
@@ -223,13 +187,6 @@ export let hideNativeAudioButton = false;
 		}
 	}
 
-	function cleanupMuteButtonListeners() {
-		muteButtonListeners.forEach((handler, button) => {
-			button.removeEventListener('click', handler, true);
-		});
-		muteButtonListeners.clear();
-	}
-
 	function getNativeAudioButtons() {
 		if (!playerElement) return [];
 		try {
@@ -264,8 +221,12 @@ export let hideNativeAudioButton = false;
 		button.setAttribute('data-audio-state', isMuted ? 'muted' : 'unmuted');
 	}
 
-	function updateNativeAudioButtonsState() {
+	function updateNativeAudioButtonsState(retryCount = 3) {
 		const buttons = getNativeAudioButtons();
+		if (!buttons.length && retryCount > 0) {
+			requestAnimationFrame(() => updateNativeAudioButtonsState(retryCount - 1));
+			return;
+		}
 		if (!buttons.length) return;
 		buttons.forEach((button) => applyNativeAudioButtonState(button));
 	}
@@ -289,37 +250,28 @@ export let hideNativeAudioButton = false;
 		toggleNativeAudioState(!isMuted);
 	}
 
-	function attachMuteButtonListeners() {
-		if (!playerElement) return;
-		const buttons = getNativeAudioButtons();
-		if (!buttons.length) return;
-		buttons.forEach((button) => {
-			const handler = muteButtonListeners.get(button);
-			applyNativeAudioButtonState(button);
-			if (handler || hideNativeAudioButton) {
-				return;
-			}
-			const clickHandler = (event) => handleNativeAudioButtonClick(event);
-			button.addEventListener('click', clickHandler, { passive: false, capture: true });
-			muteButtonListeners.set(button, clickHandler);
-		});
+	function removeNativeAudioDelegation() {
+		if (nativeAudioDelegationCleanup) {
+			nativeAudioDelegationCleanup();
+			nativeAudioDelegationCleanup = null;
+		}
 	}
 
-	function setupMuteButtonObserver() {
+	function setupNativeAudioDelegation() {
 		if (!browser || !playerElement) return;
-		muteButtonObserver?.disconnect();
-		try {
-			muteButtonObserver = new MutationObserver(() => attachMuteButtonListeners());
-			muteButtonObserver.observe(playerElement, {
-				childList: true,
-				subtree: true,
-				attributes: true,
-				attributeFilter: ['style', 'class', 'hidden', 'aria-hidden']
-			});
-			attachMuteButtonListeners();
-		} catch (error) {
-			console.warn('GloboPlayer: falha ao observar botão de áudio', error);
+		if (!nativeAudioDelegationCleanup) {
+			const clickHandler = (event) => {
+				const button = event?.target?.closest?.(nativeAudioButtonSelector);
+				if (!button) return;
+				handleNativeAudioButtonClick(event);
+			};
+			playerElement.addEventListener('click', clickHandler, true);
+			nativeAudioDelegationCleanup = () => {
+				playerElement.removeEventListener('click', clickHandler, true);
+				nativeAudioDelegationCleanup = null;
+			};
 		}
+		updateNativeAudioButtonsState();
 	}
 
 	function ensurePlaybackRegistration() {
@@ -386,7 +338,7 @@ export let hideNativeAudioButton = false;
 	}
 
 	function setMutedState(nextMuted, options = {}) {
-		const { allowRecreate = false } = options;
+		const { allowRecreate = false } = options; // mantido para compatibilidade
 		isMuted = nextMuted;
 		const inlineVideo = playerElement?.querySelector('video');
 
@@ -440,17 +392,6 @@ export let hideNativeAudioButton = false;
 			}
 		} catch (muteError) {
 			console.warn('GloboPlayer: falha ao alterar estado de mute', muteError);
-		}
-
-		if (!applied && allowRecreate && !nextMuted && !isRecreatingForMute) {
-			// Fallback: recria player para garantir áudio habilitado
-			isRecreatingForMute = true;
-			try {
-				createPlayer(true, { preserveMuteState: true });
-				applied = true;
-			} finally {
-				isRecreatingForMute = false;
-			}
 		}
 
 		if (!applied && inlineVideo) {
@@ -545,6 +486,7 @@ export let hideNativeAudioButton = false;
 			playerReady = false;
 			return;
 		}
+		lastResolvedVideoId = actualVideoId;
 
 		// Destruir player anterior se existir
 		if (playerInstance && typeof playerInstance.destroy === 'function') {
@@ -676,7 +618,7 @@ export let hideNativeAudioButton = false;
 				syncControlsVisibility(playerInstance, shouldShowControls);
 			}
 			setMutedState(isMuted, { allowRecreate: false });
-			setupMuteButtonObserver();
+			setupNativeAudioDelegation();
 			notifyControls('created');
 		} catch (e) {
 			error = e;
@@ -687,63 +629,38 @@ export let hideNativeAudioButton = false;
 
 	// Inicializar player
 	async function initializePlayer(shouldPlay) {
-		if (hasBeenInitialized || !browser) return;
+		if (!browser || isInitializing) return;
 		hasBeenInitialized = true;
+		isInitializing = true;
 		isLoading = true;
 		playerReady = false;
 
 		try {
-			await loadGloboScript();
+			await globoPlayerLoader;
 			createPlayer(shouldPlay);
 		} catch (err) {
 			error = err;
 			isLoading = false;
 			playerReady = false;
+		} finally {
+			isInitializing = false;
 		}
 	}
 
-	// ✅ DETECTAR MOBILE E CONFIGURAR OBSERVER
+	// ✅ DETECTAR MOBILE E INICIALIZAR
 	onMount(() => {
 		if (!browser) return;
 		ensurePlaybackRegistration();
 
-		// Mobile detection (mobile first)
 		const checkMobile = () => {
 			isMobile = window.innerWidth <= 768;
 		};
+
 		checkMobile();
 		window.addEventListener('resize', checkMobile);
 
-		// Intersection Observer para lazy loading
-		const options = {
-			root: null,
-			rootMargin: '40% 0px 40% 0px',
-			threshold: [0, 0.35, 0.7]
-		};
-
-		observer = new IntersectionObserver((entries) => {
-			const entry = entries[0];
-			const shouldPlayVideo = autoPlay || autoplay;
-
-			if (entry.isIntersecting) {
-				if (!hasBeenInitialized) {
-					initializePlayer(shouldPlayVideo);
-				} else if (playerInstance && typeof playerInstance.play === 'function' && shouldPlayVideo) {
-					ensurePlaybackRegistration();
-					activateVideo(playbackId, { source: 'intersection-play' });
-					playerInstance.play();
-				}
-			} else {
-				if (playerInstance && typeof playerInstance.pause === 'function' && shouldPlayVideo) {
-					playerInstance.pause();
-					deactivateVideo(playbackId);
-				}
-			}
-		}, options);
-
-		if (playerContainerElement) {
-			observer.observe(playerContainerElement);
-		}
+		const shouldPlayVideo = autoPlay || autoplay;
+		initializePlayer(shouldPlayVideo);
 
 		return () => {
 			window.removeEventListener('resize', checkMobile);
@@ -752,13 +669,8 @@ export let hideNativeAudioButton = false;
 
 	// Cleanup
 	onDestroy(() => {
-		if (observer && playerContainerElement) {
-			observer.unobserve(playerContainerElement);
-		}
 		resetPlayerRetry();
-		muteButtonObserver?.disconnect();
-		muteButtonObserver = null;
-		cleanupMuteButtonListeners();
+		removeNativeAudioDelegation();
 		if (playerInstance && typeof playerInstance.destroy === 'function') {
 			playerInstance.destroy();
 		}
@@ -776,18 +688,11 @@ export let hideNativeAudioButton = false;
 	}
 
 	// Reativo: recriar player quando IDs mudarem
-	$: if (
-		browser &&
-		hasBeenInitialized &&
-		(videoIdMobile ||
-			videoIdDesktop ||
-			videoId ||
-			videosIDs ||
-			typeof chromeless === 'boolean' ||
-			controls === false ||
-			forceControls)
-	) {
-		createPlayer(false);
+	$: if (browser && hasBeenInitialized && playerInstance) {
+		const nextVideoId = getVideoId();
+		if (nextVideoId && nextVideoId !== lastResolvedVideoId) {
+			createPlayer(false);
+		}
 	}
 
 	$: if (browser && playerInstance) {
@@ -796,6 +701,11 @@ export let hideNativeAudioButton = false;
 		if (forceControls) {
 			syncControlsVisibility(playerInstance, true);
 		}
+	}
+
+	$: if (browser && playerInstance) {
+		void hideNativeAudioButton;
+		updateNativeAudioButtonsState();
 	}
 
 	$: if (startMuted !== lastPropStartMuted) {
@@ -834,7 +744,6 @@ export let hideNativeAudioButton = false;
 			class="player-wrapper"
 			class:player-wrapper--has-poster={Boolean(poster)}
 			style={playerWrapperStyle}
-			bind:this={playerContainerElement}
 		>
 			{#if poster}
 				<img

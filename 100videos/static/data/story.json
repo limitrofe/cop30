@@ -1,0 +1,367 @@
+{
+  "title": "VÍDEOS: a COP 30 e o nosso futuro",
+  "subtitle": "g1 reúne 100 vídeos sobre os temas essenciais para os debates da COP30 e o futuro do nosso planeta",
+  "description": "g1 reúne 100 vídeos sobre os temas essenciais para os debates da COP30 e o futuro do nosso planeta ",
+  "author": "g1 videos",
+  "date": "2025-11-05",
+  "slug": "videos-cop30-e-o-nosso-futuro-final04",
+  "theme": "light",
+  "tags": [],
+  "share": {
+    "title": "g1 VÍDEOS: a COP 30 e o nosso futuro",
+    "description": "g1 reúne 100 vídeos sobre os temas essenciais para os debates da COP30 e o futuro do nosso planeta",
+    "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/capashare-100videos.jpg",
+    "imageSquare": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/capashare-100videos.jpg",
+    "imageTwitter": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/capashare-100videos.jpg",
+    "imageGoogle": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/capashare-100videos.jpg"
+  },
+  "seo": {
+    "canonicalUrl": "",
+    "keywords": [],
+    "readingTime": "",
+    "ogType": "article"
+  },
+  "appearance": {
+    "colorScheme": "default",
+    "backgroundColor": "#fcf2e6",
+    "backgroundColorMobile": "#fcf2e6",
+    "surfaceColor": "#fcf2e6",
+    "textColor": "#f8fafc",
+    "accentColor": "#c4170c",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "#",
+    "customCSS": "",
+    "typography": {
+      "h1": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "textTransform": "uppercase",
+        "letterSpacing": "-0.02em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(3.5rem, 5vw, 4.5rem)",
+          "lineHeight": "1.05"
+        },
+        "mobile": {
+          "fontSize": "clamp(2.4rem, 8vw, 3rem)",
+          "lineHeight": "1.12"
+        }
+      },
+      "h2": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "800",
+        "textTransform": "none",
+        "letterSpacing": "-0.015em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(2.8rem, 4.5vw, 3.2rem)",
+          "lineHeight": "1.1"
+        },
+        "mobile": {
+          "fontSize": "clamp(2.1rem, 7vw, 2.5rem)",
+          "lineHeight": "1.15"
+        }
+      },
+      "h3": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "textTransform": "none",
+        "letterSpacing": "-0.01em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(2.2rem, 4vw, 2.6rem)",
+          "lineHeight": "1.22"
+        },
+        "mobile": {
+          "fontSize": "clamp(1.7rem, 6.5vw, 2.1rem)",
+          "lineHeight": "1.22"
+        }
+      },
+      "h4": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "1.9rem",
+          "lineHeight": "1.3"
+        },
+        "mobile": {
+          "fontSize": "1.55rem",
+          "lineHeight": "1.35"
+        }
+      },
+      "h5": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.08em",
+        "color": "#e2e8f0",
+        "desktop": {
+          "fontSize": "1.35rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "1.15rem",
+          "lineHeight": "1.45"
+        }
+      },
+      "h6": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.1em",
+        "color": "#cbd5f5",
+        "desktop": {
+          "fontSize": "1.05rem",
+          "lineHeight": "1.5"
+        },
+        "mobile": {
+          "fontSize": "0.95rem",
+          "lineHeight": "1.55"
+        }
+      },
+      "body": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#d1d5db",
+        "desktop": {
+          "fontSize": "1.1rem",
+          "lineHeight": "1.8"
+        },
+        "mobile": {
+          "fontSize": "1rem",
+          "lineHeight": "1.7"
+        }
+      },
+      "lead": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "color": "#f1f5f9",
+        "desktop": {
+          "fontSize": "1.5rem",
+          "lineHeight": "1.6"
+        },
+        "mobile": {
+          "fontSize": "1.3rem",
+          "lineHeight": "1.6"
+        }
+      },
+      "small": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#94a3b8",
+        "desktop": {
+          "fontSize": "0.875rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "0.82rem",
+          "lineHeight": "1.4"
+        }
+      },
+      "caption": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#e2e8f0",
+        "desktop": {
+          "fontSize": "0.95rem",
+          "lineHeight": "1.45"
+        },
+        "mobile": {
+          "fontSize": "0.9rem",
+          "lineHeight": "1.45"
+        }
+      },
+      "annotation": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.12em",
+        "color": "#f97316",
+        "desktop": {
+          "fontSize": "0.8rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "0.75rem",
+          "lineHeight": "1.4"
+        }
+      },
+      "blockquote": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "fontStyle": "italic",
+        "color": "#f8fafc",
+        "accentColor": "#f97316",
+        "background": "#0f172a",
+        "borderColor": "rgba(249, 115, 22, 0.35)",
+        "desktop": {
+          "fontSize": "2rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "1.6rem",
+          "lineHeight": "1.45"
+        }
+      }
+    }
+  },
+  "overlays": {
+    "keyhole": {
+      "enabled": false,
+      "color": "#fdcb6e",
+      "zIndex": "0",
+      "arrowEnabled": false,
+      "arrowColor": "#2d3436",
+      "arrowAnimation": false,
+      "arrowTop": "0"
+    }
+  },
+  "analytics": {
+    "ga4": "",
+    "gtm": "",
+    "datalayerProject": ""
+  },
+  "intro": {
+    "text": ""
+  },
+  "credits": {
+    "enabled": true,
+    "title": "Créditos",
+    "groups": [],
+    "groupsText": "Conteúdo\nPoliana Casemiro\nPaula Paiva Paulo\nRoberto Peixoto\nTaymã Carneiro \nValéria Martins\nEmily Santos\nMarcus Passos\nJulia Carvalho\n\nEdição de vídeos\nGustavo Wanderley\nLuiz Gabriel Franco\nMarih Oliveira \nPatricia Cunha \nRafael Peixoto \n\nGravação de vídeos\nCadu Lando\nFábio Tito\nGiaccomo Voccio\nKaique Mattos\nLuiz Gabriel Franco\nRafael Leal\nRafael Peixoto\n\nInterface e desenvolvimento\nGuilherme Gomes\n\nDesign\nOtávio Camargo\n\nCoordenação\nArdilhes Moreira (conteúdo)\nGuilherme Gomes (design e desenvolvimento)\nMarcilio Kimura (projetos especiais)\nMariana Mendicelli (vídeos)\nTatiana Caldas (vídeos)",
+    "notes": "",
+    "sources": [],
+    "authors": [],
+    "editedBy": [],
+    "additionalGraphics": [],
+    "sections": [],
+    "backgroundColor": "#fcf2e6",
+    "textColor": "#3e3e3e",
+    "titleColor": "#3e3e3e",
+    "borderColor": "transparent",
+    "backgroundImage": "",
+    "backgroundImageMobile": "",
+    "backgroundVideo": "",
+    "backgroundVideoMobile": "",
+    "backgroundPosition": "",
+    "backgroundPositionMobile": "",
+    "backgroundSize": "",
+    "backgroundSizeMobile": "",
+    "overlay": false,
+    "overlayColor": "transparent",
+    "maxWidth": "960px",
+    "paddingDesktop": "3rem 1.5rem",
+    "paddingMobile": "2.5rem 1.25rem",
+    "customClass": ""
+  },
+  "paragraphs": [
+    {
+      "type": "intertitulo",
+      "text": "VÍDEOS: a COP 30 e o nosso futuro",
+      "subtitle": "g1 reúne 100 vídeos sobre os temas essenciais para os debates da COP30 e o futuro do nosso planeta<p><br></p><p><br></p>",
+      "backgroundColor": "",
+      "textColor": "#ce463c",
+      "fontFamily": "globotipo",
+      "variant": "minimal",
+      "minimalAccentColor": "#ce463c",
+      "minimalAccentWidthDesktop": "",
+      "minimalAccentWidthMobile": "",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "large",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "3px",
+        "blur": "18px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.55)"
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "textAlign": "center",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "900",
+      "titleFontStyle": "normal",
+      "subtitleFontWeight": "400",
+      "subtitleFontStyle": "normal",
+      "textAlignMobile": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "video-theme-feed",
+      "sheetUrl": "",
+      "sheetId": "",
+      "sheetName": "Página1",
+      "gid": "",
+      "query": "",
+      "themeField": "tema",
+      "titleField": "titulo",
+      "thumbField": "thumb",
+      "videoIdField": "id_video",
+      "orderField": "numero_do_video",
+      "desktopMaxWidth": 300,
+      "mobileWidth": 115,
+      "gapDesktop": 16,
+      "gapMobile": 0,
+      "headingTag": "h2",
+      "showThemeHeading": true,
+      "showTitleDesktop": true,
+      "loadingMessage": "Carregando vídeos...",
+      "emptyStateMessage": "Nenhum vídeo disponível no momento.",
+      "modalPrevLabel": "Anterior",
+      "modalNextLabel": "Próximo",
+      "modalCloseLabel": "Fechar",
+      "datasetUrl": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro-final04/data/cop30-final.json",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    }
+  ],
+  "features": {
+    "participants": false
+  }
+}

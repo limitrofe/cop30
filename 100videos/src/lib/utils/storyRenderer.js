@@ -443,6 +443,45 @@ export function parseStoryComponents(paragraphs) {
 				component.initialData = paragraph.initialData;
 				break;
 
+			case 'video-theme-feed':
+			case 'video-feed':
+			case 'videos-feed':
+			case 'feed-de-videos':
+			case 'feed-video':
+			case 'feed-videos':
+			case 'video-tematico':
+			case 'videos-tematicos':
+			case 'feed-tematico':
+			case 'globoplay-feed':
+				component.type = 'video-theme-feed';
+				component.sheetUrl = paragraph.sheetUrl || paragraph.sheetURL || '';
+				component.sheetId = paragraph.sheetId || paragraph.sheetID || '';
+				component.sheetName = paragraph.sheetName || '';
+				component.gid = paragraph.gid || paragraph.sheetGid || '';
+				component.query = paragraph.query || '';
+				component.themeField = paragraph.themeField || 'tema';
+				component.titleField = paragraph.titleField || 'titulo';
+				component.thumbField = paragraph.thumbField || 'thumb';
+				component.videoIdField = paragraph.videoIdField || 'id_video';
+				component.orderField = paragraph.orderField || 'numero_do_video';
+				component.desktopMaxWidth = paragraph.desktopMaxWidth ?? 300;
+				component.mobileWidth = paragraph.mobileWidth ?? 100;
+				component.gapDesktop = paragraph.gapDesktop ?? 16;
+				component.gapMobile = paragraph.gapMobile ?? 12;
+				component.headingTag = paragraph.headingTag || 'h3';
+				component.showThemeHeading = !(
+					paragraph.showThemeHeading === false || paragraph.showThemeHeading === 'false'
+				);
+				component.showTitleDesktop = !(
+					paragraph.showTitleDesktop === false || paragraph.showTitleDesktop === 'false'
+				);
+				component.loadingMessage = paragraph.loadingMessage;
+				component.emptyStateMessage = paragraph.emptyStateMessage;
+				component.modalPrevLabel = paragraph.modalPrevLabel;
+				component.modalNextLabel = paragraph.modalNextLabel;
+				component.modalCloseLabel = paragraph.modalCloseLabel;
+				break;
+
 			case 'carrossel':
 			case 'carousel':
 				component.type = 'carousel';

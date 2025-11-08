@@ -12,7 +12,9 @@
 	import G1AoVivo from './story/G1AoVivo.svelte';
 	import GloboPlayerGridSlider from './story/GloboPlayerGridSlider.svelte';
 	import VideoSheetShowcase from './story/VideoSheetShowcase.svelte';
+	import VideoThemeFeed from './story/VideoThemeFeed.svelte';
 	import { getSectionStyling } from './story/sectionStyle.js';
+import { provideGloboPlayerLoader } from './story/globoPlayerContext.js';
 	import { gsapAnimator } from '$lib/utils/gsapAnimator.js';
 	import { extractGsapOptions } from '$lib/utils/gsapConfig.js';
 
@@ -27,8 +29,10 @@
 	export let enableThemeSwitcher = true;
 	export let autoOptimize = true;
 
-	const KEYHOLE_CLIP_CLOSED =
-		'polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 100% 100%, 100% 0%)';
+const KEYHOLE_CLIP_CLOSED =
+	'polygon(0% 0%, 0% 100%, 0% 100%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 100%, 100% 100%, 100% 0%)';
+
+provideGloboPlayerLoader();
 
 	let mounted = false;
 	let progress = 0;
@@ -116,6 +120,17 @@
 			case 'videosheet':
 			case 'videosheets':
 				return 'video-sheet-showcase';
+			case 'video-theme-feed':
+			case 'video-feed':
+			case 'videos-feed':
+			case 'feed-de-videos':
+			case 'feed-video':
+			case 'feed-videos':
+			case 'video-tematico':
+			case 'videos-tematicos':
+			case 'feed-tematico':
+			case 'globoplay-feed':
+				return 'video-theme-feed';
 			default:
 				return 'text';
 		}
@@ -557,6 +572,34 @@
 								fetchOnMount={paragraph.fetchOnMount !== false}
 								initialData={paragraph.initialData}
 								debug={paragraph.debug}
+							/>
+						{:else if componentType === 'video-theme-feed'}
+							<VideoThemeFeed
+								sheetUrl={paragraph.sheetUrl}
+								sheetId={paragraph.sheetId}
+								sheetName={paragraph.sheetName}
+								gid={paragraph.gid}
+								query={paragraph.query}
+								datasetUrl={paragraph.datasetUrl}
+								themeField={paragraph.themeField}
+								titleField={paragraph.titleField}
+								thumbField={paragraph.thumbField}
+								videoIdField={paragraph.videoIdField}
+								orderField={paragraph.orderField}
+								desktopMaxWidth={paragraph.desktopMaxWidth}
+								mobileWidth={paragraph.mobileWidth}
+								gapDesktop={paragraph.gapDesktop}
+								gapMobile={paragraph.gapMobile}
+								headingTag={paragraph.headingTag}
+								showThemeHeading={paragraph.showThemeHeading !== false &&
+									paragraph.showThemeHeading !== 'false'}
+								showTitleDesktop={paragraph.showTitleDesktop !== false &&
+									paragraph.showTitleDesktop !== 'false'}
+								loadingMessage={paragraph.loadingMessage}
+								emptyStateMessage={paragraph.emptyStateMessage}
+								modalPrevLabel={paragraph.modalPrevLabel}
+								modalNextLabel={paragraph.modalNextLabel}
+								modalCloseLabel={paragraph.modalCloseLabel}
 							/>
 						{/if}
 					</div>
