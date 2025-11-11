@@ -1188,10 +1188,15 @@
       "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
     },
     {
-      "titulo": "Qual é a expectativa para a COP30?",
-      "tema": "A COP30 e os seus desafios",
+      "titulo": "Por que o Brasil pode ter até 12 dias de racionamento de água por ano até 2050?",
+      "tema": "O planeta em transformação",
       "data": "07/11/2025",
       "numero_do_video": "98",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/11/07/por-que-o-brasil-pode-ter-ate-12-dias-de-racionamento-de-agua-por-ano-ate-2050.ghtml",
+      "id_inutil": "14074115",
+      "id_video": "14074115",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14074115.jpg",
       "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
     },
     {
@@ -1199,13 +1204,23 @@
       "tema": "Transição energética e economia verde",
       "data": "08/11/2025",
       "numero_do_video": "99",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/61a51d29-5877-437e-a8ee-ddf5bd738319/",
+      "id_inutil": "14080190",
+      "id_video": "14080190",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14080190.jpg",
       "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
     },
     {
-      "titulo": "Por que o Brasil pode ter até 12 dias de racionamento de água por ano até 2050?",
-      "tema": "A ciência do aquecimento global",
+      "titulo": "O que a samaúma ensina sobre resistência e renovação do planeta?",
+      "tema": "Biomas e o equilíbrio do planeta",
       "data": "09/11/2025",
       "numero_do_video": "100",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/61a51d29-5877-437e-a8ee-ddf5bd738319/",
+      "id_inutil": "14080480",
+      "id_video": "14080480",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14080480.jpg",
       "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
     }
   ],
