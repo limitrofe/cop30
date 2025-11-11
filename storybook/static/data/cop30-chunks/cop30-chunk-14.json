@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "Dá pra salvar os recifes de coral do branqueamento? Quais soluções estão em teste?",
+      "tema": "O planeta em transformação",
+      "data": "06/10/2025",
+      "numero_do_video": "66",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/06/da-para-salvar-os-recifes-de-coral-do-branqueamento-quais-solucoes-estao-em-teste.ghtml",
+      "id_inutil": "13984723",
+      "id_video": "13984725",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984725.jpg"
+    },
+    {
+      "titulo": "Como o turismo pode ajudar a preservar áreas naturais?",
+      "tema": "Clima, comida e consumo",
+      "data": "07/10/2025",
+      "numero_do_video": "67",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/07/como-o-turismo-pode-ajudar-a-preservar-areas-naturais.ghtml",
+      "id_inutil": "13990606",
+      "id_video": "13990611",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990611.jpg"
+    },
+    {
+      "titulo": "Como Paris fez para diminuir a poluição mudando o modal do transporte?",
+      "tema": "Clima, comida e consumo",
+      "data": "08/10/2025",
+      "numero_do_video": "68",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/08/menos-carros-mais-ar-limpo-o-plano-que-transformou-paris-em-uma-cidade-respiravel.ghtml#:~:text=Al%C3%A9m%20das%20proibi%C3%A7%C3%B5es%2C%20a%20cidade,seja%20totalmente%20adaptada%20%C3%A0s%20bicicletas.",
+      "id_inutil": "13990486",
+      "id_video": "13990475",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990475.jpg"
+    },
+    {
+      "titulo": "Qual a relação do PL do Licenciamento com a crise do clima?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "09/10/2025",
+      "numero_do_video": "69",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/09/qual-a-relacao-do-pl-do-licenciamento-com-a-crise-do-clima.ghtml",
+      "id_inutil": "13995840",
+      "id_video": "13995823",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13995823.jpg"
+    },
+    {
+      "titulo": "O que é Transição Energética?",
+      "tema": "Transição energética e economia verde",
+      "data": "10/10/2025",
+      "numero_do_video": "70",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/10/o-que-e-transicao-energetica-e-por-que-ela-e-urgente.ghtml",
+      "id_inutil": "13991454",
+      "id_video": "13991459",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13991459.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 14
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13984725_65",
+        "index": 65,
+        "globoId": "13984725",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Dá pra salvar os recifes de coral do branqueamento? Quais soluções estão em teste?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984725.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "da pra salvar os recifes de coral do branqueamento? quais solucoes estao em teste?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Dá pra salvar os recifes de coral do branqueamento? Quais soluções estão em teste?",
+          "tema": "O planeta em transformação",
+          "data": "06/10/2025",
+          "numero_do_video": "66",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/06/da-para-salvar-os-recifes-de-coral-do-branqueamento-quais-solucoes-estao-em-teste.ghtml",
+          "id_inutil": "13984723",
+          "id_video": "13984725",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984725.jpg"
+        }
+      },
+      {
+        "uuid": "13990611_66",
+        "index": 66,
+        "globoId": "13990611",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como o turismo pode ajudar a preservar áreas naturais?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990611.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como o turismo pode ajudar a preservar areas naturais?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Como o turismo pode ajudar a preservar áreas naturais?",
+          "tema": "Clima, comida e consumo",
+          "data": "07/10/2025",
+          "numero_do_video": "67",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/07/como-o-turismo-pode-ajudar-a-preservar-areas-naturais.ghtml",
+          "id_inutil": "13990606",
+          "id_video": "13990611",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990611.jpg"
+        }
+      },
+      {
+        "uuid": "13990475_67",
+        "index": 67,
+        "globoId": "13990475",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como Paris fez para diminuir a poluição mudando o modal do transporte?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990475.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como paris fez para diminuir a poluicao mudando o modal do transporte?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Como Paris fez para diminuir a poluição mudando o modal do transporte?",
+          "tema": "Clima, comida e consumo",
+          "data": "08/10/2025",
+          "numero_do_video": "68",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/08/menos-carros-mais-ar-limpo-o-plano-que-transformou-paris-em-uma-cidade-respiravel.ghtml#:~:text=Al%C3%A9m%20das%20proibi%C3%A7%C3%B5es%2C%20a%20cidade,seja%20totalmente%20adaptada%20%C3%A0s%20bicicletas.",
+          "id_inutil": "13990486",
+          "id_video": "13990475",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13990475.jpg"
+        }
+      },
+      {
+        "uuid": "13995823_68",
+        "index": 68,
+        "globoId": "13995823",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual a relação do PL do Licenciamento com a crise do clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13995823.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual a relacao do pl do licenciamento com a crise do clima?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Qual a relação do PL do Licenciamento com a crise do clima?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "09/10/2025",
+          "numero_do_video": "69",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/09/qual-a-relacao-do-pl-do-licenciamento-com-a-crise-do-clima.ghtml",
+          "id_inutil": "13995840",
+          "id_video": "13995823",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13995823.jpg"
+        }
+      },
+      {
+        "uuid": "13991459_69",
+        "index": 69,
+        "globoId": "13991459",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é Transição Energética?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13991459.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e transicao energetica?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "O que é Transição Energética?",
+          "tema": "Transição energética e economia verde",
+          "data": "10/10/2025",
+          "numero_do_video": "70",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/10/o-que-e-transicao-energetica-e-por-que-ela-e-urgente.ghtml",
+          "id_inutil": "13991454",
+          "id_video": "13991459",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13991459.jpg"
+        }
+      }
+    ]
+  }
+}

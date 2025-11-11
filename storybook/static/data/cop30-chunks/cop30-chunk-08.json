@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "Qual é o papel da China na crise climática?",
+      "tema": "Entenda o clima",
+      "data": "06/09/2025",
+      "numero_do_video": "36",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/06/qual-e-o-papel-da-china-na-crise-climatica.ghtml#:~:text=dispositivo%20Tela%20cheia-,Qual%20%C3%A9%20o%20papel%20da%20China%20na%20crise%20clim%C3%A1tica%3F,de%2030%25%20das%20emiss%C3%B5es%20globais.&text=%C3%89%20a%20primeira%20vez%20que,o%20CO%E2%82%82%20liberado%20no%20planeta.",
+      "id_inutil": "13895073",
+      "id_video": "13895106",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13895106.jpg"
+    },
+    {
+      "titulo": "Como projeto no Pará quer recuperar floresta desmatada vendendo crédito de carbono?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "07/09/2025",
+      "numero_do_video": "37",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/07/como-projeto-no-para-quer-recuperar-floresta-desmatada-vendendo-credito-de-carbono.ghtml",
+      "id_inutil": "13904846",
+      "id_video": "13904866",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13904866.jpg"
+    },
+    {
+      "titulo": "O que é Justiça Climática?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "08/09/2025",
+      "numero_do_video": "38",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/08/o-que-e-justica-climatica.ghtml",
+      "id_inutil": "13901149",
+      "id_video": "13901128",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13901128.jpg"
+    },
+    {
+      "titulo": "Como a mudança climática afeta o preço da comida?",
+      "tema": "Clima, comida e consumo",
+      "data": "09/09/2025",
+      "numero_do_video": "39",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/c0544ea5-3ef4-40d1-a3dc-ae4d00b9985f/",
+      "id_inutil": "13898339",
+      "id_video": "13898344",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13898344.jpg"
+    },
+    {
+      "titulo": "Quais são os países que mais emitem gases do efeito estufa?",
+      "tema": "Entenda o clima",
+      "data": "10/09/2025",
+      "numero_do_video": "40",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/10/por-que-o-brasil-aparece-entre-os-maiores-emissores-do-planeta-veja-o-ranking.ghtml",
+      "id_inutil": "13897933",
+      "id_video": "13897937",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13897937.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 8
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13895106_35",
+        "index": 35,
+        "globoId": "13895106",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual é o papel da China na crise climática?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13895106.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual e o papel da china na crise climatica?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "Qual é o papel da China na crise climática?",
+          "tema": "Entenda o clima",
+          "data": "06/09/2025",
+          "numero_do_video": "36",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/06/qual-e-o-papel-da-china-na-crise-climatica.ghtml#:~:text=dispositivo%20Tela%20cheia-,Qual%20%C3%A9%20o%20papel%20da%20China%20na%20crise%20clim%C3%A1tica%3F,de%2030%25%20das%20emiss%C3%B5es%20globais.&text=%C3%89%20a%20primeira%20vez%20que,o%20CO%E2%82%82%20liberado%20no%20planeta.",
+          "id_inutil": "13895073",
+          "id_video": "13895106",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13895106.jpg"
+        }
+      },
+      {
+        "uuid": "13904866_36",
+        "index": 36,
+        "globoId": "13904866",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como projeto no Pará quer recuperar floresta desmatada vendendo crédito de carbono?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13904866.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como projeto no para quer recuperar floresta desmatada vendendo credito de carbono?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Como projeto no Pará quer recuperar floresta desmatada vendendo crédito de carbono?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "07/09/2025",
+          "numero_do_video": "37",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/07/como-projeto-no-para-quer-recuperar-floresta-desmatada-vendendo-credito-de-carbono.ghtml",
+          "id_inutil": "13904846",
+          "id_video": "13904866",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13904866.jpg"
+        }
+      },
+      {
+        "uuid": "13901128_37",
+        "index": 37,
+        "globoId": "13901128",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é Justiça Climática?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13901128.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e justica climatica?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "O que é Justiça Climática?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "08/09/2025",
+          "numero_do_video": "38",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/08/o-que-e-justica-climatica.ghtml",
+          "id_inutil": "13901149",
+          "id_video": "13901128",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13901128.jpg"
+        }
+      },
+      {
+        "uuid": "13898344_38",
+        "index": 38,
+        "globoId": "13898344",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como a mudança climática afeta o preço da comida?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13898344.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como a mudanca climatica afeta o preco da comida?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Como a mudança climática afeta o preço da comida?",
+          "tema": "Clima, comida e consumo",
+          "data": "09/09/2025",
+          "numero_do_video": "39",
+          "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/c0544ea5-3ef4-40d1-a3dc-ae4d00b9985f/",
+          "id_inutil": "13898339",
+          "id_video": "13898344",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13898344.jpg"
+        }
+      },
+      {
+        "uuid": "13897937_39",
+        "index": 39,
+        "globoId": "13897937",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quais são os países que mais emitem gases do efeito estufa?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13897937.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quais sao os paises que mais emitem gases do efeito estufa?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "Quais são os países que mais emitem gases do efeito estufa?",
+          "tema": "Entenda o clima",
+          "data": "10/09/2025",
+          "numero_do_video": "40",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/10/por-que-o-brasil-aparece-entre-os-maiores-emissores-do-planeta-veja-o-ranking.ghtml",
+          "id_inutil": "13897933",
+          "id_video": "13897937",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13897937.jpg"
+        }
+      }
+    ]
+  }
+}

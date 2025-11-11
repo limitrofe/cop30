@@ -1,0 +1,215 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o garimpo ilegal ameaça os povos indígenas?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "05/11/2025",
+      "numero_do_video": "96",
+      "links_relacionados": "",
+      "id_inutil": "14070042",
+      "id_video": "14070044",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14070044.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Você sabe se o seu lixo é mesmo reciclável?",
+      "tema": "Transição energética e economia verde",
+      "data": "06/11/2025",
+      "numero_do_video": "97",
+      "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/075e4501-915d-4736-b2f5-15d206abac74/",
+      "id_inutil": "14073167",
+      "id_video": "14073176",
+      "status_materia": "",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14073176.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Qual é a expectativa para a COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "07/11/2025",
+      "numero_do_video": "98",
+      "links_relacionados": "",
+      "id_inutil": "",
+      "id_video": "",
+      "status_materia": "",
+      "status_video": "",
+      "thumb": "",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "A bicicleta vai salvar o planeta?",
+      "tema": "Transição energética e economia verde",
+      "data": "08/11/2025",
+      "numero_do_video": "99",
+      "links_relacionados": "",
+      "id_inutil": "",
+      "id_video": "",
+      "status_materia": "",
+      "status_video": "",
+      "thumb": "",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que o Brasil pode ter até 12 dias de racionamento de água por ano até 2050?",
+      "tema": "A ciência do aquecimento global",
+      "data": "09/11/2025",
+      "numero_do_video": "100",
+      "links_relacionados": "",
+      "id_inutil": "",
+      "id_video": "",
+      "status_materia": "",
+      "status_video": "",
+      "thumb": "",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 20
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "14070044_95",
+        "index": 95,
+        "globoId": "14070044",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como o garimpo ilegal ameaça os povos indígenas?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14070044.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como o garimpo ilegal ameaca os povos indigenas?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Como o garimpo ilegal ameaça os povos indígenas?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "05/11/2025",
+          "numero_do_video": "96",
+          "links_relacionados": "",
+          "id_inutil": "14070042",
+          "id_video": "14070044",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14070044.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14073176_96",
+        "index": 96,
+        "globoId": "14073176",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Você sabe se o seu lixo é mesmo reciclável?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14073176.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "voce sabe se o seu lixo e mesmo reciclavel?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Você sabe se o seu lixo é mesmo reciclável?",
+          "tema": "Transição energética e economia verde",
+          "data": "06/11/2025",
+          "numero_do_video": "97",
+          "links_relacionados": "https://admin.backstage.globoi.com/apps/multi-content/g1/multi-content/edit/075e4501-915d-4736-b2f5-15d206abac74/",
+          "id_inutil": "14073167",
+          "id_video": "14073176",
+          "status_materia": "",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14073176.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "Por que o Cerrado importa tanto no equilíbrio ambiental do Brasil?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "26/09/2025",
+      "numero_do_video": "56",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/26/por-que-o-cerrado-importa-tanto-no-equilibrio-ambiental-do-brasil.ghtml#:~:text=O%20Cerrado%20%C3%A9%20conhecido%20como,)%20e%20Salvador%20(BA).",
+      "id_inutil": "13960653",
+      "id_video": "13960617",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13960617.jpg"
+    },
+    {
+      "titulo": "A crise climática é reversível?",
+      "tema": "A ciência do aquecimento global",
+      "data": "27/09/2025",
+      "numero_do_video": "57",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/27/a-crise-climatica-e-reversivel.ghtml#:~:text=De%20acordo%20com%20a%20Organiza%C3%A7%C3%A3o,j%C3%A1%20est%C3%A3o%20condenadas%20a%20desaparecer.",
+      "id_inutil": "13957233",
+      "id_video": "13957266",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957266.jpg"
+    },
+    {
+      "titulo": "Por que preservar a Amazônia é importante para o clima do planeta?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "28/09/2025",
+      "numero_do_video": "58",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/28/por-que-preservar-a-amazonia-e-importante-para-o-clima-do-planeta.ghtml#:~:text=A%20Amaz%C3%B4nia%20ajuda%20a%20refrigerar,pelos%20ventos%20para%20outras%20regi%C3%B5es.",
+      "id_inutil": "13954479",
+      "id_video": "13954491",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954491.jpg"
+    },
+    {
+      "titulo": "Como uma enorme mancha de lixo virou um ecossistema no oceano?",
+      "tema": "O planeta em transformação",
+      "data": "29/09/2025",
+      "numero_do_video": "59",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/29/como-uma-enorme-mancha-de-lixo-virou-um-ecossistema-no-oceano.ghtml",
+      "id_inutil": "13965813",
+      "id_video": "13965815",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13965815.jpg"
+    },
+    {
+      "titulo": "Por que a crise climática afeta mais os pobres?",
+      "tema": "O planeta em transformação",
+      "data": "30/09/2025",
+      "numero_do_video": "60",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/30/por-que-a-crise-climatica-afeta-mais-os-pobres.ghtml#:~:text=Enchentes%20derrubam%20m%C3%B3veis%2C%20afetam%20empregos%20e%20dignidade%20de%20muitos%20moradores.&text=Outra%20consequ%C3%AAncia%20da%20crise%20clim%C3%A1tica,vivem%20com%20o%20or%C3%A7amento%20apertado.",
+      "id_inutil": "13957696",
+      "id_video": "13957697",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957697.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 12
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13960617_55",
+        "index": 55,
+        "globoId": "13960617",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que o Cerrado importa tanto no equilíbrio ambiental do Brasil?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13960617.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que o cerrado importa tanto no equilibrio ambiental do brasil?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Por que o Cerrado importa tanto no equilíbrio ambiental do Brasil?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "26/09/2025",
+          "numero_do_video": "56",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/26/por-que-o-cerrado-importa-tanto-no-equilibrio-ambiental-do-brasil.ghtml#:~:text=O%20Cerrado%20%C3%A9%20conhecido%20como,)%20e%20Salvador%20(BA).",
+          "id_inutil": "13960653",
+          "id_video": "13960617",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13960617.jpg"
+        }
+      },
+      {
+        "uuid": "13957266_56",
+        "index": 56,
+        "globoId": "13957266",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "A crise climática é reversível?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957266.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "a crise climatica e reversivel?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "A crise climática é reversível?",
+          "tema": "A ciência do aquecimento global",
+          "data": "27/09/2025",
+          "numero_do_video": "57",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/27/a-crise-climatica-e-reversivel.ghtml#:~:text=De%20acordo%20com%20a%20Organiza%C3%A7%C3%A3o,j%C3%A1%20est%C3%A3o%20condenadas%20a%20desaparecer.",
+          "id_inutil": "13957233",
+          "id_video": "13957266",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957266.jpg"
+        }
+      },
+      {
+        "uuid": "13954491_57",
+        "index": 57,
+        "globoId": "13954491",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que preservar a Amazônia é importante para o clima do planeta?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954491.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que preservar a amazonia e importante para o clima do planeta?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Por que preservar a Amazônia é importante para o clima do planeta?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "28/09/2025",
+          "numero_do_video": "58",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/28/por-que-preservar-a-amazonia-e-importante-para-o-clima-do-planeta.ghtml#:~:text=A%20Amaz%C3%B4nia%20ajuda%20a%20refrigerar,pelos%20ventos%20para%20outras%20regi%C3%B5es.",
+          "id_inutil": "13954479",
+          "id_video": "13954491",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954491.jpg"
+        }
+      },
+      {
+        "uuid": "13965815_58",
+        "index": 58,
+        "globoId": "13965815",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como uma enorme mancha de lixo virou um ecossistema no oceano?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13965815.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como uma enorme mancha de lixo virou um ecossistema no oceano?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Como uma enorme mancha de lixo virou um ecossistema no oceano?",
+          "tema": "O planeta em transformação",
+          "data": "29/09/2025",
+          "numero_do_video": "59",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/29/como-uma-enorme-mancha-de-lixo-virou-um-ecossistema-no-oceano.ghtml",
+          "id_inutil": "13965813",
+          "id_video": "13965815",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13965815.jpg"
+        }
+      },
+      {
+        "uuid": "13957697_59",
+        "index": 59,
+        "globoId": "13957697",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a crise climática afeta mais os pobres?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957697.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a crise climatica afeta mais os pobres?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Por que a crise climática afeta mais os pobres?",
+          "tema": "O planeta em transformação",
+          "data": "30/09/2025",
+          "numero_do_video": "60",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/30/por-que-a-crise-climatica-afeta-mais-os-pobres.ghtml#:~:text=Enchentes%20derrubam%20m%C3%B3veis%2C%20afetam%20empregos%20e%20dignidade%20de%20muitos%20moradores.&text=Outra%20consequ%C3%AAncia%20da%20crise%20clim%C3%A1tica,vivem%20com%20o%20or%C3%A7amento%20apertado.",
+          "id_inutil": "13957696",
+          "id_video": "13957697",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13957697.jpg"
+        }
+      }
+    ]
+  }
+}

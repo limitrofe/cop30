@@ -1,0 +1,374 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o homem que plantou uma floresta no bairro pode inspirar você?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "21/10/2025",
+      "numero_do_video": "81",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/21/como-o-homem-que-plantou-uma-floresta-no-bairro-pode-inspirar-voce.ghtml",
+      "id_inutil": "14028915",
+      "id_video": "14028920",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028920.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que as ondas de calor estão ficando cada vez mais frequentes?",
+      "tema": "A ciência do aquecimento global",
+      "data": "22/10/2025",
+      "numero_do_video": "82",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/22/por-que-as-ondas-de-calor-estao-cada-vez-mais-frequentes.ghtml#:~:text=E%20por%20que%20isso%20est%C3%A1,e%20deixando%20Terra%20mais%20quente.",
+      "id_inutil": "14028228",
+      "id_video": "14028230",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028230.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Floresta ou oceano: de onde vem o oxigênio que a gente respira?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "23/10/2025",
+      "numero_do_video": "83",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/23/floresta-ou-oceano-de-onde-vem-o-oxigenio-que-a-gente-respira.ghtml",
+      "id_inutil": "14029039",
+      "id_video": "14029041",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14029041.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Terras raras e mineração: qual o impacto ambiental?",
+      "tema": "Transição energética e economia verde",
+      "data": "24/10/2025",
+      "numero_do_video": "84",
+      "links_relacionados": "https://g1.globo.com/google/amp/meio-ambiente/cop-30/noticia/2025/10/24/mais-comum-que-ouro-terras-raras-estao-no-centro-de-disputa-geopolitica-entenda.ghtml#:~:text=Impactos%20ambientais&text=Al%C3%A9m%20da%20retirada%20da%20vegeta%C3%A7%C3%A3o,rios%20e%20comunidades%20do%20entorno.",
+      "id_inutil": "14035056",
+      "id_video": "14035090",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14035090.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que a desinformação também é um perigo para o clima?",
+      "tema": "A ciência do aquecimento global",
+      "data": "25/10/2025",
+      "numero_do_video": "85",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/25/desinformacao-pode-comprometer-todos-os-nossos-esforcos-diz-enviado-especial-da-cop30.ghtml",
+      "id_inutil": "14038941",
+      "id_video": "14038943",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14038943.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 17
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "14028920_80",
+        "index": 80,
+        "globoId": "14028920",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como o homem que plantou uma floresta no bairro pode inspirar você?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028920.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como o homem que plantou uma floresta no bairro pode inspirar voce?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Como o homem que plantou uma floresta no bairro pode inspirar você?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "21/10/2025",
+          "numero_do_video": "81",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/21/como-o-homem-que-plantou-uma-floresta-no-bairro-pode-inspirar-voce.ghtml",
+          "id_inutil": "14028915",
+          "id_video": "14028920",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028920.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14028230_81",
+        "index": 81,
+        "globoId": "14028230",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que as ondas de calor estão ficando cada vez mais frequentes?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028230.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que as ondas de calor estao ficando cada vez mais frequentes?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "Por que as ondas de calor estão ficando cada vez mais frequentes?",
+          "tema": "A ciência do aquecimento global",
+          "data": "22/10/2025",
+          "numero_do_video": "82",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/22/por-que-as-ondas-de-calor-estao-cada-vez-mais-frequentes.ghtml#:~:text=E%20por%20que%20isso%20est%C3%A1,e%20deixando%20Terra%20mais%20quente.",
+          "id_inutil": "14028228",
+          "id_video": "14028230",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14028230.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14029041_82",
+        "index": 82,
+        "globoId": "14029041",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Floresta ou oceano: de onde vem o oxigênio que a gente respira?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14029041.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "floresta ou oceano: de onde vem o oxigenio que a gente respira?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Floresta ou oceano: de onde vem o oxigênio que a gente respira?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "23/10/2025",
+          "numero_do_video": "83",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/23/floresta-ou-oceano-de-onde-vem-o-oxigenio-que-a-gente-respira.ghtml",
+          "id_inutil": "14029039",
+          "id_video": "14029041",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14029041.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14035090_83",
+        "index": 83,
+        "globoId": "14035090",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Terras raras e mineração: qual o impacto ambiental?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14035090.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "terras raras e mineracao: qual o impacto ambiental?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Terras raras e mineração: qual o impacto ambiental?",
+          "tema": "Transição energética e economia verde",
+          "data": "24/10/2025",
+          "numero_do_video": "84",
+          "links_relacionados": "https://g1.globo.com/google/amp/meio-ambiente/cop-30/noticia/2025/10/24/mais-comum-que-ouro-terras-raras-estao-no-centro-de-disputa-geopolitica-entenda.ghtml#:~:text=Impactos%20ambientais&text=Al%C3%A9m%20da%20retirada%20da%20vegeta%C3%A7%C3%A3o,rios%20e%20comunidades%20do%20entorno.",
+          "id_inutil": "14035056",
+          "id_video": "14035090",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14035090.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14038943_84",
+        "index": 84,
+        "globoId": "14038943",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a desinformação também é um perigo para o clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14038943.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a desinformacao tambem e um perigo para o clima?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "Por que a desinformação também é um perigo para o clima?",
+          "tema": "A ciência do aquecimento global",
+          "data": "25/10/2025",
+          "numero_do_video": "85",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/25/desinformacao-pode-comprometer-todos-os-nossos-esforcos-diz-enviado-especial-da-cop30.ghtml",
+          "id_inutil": "14038941",
+          "id_video": "14038943",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14038943.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

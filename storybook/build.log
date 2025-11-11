@@ -1,0 +1,2173 @@
+
+> newsroom-system@0.0.1 build
+> vite build
+
+vite v7.1.5 building SSR bundle for production...
+transforming...
+7:56:02 PM [vite-plugin-svelte] src/routes/charts/bar/+page.svelte:520:2 Elements with the 'dialog' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus
+518: {#if modalOpen}
+519:   <div class="chart-modal-backdrop" role="presentation">
+520:     <div
+             ^
+521:       class="chart-modal"
+522:       role="dialog"
+7:56:02 PM [vite-plugin-svelte] src/routes/charts/bar/+page.svelte:520:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+518: {#if modalOpen}
+519:   <div class="chart-modal-backdrop" role="presentation">
+520:     <div
+             ^
+521:       class="chart-modal"
+522:       role="dialog"
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ParticipantSlider.svelte:533:3 Self-closing HTML tags for non-void elements are ambiguous — use `<option ...></option>` rather than `<option ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+531:   <datalist id="participant-locations">
+532:     {#each locations as location}
+533:       <option value={location} />
+                                      ^
+534:     {/each}
+535:   </datalist>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ParticipantSlider.svelte:538:3 Self-closing HTML tags for non-void elements are ambiguous — use `<option ...></option>` rather than `<option ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+536:   <datalist id="participant-names">
+537:     {#each names as nameOption}
+538:       <option value={nameOption} />
+                                        ^
+539:     {/each}
+540:   </datalist>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/charts/BarChart.svelte:703:1 `<div>` with a dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+701:   />
+702: 
+703:   <div
+           ^
+704:     class="bar-chart__container"
+705:     class:bar-chart__container--brushable={enableBrush}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/charts/BarChart.svelte:832:4 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+830: 
+831:       {#if enableBrush && brushOverlay && brushOverlay.width > 0}
+832:         <div
+               ^
+833:           class="bar-chart__brush-overlay"
+834:           style={`left:${brushOverlay.left}px; width:${brushOverlay.width}px;`}
+
+🌼   daisyUI 4.12.24
+├─ ✔︎ 2 themes added		https://daisyui.com/docs/themes
+╰─ ★ Star daisyUI on GitHub	https://github.com/saadeghi/daisyui
+
+
+🌼   daisyUI 4.12.24
+├─ ✔︎ 2 themes added		https://daisyui.com/docs/themes
+╰─ ★ Star daisyUI on GitHub	https://github.com/saadeghi/daisyui
+
+7:56:03 PM [vite-plugin-svelte] src/lib/builder/components/Canvas.svelte:1071:1 Unused CSS selector ".inline-editor textarea"
+https://svelte.dev/e/css_unused_selector
+1069:   }
+1070: 
+1071:   .inline-editor textarea,
+                               ^
+1072:   .inline-editor input,
+1073:   .inline-editor select {
+7:56:03 PM [vite-plugin-svelte] src/lib/builder/components/Canvas.svelte:1082:1 Unused CSS selector ".inline-editor textarea:focus"
+https://svelte.dev/e/css_unused_selector
+1080:   }
+1081: 
+1082:   .inline-editor textarea:focus,
+                                     ^
+1083:   .inline-editor input:focus,
+1084:   .inline-editor select:focus {
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Header.svelte:10:12 Component has unused export property 'posterImage'. If it is for external reference only, please consider using `export const posterImage`
+https://svelte.dev/e/export_let_unused
+ 8:   export let backgroundVideo = '';
+ 9:   export let backgroundVideoMobile = '';
+10:   export let posterImage = '';
+                            ^
+11:   export let posterImageMobile = '';
+12: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Header.svelte:11:12 Component has unused export property 'posterImageMobile'. If it is for external reference only, please consider using `export const posterImageMobile`
+https://svelte.dev/e/export_let_unused
+ 9:   export let backgroundVideoMobile = '';
+10:   export let posterImage = '';
+11:   export let posterImageMobile = '';
+                                  ^
+12: 
+13:   export let overlay = true;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:268:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+266:       <!-- Overlay de play sempre visível quando pausado -->
+267:       {#if !controls && mounted}
+268:         <div class="video-player__overlay" on:click={togglePlay}>
+                   ^
+269:           {#if !isPlaying}
+270:             <button class="video-player__play-overlay" aria-label="Reproduzir vídeo">
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:268:4 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+266:       <!-- Overlay de play sempre visível quando pausado -->
+267:       {#if !controls && mounted}
+268:         <div class="video-player__overlay" on:click={togglePlay}>
+                   ^
+269:           {#if !isPlaying}
+270:             <button class="video-player__play-overlay" aria-label="Reproduzir vídeo">
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:18:12 Component has unused export property 'alignment'. If it is for external reference only, please consider using `export const alignment`
+https://svelte.dev/e/export_let_unused
+16:   export let loop = false;
+17:   export let showCaption = true;
+18:   export let alignment = 'center';
+                          ^
+19:   export let customWidthDesktop = 'var(--section-content-max-width-desktop, 800px)';
+20:   export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/GloboPlayer.svelte:65:12 Component has unused export property 'width'. If it is for external reference only, please consider using `export const width`
+https://svelte.dev/e/export_let_unused
+63:   export let skipDFP = false;
+64:   export let loop = false;
+65:   export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
+                      ^
+66:   export let height = '100%';
+67:   export let chromeless = null;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/GloboPlayer.svelte:66:12 Component has unused export property 'height'. If it is for external reference only, please consider using `export const height`
+https://svelte.dev/e/export_let_unused
+64:   export let loop = false;
+65:   export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
+66:   export let height = '100%';
+                       ^
+67:   export let chromeless = null;
+68:   export let allowRestrictedContent = true;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/PhotoGallery.svelte:119:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+117:     }}
+118:   >
+119:     <div class="lightbox-content" role="document" on:click|stopPropagation>
+               ^
+120:       <button class="lightbox-close" on:click={closeLightbox}>×</button>
+121: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/PhotoGallery.svelte:119:2 Non-interactive element `<div>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions
+117:     }}
+118:   >
+119:     <div class="lightbox-content" role="document" on:click|stopPropagation>
+               ^
+120:       <button class="lightbox-close" on:click={closeLightbox}>×</button>
+121: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Carousel.svelte:382:7 `<video>` elements must have a `<track kind="captions">`
+https://svelte.dev/e/a11y_media_has_caption
+380:           {:else if item.type === 'video'}
+381:             <div class="carousel-video-wrapper">
+382:               <video controls playsinline use:registerVideo={{ index }}>
+                           ^
+383:                 {#if item.srcMobile}
+384:                   <source src={item.srcMobile} type="video/mp4" media="(max-width: 768px)" />
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:865:5 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+863:           ></div>
+864:         {:else if normalizedBackgroundType === 'video'}
+865:           <video
+                 ^
+866:             class="g1aovivo__player-bg g1aovivo__player-bg--video"
+867:             src={backgroundVideo}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:906:8 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+904:                 {/if}
+905:               {:else}
+906:                 <video
+                       ^
+907:                   class="g1aovivo__interval-media"
+908:                   src={intervalVideoUrl}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:1000:7 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+ 998:               {/if}
+ 999:             {:else}
+1000:               <video
+                      ^
+1001:                 class="g1aovivo__interval-media"
+1002:                 src={intervalVideoUrl}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:107:2 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+105: >
+106:   {#if currentBaseImage}
+107:     <div
+           ^
+108:       class="parallax-base"
+109:       style:background-image={`url(${currentBaseImage})`}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:116:1 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+114: 
+115:   <!-- ✅ ATUALIZADO: Agora usa currentImage que é reativo -->
+116:   <div
+         ^
+117:     class="parallax-image"
+118:     bind:this={parallaxImage}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:125:2 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+123: 
+124:   {#if overlay}
+125:     <div class="parallax-overlay" />
+                                         ^
+126:   {/if}
+127: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/FlourishScrolly.svelte:10:12 Component has unused export property 'flourishHeight'. If it is for external reference only, please consider using `export const flourishHeight`
+https://svelte.dev/e/export_let_unused
+ 8:   export let steps = [];
+ 9:   export let flourishUrl = ''; // Alias para src
+10:   export let flourishHeight = '500px';
+                               ^
+11:   export let layout = 'split';
+12:   export let activationMode = 'exit';
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/FlourishScrolly.svelte:11:12 Component has unused export property 'layout'. If it is for external reference only, please consider using `export const layout`
+https://svelte.dev/e/export_let_unused
+ 9:   export let flourishUrl = ''; // Alias para src
+10:   export let flourishHeight = '500px';
+11:   export let layout = 'split';
+                       ^
+12:   export let activationMode = 'exit';
+13:   export let activationLine = 0;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ScrollyFrames.svelte:22:12 Component has unused export property 'enableKinetic'. If it is for external reference only, please consider using `export const enableKinetic`
+https://svelte.dev/e/export_let_unused
+20:   export let preloadRadius = 10; // Quantos frames ao redor carregar
+21:   export let preloadInitial = 30; // Quantos frames carregar no início
+22:   export let enableKinetic = true; // Kinetic scroll
+                              ^
+23:   export let friction = 0.88; // Friction do kinetic (0.8 = para rápido, 0.95 = desliza mais)
+24: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ScrollyFrames.svelte:23:12 Component has unused export property 'friction'. If it is for external reference only, please consider using `export const friction`
+https://svelte.dev/e/export_let_unused
+21:   export let preloadInitial = 30; // Quantos frames carregar no início
+22:   export let enableKinetic = true; // Kinetic scroll
+23:   export let friction = 0.88; // Friction do kinetic (0.8 = para rápido, 0.95 = desliza mais)
+                         ^
+24: 
+25:   // Estado básico
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:214:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+212: 
+213:             <!-- Tarja vermelha -->
+214:             <div
+                   ^
+215:               class="shape-overlay"
+216:               style="
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:5:12 Component has unused export property 'shapeColor'. If it is for external reference only, please consider using `export const shapeColor`
+https://svelte.dev/e/export_let_unused
+3: 
+4:   export let personagens = [];
+5:   export let shapeColor = '#000000';
+                          ^
+6:   export let nameColor = '#ffffff';
+7:   export let textColor = '#ffffff';
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:6:12 Component has unused export property 'nameColor'. If it is for external reference only, please consider using `export const nameColor`
+https://svelte.dev/e/export_let_unused
+4:   export let personagens = [];
+5:   export let shapeColor = '#000000';
+6:   export let nameColor = '#ffffff';
+                         ^
+7:   export let textColor = '#ffffff';
+8:   export let backgroundColor = '#b51207';
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:8:12 Component has unused export property 'backgroundColor'. If it is for external reference only, please consider using `export const backgroundColor`
+https://svelte.dev/e/export_let_unused
+ 6:   export let nameColor = '#ffffff';
+ 7:   export let textColor = '#ffffff';
+ 8:   export let backgroundColor = '#b51207';
+                                ^
+ 9:   export let quoteColor = '#ffd700'; // Cor especial para frases
+10: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/CharacterPresentation.svelte:302:1 Unused CSS selector ".background-video"
+https://svelte.dev/e/css_unused_selector
+300:   }
+301: 
+302:   .background-video {
+                        ^
+303:     width: 100%;
+304:     height: 100%;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/CharacterPresentation.svelte:309:1 Unused CSS selector ".photo-placeholder"
+https://svelte.dev/e/css_unused_selector
+307:   }
+308: 
+309:   .photo-placeholder {
+                         ^
+310:     width: 100%;
+311:     height: 100%;
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/RecommendedItems.svelte:60:1 `<div>` with a mousedown, mouseleave, mouseup or mousemove handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+58:   {/if}
+59: 
+60:   <div
+          ^
+61:     class="items-container items-container--{layout}"
+62:     bind:this={container}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:188:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+186:     <div class="timeline-events">
+187:       {#each events as event, index}
+188:         <div
+                 ^
+189:           class="timeline-event"
+190:           class:active={index === currentEventIndex}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:240:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+238:             <img src={currentEvent.image} alt={currentEvent.title} loading="lazy" />
+239:             {#if currentEvent.imageCaption}
+240:               <figcaption>{currentEvent.imageCaption}</figcaption>
+                                                                       ^
+241:             {/if}
+242:           </div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:247:6 `<video>` elements must have a `<track kind="captions">`
+https://svelte.dev/e/a11y_media_has_caption
+245:         {#if currentEvent.video}
+246:           <div class="content-media">
+247:             <video src={currentEvent.video} controls poster={currentEvent.videoPoster}>
+                         ^
+248:               Seu navegador não suporta vídeos.
+249:             </video>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:251:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+249:             </video>
+250:             {#if currentEvent.videoCaption}
+251:               <figcaption>{currentEvent.videoCaption}</figcaption>
+                                                                       ^
+252:             {/if}
+253:           </div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:8:12 Component has unused export property 'highlightCurrent'. If it is for external reference only, please consider using `export const highlightCurrent`
+https://svelte.dev/e/export_let_unused
+ 6:   // Props do componente
+ 7:   export let events = [];
+ 8:   export let highlightCurrent = true;
+                                 ^
+ 9:   export let autoAdvance = false;
+10:   export let theme = 'dark'; // 'dark', 'light', 'dramatic'
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/CrimeExplainer.svelte:151:4 noninteractive element cannot have nonnegative tabIndex value
+https://svelte.dev/e/a11y_no_noninteractive_tabindex
+149:     <div class="crimes-grid">
+150:       {#each crimes as crime, index}
+151:         <div
+                 ^
+152:           class="crime-card"
+153:           class:selected={index === selectedCrimeIndex}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/CrimeExplainer.svelte:339:6 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+337:         <div class="crime-indicator">
+338:           {#each crimes as _, index}
+339:             <div
+                     ^
+340:               class="indicator-dot"
+341:               class:active={index === selectedCrimeIndex}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:267:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+265:     <div class="thumbnails-strip">
+266:       {#each documents as doc, index}
+267:         <div
+                 ^
+268:           class="thumbnail"
+269:           class:active={index === currentDocIndex}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:285:3 `<div>` with a mousedown, mousemove, mouseup or mouseleave handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+283:   <div class="document-area">
+284:     {#if currentDoc.image}
+285:       <div
+               ^
+286:         class="document-container"
+287:         on:wheel={handleWheel}
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:13:12 Component has unused export property 'autoAdvance'. If it is for external reference only, please consider using `export const autoAdvance`
+https://svelte.dev/e/export_let_unused
+11:   export let classification = 'CONFIDENCIAL'; // 'PÚBLICO', 'RESERVADO', 'CONFIDENCIAL', 'SECRETO'
+12:   export let theme = 'investigative'; // 'investigative', 'legal', 'journalistic'
+13:   export let autoAdvance = false;
+                            ^
+14:   export let showThumbnails = true;
+15: 
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:182:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+180:             {/if}
+181:             {#if video?.caption || video?.credit}
+182:               <figcaption class="media-caption">
+                                ^
+183:                 {#if video?.caption}
+184:                   <div class="caption">{@html video.caption}</div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:250:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+248:                   {/if}
+249:                   {#if image?.caption || image?.credit}
+250:                     <figcaption class="media-caption">
+                                      ^
+251:                       {#if image?.caption}
+252:                         <div class="caption">{@html image.caption}</div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:281:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+279:                   {/if}
+280:                   {#if video?.caption || video?.credit}
+281:                     <figcaption class="media-caption">
+                                      ^
+282:                       {#if video?.caption}
+283:                         <div class="caption">{@html video.caption}</div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:362:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+360:                   {/if}
+361:                   {#if image?.caption || image?.credit}
+362:                     <figcaption class="media-caption">
+                                      ^
+363:                       {#if image?.caption}
+364:                         <div class="caption">{@html image.caption}</div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:393:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+391:                   {/if}
+392:                   {#if video?.caption || video?.credit}
+393:                     <figcaption class="media-caption">
+                                      ^
+394:                       {#if video?.caption}
+395:                         <div class="caption">{@html video.caption}</div>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:182:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+180: 
+181:         {#if showCaption}
+182:           <figcaption class="media-text__caption">
+                            ^
+183:             {#if mediaCaption}
+184:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:212:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+210: 
+211:         {#if showCaption}
+212:           <figcaption class="media-text__caption">
+                            ^
+213:             {#if mediaCaption}
+214:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:03 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:227:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+225: 
+226:         {#if showCaption}
+227:           <figcaption class="media-text__caption">
+                            ^
+228:             {#if mediaCaption}
+229:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:431:1 Unused CSS selector ".treemap-tooltip"
+https://svelte.dev/e/css_unused_selector
+429:   }
+430: 
+431:   .treemap-tooltip {
+                       ^
+432:     position: absolute;
+433:     background: rgba(15, 23, 42, 0.88);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:447:1 Unused CSS selector ".treemap-tooltip strong"
+https://svelte.dev/e/css_unused_selector
+445:   }
+446: 
+447:   .treemap-tooltip strong {
+                              ^
+448:     font-size: 0.95rem;
+449:   }
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:451:1 Unused CSS selector ".treemap-tooltip em"
+https://svelte.dev/e/css_unused_selector
+449:   }
+450: 
+451:   .treemap-tooltip em {
+                          ^
+452:     font-style: normal;
+453:     color: rgba(226, 232, 240, 0.85);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:457:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+455:   }
+456: 
+457:   .empty-state {
+                   ^
+458:     width: 100%;
+459:     min-height: 220px;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChartScores.svelte:16:12 Component has unused export property 'barInnerPadding'. If it is for external reference only, please consider using `export const barInnerPadding`
+https://svelte.dev/e/export_let_unused
+14:   export let minHeight = 260;
+15:   export let barPadding = 20;
+16:   export let barInnerPadding = 0.22;
+                                ^
+17:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+18:   export let data = null;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChartScores.svelte:382:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+380:   }
+381: 
+382:   .empty-state {
+                   ^
+383:     width: 100%;
+384:     min-height: 200px;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:16:12 Component has unused export property 'barPadding'. If it is for external reference only, please consider using `export const barPadding`
+https://svelte.dev/e/export_let_unused
+14: 
+15:   export let minHeight = 260;
+16:   export let barPadding = 20;
+                           ^
+17:   export let barInnerPadding = 0.22;
+18:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:17:12 Component has unused export property 'barInnerPadding'. If it is for external reference only, please consider using `export const barInnerPadding`
+https://svelte.dev/e/export_let_unused
+15:   export let minHeight = 260;
+16:   export let barPadding = 20;
+17:   export let barInnerPadding = 0.22;
+                                ^
+18:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+19: 
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:403:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+401:   }
+402: 
+403:   .empty-state {
+                   ^
+404:     width: 100%;
+405:     min-height: 200px;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/charts/StillTimeBubbleChart.svelte:554:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+552:   }
+553: 
+554:   .empty-state {
+                   ^
+555:     width: 100%;
+556:     min-height: 200px;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4119:14 Elements with the ARIA role "option" must have the following attributes defined: "aria-selected"
+https://svelte.dev/e/a11y_role_has_required_aria_props
+4117:                           <button
+4118:                             type="button"
+4119:                             role="option"
+                                               ^
+4120:                             class="search-suggestions__item"
+4121:                             on:mousedown|preventDefault
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4148:12 The attribute 'aria-pressed' is not supported by the role 'tab'
+https://svelte.dev/e/a11y_role_supports_aria_props
+4146:                         class:filter-chip--active={isFilterActive(option)}
+4147:                         on:click={() => handleFilterNavigation(option)}
+4148:                         aria-pressed={isFilterActive(option)}
+                                                                   ^
+4149:                       >
+4150:                         {option.label}
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4219:12 Elements with the ARIA role "option" must have the following attributes defined: "aria-selected"
+https://svelte.dev/e/a11y_role_has_required_aria_props
+4217:                       <button
+4218:                         type="button"
+4219:                         role="option"
+                                           ^
+4220:                         class="search-suggestions__item"
+4221:                         on:mousedown|preventDefault
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4242:9 The attribute 'aria-pressed' is not supported by the role 'tab'
+https://svelte.dev/e/a11y_role_supports_aria_props
+4240:                   class:filter-chip--active={isFilterActive(option)}
+4241:                   on:click={() => handleFilterNavigation(option)}
+4242:                   aria-pressed={isFilterActive(option)}
+                                                             ^
+4243:                 >
+4244:                   {option.label}
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4644:1 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+4642: 
+4643: {#if desktopOverlayVideo && !isMobileViewport}
+4644:   <div
+            ^
+4645:     class="desktop-overlay"
+4646:     data-variant={desktopOverlayVariant}
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4644:1 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+4642: 
+4643: {#if desktopOverlayVideo && !isMobileViewport}
+4644:   <div
+            ^
+4645:     class="desktop-overlay"
+4646:     data-variant={desktopOverlayVariant}
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4649:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+4647:     on:click={() => closeDesktopOverlay()}
+4648:   >
+4649:     <div
+              ^
+4650:       class="desktop-overlay__surface"
+4651:       data-has-image={desktopOverlaySurfaceHasImage ? 'true' : 'false'}
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5050:1 Unused CSS selector ".mobile-bottom-bar__button--filters"
+https://svelte.dev/e/css_unused_selector
+5048: 
+5049:   .mobile-bottom-bar__button--feed,
+5050:   .mobile-bottom-bar__button--filters,
+                                           ^
+5051:   .mobile-bottom-bar__button--search {
+5052:     color: rgba(12, 18, 36, 0.82);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5067:1 Unused CSS selector ".mobile-bottom-bar__button--active-filters"
+https://svelte.dev/e/css_unused_selector
+5065: 
+5066:   .mobile-bottom-bar__button--active-feed,
+5067:   .mobile-bottom-bar__button--active-filters,
+                                                  ^
+5068:   .mobile-bottom-bar__button--active-search {
+5069:     background: var(--mobile-bottom-button-active-bg, rgba(255, 250, 241, 0.98));
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5185:1 Unused CSS selector ".controls__close"
+https://svelte.dev/e/css_unused_selector
+5183:   }
+5184: 
+5185:   .controls__close {
+                        ^
+5186:     border: none;
+5187:     background: rgba(255, 255, 255, 0.12);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5197:1 Unused CSS selector ".controls__close:hover"
+https://svelte.dev/e/css_unused_selector
+5195:   }
+5196: 
+5197:   .controls__close:hover,
+                              ^
+5198:   .controls__close:focus-visible {
+5199:     background: rgba(255, 255, 255, 0.22);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5198:1 Unused CSS selector ".controls__close:focus-visible"
+https://svelte.dev/e/css_unused_selector
+5196: 
+5197:   .controls__close:hover,
+5198:   .controls__close:focus-visible {
+                                      ^
+5199:     background: rgba(255, 255, 255, 0.22);
+5200:     outline: none;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5228:1 Unused CSS selector ".controls__modal-dismiss"
+https://svelte.dev/e/css_unused_selector
+5226:   }
+5227: 
+5228:   .controls__modal-dismiss {
+                                ^
+5229:     position: sticky;
+5230:     top: -0.5rem;
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5249:1 Unused CSS selector ".controls__modal-dismiss:hover"
+https://svelte.dev/e/css_unused_selector
+5247:   }
+5248: 
+5249:   .controls__modal-dismiss:hover,
+                                      ^
+5250:   .controls__modal-dismiss:focus-visible {
+5251:     border-color: rgba(255, 255, 255, 0.7);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5250:1 Unused CSS selector ".controls__modal-dismiss:focus-visible"
+https://svelte.dev/e/css_unused_selector
+5248: 
+5249:   .controls__modal-dismiss:hover,
+5250:   .controls__modal-dismiss:focus-visible {
+                                              ^
+5251:     border-color: rgba(255, 255, 255, 0.7);
+5252:     background: rgba(255, 255, 255, 0.18);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5889:1 Unused CSS selector ".controls--floating .controls-meta"
+https://svelte.dev/e/css_unused_selector
+5887: 
+5888:   .controls--floating .controls-heading,
+5889:   .controls--floating .controls-meta {
+                                          ^
+5890:     display: none;
+5891:   }
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6008:1 Unused CSS selector ".controls-heading + .search-bar"
+https://svelte.dev/e/css_unused_selector
+6006: 
+6007:   .controls-heading + .filter-carousel,
+6008:   .controls-heading + .search-bar {
+                                       ^
+6009:     margin-top: 0;
+6010:   }
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6223:1 Unused CSS selector ".controls-meta"
+https://svelte.dev/e/css_unused_selector
+6221:   }
+6222: 
+6223:   .controls-meta {
+                      ^
+6224:     font-size: 0.85rem;
+6225:     color: rgba(15, 23, 42, 0.6);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6231:1 Unused CSS selector ".controls__inner .controls-meta"
+https://svelte.dev/e/css_unused_selector
+6229:   }
+6230: 
+6231:   .controls__inner .controls-meta {
+                                       ^
+6232:     padding-inline: 0;
+6233:   }
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:265:1 Unused CSS selector "header .role + .role"
+https://svelte.dev/e/css_unused_selector
+263:   }
+264: 
+265:   header .role + .role {
+                           ^
+266:     margin-top: 0.25rem;
+267:   }
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:269:1 Unused CSS selector "header .role--secondary"
+https://svelte.dev/e/css_unused_selector
+267:   }
+268: 
+269:   header .role--secondary {
+                              ^
+270:     font-size: 0.95rem;
+271:     color: rgba(203, 213, 225, 0.6);
+7:56:04 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:421:1 Unused CSS selector "blockquote + blockquote"
+https://svelte.dev/e/css_unused_selector
+419:   }
+420: 
+421:   blockquote + blockquote {
+                              ^
+422:     margin-top: 1.25rem;
+423:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:194:5 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+192: 
+193:         <div class="field rich-text">
+194:           <label id={`scrolly-step-text-label-${index}`}>Texto (HTML permitido)</label>
+                                                                                            ^
+195:           <RichTextEditor
+196:             value={step.text || ''}
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:608:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+606:   input[type='text'],
+607:   input[type='url'],
+608:   textarea,
+               ^
+609:   select {
+610:     border: 1px solid #cbd5f5;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:616:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+614:   }
+615: 
+616:   textarea {
+               ^
+617:     resize: vertical;
+618:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:398:3 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+396:     <span class="rt-divider" aria-hidden="true"></span>
+397:     <div class="rt-color" title="Cor do texto">
+398:       <button
+                  ^
+399:         type="button"
+400:         class="rt-color-button"
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:436:1 Elements with the 'textbox' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus
+434:   </div>
+435: 
+436:   <div
+           ^
+437:     class="rt-editor"
+438:     class:empty={!value}
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:572:1 Unused CSS selector ".rt-color-controller"
+https://svelte.dev/e/css_unused_selector
+570:   }
+571: 
+572:   .rt-color-controller {
+                           ^
+573:     position: absolute;
+574:     left: -9999px;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:581:1 Unused CSS selector ".rt-color-controller :global(.color-label)"
+https://svelte.dev/e/css_unused_selector
+579:   }
+580: 
+581:   .rt-color-controller :global(.color-label),
+                                                 ^
+582:   .rt-color-controller :global(.color-summary) {
+583:     display: none !important;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:582:1 Unused CSS selector ".rt-color-controller :global(.color-summary)"
+https://svelte.dev/e/css_unused_selector
+580: 
+581:   .rt-color-controller :global(.color-label),
+582:   .rt-color-controller :global(.color-summary) {
+                                                   ^
+583:     display: none !important;
+584:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:595:1 Unused CSS selector ".rt-editor ul"
+https://svelte.dev/e/css_unused_selector
+593:   }
+594: 
+595:   .rt-editor ul {
+                    ^
+596:     padding-left: 1.4rem;
+597:     list-style: disc;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:601:1 Unused CSS selector ".rt-editor ol"
+https://svelte.dev/e/css_unused_selector
+599:   }
+600: 
+601:   .rt-editor ol {
+                    ^
+602:     padding-left: 1.4rem;
+603:     list-style: decimal;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/FieldEditor.svelte:360:1 Unused CSS selector "textarea.richtext"
+https://svelte.dev/e/css_unused_selector
+358:   }
+359: 
+360:   textarea.richtext {
+                        ^
+361:     font-family: 'Inter', system-ui, sans-serif;
+362:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/components/story/shared/FlourishScrollyEmbed.svelte:25:5 Self-closing HTML tags for non-void elements are ambiguous — use `<iframe ...></iframe>` rather than `<iframe ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+23:       <div class="w-full flex items-center">
+24:         <figure class="w-full" in:fade={{ duration: 400 }}>
+25:           <iframe
+                ^
+26:             src={embedUrl}
+27:             title="Interactive visual content"
+7:56:05 PM [vite-plugin-svelte] src/lib/components/story/shared/StepEnhanced.svelte:16:12 Component has unused export property 'slideFromBottom'. If it is for external reference only, please consider using `export const slideFromBottom`
+https://svelte.dev/e/export_let_unused
+14:   export let defaultStickyTopMobile = '12vh';
+15:   export let progress = null;
+16:   export let slideFromBottom = false;
+                                ^
+17:   export let travelDistance = 'auto';
+18: 
+7:56:05 PM [vite-plugin-svelte] src/lib/components/story/shared/StepEnhanced.svelte:17:12 Component has unused export property 'travelDistance'. If it is for external reference only, please consider using `export const travelDistance`
+https://svelte.dev/e/export_let_unused
+15:   export let progress = null;
+16:   export let slideFromBottom = false;
+17:   export let travelDistance = 'auto';
+                               ^
+18: 
+19:   let stepContentElement;
+7:56:05 PM [vite-plugin-svelte] src/lib/components/story/ContentGridBlockList.svelte:105:6 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+103:           {/if}
+104:           {#if videoBlock?.caption || videoBlock?.credit}
+105:             <figcaption class="media-caption">
+                              ^
+106:               {#if videoBlock?.caption}
+107:                 <div class="caption">{@html videoBlock.caption}</div>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:914:1 Unused CSS selector ".line-chart__axis text"
+https://svelte.dev/e/css_unused_selector
+912:   }
+913: 
+914:   .line-chart__axis text {
+                             ^
+915:     fill: var(--chart-axis, #475569);
+916:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:918:1 Unused CSS selector ".line-chart__axis path"
+https://svelte.dev/e/css_unused_selector
+916:   }
+917: 
+918:   .line-chart__axis path,
+                             ^
+919:   .line-chart__axis line {
+920:     stroke: var(--chart-axis-line, rgba(100, 116, 139, 0.45));
+7:56:05 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:919:1 Unused CSS selector ".line-chart__axis line"
+https://svelte.dev/e/css_unused_selector
+917: 
+918:   .line-chart__axis path,
+919:   .line-chart__axis line {
+                             ^
+920:     stroke: var(--chart-axis-line, rgba(100, 116, 139, 0.45));
+921:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:877:8 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+875:             {#each data.items as item (item.id)}
+876:               {#if item.desktop}
+877:                 <div
+                         ^
+878:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+879:                   style={getPreviewItemStyle(item, 'desktop')}
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:877:8 `<div>` with a click or dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+875:             {#each data.items as item (item.id)}
+876:               {#if item.desktop}
+877:                 <div
+                         ^
+878:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+879:                   style={getPreviewItemStyle(item, 'desktop')}
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:947:8 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+945:             {#each data.items as item (item.id)}
+946:               {#if item.mobile}
+947:                 <div
+                         ^
+948:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+949:                   style={getPreviewItemStyle(item, 'mobile')}
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:947:8 `<div>` with a click or dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+945:             {#each data.items as item (item.id)}
+946:               {#if item.mobile}
+947:                 <div
+                         ^
+948:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+949:                   style={getPreviewItemStyle(item, 'mobile')}
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1652:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1650:   </div>
+1651:   {#if isCanvasModalOpen}
+1652:     <div class="preview-area__backdrop" on:click={closeCanvasModal}></div>
+                                                                                ^
+1653:   {/if}
+1654: </div>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1652:2 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1650:   </div>
+1651:   {#if isCanvasModalOpen}
+1652:     <div class="preview-area__backdrop" on:click={closeCanvasModal}></div>
+                                                                                ^
+1653:   {/if}
+1654: </div>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1657:1 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1655: 
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+              ^
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+1659:       <header>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1657:1 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1655: 
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+              ^
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+1659:       <header>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1658:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+                ^
+1659:       <header>
+1660:         <h2>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1658:2 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+                ^
+1659:       <header>
+1660:         <h2>
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/CarouselItemsEditor.svelte:384:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+382:   input[type='text'],
+383:   input[type='url'],
+384:   textarea,
+               ^
+385:   select {
+386:     border: 1px solid #cbd5f5;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/CarouselItemsEditor.svelte:392:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+390:   }
+391: 
+392:   textarea {
+               ^
+393:     resize: vertical;
+394:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerSlidesEditor.svelte:328:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+326: 
+327:   input[type='text'],
+328:   textarea {
+               ^
+329:     border: 1px solid #cbd5f5;
+330:     border-radius: 8px;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerSlidesEditor.svelte:335:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+333:   }
+334: 
+335:   textarea {
+               ^
+336:     resize: vertical;
+337:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerGridSliderEditor.svelte:664:1 Unused CSS selector ".video-card textarea"
+https://svelte.dev/e/css_unused_selector
+662:   .fields textarea,
+663:   .video-card input,
+664:   .video-card textarea,
+                           ^
+665:   .video-card select {
+666:     border: 1px solid rgba(148, 163, 184, 0.6);
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerGridSliderEditor.svelte:675:1 Unused CSS selector ".video-card textarea"
+https://svelte.dev/e/css_unused_selector
+673: 
+674:   .fields textarea,
+675:   .video-card textarea {
+                           ^
+676:     resize: vertical;
+677:   }
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/ListItemsEditor.svelte:142:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+140:   }
+141: 
+142:   textarea {
+               ^
+143:     border: 1px solid #cbd5f5;
+144:     border-radius: 8px;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/editors/ListItemsEditor.svelte:150:1 Unused CSS selector "textarea:focus"
+https://svelte.dev/e/css_unused_selector
+148:   }
+149: 
+150:   textarea:focus {
+                     ^
+151:     outline: none;
+152:     border-color: #2563eb;
+7:56:05 PM [vite-plugin-svelte] src/lib/builder/components/JsonEditorField.svelte:57:1 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+55: 
+56: <div class="json-field">
+57:   <label>
+             ^
+58:     <span>{label}</span>
+59:   </label>
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:472:2 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+470: <div class="color-picker">
+471:   {#if label}
+472:     <label class="color-label">{label}:</label>
+                                                    ^
+473:   {/if}
+474: 
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:476:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+474: 
+475:   <div class="color-summary">
+476:     <button
+                ^
+477:       type="button"
+478:       class="color-trigger"
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:572:7 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+570:           {#if showAlpha}
+571:             <div class="alpha-control">
+572:               <label>{alphaLabel}</label>
+                                              ^
+573:               <div class="alpha-inputs">
+574:                 <input
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:8:12 Component has unused export property 'size'. If it is for external reference only, please consider using `export const size`
+https://svelte.dev/e/export_let_unused
+ 6: 
+ 7:   export let value = 'desktop';
+ 8:   export let size = 'normal'; // 'small', 'normal', 'large'
+                     ^
+ 9:   export let variant = 'default'; // 'default', 'compact'
+10: 
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:84:1 Unused CSS selector ".size-small .device-btn"
+https://svelte.dev/e/css_unused_selector
+82: 
+83:   /* Size variants */
+84:   .size-small .device-btn {
+                             ^
+85:     padding: 0.5rem 0.75rem;
+86:     font-size: 0.75rem;
+7:56:05 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:93:1 Unused CSS selector ".size-large .device-btn"
+https://svelte.dev/e/css_unused_selector
+91:   }
+92: 
+93:   .size-large .device-btn {
+                             ^
+94:     padding: 1rem 1.25rem;
+95:     font-size: 1rem;
+✓ 355 modules transformed.
+rendering chunks...
+vite v7.1.5 building for production...
+transforming...
+7:56:06 PM [vite-plugin-svelte] src/routes/charts/bar/+page.svelte:520:2 Elements with the 'dialog' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus
+518: {#if modalOpen}
+519:   <div class="chart-modal-backdrop" role="presentation">
+520:     <div
+             ^
+521:       class="chart-modal"
+522:       role="dialog"
+7:56:06 PM [vite-plugin-svelte] src/routes/charts/bar/+page.svelte:520:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+518: {#if modalOpen}
+519:   <div class="chart-modal-backdrop" role="presentation">
+520:     <div
+             ^
+521:       class="chart-modal"
+522:       role="dialog"
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/ParticipantSlider.svelte:533:3 Self-closing HTML tags for non-void elements are ambiguous — use `<option ...></option>` rather than `<option ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+531:   <datalist id="participant-locations">
+532:     {#each locations as location}
+533:       <option value={location} />
+                                      ^
+534:     {/each}
+535:   </datalist>
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/ParticipantSlider.svelte:538:3 Self-closing HTML tags for non-void elements are ambiguous — use `<option ...></option>` rather than `<option ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+536:   <datalist id="participant-names">
+537:     {#each names as nameOption}
+538:       <option value={nameOption} />
+                                        ^
+539:     {/each}
+540:   </datalist>
+7:56:06 PM [vite-plugin-svelte] src/lib/components/charts/BarChart.svelte:703:1 `<div>` with a dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+701:   />
+702: 
+703:   <div
+           ^
+704:     class="bar-chart__container"
+705:     class:bar-chart__container--brushable={enableBrush}
+7:56:06 PM [vite-plugin-svelte] src/lib/components/charts/BarChart.svelte:832:4 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+830: 
+831:       {#if enableBrush && brushOverlay && brushOverlay.width > 0}
+832:         <div
+               ^
+833:           class="bar-chart__brush-overlay"
+834:           style={`left:${brushOverlay.left}px; width:${brushOverlay.width}px;`}
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:265:1 Unused CSS selector "header .role + .role"
+https://svelte.dev/e/css_unused_selector
+263:   }
+264: 
+265:   header .role + .role {
+                           ^
+266:     margin-top: 0.25rem;
+267:   }
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:269:1 Unused CSS selector "header .role--secondary"
+https://svelte.dev/e/css_unused_selector
+267:   }
+268: 
+269:   header .role--secondary {
+                              ^
+270:     font-size: 0.95rem;
+271:     color: rgba(203, 213, 225, 0.6);
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/ParticipantProfile.svelte:421:1 Unused CSS selector "blockquote + blockquote"
+https://svelte.dev/e/css_unused_selector
+419:   }
+420: 
+421:   blockquote + blockquote {
+                              ^
+422:     margin-top: 1.25rem;
+423:   }
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/Header.svelte:10:12 Component has unused export property 'posterImage'. If it is for external reference only, please consider using `export const posterImage`
+https://svelte.dev/e/export_let_unused
+ 8:   export let backgroundVideo = '';
+ 9:   export let backgroundVideoMobile = '';
+10:   export let posterImage = '';
+                            ^
+11:   export let posterImageMobile = '';
+12: 
+7:56:06 PM [vite-plugin-svelte] src/lib/components/story/Header.svelte:11:12 Component has unused export property 'posterImageMobile'. If it is for external reference only, please consider using `export const posterImageMobile`
+https://svelte.dev/e/export_let_unused
+ 9:   export let backgroundVideoMobile = '';
+10:   export let posterImage = '';
+11:   export let posterImageMobile = '';
+                                  ^
+12: 
+13:   export let overlay = true;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/GloboPlayer.svelte:65:12 Component has unused export property 'width'. If it is for external reference only, please consider using `export const width`
+https://svelte.dev/e/export_let_unused
+63:   export let skipDFP = false;
+64:   export let loop = false;
+65:   export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
+                      ^
+66:   export let height = '100%';
+67:   export let chromeless = null;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/GloboPlayer.svelte:66:12 Component has unused export property 'height'. If it is for external reference only, please consider using `export const height`
+https://svelte.dev/e/export_let_unused
+64:   export let loop = false;
+65:   export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
+66:   export let height = '100%';
+                       ^
+67:   export let chromeless = null;
+68:   export let allowRestrictedContent = true;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:268:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+266:       <!-- Overlay de play sempre visível quando pausado -->
+267:       {#if !controls && mounted}
+268:         <div class="video-player__overlay" on:click={togglePlay}>
+                   ^
+269:           {#if !isPlaying}
+270:             <button class="video-player__play-overlay" aria-label="Reproduzir vídeo">
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:268:4 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+266:       <!-- Overlay de play sempre visível quando pausado -->
+267:       {#if !controls && mounted}
+268:         <div class="video-player__overlay" on:click={togglePlay}>
+                   ^
+269:           {#if !isPlaying}
+270:             <button class="video-player__play-overlay" aria-label="Reproduzir vídeo">
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoPlayer.svelte:18:12 Component has unused export property 'alignment'. If it is for external reference only, please consider using `export const alignment`
+https://svelte.dev/e/export_let_unused
+16:   export let loop = false;
+17:   export let showCaption = true;
+18:   export let alignment = 'center';
+                          ^
+19:   export let customWidthDesktop = 'var(--section-content-max-width-desktop, 800px)';
+20:   export let customWidthMobile = 'var(--section-content-max-width-mobile, 350px)';
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/PhotoGallery.svelte:119:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+117:     }}
+118:   >
+119:     <div class="lightbox-content" role="document" on:click|stopPropagation>
+               ^
+120:       <button class="lightbox-close" on:click={closeLightbox}>×</button>
+121: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/PhotoGallery.svelte:119:2 Non-interactive element `<div>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions
+117:     }}
+118:   >
+119:     <div class="lightbox-content" role="document" on:click|stopPropagation>
+               ^
+120:       <button class="lightbox-close" on:click={closeLightbox}>×</button>
+121: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Carousel.svelte:382:7 `<video>` elements must have a `<track kind="captions">`
+https://svelte.dev/e/a11y_media_has_caption
+380:           {:else if item.type === 'video'}
+381:             <div class="carousel-video-wrapper">
+382:               <video controls playsinline use:registerVideo={{ index }}>
+                           ^
+383:                 {#if item.srcMobile}
+384:                   <source src={item.srcMobile} type="video/mp4" media="(max-width: 768px)" />
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:865:5 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+863:           ></div>
+864:         {:else if normalizedBackgroundType === 'video'}
+865:           <video
+                 ^
+866:             class="g1aovivo__player-bg g1aovivo__player-bg--video"
+867:             src={backgroundVideo}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:906:8 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+904:                 {/if}
+905:               {:else}
+906:                 <video
+                       ^
+907:                   class="g1aovivo__interval-media"
+908:                   src={intervalVideoUrl}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/G1AoVivo.svelte:1000:7 Self-closing HTML tags for non-void elements are ambiguous — use `<video ...></video>` rather than `<video ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+ 998:               {/if}
+ 999:             {:else}
+1000:               <video
+                      ^
+1001:                 class="g1aovivo__interval-media"
+1002:                 src={intervalVideoUrl}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ScrollyFrames.svelte:22:12 Component has unused export property 'enableKinetic'. If it is for external reference only, please consider using `export const enableKinetic`
+https://svelte.dev/e/export_let_unused
+20:   export let preloadRadius = 10; // Quantos frames ao redor carregar
+21:   export let preloadInitial = 30; // Quantos frames carregar no início
+22:   export let enableKinetic = true; // Kinetic scroll
+                              ^
+23:   export let friction = 0.88; // Friction do kinetic (0.8 = para rápido, 0.95 = desliza mais)
+24: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ScrollyFrames.svelte:23:12 Component has unused export property 'friction'. If it is for external reference only, please consider using `export const friction`
+https://svelte.dev/e/export_let_unused
+21:   export let preloadInitial = 30; // Quantos frames carregar no início
+22:   export let enableKinetic = true; // Kinetic scroll
+23:   export let friction = 0.88; // Friction do kinetic (0.8 = para rápido, 0.95 = desliza mais)
+                         ^
+24: 
+25:   // Estado básico
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:107:2 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+105: >
+106:   {#if currentBaseImage}
+107:     <div
+           ^
+108:       class="parallax-base"
+109:       style:background-image={`url(${currentBaseImage})`}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:116:1 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+114: 
+115:   <!-- ✅ ATUALIZADO: Agora usa currentImage que é reativo -->
+116:   <div
+         ^
+117:     class="parallax-image"
+118:     bind:this={parallaxImage}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Parallax.svelte:125:2 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+123: 
+124:   {#if overlay}
+125:     <div class="parallax-overlay" />
+                                         ^
+126:   {/if}
+127: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/FlourishScrolly.svelte:10:12 Component has unused export property 'flourishHeight'. If it is for external reference only, please consider using `export const flourishHeight`
+https://svelte.dev/e/export_let_unused
+ 8:   export let steps = [];
+ 9:   export let flourishUrl = ''; // Alias para src
+10:   export let flourishHeight = '500px';
+                               ^
+11:   export let layout = 'split';
+12:   export let activationMode = 'exit';
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/FlourishScrolly.svelte:11:12 Component has unused export property 'layout'. If it is for external reference only, please consider using `export const layout`
+https://svelte.dev/e/export_let_unused
+ 9:   export let flourishUrl = ''; // Alias para src
+10:   export let flourishHeight = '500px';
+11:   export let layout = 'split';
+                       ^
+12:   export let activationMode = 'exit';
+13:   export let activationLine = 0;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:214:6 Self-closing HTML tags for non-void elements are ambiguous — use `<div ...></div>` rather than `<div ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+212: 
+213:             <!-- Tarja vermelha -->
+214:             <div
+                   ^
+215:               class="shape-overlay"
+216:               style="
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:5:12 Component has unused export property 'shapeColor'. If it is for external reference only, please consider using `export const shapeColor`
+https://svelte.dev/e/export_let_unused
+3: 
+4:   export let personagens = [];
+5:   export let shapeColor = '#000000';
+                          ^
+6:   export let nameColor = '#ffffff';
+7:   export let textColor = '#ffffff';
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:6:12 Component has unused export property 'nameColor'. If it is for external reference only, please consider using `export const nameColor`
+https://svelte.dev/e/export_let_unused
+4:   export let personagens = [];
+5:   export let shapeColor = '#000000';
+6:   export let nameColor = '#ffffff';
+                         ^
+7:   export let textColor = '#ffffff';
+8:   export let backgroundColor = '#b51207';
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/Curiosidades.svelte:8:12 Component has unused export property 'backgroundColor'. If it is for external reference only, please consider using `export const backgroundColor`
+https://svelte.dev/e/export_let_unused
+ 6:   export let nameColor = '#ffffff';
+ 7:   export let textColor = '#ffffff';
+ 8:   export let backgroundColor = '#b51207';
+                                ^
+ 9:   export let quoteColor = '#ffd700'; // Cor especial para frases
+10: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/CharacterPresentation.svelte:302:1 Unused CSS selector ".background-video"
+https://svelte.dev/e/css_unused_selector
+300:   }
+301: 
+302:   .background-video {
+                        ^
+303:     width: 100%;
+304:     height: 100%;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/CharacterPresentation.svelte:309:1 Unused CSS selector ".photo-placeholder"
+https://svelte.dev/e/css_unused_selector
+307:   }
+308: 
+309:   .photo-placeholder {
+                         ^
+310:     width: 100%;
+311:     height: 100%;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/RecommendedItems.svelte:60:1 `<div>` with a mousedown, mouseleave, mouseup or mousemove handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+58:   {/if}
+59: 
+60:   <div
+          ^
+61:     class="items-container items-container--{layout}"
+62:     bind:this={container}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:188:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+186:     <div class="timeline-events">
+187:       {#each events as event, index}
+188:         <div
+                 ^
+189:           class="timeline-event"
+190:           class:active={index === currentEventIndex}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:240:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+238:             <img src={currentEvent.image} alt={currentEvent.title} loading="lazy" />
+239:             {#if currentEvent.imageCaption}
+240:               <figcaption>{currentEvent.imageCaption}</figcaption>
+                                                                       ^
+241:             {/if}
+242:           </div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:247:6 `<video>` elements must have a `<track kind="captions">`
+https://svelte.dev/e/a11y_media_has_caption
+245:         {#if currentEvent.video}
+246:           <div class="content-media">
+247:             <video src={currentEvent.video} controls poster={currentEvent.videoPoster}>
+                         ^
+248:               Seu navegador não suporta vídeos.
+249:             </video>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:251:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+249:             </video>
+250:             {#if currentEvent.videoCaption}
+251:               <figcaption>{currentEvent.videoCaption}</figcaption>
+                                                                       ^
+252:             {/if}
+253:           </div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/TimelineInteractive.svelte:8:12 Component has unused export property 'highlightCurrent'. If it is for external reference only, please consider using `export const highlightCurrent`
+https://svelte.dev/e/export_let_unused
+ 6:   // Props do componente
+ 7:   export let events = [];
+ 8:   export let highlightCurrent = true;
+                                 ^
+ 9:   export let autoAdvance = false;
+10:   export let theme = 'dark'; // 'dark', 'light', 'dramatic'
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:182:7 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+180:             {/if}
+181:             {#if video?.caption || video?.credit}
+182:               <figcaption class="media-caption">
+                                ^
+183:                 {#if video?.caption}
+184:                   <div class="caption">{@html video.caption}</div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:250:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+248:                   {/if}
+249:                   {#if image?.caption || image?.credit}
+250:                     <figcaption class="media-caption">
+                                      ^
+251:                       {#if image?.caption}
+252:                         <div class="caption">{@html image.caption}</div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:281:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+279:                   {/if}
+280:                   {#if video?.caption || video?.credit}
+281:                     <figcaption class="media-caption">
+                                      ^
+282:                       {#if video?.caption}
+283:                         <div class="caption">{@html video.caption}</div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:362:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+360:                   {/if}
+361:                   {#if image?.caption || image?.credit}
+362:                     <figcaption class="media-caption">
+                                      ^
+363:                       {#if image?.caption}
+364:                         <div class="caption">{@html image.caption}</div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/ContentGrid.svelte:393:10 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+391:                   {/if}
+392:                   {#if video?.caption || video?.credit}
+393:                     <figcaption class="media-caption">
+                                      ^
+394:                       {#if video?.caption}
+395:                         <div class="caption">{@html video.caption}</div>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:267:4 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+265:     <div class="thumbnails-strip">
+266:       {#each documents as doc, index}
+267:         <div
+                 ^
+268:           class="thumbnail"
+269:           class:active={index === currentDocIndex}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:285:3 `<div>` with a mousedown, mousemove, mouseup or mouseleave handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+283:   <div class="document-area">
+284:     {#if currentDoc.image}
+285:       <div
+               ^
+286:         class="document-container"
+287:         on:wheel={handleWheel}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/DocumentViewer.svelte:13:12 Component has unused export property 'autoAdvance'. If it is for external reference only, please consider using `export const autoAdvance`
+https://svelte.dev/e/export_let_unused
+11:   export let classification = 'CONFIDENCIAL'; // 'PÚBLICO', 'RESERVADO', 'CONFIDENCIAL', 'SECRETO'
+12:   export let theme = 'investigative'; // 'investigative', 'legal', 'journalistic'
+13:   export let autoAdvance = false;
+                            ^
+14:   export let showThumbnails = true;
+15: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/CrimeExplainer.svelte:151:4 noninteractive element cannot have nonnegative tabIndex value
+https://svelte.dev/e/a11y_no_noninteractive_tabindex
+149:     <div class="crimes-grid">
+150:       {#each crimes as crime, index}
+151:         <div
+                 ^
+152:           class="crime-card"
+153:           class:selected={index === selectedCrimeIndex}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/CrimeExplainer.svelte:339:6 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+337:         <div class="crime-indicator">
+338:           {#each crimes as _, index}
+339:             <div
+                     ^
+340:               class="indicator-dot"
+341:               class:active={index === selectedCrimeIndex}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:182:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+180: 
+181:         {#if showCaption}
+182:           <figcaption class="media-text__caption">
+                            ^
+183:             {#if mediaCaption}
+184:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:212:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+210: 
+211:         {#if showCaption}
+212:           <figcaption class="media-text__caption">
+                            ^
+213:             {#if mediaCaption}
+214:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/MediaTextLayout.svelte:227:5 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+225: 
+226:         {#if showCaption}
+227:           <figcaption class="media-text__caption">
+                            ^
+228:             {#if mediaCaption}
+229:               <span class="media-text__caption-text">{@html mediaCaption}</span>
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:431:1 Unused CSS selector ".treemap-tooltip"
+https://svelte.dev/e/css_unused_selector
+429:   }
+430: 
+431:   .treemap-tooltip {
+                       ^
+432:     position: absolute;
+433:     background: rgba(15, 23, 42, 0.88);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:447:1 Unused CSS selector ".treemap-tooltip strong"
+https://svelte.dev/e/css_unused_selector
+445:   }
+446: 
+447:   .treemap-tooltip strong {
+                              ^
+448:     font-size: 0.95rem;
+449:   }
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:451:1 Unused CSS selector ".treemap-tooltip em"
+https://svelte.dev/e/css_unused_selector
+449:   }
+450: 
+451:   .treemap-tooltip em {
+                          ^
+452:     font-style: normal;
+453:     color: rgba(226, 232, 240, 0.85);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/EmergencyTreemap.svelte:457:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+455:   }
+456: 
+457:   .empty-state {
+                   ^
+458:     width: 100%;
+459:     min-height: 220px;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:16:12 Component has unused export property 'barPadding'. If it is for external reference only, please consider using `export const barPadding`
+https://svelte.dev/e/export_let_unused
+14: 
+15:   export let minHeight = 260;
+16:   export let barPadding = 20;
+                           ^
+17:   export let barInnerPadding = 0.22;
+18:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:17:12 Component has unused export property 'barInnerPadding'. If it is for external reference only, please consider using `export const barInnerPadding`
+https://svelte.dev/e/export_let_unused
+15:   export let minHeight = 260;
+16:   export let barPadding = 20;
+17:   export let barInnerPadding = 0.22;
+                                ^
+18:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+19: 
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChart.svelte:403:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+401:   }
+402: 
+403:   .empty-state {
+                   ^
+404:     width: 100%;
+405:     min-height: 200px;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChartScores.svelte:16:12 Component has unused export property 'barInnerPadding'. If it is for external reference only, please consider using `export const barInnerPadding`
+https://svelte.dev/e/export_let_unused
+14:   export let minHeight = 260;
+15:   export let barPadding = 20;
+16:   export let barInnerPadding = 0.22;
+                                ^
+17:   export let margin = { top: 52, right: 72, bottom: 48, left: 60 };
+18:   export let data = null;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/ChallengeBarChartScores.svelte:382:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+380:   }
+381: 
+382:   .empty-state {
+                   ^
+383:     width: 100%;
+384:     min-height: 200px;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/charts/StillTimeBubbleChart.svelte:554:1 Unused CSS selector ".empty-state"
+https://svelte.dev/e/css_unused_selector
+552:   }
+553: 
+554:   .empty-state {
+                   ^
+555:     width: 100%;
+556:     min-height: 200px;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4119:14 Elements with the ARIA role "option" must have the following attributes defined: "aria-selected"
+https://svelte.dev/e/a11y_role_has_required_aria_props
+4117:                           <button
+4118:                             type="button"
+4119:                             role="option"
+                                               ^
+4120:                             class="search-suggestions__item"
+4121:                             on:mousedown|preventDefault
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4148:12 The attribute 'aria-pressed' is not supported by the role 'tab'
+https://svelte.dev/e/a11y_role_supports_aria_props
+4146:                         class:filter-chip--active={isFilterActive(option)}
+4147:                         on:click={() => handleFilterNavigation(option)}
+4148:                         aria-pressed={isFilterActive(option)}
+                                                                   ^
+4149:                       >
+4150:                         {option.label}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4219:12 Elements with the ARIA role "option" must have the following attributes defined: "aria-selected"
+https://svelte.dev/e/a11y_role_has_required_aria_props
+4217:                       <button
+4218:                         type="button"
+4219:                         role="option"
+                                           ^
+4220:                         class="search-suggestions__item"
+4221:                         on:mousedown|preventDefault
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4242:9 The attribute 'aria-pressed' is not supported by the role 'tab'
+https://svelte.dev/e/a11y_role_supports_aria_props
+4240:                   class:filter-chip--active={isFilterActive(option)}
+4241:                   on:click={() => handleFilterNavigation(option)}
+4242:                   aria-pressed={isFilterActive(option)}
+                                                             ^
+4243:                 >
+4244:                   {option.label}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4644:1 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+4642: 
+4643: {#if desktopOverlayVideo && !isMobileViewport}
+4644:   <div
+            ^
+4645:     class="desktop-overlay"
+4646:     data-variant={desktopOverlayVariant}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4644:1 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+4642: 
+4643: {#if desktopOverlayVideo && !isMobileViewport}
+4644:   <div
+            ^
+4645:     class="desktop-overlay"
+4646:     data-variant={desktopOverlayVariant}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:4649:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+4647:     on:click={() => closeDesktopOverlay()}
+4648:   >
+4649:     <div
+              ^
+4650:       class="desktop-overlay__surface"
+4651:       data-has-image={desktopOverlaySurfaceHasImage ? 'true' : 'false'}
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5050:1 Unused CSS selector ".mobile-bottom-bar__button--filters"
+https://svelte.dev/e/css_unused_selector
+5048: 
+5049:   .mobile-bottom-bar__button--feed,
+5050:   .mobile-bottom-bar__button--filters,
+                                           ^
+5051:   .mobile-bottom-bar__button--search {
+5052:     color: rgba(12, 18, 36, 0.82);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5067:1 Unused CSS selector ".mobile-bottom-bar__button--active-filters"
+https://svelte.dev/e/css_unused_selector
+5065: 
+5066:   .mobile-bottom-bar__button--active-feed,
+5067:   .mobile-bottom-bar__button--active-filters,
+                                                  ^
+5068:   .mobile-bottom-bar__button--active-search {
+5069:     background: var(--mobile-bottom-button-active-bg, rgba(255, 250, 241, 0.98));
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5185:1 Unused CSS selector ".controls__close"
+https://svelte.dev/e/css_unused_selector
+5183:   }
+5184: 
+5185:   .controls__close {
+                        ^
+5186:     border: none;
+5187:     background: rgba(255, 255, 255, 0.12);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5197:1 Unused CSS selector ".controls__close:hover"
+https://svelte.dev/e/css_unused_selector
+5195:   }
+5196: 
+5197:   .controls__close:hover,
+                              ^
+5198:   .controls__close:focus-visible {
+5199:     background: rgba(255, 255, 255, 0.22);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5198:1 Unused CSS selector ".controls__close:focus-visible"
+https://svelte.dev/e/css_unused_selector
+5196: 
+5197:   .controls__close:hover,
+5198:   .controls__close:focus-visible {
+                                      ^
+5199:     background: rgba(255, 255, 255, 0.22);
+5200:     outline: none;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5228:1 Unused CSS selector ".controls__modal-dismiss"
+https://svelte.dev/e/css_unused_selector
+5226:   }
+5227: 
+5228:   .controls__modal-dismiss {
+                                ^
+5229:     position: sticky;
+5230:     top: -0.5rem;
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5249:1 Unused CSS selector ".controls__modal-dismiss:hover"
+https://svelte.dev/e/css_unused_selector
+5247:   }
+5248: 
+5249:   .controls__modal-dismiss:hover,
+                                      ^
+5250:   .controls__modal-dismiss:focus-visible {
+5251:     border-color: rgba(255, 255, 255, 0.7);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5250:1 Unused CSS selector ".controls__modal-dismiss:focus-visible"
+https://svelte.dev/e/css_unused_selector
+5248: 
+5249:   .controls__modal-dismiss:hover,
+5250:   .controls__modal-dismiss:focus-visible {
+                                              ^
+5251:     border-color: rgba(255, 255, 255, 0.7);
+5252:     background: rgba(255, 255, 255, 0.18);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:5889:1 Unused CSS selector ".controls--floating .controls-meta"
+https://svelte.dev/e/css_unused_selector
+5887: 
+5888:   .controls--floating .controls-heading,
+5889:   .controls--floating .controls-meta {
+                                          ^
+5890:     display: none;
+5891:   }
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6008:1 Unused CSS selector ".controls-heading + .search-bar"
+https://svelte.dev/e/css_unused_selector
+6006: 
+6007:   .controls-heading + .filter-carousel,
+6008:   .controls-heading + .search-bar {
+                                       ^
+6009:     margin-top: 0;
+6010:   }
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6223:1 Unused CSS selector ".controls-meta"
+https://svelte.dev/e/css_unused_selector
+6221:   }
+6222: 
+6223:   .controls-meta {
+                      ^
+6224:     font-size: 0.85rem;
+6225:     color: rgba(15, 23, 42, 0.6);
+7:56:07 PM [vite-plugin-svelte] src/lib/components/story/VideoSheetShowcase.svelte:6231:1 Unused CSS selector ".controls__inner .controls-meta"
+https://svelte.dev/e/css_unused_selector
+6229:   }
+6230: 
+6231:   .controls__inner .controls-meta {
+                                       ^
+6232:     padding-inline: 0;
+6233:   }
+7:56:07 PM [vite-plugin-svelte] src/lib/builder/components/Canvas.svelte:1071:1 Unused CSS selector ".inline-editor textarea"
+https://svelte.dev/e/css_unused_selector
+1069:   }
+1070: 
+1071:   .inline-editor textarea,
+                               ^
+1072:   .inline-editor input,
+1073:   .inline-editor select {
+7:56:07 PM [vite-plugin-svelte] src/lib/builder/components/Canvas.svelte:1082:1 Unused CSS selector ".inline-editor textarea:focus"
+https://svelte.dev/e/css_unused_selector
+1080:   }
+1081: 
+1082:   .inline-editor textarea:focus,
+                                     ^
+1083:   .inline-editor input:focus,
+1084:   .inline-editor select:focus {
+7:56:08 PM [vite-plugin-svelte] src/lib/components/story/shared/FlourishScrollyEmbed.svelte:25:5 Self-closing HTML tags for non-void elements are ambiguous — use `<iframe ...></iframe>` rather than `<iframe ... />`
+https://svelte.dev/e/element_invalid_self_closing_tag
+23:       <div class="w-full flex items-center">
+24:         <figure class="w-full" in:fade={{ duration: 400 }}>
+25:           <iframe
+                ^
+26:             src={embedUrl}
+27:             title="Interactive visual content"
+7:56:08 PM [vite-plugin-svelte] src/lib/components/story/shared/StepEnhanced.svelte:16:12 Component has unused export property 'slideFromBottom'. If it is for external reference only, please consider using `export const slideFromBottom`
+https://svelte.dev/e/export_let_unused
+14:   export let defaultStickyTopMobile = '12vh';
+15:   export let progress = null;
+16:   export let slideFromBottom = false;
+                                ^
+17:   export let travelDistance = 'auto';
+18: 
+7:56:08 PM [vite-plugin-svelte] src/lib/components/story/shared/StepEnhanced.svelte:17:12 Component has unused export property 'travelDistance'. If it is for external reference only, please consider using `export const travelDistance`
+https://svelte.dev/e/export_let_unused
+15:   export let progress = null;
+16:   export let slideFromBottom = false;
+17:   export let travelDistance = 'auto';
+                               ^
+18: 
+19:   let stepContentElement;
+7:56:08 PM [vite-plugin-svelte] src/lib/components/story/ContentGridBlockList.svelte:105:6 `<figcaption>` must be an immediate child of `<figure>`
+https://svelte.dev/e/a11y_figcaption_parent
+103:           {/if}
+104:           {#if videoBlock?.caption || videoBlock?.credit}
+105:             <figcaption class="media-caption">
+                              ^
+106:               {#if videoBlock?.caption}
+107:                 <div class="caption">{@html videoBlock.caption}</div>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:914:1 Unused CSS selector ".line-chart__axis text"
+https://svelte.dev/e/css_unused_selector
+912:   }
+913: 
+914:   .line-chart__axis text {
+                             ^
+915:     fill: var(--chart-axis, #475569);
+916:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:918:1 Unused CSS selector ".line-chart__axis path"
+https://svelte.dev/e/css_unused_selector
+916:   }
+917: 
+918:   .line-chart__axis path,
+                             ^
+919:   .line-chart__axis line {
+920:     stroke: var(--chart-axis-line, rgba(100, 116, 139, 0.45));
+7:56:08 PM [vite-plugin-svelte] src/lib/components/charts/LineChart.svelte:919:1 Unused CSS selector ".line-chart__axis line"
+https://svelte.dev/e/css_unused_selector
+917: 
+918:   .line-chart__axis path,
+919:   .line-chart__axis line {
+                             ^
+920:     stroke: var(--chart-axis-line, rgba(100, 116, 139, 0.45));
+921:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/FieldEditor.svelte:360:1 Unused CSS selector "textarea.richtext"
+https://svelte.dev/e/css_unused_selector
+358:   }
+359: 
+360:   textarea.richtext {
+                        ^
+361:     font-family: 'Inter', system-ui, sans-serif;
+362:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:398:3 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+396:     <span class="rt-divider" aria-hidden="true"></span>
+397:     <div class="rt-color" title="Cor do texto">
+398:       <button
+                  ^
+399:         type="button"
+400:         class="rt-color-button"
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:436:1 Elements with the 'textbox' interactive role must have a tabindex value
+https://svelte.dev/e/a11y_interactive_supports_focus
+434:   </div>
+435: 
+436:   <div
+           ^
+437:     class="rt-editor"
+438:     class:empty={!value}
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:572:1 Unused CSS selector ".rt-color-controller"
+https://svelte.dev/e/css_unused_selector
+570:   }
+571: 
+572:   .rt-color-controller {
+                           ^
+573:     position: absolute;
+574:     left: -9999px;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:581:1 Unused CSS selector ".rt-color-controller :global(.color-label)"
+https://svelte.dev/e/css_unused_selector
+579:   }
+580: 
+581:   .rt-color-controller :global(.color-label),
+                                                 ^
+582:   .rt-color-controller :global(.color-summary) {
+583:     display: none !important;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:582:1 Unused CSS selector ".rt-color-controller :global(.color-summary)"
+https://svelte.dev/e/css_unused_selector
+580: 
+581:   .rt-color-controller :global(.color-label),
+582:   .rt-color-controller :global(.color-summary) {
+                                                   ^
+583:     display: none !important;
+584:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:595:1 Unused CSS selector ".rt-editor ul"
+https://svelte.dev/e/css_unused_selector
+593:   }
+594: 
+595:   .rt-editor ul {
+                    ^
+596:     padding-left: 1.4rem;
+597:     list-style: disc;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/RichTextEditor.svelte:601:1 Unused CSS selector ".rt-editor ol"
+https://svelte.dev/e/css_unused_selector
+599:   }
+600: 
+601:   .rt-editor ol {
+                    ^
+602:     padding-left: 1.4rem;
+603:     list-style: decimal;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:194:5 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+192: 
+193:         <div class="field rich-text">
+194:           <label id={`scrolly-step-text-label-${index}`}>Texto (HTML permitido)</label>
+                                                                                            ^
+195:           <RichTextEditor
+196:             value={step.text || ''}
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:608:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+606:   input[type='text'],
+607:   input[type='url'],
+608:   textarea,
+               ^
+609:   select {
+610:     border: 1px solid #cbd5f5;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/ScrollyStepsEditor.svelte:616:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+614:   }
+615: 
+616:   textarea {
+               ^
+617:     resize: vertical;
+618:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/CarouselItemsEditor.svelte:384:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+382:   input[type='text'],
+383:   input[type='url'],
+384:   textarea,
+               ^
+385:   select {
+386:     border: 1px solid #cbd5f5;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/CarouselItemsEditor.svelte:392:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+390:   }
+391: 
+392:   textarea {
+               ^
+393:     resize: vertical;
+394:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerGridSliderEditor.svelte:664:1 Unused CSS selector ".video-card textarea"
+https://svelte.dev/e/css_unused_selector
+662:   .fields textarea,
+663:   .video-card input,
+664:   .video-card textarea,
+                           ^
+665:   .video-card select {
+666:     border: 1px solid rgba(148, 163, 184, 0.6);
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerGridSliderEditor.svelte:675:1 Unused CSS selector ".video-card textarea"
+https://svelte.dev/e/css_unused_selector
+673: 
+674:   .fields textarea,
+675:   .video-card textarea {
+                           ^
+676:     resize: vertical;
+677:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/ListItemsEditor.svelte:142:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+140:   }
+141: 
+142:   textarea {
+               ^
+143:     border: 1px solid #cbd5f5;
+144:     border-radius: 8px;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/ListItemsEditor.svelte:150:1 Unused CSS selector "textarea:focus"
+https://svelte.dev/e/css_unused_selector
+148:   }
+149: 
+150:   textarea:focus {
+                     ^
+151:     outline: none;
+152:     border-color: #2563eb;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerSlidesEditor.svelte:328:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+326: 
+327:   input[type='text'],
+328:   textarea {
+               ^
+329:     border: 1px solid #cbd5f5;
+330:     border-radius: 8px;
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/editors/GloboPlayerSlidesEditor.svelte:335:1 Unused CSS selector "textarea"
+https://svelte.dev/e/css_unused_selector
+333:   }
+334: 
+335:   textarea {
+               ^
+336:     resize: vertical;
+337:   }
+7:56:08 PM [vite-plugin-svelte] src/lib/builder/components/JsonEditorField.svelte:57:1 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+55: 
+56: <div class="json-field">
+57:   <label>
+             ^
+58:     <span>{label}</span>
+59:   </label>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:877:8 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+875:             {#each data.items as item (item.id)}
+876:               {#if item.desktop}
+877:                 <div
+                         ^
+878:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+879:                   style={getPreviewItemStyle(item, 'desktop')}
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:877:8 `<div>` with a click or dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+875:             {#each data.items as item (item.id)}
+876:               {#if item.desktop}
+877:                 <div
+                         ^
+878:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+879:                   style={getPreviewItemStyle(item, 'desktop')}
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:947:8 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+945:             {#each data.items as item (item.id)}
+946:               {#if item.mobile}
+947:                 <div
+                         ^
+948:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+949:                   style={getPreviewItemStyle(item, 'mobile')}
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:947:8 `<div>` with a click or dblclick handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+945:             {#each data.items as item (item.id)}
+946:               {#if item.mobile}
+947:                 <div
+                         ^
+948:                   class="preview-item {selectedId === item.id ? 'selected' : ''}"
+949:                   style={getPreviewItemStyle(item, 'mobile')}
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1652:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1650:   </div>
+1651:   {#if isCanvasModalOpen}
+1652:     <div class="preview-area__backdrop" on:click={closeCanvasModal}></div>
+                                                                                ^
+1653:   {/if}
+1654: </div>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1652:2 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1650:   </div>
+1651:   {#if isCanvasModalOpen}
+1652:     <div class="preview-area__backdrop" on:click={closeCanvasModal}></div>
+                                                                                ^
+1653:   {/if}
+1654: </div>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1657:1 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1655: 
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+              ^
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+1659:       <header>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1657:1 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1655: 
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+              ^
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+1659:       <header>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1658:2 Visible, non-interactive elements with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type="button">` or `<a>` might be more appropriate
+https://svelte.dev/e/a11y_click_events_have_key_events
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+                ^
+1659:       <header>
+1660:         <h2>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/editors/FreeCanvasEditor.svelte:1658:2 `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions
+1656: {#if editingItem}
+1657:   <div class="free-canvas-modal-backdrop" on:click={closeItemModal} use:bodyPortal>
+1658:     <div class="free-canvas-modal" on:click|stopPropagation>
+                ^
+1659:       <header>
+1660:         <h2>
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:8:12 Component has unused export property 'size'. If it is for external reference only, please consider using `export const size`
+https://svelte.dev/e/export_let_unused
+ 6: 
+ 7:   export let value = 'desktop';
+ 8:   export let size = 'normal'; // 'small', 'normal', 'large'
+                     ^
+ 9:   export let variant = 'default'; // 'default', 'compact'
+10: 
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:84:1 Unused CSS selector ".size-small .device-btn"
+https://svelte.dev/e/css_unused_selector
+82: 
+83:   /* Size variants */
+84:   .size-small .device-btn {
+                             ^
+85:     padding: 0.5rem 0.75rem;
+86:     font-size: 0.75rem;
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/DeviceToggle.svelte:93:1 Unused CSS selector ".size-large .device-btn"
+https://svelte.dev/e/css_unused_selector
+91:   }
+92: 
+93:   .size-large .device-btn {
+                             ^
+94:     padding: 1rem 1.25rem;
+95:     font-size: 1rem;
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:472:2 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+470: <div class="color-picker">
+471:   {#if label}
+472:     <label class="color-label">{label}:</label>
+                                                    ^
+473:   {/if}
+474: 
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:476:2 Buttons and links should either contain text or have an `aria-label` or `aria-labelledby` attribute
+https://svelte.dev/e/a11y_consider_explicit_label
+474: 
+475:   <div class="color-summary">
+476:     <button
+                ^
+477:       type="button"
+478:       class="color-trigger"
+7:56:08 PM [vite-plugin-svelte] src/lib/components/builder/controls/ColorPicker.svelte:572:7 A form label must be associated with a control
+https://svelte.dev/e/a11y_label_has_associated_control
+570:           {#if showAlpha}
+571:             <div class="alpha-control">
+572:               <label>{alphaLabel}</label>
+                                              ^
+573:               <div class="alpha-inputs">
+574:                 <input
+✓ 692 modules transformed.
+rendering chunks...
+computing gzip size...
+.svelte-kit/output/client/_app/version.json                                      0.03 kB │ gzip:   0.05 kB
+.svelte-kit/output/client/.vite/manifest.json                                    4.49 kB │ gzip:   0.77 kB
+.svelte-kit/output/client/_app/immutable/assets/chartData.DXYzFsOl.css           5.85 kB │ gzip:   1.65 kB
+.svelte-kit/output/client/_app/immutable/assets/4.DomhV9k-.css                   6.66 kB │ gzip:   1.73 kB
+.svelte-kit/output/client/_app/immutable/assets/story-components.D5OCrKiI.css   15.93 kB │ gzip:   2.84 kB
+.svelte-kit/output/client/_app/immutable/assets/2.fJWvkk9u.css                  21.17 kB │ gzip:   4.26 kB
+.svelte-kit/output/client/_app/immutable/assets/3.8tBFV9Az.css                  64.37 kB │ gzip:  10.08 kB
+.svelte-kit/output/client/_app/immutable/assets/0.DgQkXPwI.css                 102.89 kB │ gzip:  16.12 kB
+.svelte-kit/output/client/_app/immutable/assets/utils.Dj4kRX_E.css             170.78 kB │ gzip:  28.01 kB
+.svelte-kit/output/client/_app/immutable/entry/start.CNcDWB0F.js                 0.08 kB │ gzip:   0.09 kB
+.svelte-kit/output/client/_app/immutable/nodes/0.H8Fyc2vT.js                     0.28 kB │ gzip:   0.24 kB
+.svelte-kit/output/client/_app/immutable/nodes/1.Dt-tU0-M.js                     0.45 kB │ gzip:   0.31 kB
+.svelte-kit/output/client/_app/immutable/chunks/D9Z9MdNV.js                      1.23 kB │ gzip:   0.72 kB
+.svelte-kit/output/client/_app/immutable/entry/app.C3w8vCgU.js                   3.18 kB │ gzip:   1.46 kB
+.svelte-kit/output/client/_app/immutable/nodes/4.-9N6Z-YM.js                    19.13 kB │ gzip:   6.18 kB
+.svelte-kit/output/client/_app/immutable/nodes/2.C-KjaX1T.js                    25.54 kB │ gzip:   8.85 kB
+.svelte-kit/output/client/_app/immutable/chunks/DGRlbCAB.js                     31.47 kB │ gzip:  12.33 kB
+.svelte-kit/output/client/_app/immutable/chunks/CcPJIpJ9.js                     43.58 kB │ gzip:  18.12 kB
+.svelte-kit/output/client/_app/immutable/chunks/Dj4XqqbB.js                     70.36 kB │ gzip:  27.83 kB
+.svelte-kit/output/client/_app/immutable/chunks/Bv4yWb8Q.js                     74.10 kB │ gzip:  27.46 kB
+.svelte-kit/output/client/_app/immutable/chunks/BmEe4nvm.js                    105.27 kB │ gzip:  36.98 kB
+.svelte-kit/output/client/_app/immutable/nodes/3.3231z71X.js                   260.24 kB │ gzip:  67.82 kB
+.svelte-kit/output/client/_app/immutable/chunks/B4OkIIB6.js                    677.92 kB │ gzip: 185.12 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 5.27s
+
+[1;31m[500] GET /[0m
+ReferenceError: Cannot access 'MOBILE_FEED_INITIAL_CHUNK' before initialization
+    at VideoSheetShowcase (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/utils2.js:6777:25)
+    at StoryRenderer (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/utils2.js:12213:43)
+    at _page (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/entries/pages/_page.svelte.js:720:7)
+    at children (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/internal.js:57:9)
+    at slot (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/story-components.js:2498:5)
+    at _layout (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/entries/pages/_layout.svelte.js:4:3)
+    at Root (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/internal.js:51:5)
+    at render (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/story-components.js:2416:5)
+    at Function._render [as render] (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/chunks/internal.js:19:20)
+    at file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/.svelte-kit/output/server/index.js:1759:31
+  500 /
+
+[1;31m[404] GET /favicon.png[0m
+.svelte-kit/output/server/.vite/manifest.json                                    4.80 kB
+.svelte-kit/output/server/_app/immutable/assets/chartData.C4Q6Nnv5.css           5.78 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.DomhV9k-.css               6.66 kB
+.svelte-kit/output/server/_app/immutable/assets/story-components.D5OCrKiI.css   15.93 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.nT0K9UrE.css              21.05 kB
+.svelte-kit/output/server/_app/immutable/assets/_page.DVfOA5Gj.css              64.16 kB
+.svelte-kit/output/server/_app/immutable/assets/_layout.BR9-lvPe.css           102.51 kB
+.svelte-kit/output/server/_app/immutable/assets/utils.BWk12wc_.css             170.37 kB
+.svelte-kit/output/server/entries/pages/_layout.js                               0.05 kB
+.svelte-kit/output/server/entries/pages/_layout.svelte.js                        0.25 kB
+.svelte-kit/output/server/internal.js                                            0.33 kB
+.svelte-kit/output/server/chunks/environment.js                                  0.58 kB
+.svelte-kit/output/server/entries/endpoints/api/story/_server.js                 1.08 kB
+.svelte-kit/output/server/chunks/utils.js                                        1.15 kB
+.svelte-kit/output/server/entries/fallbacks/error.svelte.js                      1.27 kB
+.svelte-kit/output/server/chunks/shared.js                                       1.35 kB
+.svelte-kit/output/server/chunks/internal.js                                     5.03 kB
+.svelte-kit/output/server/chunks/exports.js                                      5.47 kB
+.svelte-kit/output/server/entries/pages/_page.server.js                          8.35 kB
+.svelte-kit/output/server/remote-entry.js                                       14.18 kB
+.svelte-kit/output/server/entries/pages/charts/bar/_page.svelte.js              15.06 kB
+.svelte-kit/output/server/chunks/chartData.js                                   20.12 kB
+.svelte-kit/output/server/entries/pages/_page.svelte.js                         36.21 kB
+.svelte-kit/output/server/chunks/story-components.js                           102.55 kB
+.svelte-kit/output/server/index.js                                             124.44 kB
+.svelte-kit/output/server/entries/pages/builder/_page.svelte.js                233.22 kB
+.svelte-kit/output/server/chunks/utils2.js                                     831.14 kB
+✓ built in 9.76s
+
+Run npm run preview to preview your production build locally.
+  404 /favicon.png (linked from /)
+
+> Using @sveltejs/adapter-static
+  @sveltejs/adapter-static: all routes must be fully prerenderable, but found the following routes that are dynamic:
+    - src/routes/api/story
+  
+  You have the following options:
+    - set the `fallback` option — see https://svelte.dev/docs/kit/single-page-apps#usage for more info.
+    - add `export const prerender = true` to your root `+layout.js/.ts` or `+layout.server.js/.ts` file. This will try to prerender all pages.
+    - add `export const prerender = true` to any `+server.js/ts` files that are not fetched by page `load` functions.
+  
+    - pass `strict: false` to `adapter-static` to ignore this error. Only do this if you are sure you don't need the routes in question in your final app, as they will be unavailable. See https://github.com/sveltejs/kit/tree/main/packages/adapter-static#strict for more info.
+  
+  If this doesn't help, you may need to use a different adapter. @sveltejs/adapter-static can only be used for sites that don't need a server for dynamic rendering, and can run on just a static file server.
+  See https://svelte.dev/docs/kit/page-options#prerender for more details
+error during build:
+Error: Encountered dynamic routes
+    at adapt (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/@sveltejs/adapter-static/index.js:38:12)
+    at adapt (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/@sveltejs/kit/src/core/adapt/index.js:41:8)
+    at finalise (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/@sveltejs/kit/src/exports/vite/index.js:1346:13)
+    at async Object.handler (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/@sveltejs/kit/src/exports/vite/index.js:1377:5)
+    at async PluginDriver.hookParallel (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/rollup/dist/es/shared/node-entry.js:22332:17)
+    at async Object.close (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/rollup/dist/es/shared/node-entry.js:23348:13)
+    at async buildEnvironment (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/vite/dist/node/chunks/dep-M_KD0XSK.js:34258:15)
+    at async Object.build (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/vite/dist/node/chunks/dep-M_KD0XSK.js:34614:19)
+    at async Object.buildApp (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/vite/dist/node/chunks/dep-M_KD0XSK.js:34611:153)
+    at async CAC.<anonymous> (file:///Users/guilhermegomes/dev/git/g1/2025/cop30-ainda-da-tempo-de-salvar-o-planeta/storybook/node_modules/vite/dist/node/cli.js:648:3)

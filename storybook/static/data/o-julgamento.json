@@ -1,0 +1,2293 @@
+{
+  "type": "header",
+  "title": "O julgamento",
+  "subtitle": "Por X votos a X, 1 Turma do STF declarou ex-presidente e sete aliados culpados por tentativa de golpe. Veja sentenças de todos os réus e as justificativas dos ministros.",
+  "backgroundImage": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header_mobi.jpg",
+  "author": "",
+  "variant": "default",
+  "overlay": "true",
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "",
+      "subtitle": "",
+      "date": "",
+      "backgroundVideo": "",
+      "backgroundVideoMobile": "",
+      "author": "",
+      "variant": "hero",
+      "overlay": "true"
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "TRAMA GOLPISTA: <br>A SENTENÇA DO STF",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "5% 30%",
+              "mobile": "5% 0% 0% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-bolsonaro-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-bolsonaro-crimes-desktop.webp"
+          },
+          "alt": "Card JAIR Bolsonaro",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "JAIR BOLSONARO",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 10px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-presidente da república",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0% 0 0 10px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-mobile-geral.webp"
+          },
+          "alt": "crimes de JAIR BOLSONARO",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-mauro-cid-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-mauro-cid-crimes-desktop.webp"
+          },
+          "alt": "Card MAURO CID",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "MAURO CID",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 0"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-ajudante de ordens",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-mobile-geral.webp"
+          },
+          "alt": "crimes de bolsonaro",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-alexandre-ramagem-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-alexandre-ramagem-desktop.webp"
+          },
+          "alt": "Card ALEXANDRE RAMAGEM",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "ALEXANDRE RAMAGEM",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-chefe da Abin e deputado federal",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "18px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-alexandre-ramagem.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-mobile-alexandre-ramagem.webp"
+          },
+          "alt": "crimes de Alexandre Ramagem",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-almir-garnier-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-almir-garnier-desktop.webp"
+          },
+          "alt": "Card Almir Garnier",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "ALMIR GARNIER",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 0"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-comandante da Marinha",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp"
+          },
+          "alt": "crimes de Almir Garnier",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-anderson-torres-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-anderson-torres-crimes-desktop.webp"
+          },
+          "alt": "Card Anderson Torres",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "ANDERSON TORRES",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 0"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-ministro da Justiça",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-alexandre-ramagem.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-mobile-alexandre-ramagem.webp"
+          },
+          "alt": "crimes de Alexandre Ramagem",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-walter-braga-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-walter-braga-crimes-desktop.webp"
+          },
+          "alt": "Card Walter Braga Netto",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "WALTER BRAGA NETTO",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-ministro da Defesa",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "32px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp"
+          },
+          "alt": "crimes de Walter Braga Netto",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-augusto-heleno-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-augusto-heleno-crimes-desktop.webp"
+          },
+          "alt": "Card AUGUSTO HELENO",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "AUGUSTO HELENO",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "20px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-ministro do GSI",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-mobile-geral.webp"
+          },
+          "alt": "crimes de AUGUSTO HELENO",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-paulo-sergio-crimes-mobile.webp",
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/card-paulo-sergio-crimes-desktop.webp"
+          },
+          "alt": "Card Paulo Sérgio Nogueira",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "maxWidth": {
+              "desktop": "1080px",
+              "mobile": "100%"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "display": "block"
+          }
+        },
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "PAULO SÉRGIO NOGUEIRA",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "30px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-230px 40% 0%",
+              "mobile": "-230px 42% 0%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0px 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "ex-ministro da Defesa",
+          "styles": {
+            "color": "#1A1A1A",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "-.5% 40% 0%",
+              "mobile": "-1% auto 0% 42%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0 0 0 20px"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Nunc interdum, diam ac tristique eleifend, leo quam vehicula neque, non tristique neque nisl in neque.",
+          "styles": {
+            "color": "#fff",
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "22px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "32px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "600",
+              "mobile": "600"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "2% 40% 1.5%",
+              "mobile": "42px auto -6px"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "-20px 0 0 20px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "50px 0 0 0",
+        "mobile": "0"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/lista-crimes-desktop-geral.webp"
+          },
+          "alt": "crimes de Paulo Sérgio Nogueira",
+          "styles": {
+            "width": {
+              "desktop": "min(880px, calc(100% - 24px))",
+              "mobile": "auto"
+            },
+            "maxWidth": {
+              "desktop": "100%",
+              "mobile": "auto"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "0 auto",
+              "mobile": "0 auto"
+            },
+            "padding": {
+              "desktop": "4px",
+              "mobile": "4px"
+            },
+            "boxSizing": {
+              "desktop": "border-box",
+              "mobile": "border-box"
+            },
+            "display": "block"
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "backgroundImage": {
+        "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg-crimes.webp",
+        "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/bg_crimes_mobile.webp"
+      },
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 0rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "COMO OS MINISTROS <br>DO STF VOTARAM",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "40px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "60px",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "5% 30%",
+              "mobile": "10% 0% 0% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "scrollytelling",
+      "steps": [
+        {
+          "title": "'Bolsonaro exerceu função de líder da estrutura criminosa'",
+          "text": "O relator Alexandre de Moraes foi o primeiro a votar no julgamento e apontou Jair Bolsonaro como líder de uma organização criminosa armada que tentou manter o poder à força e impedir a posse de Lula após as eleições de 2022.",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_02.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_02.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "O Brasil quase volta a uma ditadura porque uma organização criminosa, constituída por um grupo político, não sabe perder as eleições",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_02.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_02.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "O ministro listou o que chamou de 'provas cabais': a live de 2021 contra as urnas, a reunião ministerial de 2022, o encontro com embaixadores, operações da Polícia Rodoviária no 2&ordm; turno, o plano de assassinar Lula e outras autoridades e outros eventos que culminaram na invasão de 8 de janeiro.",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_02.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_02.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Moraes também manteve a validade da delação de Mauro Cid. No fim do voto, de mais de 5 horas, defendeu a soma das penas e rejeitou a tese de absorção de crimes menores. Argumentou que que o crime de golpe de Estado (tentar derrubar o governo eleito) e abolição violenta do Estado de Direito (atacar as instituições) são crimes distintos, seguindo entendimento da Procuradoria-Geral da República (PGR).",
+          "position": "right",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_02.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_02.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "<h3>Dino vê diferentes graus de culpa e critica anistia</h3><div>Em seu voto, o ministro Flávio Dino afirmou que os 'níveis de culpabilidade' dos réus são diferentes e que Bolsonaro e o general Walter Braga Netto têm papel de maior relevância na tentativa de golpe.</div>",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_03.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_03.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Em relação a Bolsonaro e Braga Netto, a culpabilidade é alta",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_03.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_03.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Dino defendeu penas menores para três dos réus ao avaliar que <strong>Ramagem</strong> deixou o governo em março de 2022, que <strong>Heleno</strong> não praticou atos golpistas no 2&ordm; semestre daquele ano, e que <strong>Paulo Sérgio Nogueira</strong> chegou a tentar dissuadir Bolsonaro de adotar medidas de exceção, como afirmou a defesa do general. Ainda durante o voto, Dino deu recado ao Congresso e afirmou que não cabe anistia aos julgados",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_03.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_03.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "<h3>Fux vota para absolver Bolsonaro, condenar Cid e Braga Netto e abre divergência</h3><div>Em um voto de 12 horas de duração, o ministro Luiz Fux abriu divergência em diversos pontos expostos pelo relator, Alexandre de Moraes, e apresentou questões jurídicas centrais do processo, como o papel da delação de Cid, o direito de defesa dos réus e o enquadramento nos crimes.</div>",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/SCROLL-JURI-HORIZONTAL_03.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/SCROLL-JURI-VERTICAL_03.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Assim como Moraes e Dino, validou o acordo firmado por Cid com investigadores. Mas divergiu em outros pontos:<br>Incompetência do STF: defendeu que os réus não têm foro por prerrogativa de função, e que o caso deveria ser julgado na 1&ordf; instância.<br>Direito de defesa: alegou que o ritmo do processo foi obstáculo para o trabalho dos advogados e destacou a existência de 70 terabytes de documentos.<br>  Organização criminosa: Fux discordou do que afirma a PGR e argumentou que os réus não usaram armas nem atuaram de forma coordenada.<br> Crimes contra a democracia: entendeu que é aplicável o princípio do direito penal que permite unificar os crimes de golpe de Estado e de abolição violenta. Fux também afirmou que não há golpe sem deposição de governo<br>Dano qualificado: afirmou que a PGR não demonstrou a ligação dos réus com os ataques de 8 de janeiro.",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_04.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_04.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "Fux votou para absolver Bolsonaro e mais 6 réus e para condenar Mauro Cid e Braga Netto por um dos crimes, o de abolição violenta do Estado. Ao votar pela absolvição de Bolsonaro, Fux afirmou que <b>críticas às urnas não configuram crime, minimizou a minuta do golpe</b>, argumentou que ele <b>não tinha obrigação de desmobilizar manifestantes, negou comando direto</b> do ex-presidente sobre a operação da PRF no 2&ordm; turno e afirmou que a <b>PGR não conseguiu provar</b> que Bolsonaro deu aval ao plano para matar autoridades.",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_04.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_04.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        },
+        {
+          "text": "'Não se pode admitir que possam configurar tentativa de abolição do Estado Democrático de Direito discursos ou entrevistas, ainda que contenham questionamentos contra a regularidade do sistema de votação ou rudes acusações aos membros de outros Poderes. A simples defesa da mudança do sistema de votação não pode ser considerada narrativa subversiva'",
+          "position": "left",
+          "image": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-HORIZONTAL_04.jpg",
+          "imageMobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/imagens-scrolly/SCROLL-JURI-VERTICAL_04.jpg",
+          "alt": "Paisagem inicial, ampla e deslumbrante"
+        }
+      ],
+      "fullWidth": "false"
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/botao-link-trama-do-golpe-desk.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/botao-link-trama-do-golpe-mobi.webp"
+          },
+          "alt": "Link para a trama do golpe",
+          "link": "https://g1.globo.com/politica/julgamento-bolsonaro-no-stf-trama-do-golpe/",
+          "target": "_blank",
+          "styles": {
+            "width": {
+              "desktop": "100%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "32px auto 0px",
+              "mobile": "64px auto 0px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "tag": "h1",
+          "content": "O QUE DISSERAM AS DEFESAS",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "48px",
+              "mobile": "28px"
+            },
+            "lineHeight": {
+              "desktop": "50px",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "1000",
+              "mobile": "1000"
+            },
+            "width": {
+              "desktop": "50%",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "64px auto 4px",
+              "mobile": "0"
+            },
+            "padding": {
+              "desktop": "0",
+              "mobile": "10% 0% 0% 5%"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Advogados dos réus atacaram delação de Mauro Cid, reclamaram das provas e defenderam que o crime mais grave, o de golpe de Estado, engloba o de abolição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "16px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "24px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "50%",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "24px auto 64px",
+              "mobile": "0"
+            },
+            "padding": {
+              "desktop": "0",
+              "mobile": "6% 0% 0% 5%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-bolsonaro-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-bolsonaro.webp"
+          },
+          "alt": "Foto de Jair Bolsonaro de perfil",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "A defesa negou qualquer prova de sua ligação com os ataques de 8 de janeiro ou a trama golpista, classificou a delação de Mauro Cid como não confiável e mentirosa. Os advogados <b>Celso Vilardi</b> e <b>Paulo Cunha Bueno</b> argumentaram que não houve tentativa de golpe e que Bolsonaro garantiu a transição para o governo Lula. Também alegaram cerceamento de defesa apontando acesso limitado a bilhões de documentos e pediram absolvição, considerando desproporcional uma pena de 30 anos.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-mauro-cid-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-mauro-cid.webp"
+          },
+          "alt": "Header de defesa do Mauro Cid",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Os advogados <b>Jair Ferreira</b> e <b>Cezar Bittencourt</b> defenderam a validade da delação, negaram pressão e afirmaram que Cid não participou de planos de assassinato ou de golpe. Argumentaram recebimento passivo de mensagens no WhatsApp, sem incentivar crimes, e pediram a confirmação do acordo de colaboração.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-alexandre-ramagem-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-alexandre-ramagem.webp"
+          },
+          "alt": "Header de defesa do Alexandre Ramagem",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Paulo Cintra</b> afirmou que Ramagem não integrava o governo quando a trama se consolidou. Negou a existência de Abin paralela e disse que ele apenas compilava ideias do presidente. Levou uma advertência de Cármen Lúcia ao tratar como a mesma coisa voto impresso e processo eleitoral auditável.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-almir-garnier-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-almir-garnier.webp"
+          },
+          "alt": "Header de defesa do Almir Garnier",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Demóstenes Torres</b> argumentou que não há nexo causal individualizado, negou ligação direta entre Garnier e os fatos descritos e criticou a narrativa globalizante da acusação. Também pediu a anulação da delação de Mauro Cid.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-anderson-torres-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-anderson-torres.webp"
+          },
+          "alt": "Header de defesa do Anderson Torres",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Eumar Novacki</b> disse que a acusação é um ponto fora da curva. Negou que Torres tenha se ausentado de propósito do Distrito Federal durante os ataques de 8 de janeiro e alegou que a viagem aos EUA fazia parte de férias programadas. Sobre a minuta encontrada na casa de Torres, a defesa afirmou que o documento era apócrifo e já circulava na internet.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-augusto-walter-braga-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-walter-braga.webp"
+          },
+          "alt": "Header de defesa do Braga Netto",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "<b>José Luís Oliveira Lima</b>, advogado de Braga Netto, sustentou que o que pesa contra Braga Netto é a delação mentirosa de Cid e prints adulterados. A defesa afirmou ainda que o ex-ajudante de ordens foi pressionado a colaborar e pediu absolvição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-augusto-heleno-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-augusto-heleno.webp"
+          },
+          "alt": "Header de defesa do Augusto Heleno",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "O advogado <b>Matheus Mayer Milanez</b> acusou Moraes de atuar como protagonista no processo e negou qualquer pressão de Heleno por golpe. Contestou o uso da agenda do ex-ministro como prova e disse que a citação em um suposto gabinete de crise não significa participação em plano golpista.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "image",
+          "src": {
+            "desktop": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-paulo-sergio-desktop.webp",
+            "mobile": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/o-julgamento/imagens/header-defesa-paulo-sergio.webp"
+          },
+          "alt": "Header de defesa do Paulo Sergio",
+          "styles": {
+            "width": {
+              "desktop": "60%",
+              "mobile": "100%"
+            },
+            "height": {
+              "desktop": "auto",
+              "mobile": "auto"
+            },
+            "margin": {
+              "desktop": "16px auto 0px",
+              "mobile": "0rem 0 0 auto"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "tag": "p",
+          "content": "Durante sua sustentação, o advogado <b>Andrew Fernandes</b> afirmou que Paulo Sérgio Nogueira tentou demover Bolsonaro, e foi questionado por Cármen Lúcia sobre o que ele se referia.<br>- Demover de quê?, perguntou a ministra.<br>- De qualquer medida de exceção, respondeu Fernandes.<br>O advogado também destacou ataques virtuais sofridos por Nogueira e ausência em reuniões de gabinete de crise, pedindo sua absolvição.",
+          "styles": {
+            "textAlign": "left",
+            "fontSize": {
+              "desktop": "20px",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "28px",
+              "mobile": "28px"
+            },
+            "fontWeight": {
+              "desktop": "500",
+              "mobile": "500"
+            },
+            "width": {
+              "desktop": "650px",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "32px 30%",
+              "mobile": "5% 0% 10% 5%"
+            },
+            "padding": {
+              "desktop": "0%",
+              "mobile": "0%"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#FFF4E6",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    },
+    {
+      "type": "super-flex",
+      "items": [
+        {
+          "type": "text",
+          "content": "Edição: <b>Felipe Turioni</b><br>Direção de arte, interface e infografia: <b>Bruna Azevedo, Gabs</b><br>Desenvolvimento: <b>Gabs, Guilherme Gomes</b><br>Coordenação (Conteúdo): <b>Vitor Sorano</b><br>Coordenação (Design e Desenvolvimento): <b>Guilherme Gomes</b>",
+          "styles": {
+            "fontFamily": "globotipo",
+            "fontSize": {
+              "desktop": "1.4rem",
+              "mobile": "18px"
+            },
+            "lineHeight": {
+              "desktop": "2.6rem",
+              "mobile": "32px"
+            },
+            "fontWeight": {
+              "desktop": "400",
+              "mobile": "400"
+            },
+            "color": "#fff",
+            "textAlign": "left",
+            "width": {
+              "desktop": "40%",
+              "mobile": "90%"
+            },
+            "margin": {
+              "desktop": "auto"
+            },
+            "padding": {
+              "desktop": "64px 0 128px",
+              "mobile": "32px 4% 64px"
+            }
+          }
+        }
+      ],
+      "backgroundColor": "#1A1A1A",
+      "padding": {
+        "desktop": "4rem 2rem",
+        "mobile": "3rem 1rem"
+      }
+    }
+  ],
+  "slug": "o-julgamento"
+}

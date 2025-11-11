@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "O aumento da temperatura afeta a produção de leite e ovos?",
+      "tema": "Clima, comida e consumo",
+      "data": "01/09/2025",
+      "numero_do_video": "31",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/01/o-aumento-da-temperatura-afeta-a-producao-de-leite-e-ovos.ghtml#:~:text=Segundo%20a%20especialista%2C%20quando%20esses,a%20qualidade%20deles%20tamb%C3%A9m%20cai.",
+      "id_inutil": "13883612",
+      "id_video": "13883603",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13883603.jpg"
+    },
+    {
+      "titulo": "Por que a Terra está batendo tantos recordes de calor?",
+      "tema": "A ciência do aquecimento global",
+      "data": "02/09/2025",
+      "numero_do_video": "32",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/09/02/por-que-o-planeta-esta-cada-vez-mais-quente-g1-explica-o-que-leva-o-mundo-a-recordes-de-calor.ghtml",
+      "id_inutil": "13881212",
+      "id_video": "13890914",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13890914.jpg"
+    },
+    {
+      "titulo": "Quem são os povos tradicionais do Brasil?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "03/09/2025",
+      "numero_do_video": "33",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/03/quem-sao-os-povos-tradicionais-do-brasil.ghtml",
+      "id_inutil": "13891287",
+      "id_video": "13891271",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891271.jpg"
+    },
+    {
+      "titulo": "Dá para tirar o plástico dos oceanos?",
+      "tema": "O planeta em transformação",
+      "data": "04/09/2025",
+      "numero_do_video": "34",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/04/sabia-que-o-seu-copinho-descartavel-pode-ir-parar-no-oceano-veja-quanto-tempo-leva-para-cada-item-se-decompor.ghtml",
+      "id_inutil": "13891831",
+      "id_video": "13891863",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891863.jpg"
+    },
+    {
+      "titulo": "Por que é importante uma COP na Amazônia?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "05/09/2025",
+      "numero_do_video": "35",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/05/por-que-e-importante-uma-cop-na-amazonia.ghtml#:~:text=%2D%2D%3A%2D%2D-,Por%20que%20%C3%A9%20importante%20uma%20COP%20na%20Amaz%C3%B4nia%3F,virada%20na%20pol%C3%ADtica%20ambiental%20mundial.",
+      "id_inutil": "13891531",
+      "id_video": "13891534",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891534.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 7
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13883603_30",
+        "index": 30,
+        "globoId": "13883603",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O aumento da temperatura afeta a produção de leite e ovos?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13883603.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o aumento da temperatura afeta a producao de leite e ovos?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "O aumento da temperatura afeta a produção de leite e ovos?",
+          "tema": "Clima, comida e consumo",
+          "data": "01/09/2025",
+          "numero_do_video": "31",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/01/o-aumento-da-temperatura-afeta-a-producao-de-leite-e-ovos.ghtml#:~:text=Segundo%20a%20especialista%2C%20quando%20esses,a%20qualidade%20deles%20tamb%C3%A9m%20cai.",
+          "id_inutil": "13883612",
+          "id_video": "13883603",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13883603.jpg"
+        }
+      },
+      {
+        "uuid": "13890914_31",
+        "index": 31,
+        "globoId": "13890914",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a Terra está batendo tantos recordes de calor?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13890914.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a terra esta batendo tantos recordes de calor?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "Por que a Terra está batendo tantos recordes de calor?",
+          "tema": "A ciência do aquecimento global",
+          "data": "02/09/2025",
+          "numero_do_video": "32",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/09/02/por-que-o-planeta-esta-cada-vez-mais-quente-g1-explica-o-que-leva-o-mundo-a-recordes-de-calor.ghtml",
+          "id_inutil": "13881212",
+          "id_video": "13890914",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13890914.jpg"
+        }
+      },
+      {
+        "uuid": "13891271_32",
+        "index": 32,
+        "globoId": "13891271",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quem são os povos tradicionais do Brasil?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891271.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quem sao os povos tradicionais do brasil?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Quem são os povos tradicionais do Brasil?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "03/09/2025",
+          "numero_do_video": "33",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/03/quem-sao-os-povos-tradicionais-do-brasil.ghtml",
+          "id_inutil": "13891287",
+          "id_video": "13891271",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891271.jpg"
+        }
+      },
+      {
+        "uuid": "13891863_33",
+        "index": 33,
+        "globoId": "13891863",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Dá para tirar o plástico dos oceanos?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891863.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "da para tirar o plastico dos oceanos?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Dá para tirar o plástico dos oceanos?",
+          "tema": "O planeta em transformação",
+          "data": "04/09/2025",
+          "numero_do_video": "34",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/04/sabia-que-o-seu-copinho-descartavel-pode-ir-parar-no-oceano-veja-quanto-tempo-leva-para-cada-item-se-decompor.ghtml",
+          "id_inutil": "13891831",
+          "id_video": "13891863",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891863.jpg"
+        }
+      },
+      {
+        "uuid": "13891534_34",
+        "index": 34,
+        "globoId": "13891534",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que é importante uma COP na Amazônia?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891534.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que e importante uma cop na amazonia?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Por que é importante uma COP na Amazônia?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "05/09/2025",
+          "numero_do_video": "35",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/05/por-que-e-importante-uma-cop-na-amazonia.ghtml#:~:text=%2D%2D%3A%2D%2D-,Por%20que%20%C3%A9%20importante%20uma%20COP%20na%20Amaz%C3%B4nia%3F,virada%20na%20pol%C3%ADtica%20ambiental%20mundial.",
+          "id_inutil": "13891531",
+          "id_video": "13891534",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13891534.jpg"
+        }
+      }
+    ]
+  }
+}

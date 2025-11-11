@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculadora de 13º salário</title>
+<style>
+    :root {
+        font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+        --bg: #f6f6f6;
+        --panel: #ffffff;
+        --accent: #c4170c;
+        --accent-strong: #a11209;
+        --text: #232323;
+        --muted: #6a6a6a;
+        --line: #e3e3e3;
+        color-scheme: light;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        padding: clamp(24px, 5vw, 64px);
+        background: var(--bg);
+        color: var(--text);
+    }
+
+    main {
+        width: min(680px, 100%);
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    header {
+        background: var(--panel);
+        border-radius: 22px;
+        padding: clamp(20px, 4vw, 32px);
+        border: 1px solid var(--line);
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.05);
+    }
+
+    header small {
+        text-transform: uppercase;
+        letter-spacing: 0.35em;
+        font-size: 11px;
+        color: var(--muted);
+    }
+
+    h1 {
+        margin: 12px 0;
+        font-size: clamp(28px, 4vw, 36px);
+        letter-spacing: -0.02em;
+    }
+
+    header p {
+        margin: 0;
+        color: #4a4a4a;
+        font-size: 16px;
+        max-width: 480px;
+        line-height: 1.5;
+    }
+
+    .calc-card {
+        display: grid;
+        gap: 18px;
+        background: var(--panel);
+        border-radius: 18px;
+        padding: clamp(20px, 4vw, 32px);
+        border: 1px solid var(--line);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    label {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-size: 12px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
+
+    input {
+        width: 100%;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: #f9f9f9;
+        color: var(--text);
+        font-size: 18px;
+        padding: 14px 16px;
+        font-family: inherit;
+        font-weight: 600;
+        transition: border-color 0.2s ease, background 0.2s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: rgba(196, 23, 12, 0.5);
+        background: #fff;
+    }
+
+    button {
+        margin-top: 8px;
+        border: none;
+        border-radius: 14px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #fff;
+        background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+        cursor: pointer;
+        box-shadow: 0 16px 36px rgba(196, 23, 12, 0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 24px 44px rgba(196, 23, 12, 0.28);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    .error {
+        display: none;
+        border-radius: 14px;
+        padding: 12px 16px;
+        font-size: 14px;
+        background: rgba(196, 23, 12, 0.08);
+        border: 1px solid rgba(196, 23, 12, 0.2);
+        color: var(--accent-strong);
+    }
+
+    .results {
+        display: none;
+        flex-direction: column;
+        gap: 18px;
+        padding: clamp(20px, 4vw, 32px);
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: #fff;
+        box-shadow: 0 18px 50px rgba(0, 0, 0, 0.05);
+        animation: slideUp 500ms ease forwards;
+    }
+
+    .results[aria-hidden="false"] {
+        display: flex;
+    }
+
+    .results .placeholder {
+        margin: 0;
+        color: var(--muted);
+        text-align: center;
+    }
+
+    .results h2 {
+        margin: 0;
+        font-size: clamp(24px, 3vw, 30px);
+        letter-spacing: -0.01em;
+        color: var(--text);
+    }
+
+    .results p {
+        margin: 0;
+        color: #4a4a4a;
+    }
+
+    .totals {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 12px;
+    }
+
+    .metric {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 14px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        background: #fdfdfd;
+    }
+
+    .metric span {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--muted);
+    }
+
+    .metric strong {
+        font-size: 22px;
+        font-weight: 600;
+        color: var(--text);
+    }
+
+    .details {
+        border-top: 1px solid var(--line);
+        padding-top: 14px;
+        display: grid;
+        gap: 8px;
+        font-size: 14px;
+        color: #4a4a4a;
+    }
+
+    .details div {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (max-width: 540px) {
+        body {
+            padding: 24px 16px 48px;
+        }
+
+        .calc-card,
+        header,
+        .results {
+            border-radius: 16px;
+        }
+    }
+</style>
+</head>
+<body>
+    <main>
+        <header>
+            <small>Simulador 2025</small>
+            <h1>Calcule o 13º líquido em segundos</h1>
+            <p>Informe apenas salário base e meses trabalhados. O resultado sai limpo, comparando parcela única e pagamento em duas vezes.</p>
+        </header>
+
+        <section class="calc-card" aria-label="Calculadora de 13º">
+            <label for="salario">
+                Salário base (R$)
+                <input type="number" id="salario" placeholder="Ex: 4800" min="0" step="0.01" />
+            </label>
+
+            <label for="meses">
+                Meses trabalhados (1 a 12)
+                <input type="number" id="meses" placeholder="Ex: 12" min="1" max="12" />
+            </label>
+
+            <button type="button" id="calcular">Rodar simulação</button>
+            <div class="error" id="erro">Preencha salário e meses entre 1 e 12 para continuar.</div>
+        </section>
+
+        <section class="results" id="resultado" aria-hidden="true" aria-live="polite">
+            <p class="placeholder">Rode a simulação para ver os valores líquidos.</p>
+        </section>
+    </main>
+
+    <script>
+        const salarioInput = document.getElementById("salario");
+        const mesesInput = document.getElementById("meses");
+        const calcularBtn = document.getElementById("calcular");
+        const erro = document.getElementById("erro");
+        const resultado = document.getElementById("resultado");
+        const currency = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+
+        const formatMoney = (value) => currency.format(value || 0);
+
+        function calcularINSS(salario) {
+            if (salario <= 1518.0) return salario * 0.075;
+            if (salario <= 2793.88) return salario * 0.09;
+            if (salario <= 4190.83) return salario * 0.12;
+            if (salario <= 8157.41) return salario * 0.14;
+            return 8157.41 * 0.14; // teto INSS
+        }
+
+        function calcularIRRF(salario) {
+            if (salario <= 2428.8) return 0;
+            if (salario <= 2826.65) return salario * 0.075 - 182.16;
+            if (salario <= 3751.05) return salario * 0.15 - 394.16;
+            if (salario <= 4664.68) return salario * 0.225 - 675.49;
+            return salario * 0.275 - 908.73;
+        }
+
+        function calcular13() {
+            const salarioBase = parseFloat(salarioInput.value);
+            const meses = parseInt(mesesInput.value, 10);
+            if (isNaN(salarioBase) || isNaN(meses) || meses < 1 || meses > 12) {
+                erro.style.display = "block";
+                resultado.setAttribute("aria-hidden", "true");
+                resultado.innerHTML = `<p class="placeholder">Informe valores válidos para ver o resultado.</p>`;
+                return;
+            }
+
+            erro.style.display = "none";
+
+            const valorBase = (salarioBase / 12) * meses;
+
+            // Parcela única
+            const descontoINSSUnica = calcularINSS(valorBase);
+            const descontoIRRFUnica = calcularIRRF(valorBase - descontoINSSUnica);
+            const parcelaUnica = valorBase - descontoINSSUnica - descontoIRRFUnica;
+
+            // Primeira parcela (metade do bruto, sem descontos)
+            const primeiraParcela = valorBase / 2;
+
+            // Segunda parcela concentra os descontos
+            const segundaBruta = valorBase / 2;
+            const segundaParcela = Math.max(
+                segundaBruta - (descontoINSSUnica + descontoIRRFUnica),
+                0
+            );
+
+            resultado.innerHTML = `
+                <div class="results-head">
+                    <p>Valor líquido estimado</p>
+                    <h2>${formatMoney(parcelaUnica)}</h2>
+                </div>
+                <div class="totals">
+                    <article class="metric">
+                        <span>Parcela única</span>
+                        <strong>${formatMoney(parcelaUnica)}</strong>
+                    </article>
+                    <article class="metric">
+                        <span>1ª parcela</span>
+                        <strong>${formatMoney(primeiraParcela)}</strong>
+                    </article>
+                    <article class="metric">
+                        <span>2ª parcela</span>
+                        <strong>${formatMoney(segundaParcela)}</strong>
+                    </article>
+                </div>
+                <div class="details">
+                    <div>
+                        <span>Base proporcional</span>
+                        <strong>${formatMoney(valorBase)}</strong>
+                    </div>
+                    <div>
+                        <span>INSS total abatido</span>
+                        <strong>${formatMoney(descontoINSSUnica)}</strong>
+                    </div>
+                    <div>
+                        <span>IRRF total abatido</span>
+                        <strong>${formatMoney(descontoIRRFUnica)}</strong>
+                    </div>
+                </div>
+            `;
+
+            resultado.setAttribute("aria-hidden", "false");
+        }
+
+        calcularBtn.addEventListener("click", calcular13);
+
+        [salarioInput, mesesInput].forEach((input) =>
+            input.addEventListener("input", () => (erro.style.display = "none"))
+        );
+    </script>
+</body>
+</html>

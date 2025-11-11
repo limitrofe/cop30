@@ -1,0 +1,1331 @@
+{
+  "title": "Ainda dá tempo de mudar o rumo do clima no planeta?",
+  "subtitle": "O g1 reuniu 33 dos principais nomes entre pesquisadores de referência mundial, ambientalistas e personalidades com voz ativa no debate climático para responder a uma pergunta central: qual é o futuro do planeta?\n\nEles estiveram na linha de frente da ciência, das negociações internacionais e da defesa da floresta e agora compartilham suas visões.\n\nAs respostas, reunidas ao longo de meses de apuração, revelam um consenso e um alerta: o tempo está se esgotando.\n\nDa transição energética à proteção das florestas, das mudanças no modelo de consumo à urgência de adaptação, os entrevistados apontam quais devem ser as prioridades globais até 2050 — e o que ainda é possível salvar.\n\n",
+  "description": "Ainda dá tempo de mudar o rumo do clima no planeta?\nO g1 reuniu 33 dos principais nomes entre pesquisadores de referência mundial, ambientalistas e personalidades com voz ativa no debate climático para responder a uma pergunta central: qual é o futuro do planeta?\n\nEles estiveram na linha de frente da ciência, das negociações internacionais e da defesa da floresta e agora compartilham suas visões.\n\nAs respostas, reunidas ao longo de meses de apuração, revelam um consenso e um alerta: o tempo está se esgotando.\n\nDa transição energética à proteção das florestas, das mudanças no modelo de consumo à urgência de adaptação, os entrevistados apontam quais devem ser as prioridades globais até 2050 — e o que ainda é possível salvar.\n\n",
+  "author": "Poliana Casemiro",
+  "date": "2025-11-04",
+  "slug": "ainda-da-tempo-de-mudar-o-rumo-do-clima-no-planeta",
+  "theme": "light",
+  "tags": [],
+  "share": {
+    "title": "Ainda dá tempo de mudar o rumo do clima no planeta?",
+    "description": "O g1 reuniu 33 dos principais nomes entre pesquisadores de referência mundial, ambientalistas e personalidades com voz ativa no debate climático para responder a uma pergunta central: qual é o futuro do planeta?",
+    "image": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/capa-share-cop3-.jpg",
+    "imageSquare": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/capa-share-cop3-.jpg",
+    "imageTwitter": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/capa-share-cop3-.jpg",
+    "imageGoogle": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/capa-share-cop3-.jpg"
+  },
+  "seo": {
+    "canonicalUrl": "",
+    "keywords": [],
+    "readingTime": "",
+    "ogType": "article"
+  },
+  "appearance": {
+    "colorScheme": "default",
+    "backgroundColor": "#fcf2e6",
+    "backgroundColorMobile": "#fcf2e6",
+    "surfaceColor": "#fcf2e6",
+    "textColor": "#f8fafc",
+    "accentColor": "#f97316",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "#",
+    "customCSS": "",
+    "typography": {
+      "h1": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "textTransform": "uppercase",
+        "letterSpacing": "-0.02em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(3.5rem, 5vw, 4.5rem)",
+          "lineHeight": "1.05"
+        },
+        "mobile": {
+          "fontSize": "clamp(2.4rem, 8vw, 3rem)",
+          "lineHeight": "1.12"
+        }
+      },
+      "h2": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "800",
+        "textTransform": "none",
+        "letterSpacing": "-0.015em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(2.8rem, 4.5vw, 3.2rem)",
+          "lineHeight": "1.1"
+        },
+        "mobile": {
+          "fontSize": "clamp(2.1rem, 7vw, 2.5rem)",
+          "lineHeight": "1.15"
+        }
+      },
+      "h3": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "textTransform": "none",
+        "letterSpacing": "-0.01em",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "clamp(2.2rem, 4vw, 2.6rem)",
+          "lineHeight": "1.22"
+        },
+        "mobile": {
+          "fontSize": "clamp(1.7rem, 6.5vw, 2.1rem)",
+          "lineHeight": "1.22"
+        }
+      },
+      "h4": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "600",
+        "textTransform": "none",
+        "color": "#f8fafc",
+        "desktop": {
+          "fontSize": "1.9rem",
+          "lineHeight": "1.3"
+        },
+        "mobile": {
+          "fontSize": "1.55rem",
+          "lineHeight": "1.35"
+        }
+      },
+      "h5": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "600",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.08em",
+        "color": "#e2e8f0",
+        "desktop": {
+          "fontSize": "1.35rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "1.15rem",
+          "lineHeight": "1.45"
+        }
+      },
+      "h6": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.1em",
+        "color": "#cbd5f5",
+        "desktop": {
+          "fontSize": "1.05rem",
+          "lineHeight": "1.5"
+        },
+        "mobile": {
+          "fontSize": "0.95rem",
+          "lineHeight": "1.55"
+        }
+      },
+      "body": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#d1d5db",
+        "desktop": {
+          "fontSize": "1.1rem",
+          "lineHeight": "1.8"
+        },
+        "mobile": {
+          "fontSize": "1rem",
+          "lineHeight": "1.7"
+        }
+      },
+      "lead": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "color": "#f1f5f9",
+        "desktop": {
+          "fontSize": "1.5rem",
+          "lineHeight": "1.6"
+        },
+        "mobile": {
+          "fontSize": "1.3rem",
+          "lineHeight": "1.6"
+        }
+      },
+      "small": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#94a3b8",
+        "desktop": {
+          "fontSize": "0.875rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "0.82rem",
+          "lineHeight": "1.4"
+        }
+      },
+      "caption": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "400",
+        "color": "#e2e8f0",
+        "desktop": {
+          "fontSize": "0.95rem",
+          "lineHeight": "1.45"
+        },
+        "mobile": {
+          "fontSize": "0.9rem",
+          "lineHeight": "1.45"
+        }
+      },
+      "annotation": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "500",
+        "textTransform": "uppercase",
+        "letterSpacing": "0.12em",
+        "color": "#f97316",
+        "desktop": {
+          "fontSize": "0.8rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "0.75rem",
+          "lineHeight": "1.4"
+        }
+      },
+      "blockquote": {
+        "fontFamily": "\"Globotipo\", sans-serif",
+        "fontWeight": "700",
+        "fontStyle": "italic",
+        "color": "#f8fafc",
+        "accentColor": "#f97316",
+        "background": "#0f172a",
+        "borderColor": "rgba(249, 115, 22, 0.35)",
+        "desktop": {
+          "fontSize": "2rem",
+          "lineHeight": "1.4"
+        },
+        "mobile": {
+          "fontSize": "1.6rem",
+          "lineHeight": "1.45"
+        }
+      }
+    }
+  },
+  "overlays": {
+    "keyhole": {
+      "enabled": false,
+      "color": "#fdcb6e",
+      "zIndex": "0",
+      "arrowEnabled": false,
+      "arrowColor": "#2d3436",
+      "arrowAnimation": false,
+      "arrowTop": "0"
+    }
+  },
+  "analytics": {
+    "ga4": "",
+    "gtm": "",
+    "datalayerProject": ""
+  },
+  "intro": {
+    "text": ""
+  },
+  "credits": {
+    "enabled": true,
+    "title": "Créditos",
+    "groups": [],
+    "groupsText": "Conteúdo\nPoliana Casemiro\n\nColaboraram com o conteúdo\nJúlia Carvalho\nRoberto Peixoto \nTalyta Vespa\n\n\nInterface e Infografia\nKayan Albertin\n\nDesenvolvimento\nGuilherme Gomes\n\nCoordenação\nMarcilio Kimura\nArdilhes Moreira\nGuilherme Gomes",
+    "notes": "",
+    "sources": [],
+    "authors": [],
+    "editedBy": [],
+    "additionalGraphics": [],
+    "sections": [],
+    "backgroundColor": "#fcf2e6",
+    "textColor": "#3e3e3e",
+    "titleColor": "#3e3e3e",
+    "borderColor": "transparent",
+    "backgroundImage": "",
+    "backgroundImageMobile": "",
+    "backgroundVideo": "",
+    "backgroundVideoMobile": "",
+    "backgroundPosition": "",
+    "backgroundPositionMobile": "",
+    "backgroundSize": "",
+    "backgroundSizeMobile": "",
+    "overlay": false,
+    "overlayColor": "transparent",
+    "maxWidth": "960px",
+    "paddingDesktop": "3rem 1.5rem",
+    "paddingMobile": "2.5rem 1.25rem",
+    "customClass": ""
+  },
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "Ainda dá tempo de mudar o rumo do clima no planeta?",
+      "subtitle": "",
+      "author": "Poliana Casemiro",
+      "date": "01/11/2025",
+      "backgroundImage": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/header-cop30-desk.webp",
+      "backgroundImageMobile": "https://s3.glbimg.com/v1/AUTH_8b29beb0cbe247a296f902be2fe084b6/2025/fotos-pesquisa-cop30/header/header-cop30-mobi.jpg",
+      "backgroundVideo": "",
+      "backgroundVideoMobile": "",
+      "poster": "",
+      "posterMobile": "",
+      "variant": "hero",
+      "overlay": true,
+      "overlayGradient": "top-to-bottom",
+      "verticalAlign": "bottom",
+      "horizontalAlign": "left",
+      "titleColor": "",
+      "subtitleColor": "",
+      "metaColor": "",
+      "onMediaColor": "",
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": ""
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "metaShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "10px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.35)"
+      },
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761074639470-fwu0vq",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 1,
+            "ease": "power3.out",
+            "preset": "fade",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0
+            },
+            "to": {
+              "autoAlpha": 1
+            }
+          },
+          {
+            "id": "anim-1761074753984-b9iwsl",
+            "label": "Animação 2",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 0,
+            "ease": "power3.out",
+            "preset": "fade",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 100
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#000000",
+        "backgroundImageDesktop": "https://public.flourish.studio/uploads/1120806/f0ef5009-f375-4c6e-893d-ec4242d5206f.jpeg",
+        "backgroundImageMobile": "https://public.flourish.studio/uploads/1120806/f0ef5009-f375-4c6e-893d-ec4242d5206f.jpeg",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "0",
+        "paddingBottom": "0"
+      }
+    },
+    {
+      "type": "texto",
+      "text": "<p>O <b><a href=\"https://g1.globo.com/\">g1</a></b> reuniu 33 dos principais nomes entre pesquisadores de referência mundial, ambientalistas e personalidades com voz ativa no debate climático para responder a uma pergunta central: <b>qual é o futuro do planeta?</b></p><p><span style=\"font-size: 0.95rem; text-wrap-mode: initial;\">Eles estiveram na linha de frente da ciência, das negociações internacionais e da defesa da floresta e agora compartilham suas visões.</span></p><p><span style=\"font-size: 0.95rem; text-wrap-mode: initial;\">As respostas, reunidas ao longo de meses de apuração, revelam um consenso e um alerta: <b>o tempo está se esgotando.</b></span></p><p><span style=\"font-size: 0.95rem; text-wrap-mode: initial;\">Da transição energética à proteção das florestas, das mudanças no modelo de consumo à urgência de adaptação, os entrevistados apontam quais devem ser as prioridades globais até 2050 — e o que ainda é possível salvar.</span></p>",
+      "variant": "body",
+      "align": "left",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "100%",
+      "maxWidthMobile": "100%",
+      "widthDesktop": "100%",
+      "widthMobile": "",
+      "containerWidth": "",
+      "containerWidthDesktop": "",
+      "containerWidthMobile": "",
+      "containerMaxWidth": "",
+      "containerMaxWidthDesktop": "",
+      "containerMaxWidthMobile": "",
+      "containerMinHeight": "",
+      "containerMinHeightDesktop": "",
+      "containerMinHeightMobile": "",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "fontSizeDesktop": "",
+      "fontSizeMobile": "",
+      "lineHeightDesktop": "",
+      "lineHeightMobile": "",
+      "textColor": "#3e3e3eed",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284442789-2b5ftw",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 1,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "0",
+        "paddingBottom": "0"
+      }
+    },
+    {
+      "type": "intertitulo",
+      "text": "<a href=\"#\">Se você pudesse apertar um botão de emergência para o planeta, em qual área ele deveria agir?</a>",
+      "subtitle": "",
+      "backgroundColor": "#fcf2e6",
+      "textColor": "#3e3e3e",
+      "fontFamily": "globotipo",
+      "variant": "default",
+      "minimalAccentColor": "",
+      "minimalAccentWidthDesktop": "80%",
+      "minimalAccentWidthMobile": "80%",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "large",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.55)"
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "textAlign": "left",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "",
+      "titleFontStyle": "",
+      "subtitleFontWeight": "",
+      "subtitleFontStyle": "",
+      "textAlignMobile": "left",
+      "align": "left",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284504761-8gvh6o",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "texto",
+      "text": "<p>Para os entrevistados, a raiz da crise climática está no modelo global de consumo, que esgota os recursos naturais e amplia as desigualdades.</p><p>Produção em massa, extração sem limite e desperdício em escala mundial criam um ciclo que alimenta o desmatamento, a poluição e o aquecimento do planeta.</p><p>Mudar esse padrão é visto como o primeiro passo para qualquer transformação ambiental duradoura.&nbsp;</p>",
+      "variant": "body",
+      "align": "left",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "",
+      "maxWidthMobile": "",
+      "widthDesktop": "100%",
+      "widthMobile": "",
+      "containerWidth": "",
+      "containerWidthDesktop": "",
+      "containerWidthMobile": "",
+      "containerMaxWidth": "",
+      "containerMaxWidthDesktop": "",
+      "containerMaxWidthMobile": "",
+      "containerMinHeight": "",
+      "containerMinHeightDesktop": "",
+      "containerMinHeightMobile": "",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "fontSizeDesktop": "",
+      "fontSizeMobile": "",
+      "lineHeightDesktop": "",
+      "lineHeightMobile": "",
+      "textColor": "#3e3e3eed",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284517364-t0rz5n",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "emergency-treemap",
+      "minHeight": 360,
+      "maxHeight": 520,
+      "paddingInner": 12,
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "intertitulo",
+      "text": "<a href=\"#\">Na sua opinião, qual será o maior desafio ambiental para o planeta em 2050?</a>",
+      "subtitle": "",
+      "backgroundColor": "#fcf2e6",
+      "textColor": "#3e3e3e",
+      "fontFamily": "globotipo",
+      "variant": "default",
+      "minimalAccentColor": "",
+      "minimalAccentWidthDesktop": "70%",
+      "minimalAccentWidthMobile": "80%",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "large",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.55)"
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "textAlign": "left",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "",
+      "titleFontStyle": "",
+      "subtitleFontWeight": "",
+      "subtitleFontStyle": "",
+      "textAlignMobile": "left",
+      "align": "left",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284545948-phm6ym",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "texto",
+      "text": "<p>O ano de 2050 virou símbolo da corrida global contra a crise climática.</p><p>É o prazo que a maioria dos países definiu para zerar as emissões líquidas de gases do efeito estufa. Mas esse também é o ponto em que o planeta pode ultrapassar o limite de 2 °C de aquecimento, caso não haja cortes drásticos nas emissões.</p><p><span style=\"font-size: 0.95rem; text-wrap-mode: initial;\"><b><i>Para os especialistas ouvidos pelo g1, o alerta é claro: os próximos 25 anos serão decisivos para o clima.</i></b></span></p>",
+      "variant": "body",
+      "align": "left",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "",
+      "maxWidthMobile": "",
+      "widthDesktop": "100%",
+      "widthMobile": "",
+      "containerWidth": "",
+      "containerWidthDesktop": "",
+      "containerWidthMobile": "",
+      "containerMaxWidth": "",
+      "containerMaxWidthDesktop": "",
+      "containerMaxWidthMobile": "",
+      "containerMinHeight": "",
+      "containerMinHeightDesktop": "",
+      "containerMinHeightMobile": "",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "fontSizeDesktop": "",
+      "fontSizeMobile": "",
+      "lineHeightDesktop": "",
+      "lineHeightMobile": "",
+      "textColor": "#3e3e3eed",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284557931-9htlam",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "challenge-bar",
+      "minHeight": 280,
+      "barPadding": 14,
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "1.5rem",
+        "paddingBottom": "1.5rem"
+      }
+    },
+    {
+      "type": "intertitulo",
+      "text": "<a href=\"#\">Você acha que ainda há tempo para reverter os piores impactos da crise climática?</a>",
+      "subtitle": "",
+      "backgroundColor": "#fcf2e6",
+      "textColor": "#3e3e3e",
+      "fontFamily": "globotipo",
+      "variant": "default",
+      "minimalAccentColor": "",
+      "minimalAccentWidthDesktop": "70%",
+      "minimalAccentWidthMobile": "80%",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "large",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.55)"
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "textAlign": "left",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "",
+      "titleFontStyle": "",
+      "subtitleFontWeight": "",
+      "subtitleFontStyle": "",
+      "textAlignMobile": "left",
+      "align": "left",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284736168-62usgh",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "texto",
+      "text": "<p>Em meio a tantos alertas e metas, sobra uma dúvida que move todos os debates: ainda dá tempo de mudar o destino do planeta?</p><p><b><i>A maioria dos especialistas ouvidos pelo g1 são céticos sobre isso. </i></b>Para eles, o relógio climático está em contagem regressiva, e a diferença entre esperança e desastre está na velocidade da reação global.</p>",
+      "variant": "body",
+      "align": "left",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "",
+      "maxWidthMobile": "",
+      "widthDesktop": "100%",
+      "widthMobile": "",
+      "containerWidth": "",
+      "containerWidthDesktop": "",
+      "containerWidthMobile": "",
+      "containerMaxWidth": "",
+      "containerMaxWidthDesktop": "",
+      "containerMaxWidthMobile": "",
+      "containerMinHeight": "",
+      "containerMinHeightDesktop": "",
+      "containerMinHeightMobile": "",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "fontSizeDesktop": "",
+      "fontSizeMobile": "",
+      "lineHeightDesktop": "",
+      "lineHeightMobile": "",
+      "textColor": "#3e3e3eed",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284755725-q09iwb",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "still-time-bubble",
+      "minHeight": 420,
+      "bubblePadding": 16,
+      "margin": {
+        "top": 16,
+        "right": 16,
+        "bottom": 40,
+        "left": 16
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "1.25rem",
+        "paddingBottom": "1.25rem"
+      }
+    },
+    {
+      "type": "intertitulo",
+      "text": "<a href=\"#\">Em uma escala de 0 a 10, qual é o seu nível de otimismo em relação ao compromisso dos países mais desenvolvidos com ações para mitigar o aquecimento global?&nbsp;</a>",
+      "subtitle": "<br>",
+      "backgroundColor": "#fcf2e6",
+      "textColor": "#3e3e3e",
+      "fontFamily": "globotipo",
+      "variant": "default",
+      "minimalAccentColor": "",
+      "minimalAccentWidthDesktop": "70%",
+      "minimalAccentWidthMobile": "80%",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "large",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "0",
+        "blur": "0",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.55)"
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": "rgba(15, 23, 42, 0.45)"
+      },
+      "textAlign": "left",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "",
+      "titleFontStyle": "",
+      "subtitleFontWeight": "",
+      "subtitleFontStyle": "",
+      "textAlignMobile": "left",
+      "align": "left",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284764875-x136f2",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 3,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "texto",
+      "text": "<p>As maiores economias do planeta foram as que mais emitiram gases de efeito estufa nos últimos séculos e, por isso, têm responsabilidade histórica na crise climática.</p><p>Mesmo assim, o avanço das metas tem sido desigual: <i><b>grandes emissores têm atrasado compromissos, reduzido metas e até saído de acordos internacionais.</b></i></p><p>O levantamento mostra que <i><b>quem acompanha o tema de perto tem pouca confiança de que esses países assumam o protagonismo necessário</b></i> — um sinal de alerta para o futuro do planeta.</p>",
+      "variant": "body",
+      "align": "left",
+      "maxWidth": "100%",
+      "maxWidthDesktop": "",
+      "maxWidthMobile": "",
+      "widthDesktop": "",
+      "widthMobile": "",
+      "containerWidth": "",
+      "containerWidthDesktop": "",
+      "containerWidthMobile": "",
+      "containerMaxWidth": "",
+      "containerMaxWidthDesktop": "",
+      "containerMaxWidthMobile": "",
+      "containerMinHeight": "",
+      "containerMinHeightDesktop": "",
+      "containerMinHeightMobile": "",
+      "horizontalPosition": "center",
+      "verticalPosition": "top",
+      "fontSizeDesktop": "",
+      "fontSizeMobile": "",
+      "lineHeightDesktop": "",
+      "lineHeightMobile": "",
+      "textColor": "#3e3e3eed",
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284776498-6zrcvr",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 3,
+            "delay": 2,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "optimism-bar",
+      "minHeight": 320,
+      "data": [
+        1,
+        0,
+        1,
+        6,
+        6,
+        7,
+        2,
+        6,
+        2,
+        2,
+        0
+      ],
+      "palette": [
+        "#c85646",
+        "#d46a4c",
+        "#da7a4f",
+        "#df8550",
+        "#e59255",
+        "#ebaa68",
+        "#d3b782",
+        "#c0b98c",
+        "#adbba0",
+        "#9ab6b1",
+        "#88adb7"
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "1.25rem",
+        "paddingBottom": "1.25rem"
+      }
+    },
+    {
+      "type": "optimism-histogram",
+      "minHeight": 360,
+      "data": [
+        1,
+        0,
+        1,
+        6,
+        6,
+        7,
+        2,
+        6,
+        2,
+        2,
+        0
+      ],
+      "palette": [
+        "#c85646",
+        "#d46a4c",
+        "#da7a4f",
+        "#df8550",
+        "#e59255",
+        "#ebaa68",
+        "#d3b782",
+        "#c0b98c",
+        "#adbba0",
+        "#9ab6b1",
+        "#88adb7"
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#fcf2e6",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "1.25rem",
+        "paddingBottom": "1.25rem"
+      }
+    },
+    {
+      "type": "intertitulo",
+      "text": "<a href=\"#\">As personalidades por trás da pesquisa</a>",
+      "subtitle": "<span style=\"font-weight: normal;\">Veja abaixo quais personalidades participaram deste especial&nbsp;</span>",
+      "backgroundColor": "#2a3642",
+      "textColor": "#fcf2e6",
+      "fontFamily": "globotipo",
+      "variant": "default",
+      "minimalAccentColor": "",
+      "minimalAccentWidthDesktop": "",
+      "minimalAccentWidthMobile": "",
+      "minimalAccentHeightDesktop": "",
+      "minimalAccentHeightMobile": "",
+      "size": "medium",
+      "overlay": false,
+      "titleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "3px",
+        "blur": "18px",
+        "spread": "",
+        "color": ""
+      },
+      "subtitleShadow": {
+        "enabled": false,
+        "offsetX": "0px",
+        "offsetY": "2px",
+        "blur": "12px",
+        "spread": "",
+        "color": ""
+      },
+      "textAlign": "left",
+      "textPosition": "center",
+      "titleFontSizeDesktop": "",
+      "titleFontSizeMobile": "",
+      "titleLineHeightDesktop": "",
+      "titleLineHeightMobile": "",
+      "subtitleFontSizeDesktop": "",
+      "subtitleFontSizeMobile": "",
+      "subtitleLineHeightDesktop": "",
+      "subtitleLineHeightMobile": "",
+      "titleFontWeight": "",
+      "titleFontStyle": "",
+      "subtitleFontWeight": "",
+      "subtitleFontStyle": "",
+      "textAlignMobile": "left",
+      "align": "left",
+      "disableParticipantSlider": true,
+      "hideParticipantSlider": true,
+      "gsap": {
+        "enabled": true,
+        "autoRefresh": true,
+        "mobileQuery": "(max-width: 768px)",
+        "animations": [
+          {
+            "id": "anim-1761284817275-v10hkr",
+            "label": "Animação 1",
+            "targets": ".story-section__inner > *",
+            "once": false,
+            "immediate": false,
+            "duration": 5,
+            "delay": 3,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "mobilePreset": "fade-up",
+            "mobileOverride": false,
+            "from": {
+              "autoAlpha": 0,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "y": 0
+            }
+          }
+        ]
+      },
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#2a3642",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    },
+    {
+      "type": "participant-gallery",
+      "title": "As personalidades por trás da pesquisa",
+      "subtitle": "Veja abaixo quais personalidades participaram deste especial e de que locais do mundo elas são.",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "#2a3642",
+        "backgroundImageDesktop": "",
+        "backgroundImageMobile": "",
+        "backgroundVideoDesktop": "",
+        "backgroundVideoMobile": "",
+        "backgroundVideoPosterDesktop": "",
+        "backgroundVideoPosterMobile": "",
+        "textColor": "#f8fafc",
+        "paddingTop": "",
+        "paddingBottom": ""
+      }
+    }
+  ]
+}

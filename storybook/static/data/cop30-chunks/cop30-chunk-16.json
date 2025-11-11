@@ -1,0 +1,374 @@
+{
+  "rows": [
+    {
+      "titulo": "O que esperar da energia eólica no Brasil?",
+      "tema": "Transição energética e economia verde",
+      "data": "16/10/2025",
+      "numero_do_video": "76",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/16/energia-eolica-vive-crise-mas-projeta-retomada-com-data-centers-e-expansao-no-mar.ghtml",
+      "id_inutil": "14012887",
+      "id_video": "14012893",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14012893.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que acontece em Altamira?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "17/10/2025",
+      "numero_do_video": "77",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/17/o-que-acontece-em-altamira.ghtml",
+      "id_inutil": "14016307",
+      "id_video": "14016309",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14016309.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que a madeira é vista como o material do futuro?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "18/10/2025",
+      "numero_do_video": "78",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/18/por-que-a-madeira-e-vista-como-o-material-do-futuro.ghtml",
+      "id_inutil": "14018171",
+      "id_video": "14018165",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14018165.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Como uma série de cartas revelam os desafios da COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "19/10/2025",
+      "numero_do_video": "79",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/19/como-uma-serie-de-cartas-revelam-os-desafios-da-cop30.ghtml",
+      "id_inutil": "14022029",
+      "id_video": "14022047",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022047.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que o fogo passou a ter papel de destaque no desmatamento na Amazônia?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "20/10/2025",
+      "numero_do_video": "80",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/20/por-que-o-fogo-passou-a-ter-papel-de-destaque-no-desmatamento-na-amazonia.ghtml",
+      "id_inutil": "14022988",
+      "id_video": "14022992",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022992.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 16
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "14012893_75",
+        "index": 75,
+        "globoId": "14012893",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que esperar da energia eólica no Brasil?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14012893.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que esperar da energia eolica no brasil?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "O que esperar da energia eólica no Brasil?",
+          "tema": "Transição energética e economia verde",
+          "data": "16/10/2025",
+          "numero_do_video": "76",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/16/energia-eolica-vive-crise-mas-projeta-retomada-com-data-centers-e-expansao-no-mar.ghtml",
+          "id_inutil": "14012887",
+          "id_video": "14012893",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14012893.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14016309_76",
+        "index": 76,
+        "globoId": "14016309",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que acontece em Altamira?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14016309.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que acontece em altamira?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "O que acontece em Altamira?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "17/10/2025",
+          "numero_do_video": "77",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/17/o-que-acontece-em-altamira.ghtml",
+          "id_inutil": "14016307",
+          "id_video": "14016309",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14016309.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14018165_77",
+        "index": 77,
+        "globoId": "14018165",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a madeira é vista como o material do futuro?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14018165.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a madeira e vista como o material do futuro?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Por que a madeira é vista como o material do futuro?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "18/10/2025",
+          "numero_do_video": "78",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/18/por-que-a-madeira-e-vista-como-o-material-do-futuro.ghtml",
+          "id_inutil": "14018171",
+          "id_video": "14018165",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14018165.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14022047_78",
+        "index": 78,
+        "globoId": "14022047",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como uma série de cartas revelam os desafios da COP30?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022047.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como uma serie de cartas revelam os desafios da cop30?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Como uma série de cartas revelam os desafios da COP30?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "19/10/2025",
+          "numero_do_video": "79",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/19/como-uma-serie-de-cartas-revelam-os-desafios-da-cop30.ghtml",
+          "id_inutil": "14022029",
+          "id_video": "14022047",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022047.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14022992_79",
+        "index": 79,
+        "globoId": "14022992",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que o fogo passou a ter papel de destaque no desmatamento na Amazônia?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022992.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que o fogo passou a ter papel de destaque no desmatamento na amazonia?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Por que o fogo passou a ter papel de destaque no desmatamento na Amazônia?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "20/10/2025",
+          "numero_do_video": "80",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/20/por-que-o-fogo-passou-a-ter-papel-de-destaque-no-desmatamento-na-amazonia.ghtml",
+          "id_inutil": "14022988",
+          "id_video": "14022992",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14022992.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

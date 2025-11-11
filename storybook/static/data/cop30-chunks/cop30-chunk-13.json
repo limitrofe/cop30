@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "O que é a canícula e como ela explica a onda de calor extremo?",
+      "tema": "A ciência do aquecimento global",
+      "data": "01/10/2025",
+      "numero_do_video": "61",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/01/o-que-e-a-canicula-e-como-ela-explica-ondas-de-calor-extremo.ghtml#:~:text=A%20explica%C3%A7%C3%A3o%20est%C3%A1%20em%20um,recebe%20o%20nome%20de%20can%C3%ADcula.",
+      "id_inutil": "13970673",
+      "id_video": "13970664",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13970664.jpg"
+    },
+    {
+      "titulo": "Qual é a crise de hospedagem na COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "02/10/2025",
+      "numero_do_video": "62",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/02/qual-e-a-crise-de-hospedagem-na-cop30.ghtml",
+      "id_inutil": "13976783",
+      "id_video": "13976797",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13976797.jpg"
+    },
+    {
+      "titulo": "Hidrogênio será o combustível do futuro?",
+      "tema": "Transição energética e economia verde",
+      "data": "03/10/2025",
+      "numero_do_video": "63",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/03/hidrogenio-verde-sera-o-combustivel-do-futuro.ghtml",
+      "id_inutil": "13971536",
+      "id_video": "13971537",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13971537.jpg"
+    },
+    {
+      "titulo": "Qual o tamanho da área do Brasil efetivamente protegida?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "04/10/2025",
+      "numero_do_video": "64",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/04/qual-o-tamanho-da-area-do-brasil-efetivamente-protegida.ghtml#:~:text=O%20Brasil%20possui%20hoje%20entre,efetivamente%20protegidas%2C%20segundo%20dados%20oficiais.&text=Isso%20equivale%20a%20aproximadamente%20um,extens%C3%A3o%20absoluta%20de%20%C3%A1reas%20conservadas.",
+      "id_inutil": "13979162",
+      "id_video": "13979143",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13979143.jpg"
+    },
+    {
+      "titulo": "Como o clima extremo afeta sua saúde mental?",
+      "tema": "O planeta em transformação",
+      "data": "05/10/2025",
+      "numero_do_video": "65",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/05/como-o-clima-extremo-afeta-sua-saude-mental.ghtml",
+      "id_inutil": "13984492",
+      "id_video": "13984494",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984494.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 13
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13970664_60",
+        "index": 60,
+        "globoId": "13970664",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é a canícula e como ela explica a onda de calor extremo?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13970664.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e a canicula e como ela explica a onda de calor extremo?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "O que é a canícula e como ela explica a onda de calor extremo?",
+          "tema": "A ciência do aquecimento global",
+          "data": "01/10/2025",
+          "numero_do_video": "61",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/01/o-que-e-a-canicula-e-como-ela-explica-ondas-de-calor-extremo.ghtml#:~:text=A%20explica%C3%A7%C3%A3o%20est%C3%A1%20em%20um,recebe%20o%20nome%20de%20can%C3%ADcula.",
+          "id_inutil": "13970673",
+          "id_video": "13970664",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13970664.jpg"
+        }
+      },
+      {
+        "uuid": "13976797_61",
+        "index": 61,
+        "globoId": "13976797",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual é a crise de hospedagem na COP30?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13976797.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual e a crise de hospedagem na cop30?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Qual é a crise de hospedagem na COP30?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "02/10/2025",
+          "numero_do_video": "62",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/02/qual-e-a-crise-de-hospedagem-na-cop30.ghtml",
+          "id_inutil": "13976783",
+          "id_video": "13976797",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13976797.jpg"
+        }
+      },
+      {
+        "uuid": "13971537_62",
+        "index": 62,
+        "globoId": "13971537",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Hidrogênio será o combustível do futuro?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13971537.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "hidrogenio sera o combustivel do futuro?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Hidrogênio será o combustível do futuro?",
+          "tema": "Transição energética e economia verde",
+          "data": "03/10/2025",
+          "numero_do_video": "63",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/03/hidrogenio-verde-sera-o-combustivel-do-futuro.ghtml",
+          "id_inutil": "13971536",
+          "id_video": "13971537",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13971537.jpg"
+        }
+      },
+      {
+        "uuid": "13979143_63",
+        "index": 63,
+        "globoId": "13979143",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual o tamanho da área do Brasil efetivamente protegida?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13979143.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual o tamanho da area do brasil efetivamente protegida?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Qual o tamanho da área do Brasil efetivamente protegida?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "04/10/2025",
+          "numero_do_video": "64",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/04/qual-o-tamanho-da-area-do-brasil-efetivamente-protegida.ghtml#:~:text=O%20Brasil%20possui%20hoje%20entre,efetivamente%20protegidas%2C%20segundo%20dados%20oficiais.&text=Isso%20equivale%20a%20aproximadamente%20um,extens%C3%A3o%20absoluta%20de%20%C3%A1reas%20conservadas.",
+          "id_inutil": "13979162",
+          "id_video": "13979143",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13979143.jpg"
+        }
+      },
+      {
+        "uuid": "13984494_64",
+        "index": 64,
+        "globoId": "13984494",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como o clima extremo afeta sua saúde mental?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984494.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como o clima extremo afeta sua saude mental?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Como o clima extremo afeta sua saúde mental?",
+          "tema": "O planeta em transformação",
+          "data": "05/10/2025",
+          "numero_do_video": "65",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/05/como-o-clima-extremo-afeta-sua-saude-mental.ghtml",
+          "id_inutil": "13984492",
+          "id_video": "13984494",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13984494.jpg"
+        }
+      }
+    ]
+  }
+}

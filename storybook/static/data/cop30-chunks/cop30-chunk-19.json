@@ -1,0 +1,374 @@
+{
+  "rows": [
+    {
+      "titulo": "Como as escolas devem servir de oásis urbanos no futuro de crise do clima?",
+      "tema": "O planeta em transformação",
+      "data": "31/10/2025",
+      "numero_do_video": "91",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/31/como-as-escolas-podem-servir-de-oasis-urbanos-no-futuro-de-crise-do-clima.ghtml",
+      "id_inutil": "14050153",
+      "id_video": "14050130",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050130.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Quem são os lobistas que atuam nas COPs?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "01/11/2025",
+      "numero_do_video": "92",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/01/quem-sao-os-lobistas-que-atuam-nas-cops.ghtml#:~:text=Nas%20confer%C3%AAncias%20do%20clima%2C%20o,levem%20em%20conta%20seus%20neg%C3%B3cios.",
+      "id_inutil": "14054918",
+      "id_video": "14054920",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14054920.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Quem decide o que entra (e o que sai) do texto final da COP?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "02/11/2025",
+      "numero_do_video": "93",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/02/quem-decide-o-que-entra-e-o-que-sai-do-texto-final-da-cop.ghtml#:~:text=A%20condu%C3%A7%C3%A3o%20das%20discuss%C3%B5es%20fica,a%20elabora%C3%A7%C3%A3o%20do%20texto%20final.",
+      "id_inutil": "14053932",
+      "id_video": "14053941",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14053941.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Por que o Brasil enterra tanto lixo reciclável?",
+      "tema": "Clima, comida e consumo",
+      "data": "03/11/2025",
+      "numero_do_video": "94",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/03/por-que-o-brasil-enterra-tanto-lixo-reciclavel.ghtml",
+      "id_inutil": "14061000",
+      "id_video": "14061003",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14061003.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O chocolate pode acabar por causa da crise climática?",
+      "tema": "Clima, comida e consumo",
+      "data": "04/11/2025",
+      "numero_do_video": "95",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/11/04/como-a-crise-do-clima-pode-afetar-o-seu-chocolate-do-dia-a-dia.ghtml#:~:text=A%20combina%C3%A7%C3%A3o%20de%20calor%20extremo,as%20mudan%C3%A7as%20clim%C3%A1ticas%20se%20agravarem.",
+      "id_inutil": "14067005",
+      "id_video": "14067009",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14067009.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 19
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "14050130_90",
+        "index": 90,
+        "globoId": "14050130",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como as escolas devem servir de oásis urbanos no futuro de crise do clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050130.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como as escolas devem servir de oasis urbanos no futuro de crise do clima?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Como as escolas devem servir de oásis urbanos no futuro de crise do clima?",
+          "tema": "O planeta em transformação",
+          "data": "31/10/2025",
+          "numero_do_video": "91",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/31/como-as-escolas-podem-servir-de-oasis-urbanos-no-futuro-de-crise-do-clima.ghtml",
+          "id_inutil": "14050153",
+          "id_video": "14050130",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050130.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14054920_91",
+        "index": 91,
+        "globoId": "14054920",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quem são os lobistas que atuam nas COPs?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14054920.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quem sao os lobistas que atuam nas cops?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Quem são os lobistas que atuam nas COPs?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "01/11/2025",
+          "numero_do_video": "92",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/01/quem-sao-os-lobistas-que-atuam-nas-cops.ghtml#:~:text=Nas%20confer%C3%AAncias%20do%20clima%2C%20o,levem%20em%20conta%20seus%20neg%C3%B3cios.",
+          "id_inutil": "14054918",
+          "id_video": "14054920",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14054920.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14053941_92",
+        "index": 92,
+        "globoId": "14053941",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quem decide o que entra (e o que sai) do texto final da COP?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14053941.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quem decide o que entra (e o que sai) do texto final da cop?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Quem decide o que entra (e o que sai) do texto final da COP?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "02/11/2025",
+          "numero_do_video": "93",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/02/quem-decide-o-que-entra-e-o-que-sai-do-texto-final-da-cop.ghtml#:~:text=A%20condu%C3%A7%C3%A3o%20das%20discuss%C3%B5es%20fica,a%20elabora%C3%A7%C3%A3o%20do%20texto%20final.",
+          "id_inutil": "14053932",
+          "id_video": "14053941",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14053941.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14061003_93",
+        "index": 93,
+        "globoId": "14061003",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que o Brasil enterra tanto lixo reciclável?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14061003.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que o brasil enterra tanto lixo reciclavel?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Por que o Brasil enterra tanto lixo reciclável?",
+          "tema": "Clima, comida e consumo",
+          "data": "03/11/2025",
+          "numero_do_video": "94",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/11/03/por-que-o-brasil-enterra-tanto-lixo-reciclavel.ghtml",
+          "id_inutil": "14061000",
+          "id_video": "14061003",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14061003.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14067009_94",
+        "index": 94,
+        "globoId": "14067009",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O chocolate pode acabar por causa da crise climática?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14067009.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o chocolate pode acabar por causa da crise climatica?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "O chocolate pode acabar por causa da crise climática?",
+          "tema": "Clima, comida e consumo",
+          "data": "04/11/2025",
+          "numero_do_video": "95",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/11/04/como-a-crise-do-clima-pode-afetar-o-seu-chocolate-do-dia-a-dia.ghtml#:~:text=A%20combina%C3%A7%C3%A3o%20de%20calor%20extremo,as%20mudan%C3%A7as%20clim%C3%A1ticas%20se%20agravarem.",
+          "id_inutil": "14067005",
+          "id_video": "14067009",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14067009.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1071 @@
+<!-- src/lib/components/story/GloboPlayer.svelte -->
+<script>
+	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
+	import { browser } from '$app/environment';
+	import { activateVideo, deactivateVideo, registerVideo } from './videoPlaybackManager.js';
+
+	// Script Loading Promise (Singleton)
+	let scriptLoadPromise = null;
+	function loadGloboScript() {
+		if (scriptLoadPromise) {
+			return scriptLoadPromise;
+		}
+		scriptLoadPromise = new Promise((resolve, reject) => {
+			if (window.WM && window.WM.playerAvailable) {
+				return resolve();
+			}
+			const scriptUrl =
+				'https://s3.glbimg.com/v1/AUTH_e1b09a2d222b4900a437a46914be81e5/api/stable/web/api.min.js';
+			const existingScript = document.querySelector(`script[src="${scriptUrl}"]`);
+			if (existingScript) {
+				existingScript.addEventListener('load', () => resolve(window.WM.playerAvailable));
+				existingScript.addEventListener('error', (e) =>
+					reject(new Error('Falha ao carregar script da Globo (existente).', e))
+				);
+				return;
+			}
+			const script = document.createElement('script');
+			script.src = scriptUrl;
+			script.async = true;
+			script.onload = () => {
+				resolve(window.WM.playerAvailable);
+			};
+			script.onerror = (e) => {
+				reject(
+					new Error('Falha ao carregar a API do player da Globo. Verifique seu Ad Blocker.', e)
+				);
+			};
+			document.body.appendChild(script);
+		});
+		return scriptLoadPromise;
+	}
+
+	// --- 🎯 PROPS PRINCIPAIS (MOBILE FIRST) ---
+
+	// ✅ IDs DE VÍDEO - MOBILE E DESKTOP SEPARADOS
+	export let videoIdMobile = null; // ID específico para mobile
+	export let videoIdDesktop = null; // ID específico para desktop
+	export let videoId = null; // Fallback geral (compatibilidade)
+	export let videosIDs = null; // Outro fallback (compatibilidade)
+
+	// ✅ COR DE FUNDO CUSTOMIZÁVEL
+	export let containerBackgroundColor = 'transparent'; // Cor do fundo da div container
+
+	// ✅ DIMENSÕES RESPONSIVAS
+	export let widthMobile = '100%'; // Largura no mobile
+	export let widthDesktop = '100%'; // Largura no desktop
+	export let aspectRatio = '16 / 9'; // Aspect ratio desktop
+	export let aspectRatioMobile = '16 / 9'; // Aspect ratio mobile
+
+	// Props originais mantidas para compatibilidade
+	export let autoPlay = false;
+	export let startMuted = true;
+	export let skipDFP = false;
+	export let loop = false;
+	export let width = '100%'; // Deprecated, usar widthMobile/widthDesktop
+	export let height = '100%';
+	export let chromeless = null;
+	export let allowRestrictedContent = true;
+	export let allowLocation = true;
+	export let exitFullscreenOnEnd = true;
+	export let isLiveContent = false;
+	export let preventBlackBars = false;
+	export let includeResetStyle = true;
+	export let disasterRecoveryMode = false;
+	export let env = 'production';
+	export let globoId = null;
+	export let token = null;
+	export let resumeAt = null;
+	export let maxQualityLevel = null;
+	export let defaultSubtitle = null;
+	export let defaultAudio = null;
+	export let adAccountId = null;
+	export let adCmsId = null;
+	export let adUnit = null;
+	export let adCustomData = null;
+	export let siteName = null;
+	export let ga4 = null;
+	export let caption = '';
+	export let credit = '';
+	export let fullWidth = false;
+	export let autoplay = false;
+	export let controls = true;
+	export let forceControls = false;
+	export let showCaption = true;
+export let poster = null;
+export let posterAlt = 'Prévia do vídeo';
+export let eagerInit = false;
+export let hideNativeAudioButton = false;
+	let containerStyle = '';
+	let isPortraitDesktop = false;
+	let desktopHeightWidth = null;
+	let aspectRatioDesktopValue = null;
+
+	// --- VARIÁVEIS INTERNAS ---
+	let playerElement;
+	let playerContainerElement;
+	let playerInstance = null;
+	let isLoading = false;
+	let error = null;
+	let isMuted = startMuted;
+	let playerReady = false;
+	let pendingMuteState = null;
+	let resolvedPosterAlt = 'Prévia do vídeo';
+	let showPoster = false;
+	let playerWrapperStyle = '';
+	const dispatch = createEventDispatcher();
+	const playbackId = `globo-player-${Math.random().toString(36).slice(2)}`;
+	let unregisterPlayback = null;
+	const nativeAudioButtonSelectors = [
+		"button[data-globoplayer-audio-button='true']",
+		"button[aria-label='Ativar som']",
+		"button[aria-label='Ativar áudio']",
+		"button[aria-label='Ativar audio']",
+		"button[aria-label*='som']",
+		"button[aria-label*='áudio']",
+		"button[aria-label*='audio']"
+	];
+	const nativeAudioButtonSelector = nativeAudioButtonSelectors.join(',');
+
+	// Controle de estado
+	let observer = null;
+	let hasBeenInitialized = false;
+	let isMobile = false;
+	let publicControls;
+	let lastPropStartMuted = startMuted;
+	let isRecreatingForMute = false;
+	let muteButtonObserver = null;
+	const muteButtonListeners = new Map();
+
+	function parseAspectRatioValue(value) {
+		if (typeof value === 'number' && Number.isFinite(value) && value > 0) {
+			return value;
+		}
+		if (typeof value === 'string') {
+			const trimmed = value.trim();
+			if (!trimmed) return null;
+			const fraction = trimmed.split('/');
+			if (fraction.length === 2) {
+				const numerator = parseFloat(fraction[0]);
+				const denominator = parseFloat(fraction[1]);
+				if (Number.isFinite(numerator) && Number.isFinite(denominator) && denominator !== 0) {
+					return numerator / denominator;
+				}
+			}
+			const numeric = parseFloat(trimmed);
+			if (Number.isFinite(numeric) && numeric > 0) {
+				return numeric;
+			}
+		}
+		return null;
+	}
+
+	function resolveChromeless() {
+		if (typeof chromeless === 'boolean') {
+			return chromeless;
+		}
+		if (forceControls) {
+			return false;
+		}
+		return controls === false;
+	}
+
+	function applyChromelessSetting(instance, value) {
+		if (!instance) return;
+		if (typeof instance.setChromeless === 'function') {
+			try {
+				instance.setChromeless(value);
+			} catch (error) {
+				console.warn('GloboPlayer: falha ao atualizar modo chromeless', error);
+			}
+		}
+	}
+
+	function syncControlsVisibility(instance, shouldShow) {
+		if (!instance) return;
+		let synced = false;
+		try {
+			if (typeof instance.setControls === 'function') {
+				instance.setControls(shouldShow);
+				synced = true;
+			} else if (typeof instance.toggleUI === 'function') {
+				instance.toggleUI('controls', shouldShow);
+				synced = true;
+			} else if (typeof instance.setControlsVisible === 'function') {
+				instance.setControlsVisible(shouldShow);
+				synced = true;
+			} else if (typeof instance.setControlsVisibility === 'function') {
+				instance.setControlsVisibility(shouldShow);
+				synced = true;
+			}
+			if (shouldShow) {
+				if (typeof instance.showControls === 'function') {
+					instance.showControls();
+					synced = true;
+				} else if (typeof instance.displayControls === 'function') {
+					instance.displayControls(true);
+					synced = true;
+				}
+			} else if (typeof instance.hideControls === 'function') {
+				instance.hideControls();
+				synced = true;
+			}
+		} catch (controlsError) {
+			console.warn('GloboPlayer: falha ao sincronizar controles via API direta', controlsError);
+		}
+
+		if (synced) return;
+
+		try {
+			if (typeof instance.command === 'function') {
+				instance.command('controls', shouldShow);
+				if (shouldShow) {
+					instance.command('showControls');
+				} else {
+					instance.command('hideControls');
+				}
+				synced = true;
+			}
+		} catch (commandError) {
+			console.warn('GloboPlayer: comando de controle indisponível', commandError);
+		}
+
+		if (synced || !playerElement) return;
+		try {
+			const video = playerElement.querySelector('video');
+			if (video) {
+				video.controls = shouldShow;
+				if (shouldShow) {
+					video.setAttribute('controls', 'controls');
+				} else {
+					video.removeAttribute('controls');
+				}
+			}
+		} catch (domError) {
+			console.warn('GloboPlayer: falha ao ajustar controles nativos', domError);
+		}
+	}
+
+	function cleanupMuteButtonListeners() {
+		muteButtonListeners.forEach((handler, button) => {
+			button.removeEventListener('click', handler, true);
+		});
+		muteButtonListeners.clear();
+	}
+
+	function getNativeAudioButtons() {
+		if (!playerElement) return [];
+		try {
+			return Array.from(playerElement.querySelectorAll(nativeAudioButtonSelector));
+		} catch (error) {
+			console.warn('GloboPlayer: falha ao localizar botão nativo de áudio', error);
+			return [];
+		}
+	}
+
+	function applyNativeAudioButtonState(button) {
+		if (!button) return;
+		if (hideNativeAudioButton) {
+			button.setAttribute('aria-hidden', 'true');
+			button.setAttribute('tabindex', '-1');
+			button.style.setProperty('display', 'none', 'important');
+			button.style.setProperty('pointer-events', 'none', 'important');
+			return;
+		}
+		button.dataset.globoplayerAudioButton = 'true';
+		button.hidden = false;
+		button.removeAttribute('aria-hidden');
+		button.removeAttribute('hidden');
+		button.removeAttribute('tabindex');
+		button.style.removeProperty('display');
+		button.style.removeProperty('opacity');
+		button.style.removeProperty('visibility');
+		button.style.removeProperty('pointer-events');
+		const label = isMuted ? 'Ativar áudio' : 'Mutar áudio';
+		button.setAttribute('aria-label', label);
+		button.setAttribute('title', label);
+		button.setAttribute('data-audio-state', isMuted ? 'muted' : 'unmuted');
+	}
+
+	function updateNativeAudioButtonsState() {
+		const buttons = getNativeAudioButtons();
+		if (!buttons.length) return;
+		buttons.forEach((button) => applyNativeAudioButtonState(button));
+	}
+
+	function toggleNativeAudioState(nextMuted = !isMuted) {
+		setMutedState(nextMuted, { allowRecreate: true });
+		const controls = notifyControls(nextMuted ? 'audio-lock' : 'audio-unlock');
+		if (nextMuted) {
+			dispatch('audiolock', { controls, player: playerInstance });
+		} else {
+			dispatch('audiounlock', { controls, player: playerInstance });
+		}
+		updateNativeAudioButtonsState();
+	}
+
+	function handleNativeAudioButtonClick(event) {
+		if (hideNativeAudioButton) return;
+		event?.preventDefault?.();
+		event?.stopPropagation?.();
+		event?.stopImmediatePropagation?.();
+		toggleNativeAudioState(!isMuted);
+	}
+
+	function attachMuteButtonListeners() {
+		if (!playerElement) return;
+		const buttons = getNativeAudioButtons();
+		if (!buttons.length) return;
+		buttons.forEach((button) => {
+			const handler = muteButtonListeners.get(button);
+			applyNativeAudioButtonState(button);
+			if (handler || hideNativeAudioButton) {
+				return;
+			}
+			const clickHandler = (event) => handleNativeAudioButtonClick(event);
+			button.addEventListener('click', clickHandler, { passive: false, capture: true });
+			muteButtonListeners.set(button, clickHandler);
+		});
+	}
+
+	function setupMuteButtonObserver() {
+		if (!browser || !playerElement) return;
+		muteButtonObserver?.disconnect();
+		try {
+			muteButtonObserver = new MutationObserver(() => attachMuteButtonListeners());
+			muteButtonObserver.observe(playerElement, {
+				childList: true,
+				subtree: true,
+				attributes: true,
+				attributeFilter: ['style', 'class', 'hidden', 'aria-hidden']
+			});
+			attachMuteButtonListeners();
+		} catch (error) {
+			console.warn('GloboPlayer: falha ao observar botão de áudio', error);
+		}
+	}
+
+	function ensurePlaybackRegistration() {
+		if (unregisterPlayback) return;
+		unregisterPlayback = registerVideo(playbackId, {
+			pause: () => {
+				if (playerInstance && typeof playerInstance.pause === 'function') {
+					try {
+						playerInstance.pause();
+						return;
+					} catch (pauseError) {
+						console.warn('GloboPlayer: falha ao pausar via manager', pauseError);
+					}
+				}
+				const inlineVideo = playerElement?.querySelector('video');
+				try {
+					inlineVideo?.pause?.();
+				} catch (inlineError) {
+					console.warn('GloboPlayer: falha ao pausar vídeo inline', inlineError);
+				}
+			}
+		});
+	}
+
+	function buildControls() {
+		publicControls = {
+			play: () => {
+				try {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'controls-play' });
+					return playerInstance?.play?.();
+				} catch (controlError) {
+					console.warn('GloboPlayer: falha ao dar play via controles públicos', controlError);
+					return undefined;
+				}
+			},
+			pause: () => {
+				let result;
+				try {
+					if (playerInstance && typeof playerInstance.pause === 'function') {
+						result = playerInstance.pause();
+					} else {
+						const inlineVideo = playerElement?.querySelector('video');
+						result = inlineVideo?.pause?.();
+					}
+				} catch (controlError) {
+					console.warn('GloboPlayer: falha ao pausar via controles públicos', controlError);
+				} finally {
+					deactivateVideo(playbackId);
+				}
+				return result;
+			},
+			setMuted: (nextMuted) => setMutedState(!!nextMuted, { allowRecreate: true }),
+			isMuted: () => isMuted,
+			getPlayer: () => playerInstance
+		};
+		return publicControls;
+	}
+
+	function notifyControls(reason = 'update') {
+		const controls = publicControls || buildControls();
+		dispatch('controls', { controls, reason });
+		return controls;
+	}
+
+	function setMutedState(nextMuted, options = {}) {
+		const { allowRecreate = false } = options;
+		isMuted = nextMuted;
+		const inlineVideo = playerElement?.querySelector('video');
+
+		if (!playerInstance || !playerReady) {
+			pendingMuteState = nextMuted;
+			if (inlineVideo) {
+				inlineVideo.muted = nextMuted;
+				inlineVideo.volume = nextMuted ? 0 : 1;
+				if (nextMuted) {
+					inlineVideo.setAttribute('muted', 'muted');
+				} else {
+					inlineVideo.removeAttribute('muted');
+				}
+			}
+			return false;
+		}
+
+		pendingMuteState = null;
+
+		let applied = false;
+		try {
+			if (typeof playerInstance.setMuted === 'function') {
+				playerInstance.setMuted(nextMuted);
+				applied = true;
+			} else if (typeof playerInstance.setMute === 'function') {
+				playerInstance.setMute(nextMuted);
+				applied = true;
+			} else if (nextMuted && typeof playerInstance.mute === 'function') {
+				playerInstance.mute();
+				applied = true;
+			} else if (!nextMuted && typeof playerInstance.unmute === 'function') {
+				playerInstance.unmute();
+				applied = true;
+			} else if (typeof playerInstance.command === 'function') {
+				try {
+					playerInstance.command('mute', nextMuted);
+					applied = true;
+				} catch (commandError) {
+					console.warn('GloboPlayer: comando mute falhou', commandError);
+				}
+			} else if (typeof playerInstance.setVolume === 'function') {
+				playerInstance.setVolume(nextMuted ? 0 : 1);
+				applied = true;
+			} else if (playerElement) {
+				const inlineVideo = playerElement.querySelector('video');
+				if (inlineVideo) {
+					inlineVideo.muted = nextMuted;
+					inlineVideo.volume = nextMuted ? 0 : 1;
+					applied = true;
+				}
+			}
+		} catch (muteError) {
+			console.warn('GloboPlayer: falha ao alterar estado de mute', muteError);
+		}
+
+		if (!applied && allowRecreate && !nextMuted && !isRecreatingForMute) {
+			// Fallback: recria player para garantir áudio habilitado
+			isRecreatingForMute = true;
+			try {
+				createPlayer(true, { preserveMuteState: true });
+				applied = true;
+			} finally {
+				isRecreatingForMute = false;
+			}
+		}
+
+		if (!applied && inlineVideo) {
+			inlineVideo.muted = nextMuted;
+			inlineVideo.volume = nextMuted ? 0 : 1;
+			if (nextMuted) {
+				inlineVideo.setAttribute('muted', 'muted');
+			} else {
+				inlineVideo.removeAttribute('muted');
+			}
+		}
+
+		updateNativeAudioButtonsState();
+		return applied;
+	}
+
+	// ✅ LÓGICA MOBILE FIRST - DETERMINA O ID CORRETO
+	function getVideoId() {
+		if (!browser) return null;
+
+		// Mobile first: sempre verificar mobile primeiro
+		if (isMobile) {
+			// Se tem ID específico para mobile, usa ele
+			if (videoIdMobile) return videoIdMobile;
+			// Senão, fallback para o geral
+			if (videoIdDesktop) return videoIdDesktop;
+		} else {
+			// Desktop: usa ID específico ou fallback
+			if (videoIdDesktop) return videoIdDesktop;
+			if (videoIdMobile) return videoIdMobile;
+		}
+
+		// Fallbacks de compatibilidade
+		return videoId || videosIDs || null;
+	}
+
+	$: resolvedPosterAlt =
+		typeof posterAlt === 'string' && posterAlt.trim().length ? posterAlt : 'Prévia do vídeo';
+	$: showPoster = Boolean(poster) && !playerReady;
+	$: playerWrapperStyle = [
+		`--aspect-ratio-desktop:${aspectRatio}`,
+		`--aspect-ratio-mobile:${aspectRatioMobile}`,
+		poster ? `background-image:url(${JSON.stringify(poster)})` : null
+	]
+		.filter(Boolean)
+		.join(';');
+	$: aspectRatioDesktopValue = parseAspectRatioValue(aspectRatio);
+	$: isPortraitDesktop =
+		typeof aspectRatioDesktopValue === 'number' &&
+		Number.isFinite(aspectRatioDesktopValue) &&
+		aspectRatioDesktopValue > 0 &&
+		aspectRatioDesktopValue < 1;
+	$: desktopHeightWidth = isPortraitDesktop
+		? `calc(100vh * ${aspectRatioDesktopValue})`
+		: null;
+	$: containerStyle = [
+		`--width-desktop:${widthDesktop}`,
+		`--width-mobile:${widthMobile}`,
+		desktopHeightWidth ? `--desktop-height-based-width:${desktopHeightWidth}` : null
+	]
+		.filter(Boolean)
+		.join(';');
+
+	// Criar o player
+	function createPlayer(shouldAutoplayOnCreate = false, options = {}) {
+		const { preserveMuteState = false } = options;
+		if (!browser || !window.WM || !window.WM.Player) {
+			error = new Error('A API do player da Globo (WM) não está disponível.');
+			isLoading = false;
+			playerReady = false;
+			return;
+		}
+
+		const actualVideoId = getVideoId();
+		if (!actualVideoId) {
+			error = new Error('É necessário informar o videoId para criar o player!');
+			isLoading = false;
+			playerReady = false;
+			return;
+		}
+
+		// Destruir player anterior se existir
+		if (playerInstance && typeof playerInstance.destroy === 'function') {
+			playerInstance.destroy();
+			deactivateVideo(playbackId);
+		}
+		playerInstance = null;
+		pendingMuteState = isMuted;
+		publicControls = null;
+		if (!preserveMuteState) {
+			lastPropStartMuted = startMuted;
+			isMuted = !!lastPropStartMuted;
+		}
+		isLoading = true;
+		error = null;
+		playerReady = false;
+
+		const chromelessSetting = resolveChromeless();
+		const shouldShowControls = forceControls ? true : controls !== false;
+
+		const config = {
+			source: Number(actualVideoId),
+			autoPlay: shouldAutoplayOnCreate,
+			startMuted: isMuted,
+			skipDFP,
+			width: '100%',
+			height: '100%',
+			chromeless: chromelessSetting,
+			allowRestrictedContent,
+			allowLocation,
+			exitFullscreenOnEnd,
+			isLiveContent,
+			preventBlackBars,
+			includeResetStyle,
+			disasterRecoveryMode,
+			env,
+			globoId,
+			token,
+			resumeAt,
+			maxQualityLevel,
+			defaultSubtitle,
+			defaultAudio,
+			adAccountId,
+			adCmsId,
+			adUnit,
+			adCustomData,
+			siteName,
+			ga4
+		};
+
+		if (forceControls) {
+			config.controls = shouldShowControls;
+			config.showControls = shouldShowControls;
+			config.ui = { ...(config.ui || {}), controls: shouldShowControls };
+		}
+
+		if (poster) {
+			config.poster = poster;
+			config.posterMobile = poster;
+			config.posterDesktop = poster;
+		}
+
+		// Limpar propriedades nulas
+		Object.keys(config).forEach(
+			(key) => (config[key] === null || config[key] === undefined) && delete config[key]
+		);
+
+		// Eventos
+		config.events = {
+			onError: (err) => {
+				error = err;
+				isLoading = false;
+				playerReady = false;
+				deactivateVideo(playbackId);
+				dispatch('error', err);
+			},
+			onReady: () => {
+				isLoading = false;
+				playerReady = true;
+				if (pendingMuteState !== null) {
+					isMuted = pendingMuteState;
+				}
+				if (shouldAutoplayOnCreate) {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'globo-autoplay-ready' });
+					playerInstance.play();
+				}
+				setMutedState(isMuted, { allowRecreate: false });
+				applyChromelessSetting(playerInstance, chromelessSetting);
+				if (forceControls) {
+					syncControlsVisibility(playerInstance, shouldShowControls);
+				}
+				const controls = notifyControls('ready');
+				dispatch('ready', { player: playerInstance, controls });
+			},
+			onEnded: () => {
+				deactivateVideo(playbackId);
+				if (loop && playerInstance && typeof playerInstance.seek === 'function') {
+					try {
+						playerInstance.seek(0);
+						if (typeof playerInstance.play === 'function') {
+							activateVideo(playbackId, { source: 'globo-loop' });
+							playerInstance.play();
+						}
+					} catch (error) {
+						console.warn('Erro ao reiniciar GloboPlayer em loop', error);
+					}
+				}
+				dispatch('ended');
+			},
+			onPlay: () => {
+				ensurePlaybackRegistration();
+				activateVideo(playbackId, { source: 'globo-event' });
+				dispatch('play');
+			},
+			onPause: () => {
+				deactivateVideo(playbackId);
+				dispatch('pause');
+			}
+		};
+
+		try {
+			playerInstance = new window.WM.Player(config);
+			playerInstance.attachTo(playerElement);
+			applyChromelessSetting(playerInstance, chromelessSetting);
+			if (forceControls) {
+				syncControlsVisibility(playerInstance, shouldShowControls);
+			}
+			setMutedState(isMuted, { allowRecreate: false });
+			setupMuteButtonObserver();
+			notifyControls('created');
+		} catch (e) {
+			error = e;
+			isLoading = false;
+			playerReady = false;
+		}
+	}
+
+	// Inicializar player
+	async function initializePlayer(shouldPlay) {
+		if (hasBeenInitialized || !browser) return;
+		hasBeenInitialized = true;
+		isLoading = true;
+		playerReady = false;
+
+		try {
+			await loadGloboScript();
+			createPlayer(shouldPlay);
+		} catch (err) {
+			error = err;
+			isLoading = false;
+			playerReady = false;
+		}
+	}
+
+	// ✅ DETECTAR MOBILE E CONFIGURAR OBSERVER
+	onMount(() => {
+		if (!browser) return;
+		ensurePlaybackRegistration();
+
+		// Mobile detection (mobile first)
+		const checkMobile = () => {
+			isMobile = window.innerWidth <= 768;
+		};
+		checkMobile();
+		window.addEventListener('resize', checkMobile);
+
+		// Intersection Observer para lazy loading
+		const options = {
+			root: null,
+			rootMargin: '40% 0px 40% 0px',
+			threshold: [0, 0.35, 0.7]
+		};
+
+		observer = new IntersectionObserver((entries) => {
+			const entry = entries[0];
+			const shouldPlayVideo = autoPlay || autoplay;
+
+			if (entry.isIntersecting) {
+				if (!hasBeenInitialized) {
+					initializePlayer(shouldPlayVideo);
+				} else if (playerInstance && typeof playerInstance.play === 'function' && shouldPlayVideo) {
+					ensurePlaybackRegistration();
+					activateVideo(playbackId, { source: 'intersection-play' });
+					playerInstance.play();
+				}
+			} else {
+				if (playerInstance && typeof playerInstance.pause === 'function' && shouldPlayVideo) {
+					playerInstance.pause();
+					deactivateVideo(playbackId);
+				}
+			}
+		}, options);
+
+		if (playerContainerElement) {
+			observer.observe(playerContainerElement);
+		}
+
+		return () => {
+			window.removeEventListener('resize', checkMobile);
+		};
+	});
+
+	// Cleanup
+	onDestroy(() => {
+		if (observer && playerContainerElement) {
+			observer.unobserve(playerContainerElement);
+		}
+		muteButtonObserver?.disconnect();
+		muteButtonObserver = null;
+		cleanupMuteButtonListeners();
+		if (playerInstance && typeof playerInstance.destroy === 'function') {
+			playerInstance.destroy();
+		}
+		dispatch('destroyed', { player: playerInstance, controls: publicControls });
+		unregisterPlayback?.();
+		unregisterPlayback = null;
+		deactivateVideo(playbackId);
+		playerInstance = null;
+		publicControls = null;
+		playerReady = false;
+	});
+
+	$: if (browser && eagerInit && !hasBeenInitialized) {
+		initializePlayer(false);
+	}
+
+	// Reativo: recriar player quando IDs mudarem
+	$: if (
+		browser &&
+		hasBeenInitialized &&
+		(videoIdMobile ||
+			videoIdDesktop ||
+			videoId ||
+			videosIDs ||
+			typeof chromeless === 'boolean' ||
+			controls === false ||
+			forceControls)
+	) {
+		createPlayer(false);
+	}
+
+	$: if (browser && playerInstance) {
+		const nextChromeless = resolveChromeless();
+		applyChromelessSetting(playerInstance, nextChromeless);
+		if (forceControls) {
+			syncControlsVisibility(playerInstance, true);
+		}
+	}
+
+	$: if (startMuted !== lastPropStartMuted) {
+		lastPropStartMuted = startMuted;
+		isMuted = !!lastPropStartMuted;
+		if (playerInstance) {
+			setMutedState(isMuted, { allowRecreate: false });
+		}
+	}
+
+	export function play() {
+		return publicControls?.play?.();
+	}
+
+	export function pause() {
+		return publicControls?.pause?.();
+	}
+
+	export function setMuted(muted) {
+		return setMutedState(!!muted, { allowRecreate: true });
+	}
+
+	export function getMuted() {
+		return isMuted;
+	}
+</script>
+
+<!-- ✅ CONTAINER COM BACKGROUND CUSTOMIZÁVEL -->
+<div class="video-section-wrapper" style="background-color: {containerBackgroundColor};">
+	<div
+		class="globo-player-container"
+		class:globo-player-container--portrait-desktop={isPortraitDesktop}
+		class:full-width={fullWidth}
+		style={containerStyle}
+	>
+		<div
+			class="player-wrapper"
+			class:player-wrapper--has-poster={Boolean(poster)}
+			style={playerWrapperStyle}
+			bind:this={playerContainerElement}
+		>
+			{#if poster}
+				<img
+					class="player-poster"
+					class:player-poster--hidden={!showPoster}
+					src={poster}
+					alt={resolvedPosterAlt}
+					aria-hidden={!showPoster}
+					loading="lazy"
+				/>
+			{/if}
+			<div class="player-surface" bind:this={playerElement}></div>
+			{#if isLoading}
+				<div class="feedback-state loading-state">
+					<div class="loading-spinner"></div>
+					<div class="loading-text">Carregando player Globo...</div>
+				</div>
+			{:else if error}
+				<div class="feedback-state error-state">
+					<div class="error-icon">⚠️</div>
+					<strong>Erro no Player Globo</strong>
+					<p>{error.message || 'Ocorreu um erro.'}</p>
+					<button
+						on:click={() => {
+							isLoading = true;
+							error = null;
+							initializePlayer(false);
+						}}
+					>
+						Tentar novamente
+					</button>
+				</div>
+			{/if}
+		</div>
+
+		{#if showCaption && (caption || credit)}
+			<div class="media-caption">
+				{#if caption}<div class="caption-text">{@html caption}</div>{/if}
+				{#if credit}<div class="caption-credit">{@html credit}</div>{/if}
+			</div>
+		{/if}
+	</div>
+</div>
+
+<style>
+	/* ✅ WRAPPER COM FUNDO CUSTOMIZÁVEL */
+	.video-section-wrapper {
+		width: 100%;
+		position: relative;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		/* A cor de fundo é aplicada via style inline */
+	}
+
+	/* ✅ CONTAINER RESPONSIVO MOBILE FIRST */
+	.globo-player-container {
+		width: var(--width-mobile);
+		max-width: 100%;
+		margin: 0 auto;
+		position: relative;
+	}
+
+	/* ✅ DESKTOP: aplica largura de desktop */
+	@media (min-width: 769px) {
+		.globo-player-container {
+			width: var(--width-desktop);
+		}
+
+		.globo-player-container--portrait-desktop {
+			max-width: var(--desktop-height-based-width, none);
+		}
+	}
+
+	/* ✅ FULL WIDTH: remove limitações */
+	.globo-player-container.full-width {
+		width: 100% !important;
+		max-width: none;
+	}
+
+	/* ✅ REMOVE PADDING QUANDO FULL WIDTH */
+	.video-section-wrapper:has(.full-width) {
+		padding: 0;
+	}
+
+	/* ✅ PLAYER WRAPPER COM ASPECT RATIO RESPONSIVO */
+	.player-wrapper {
+		width: 100%;
+		aspect-ratio: var(--aspect-ratio-mobile);
+		position: relative;
+		background: #000;
+		border-radius: 4px;
+		overflow: hidden;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	.player-wrapper--has-poster {
+		background-color: #000;
+	}
+
+	.player-surface {
+		position: absolute;
+		inset: 0;
+	}
+
+	.player-poster {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		pointer-events: none;
+		transition:
+			opacity 0.2s ease,
+			visibility 0.2s ease;
+	}
+
+	.player-poster--hidden {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	/* ✅ DESKTOP: aspect ratio diferente */
+	@media (min-width: 769px) {
+		.player-wrapper {
+			aspect-ratio: var(--aspect-ratio-desktop);
+		}
+	}
+
+	/* ✅ ESTADOS DE FEEDBACK */
+	.feedback-state {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background: #f5f5f5;
+		color: #333;
+		text-align: center;
+		padding: 1rem;
+	}
+
+	.loading-state {
+		background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+		color: white;
+	}
+
+	.error-state {
+		background: #fee;
+		color: #d33;
+		border: 2px solid #fcc;
+	}
+
+	.error-state button {
+		margin-top: 1rem;
+		padding: 0.5rem 1rem;
+		background: #d33;
+		color: white;
+		border: none;
+		border-radius: 4px;
+		cursor: pointer;
+		font-size: 0.9rem;
+	}
+
+	.error-state button:hover {
+		background: #b22;
+	}
+
+	/* ✅ LOADING SPINNER */
+	.loading-spinner {
+		width: 40px;
+		height: 40px;
+		border: 4px solid rgba(255, 255, 255, 0.3);
+		border-radius: 50%;
+		border-top-color: white;
+		animation: spin 1s ease-in-out infinite;
+		margin-bottom: 1rem;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+
+	.loading-text {
+		font-size: 0.9rem;
+		opacity: 0.9;
+	}
+
+	/* ✅ LEGENDAS */
+	.media-caption {
+		margin-top: 0.75rem;
+		font-size: 0.9rem;
+		line-height: 1.4;
+	}
+
+	.caption-text {
+		color: #666;
+		margin-bottom: 0.25rem;
+	}
+
+	.caption-credit {
+		color: #999;
+		font-size: 0.8rem;
+		font-style: italic;
+	}
+
+	/* ✅ RESPONSIVIDADE ADICIONAL */
+	@media (max-width: 480px) {
+		.video-section-wrapper {
+			padding: 1rem 0;
+		}
+
+		.media-caption {
+			font-size: 0.85rem;
+		}
+	}
+</style>

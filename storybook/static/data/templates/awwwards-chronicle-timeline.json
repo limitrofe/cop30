@@ -1,0 +1,263 @@
+{
+  "title": "Linha do Tempo Investigativa",
+  "subtitle": "Template narrativo com timeline interativa e dossiê documental.",
+  "description": "Estrutura pensada para investigações cronológicas com documentos exclusivos.",
+  "slug": "template-linha-do-tempo",
+  "theme": "dark",
+  "tags": [
+    "template",
+    "awwwards",
+    "timeline"
+  ],
+  "share": {
+    "title": "Template Linha do Tempo Investigativa",
+    "description": "Timeline interativa, documentos anotados e bloco analítico."
+  },
+  "appearance": {
+    "colorScheme": "dark",
+    "backgroundColor": "#111827",
+    "backgroundColorMobile": "#111827",
+    "surfaceColor": "rgba(15, 23, 42, 0.82)",
+    "textColor": "#f9fafb",
+    "accentColor": "#ef4444",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "linear-gradient(180deg, #0f172a 0%, #1f2937 100%)"
+  },
+  "paragraphs": [
+    {
+      "type": "header",
+      "title": "Linha do tempo investigativa",
+      "subtitle": "Reconstrua fatos em ordem cronológica com destaque para evidências chave.",
+      "backgroundImage": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=2000&q=80",
+      "backgroundImageMobile": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=60",
+      "variant": "hero",
+      "overlay": true,
+      "overlayGradient": "linear-gradient(135deg, rgba(17, 24, 39, 0.92) 0%, rgba(30, 41, 59, 0.65) 75%)",
+      "titleColor": "#f9fafb",
+      "subtitleColor": "rgba(248, 250, 252, 0.85)",
+      "verticalAlign": "center",
+      "horizontalAlign": "center",
+      "section": {
+        "backgroundSource": "image",
+        "paddingTop": "7rem",
+        "paddingBottom": "7rem"
+      },
+      "gsap": {
+        "enabled": true,
+        "animations": [
+          {
+            "id": "anim-timeline-hero",
+            "label": "Hero zoom",
+            "once": true,
+            "duration": 1.1,
+            "ease": "power3.out",
+            "preset": "fade-up",
+            "from": {
+              "autoAlpha": 0,
+              "scale": 0.94,
+              "y": 40
+            },
+            "to": {
+              "autoAlpha": 1,
+              "scale": 1,
+              "y": 0
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "lead",
+      "align": "left",
+      "text": "<p>Faça o leitor percorrer cada marco da apuração. O bloco de timeline usa cartões animados para destacar dados, imagens e severidade de cada evento.</p>",
+      "maxWidth": "760px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "3rem",
+        "paddingBottom": "2rem"
+      }
+    },
+    {
+      "type": "timeline-interactive",
+      "theme": "dramatic",
+      "height": "90vh",
+      "fullWidth": false,
+      "showProgress": true,
+      "highlightCurrent": true,
+      "events": [
+        {
+          "title": "Vazamento inicial",
+          "date": "2024-01-12",
+          "description": "<p>Documento confidencial aponta indícios de manipulação em contratos públicos.</p>",
+          "image": "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1200&q=80",
+          "imageCaption": "Foto ilustrativa do escritório onde o dossiê surgiu.",
+          "tags": [
+            "alerta",
+            "documento"
+          ],
+          "severity": "medium"
+        },
+        {
+          "title": "Apuração de campo",
+          "date": "2024-02-05",
+          "description": "<p>Equipe cruza planilhas e identifica empresas de fachada usadas para triangulação.</p>",
+          "tags": [
+            "checagem",
+            "dados"
+          ],
+          "severity": "medium"
+        },
+        {
+          "title": "Depoimento decisivo",
+          "date": "2024-03-18",
+          "description": "<p>Ex-servidor confirma esquema e entrega prints de conversas. Revelações mudam o rumo da investigação.</p>",
+          "image": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
+          "tags": [
+            "entrevista",
+            "exclusivo"
+          ],
+          "severity": "high"
+        },
+        {
+          "title": "Contra-ataque jurídico",
+          "date": "2024-04-09",
+          "description": "<p>Advogados enviam nota rebatendo acusações. Timeline inclui integra da defesa para equilíbrio jornalístico.</p>",
+          "tags": [
+            "nota oficial",
+            "contraditório"
+          ],
+          "severity": "low"
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(15, 23, 42, 0.55)",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "document-viewer",
+      "classification": "CONFIDENCIAL",
+      "theme": "investigative",
+      "showWatermark": true,
+      "allowDownload": false,
+      "showThumbnails": true,
+      "documents": [
+        {
+          "title": "Planilha de triangulação",
+          "src": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1400&q=80",
+          "image": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1400&q=80",
+          "thumbnail": "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=400&q=40",
+          "date": "2024-01-11",
+          "source": "Fonte anônima",
+          "description": "Planilha com 18 linhas, destacando repasses indevidos. Substitua pela imagem do documento real ou PDF convertido em JPG."
+        },
+        {
+          "title": "Carta de defesa",
+          "src": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80",
+          "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1400&q=80",
+          "thumbnail": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=400&q=40",
+          "date": "2024-04-08",
+          "source": "Assessoria jurídica",
+          "description": "Nota oficial com contrapontos usados no capítulo final."
+        }
+      ],
+      "highlightAreas": [
+        {
+          "documentIndex": 0,
+          "x": 18,
+          "y": 32,
+          "width": 28,
+          "height": 22,
+          "label": "Repasse irregular",
+          "description": "Valor duplicado para a mesma empresa em dois meses consecutivos."
+        },
+        {
+          "documentIndex": 0,
+          "x": 62,
+          "y": 54,
+          "width": 22,
+          "height": 18,
+          "label": "CPF cruzado",
+          "description": "Documento revela CPF repetido em diferentes contratos."
+        },
+        {
+          "documentIndex": 1,
+          "x": 12,
+          "y": 68,
+          "width": 34,
+          "height": 12,
+          "label": "Ponto da defesa",
+          "description": "Argumento central apresentado pelos advogados."
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(8, 11, 24, 0.85)",
+        "paddingTop": "4rem",
+        "paddingBottom": "4rem"
+      }
+    },
+    {
+      "type": "section-title",
+      "title": "Como adaptar",
+      "subtitle": "Troque os eventos, atualize documentos e ajuste tons conforme o caso.",
+      "variant": "centered",
+      "size": "medium",
+      "textColor": "#f9fafb",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "3rem",
+        "paddingBottom": "1.5rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "body",
+      "align": "left",
+      "text": "<ul><li>Importe sua timeline a partir de planilha ou notas de apuração.</li><li>Transforme PDFs em imagens com a melhor resolução possível.</li><li>Use as áreas destacadas para guiar o leitor ao ponto crucial do documento.</li></ul>",
+      "maxWidth": "780px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(15, 23, 42, 0.45)",
+        "paddingTop": "1.5rem",
+        "paddingBottom": "5rem"
+      }
+    }
+  ],
+  "credits": {
+    "enabled": true,
+    "title": "Equipe de investigação",
+    "backgroundColor": "rgba(8, 11, 24, 0.9)",
+    "textColor": "#f9fafb",
+    "titleColor": "#ef4444",
+    "borderColor": "rgba(239, 68, 68, 0.35)",
+    "groups": [
+      {
+        "title": "Investigação",
+        "items": [
+          "Coordenação investigativa / Substituir",
+          "Checagem de dados / Substituir"
+        ]
+      },
+      {
+        "title": "Documentos",
+        "items": [
+          "Análise jurídica / Substituir",
+          "Tratamento visual / Substituir"
+        ]
+      }
+    ],
+    "notes": "Inclua todos os profissionais que contribuíram para a apuração."
+  }
+}

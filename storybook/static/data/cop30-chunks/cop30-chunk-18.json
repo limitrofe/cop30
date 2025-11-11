@@ -1,0 +1,374 @@
+{
+  "rows": [
+    {
+      "titulo": "Transporte público verde: o que falta para os ônibus elétricos serem maioria?",
+      "tema": "Transição energética e economia verde",
+      "data": "26/10/2025",
+      "numero_do_video": "86",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/26/transporte-publico-verde-o-que-falta-para-os-onibus-eletricos-serem-maioria-no-brasil.ghtml",
+      "id_inutil": "14042307",
+      "id_video": "14042310",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042310.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que é o prêmio fóssil do dia?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "27/10/2025",
+      "numero_do_video": "87",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/27/fossil-do-dia-o-antipremio-que-destaca-quem-atrapalha-o-combate-a-crise-climatica.ghtml",
+      "id_inutil": "14042073",
+      "id_video": "14042086",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042086.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que diz o relatório da ONU sobre compromissos climáticos dias antes da COP30?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "28/10/2025",
+      "numero_do_video": "88",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/28/onu-diz-que-emissoes-devem-cair-pela-1a-vez-antes-de-2030-mas-ritmo-ainda-e-insuficiente-para-o-limite-de-15c.ghtml",
+      "id_inutil": "14047754",
+      "id_video": "14047764",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14047764.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que as empresas estão fazendo para produzir riqueza causando menos impacto ambiental?",
+      "tema": "Transição energética e economia verde",
+      "data": "29/10/2025",
+      "numero_do_video": "89",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/video/o-que-as-empresas-estao-fazendo-para-produzir-riqueza-causando-menos-impacto-ambiental-14046897.ghtml",
+      "id_inutil": "14046897",
+      "id_video": "14046884",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14046884.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "O que as COPs já conseguiram na prática?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "30/10/2025",
+      "numero_do_video": "90",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/30/o-que-as-cops-ja-conseguiram-na-pratica.ghtml#:~:text=Entre%20as%20principais%20conquistas%20est%C3%A1,para%20sistemas%20de%20compensa%C3%A7%C3%A3o%20clim%C3%A1tica.",
+      "id_inutil": "14050949",
+      "id_video": "14050953",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050953.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 18
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "14042310_85",
+        "index": 85,
+        "globoId": "14042310",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Transporte público verde: o que falta para os ônibus elétricos serem maioria?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042310.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "transporte publico verde: o que falta para os onibus eletricos serem maioria?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Transporte público verde: o que falta para os ônibus elétricos serem maioria?",
+          "tema": "Transição energética e economia verde",
+          "data": "26/10/2025",
+          "numero_do_video": "86",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/26/transporte-publico-verde-o-que-falta-para-os-onibus-eletricos-serem-maioria-no-brasil.ghtml",
+          "id_inutil": "14042307",
+          "id_video": "14042310",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042310.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14042086_86",
+        "index": 86,
+        "globoId": "14042086",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é o prêmio fóssil do dia?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042086.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e o premio fossil do dia?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "O que é o prêmio fóssil do dia?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "27/10/2025",
+          "numero_do_video": "87",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/27/fossil-do-dia-o-antipremio-que-destaca-quem-atrapalha-o-combate-a-crise-climatica.ghtml",
+          "id_inutil": "14042073",
+          "id_video": "14042086",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14042086.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14047764_87",
+        "index": 87,
+        "globoId": "14047764",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que diz o relatório da ONU sobre compromissos climáticos dias antes da COP30?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14047764.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que diz o relatorio da onu sobre compromissos climaticos dias antes da cop30?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "O que diz o relatório da ONU sobre compromissos climáticos dias antes da COP30?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "28/10/2025",
+          "numero_do_video": "88",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/28/onu-diz-que-emissoes-devem-cair-pela-1a-vez-antes-de-2030-mas-ritmo-ainda-e-insuficiente-para-o-limite-de-15c.ghtml",
+          "id_inutil": "14047754",
+          "id_video": "14047764",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14047764.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14046884_88",
+        "index": 88,
+        "globoId": "14046884",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que as empresas estão fazendo para produzir riqueza causando menos impacto ambiental?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14046884.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que as empresas estao fazendo para produzir riqueza causando menos impacto ambiental?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "O que as empresas estão fazendo para produzir riqueza causando menos impacto ambiental?",
+          "tema": "Transição energética e economia verde",
+          "data": "29/10/2025",
+          "numero_do_video": "89",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/video/o-que-as-empresas-estao-fazendo-para-produzir-riqueza-causando-menos-impacto-ambiental-14046897.ghtml",
+          "id_inutil": "14046897",
+          "id_video": "14046884",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14046884.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14050953_89",
+        "index": 89,
+        "globoId": "14050953",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que as COPs já conseguiram na prática?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050953.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que as cops ja conseguiram na pratica?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "O que as COPs já conseguiram na prática?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "30/10/2025",
+          "numero_do_video": "90",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/30/o-que-as-cops-ja-conseguiram-na-pratica.ghtml#:~:text=Entre%20as%20principais%20conquistas%20est%C3%A1,para%20sistemas%20de%20compensa%C3%A7%C3%A3o%20clim%C3%A1tica.",
+          "id_inutil": "14050949",
+          "id_video": "14050953",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14050953.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

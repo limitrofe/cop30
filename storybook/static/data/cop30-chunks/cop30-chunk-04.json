@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "O que são as mudanças climáticas?",
+      "tema": "Entenda o clima",
+      "data": "17/08/2025",
+      "numero_do_video": "16",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/17/o-que-sao-as-mudancas-climaticas.ghtml",
+      "id_inutil": "13836243",
+      "id_video": "13836246",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836246.jpg"
+    },
+    {
+      "titulo": "O que está acontecendo com o gelo da Antártida?",
+      "tema": "A ciência do aquecimento global",
+      "data": "18/08/2025",
+      "numero_do_video": "17",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/18/o-que-esta-acontecendo-com-o-gelo-da-antartida.ghtml",
+      "id_inutil": "13837569",
+      "id_video": "13837572",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837572.jpg"
+    },
+    {
+      "titulo": "Qual gás do efeito estufa é o maior vilão do clima?",
+      "tema": "A ciência do aquecimento global",
+      "data": "19/08/2025",
+      "numero_do_video": "18",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/19/qual-gas-do-efeito-estufa-e-o-maior-vilao-do-clima.ghtml",
+      "id_inutil": "13837587",
+      "id_video": "13837593",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837593.jpg"
+    },
+    {
+      "titulo": "Por que a temperatura do oceano importa tanto?",
+      "tema": "A ciência do aquecimento global",
+      "data": "20/08/2025",
+      "numero_do_video": "19",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/20/por-que-a-temperatura-do-oceano-importa-tanto.ghtml#:~:text=Quando%20o%20oceano%20fica%20mais,temporais%20cada%20vez%20mais%20intensos.",
+      "id_inutil": "13837601",
+      "id_video": "13837610",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837610.jpg"
+    },
+    {
+      "titulo": "O que é o Fundo Amazônia?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "21/08/2025",
+      "numero_do_video": "20",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/21/o-que-e-o-fundo-amazonia.ghtml",
+      "id_inutil": "13837621",
+      "id_video": "13837629",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837629.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 4
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13836246_15",
+        "index": 15,
+        "globoId": "13836246",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que são as mudanças climáticas?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836246.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que sao as mudancas climaticas?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "O que são as mudanças climáticas?",
+          "tema": "Entenda o clima",
+          "data": "17/08/2025",
+          "numero_do_video": "16",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/17/o-que-sao-as-mudancas-climaticas.ghtml",
+          "id_inutil": "13836243",
+          "id_video": "13836246",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836246.jpg"
+        }
+      },
+      {
+        "uuid": "13837572_16",
+        "index": 16,
+        "globoId": "13837572",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que está acontecendo com o gelo da Antártida?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837572.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que esta acontecendo com o gelo da antartida?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "O que está acontecendo com o gelo da Antártida?",
+          "tema": "A ciência do aquecimento global",
+          "data": "18/08/2025",
+          "numero_do_video": "17",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/18/o-que-esta-acontecendo-com-o-gelo-da-antartida.ghtml",
+          "id_inutil": "13837569",
+          "id_video": "13837572",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837572.jpg"
+        }
+      },
+      {
+        "uuid": "13837593_17",
+        "index": 17,
+        "globoId": "13837593",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual gás do efeito estufa é o maior vilão do clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837593.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual gas do efeito estufa e o maior vilao do clima?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "Qual gás do efeito estufa é o maior vilão do clima?",
+          "tema": "A ciência do aquecimento global",
+          "data": "19/08/2025",
+          "numero_do_video": "18",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/19/qual-gas-do-efeito-estufa-e-o-maior-vilao-do-clima.ghtml",
+          "id_inutil": "13837587",
+          "id_video": "13837593",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837593.jpg"
+        }
+      },
+      {
+        "uuid": "13837610_18",
+        "index": 18,
+        "globoId": "13837610",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a temperatura do oceano importa tanto?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837610.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a temperatura do oceano importa tanto?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "Por que a temperatura do oceano importa tanto?",
+          "tema": "A ciência do aquecimento global",
+          "data": "20/08/2025",
+          "numero_do_video": "19",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/20/por-que-a-temperatura-do-oceano-importa-tanto.ghtml#:~:text=Quando%20o%20oceano%20fica%20mais,temporais%20cada%20vez%20mais%20intensos.",
+          "id_inutil": "13837601",
+          "id_video": "13837610",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837610.jpg"
+        }
+      },
+      {
+        "uuid": "13837629_19",
+        "index": 19,
+        "globoId": "13837629",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é o Fundo Amazônia?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837629.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e o fundo amazonia?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "O que é o Fundo Amazônia?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "21/08/2025",
+          "numero_do_video": "20",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/21/o-que-e-o-fundo-amazonia.ghtml",
+          "id_inutil": "13837621",
+          "id_video": "13837629",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13837629.jpg"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "title": "Retratos Imersivos",
+  "subtitle": "Template focado em personagens com header caótico e cards animados.",
+  "description": "Combinação de collage caótico, apresentação de personagens e curiosidades para perfis narrativos.",
+  "slug": "template-retratos-imersivos",
+  "theme": "dark",
+  "tags": [
+    "template",
+    "awwwards",
+    "personagens"
+  ],
+  "share": {
+    "title": "Template Retratos Imersivos",
+    "description": "Header caótico + personagens animados para perfis jornalísticos."
+  },
+  "appearance": {
+    "colorScheme": "dark",
+    "backgroundColor": "#050816",
+    "backgroundColorMobile": "#050816",
+    "surfaceColor": "rgba(7, 11, 26, 0.82)",
+    "textColor": "#f8fafc",
+    "accentColor": "#f97316",
+    "pagePadding": {
+      "desktop": "0",
+      "mobile": "0"
+    },
+    "useGradient": true,
+    "gradient": "linear-gradient(180deg, #020617 0%, #0f172a 100%)"
+  },
+  "paragraphs": [
+    {
+      "type": "header-caotico",
+      "title": "Retratos Imersivos",
+      "subtitle": "Perfis com energia editorial e movimento permanente.",
+      "titleColor": "#f8fafc",
+      "useCustomBackground": true,
+      "backgroundImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2000&q=80",
+      "backgroundImageMobile": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=60",
+      "overlay": true,
+      "overlayOpacity": 0.55,
+      "mediaWidth": 240,
+      "mediaHeight": 160,
+      "mediaWidthMobile": 200,
+      "mediaHeightMobile": 120,
+      "totalDefaultMedias": 0,
+      "medias": [
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1463453091185-61582044d556?auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1504593811423-6dd665756598?auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "type": "image",
+          "src": "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=600&q=60"
+        },
+        {
+          "type": "video",
+          "src": "https://storage.googleapis.com/coverr-main/mp4/Footboys.mp4"
+        }
+      ],
+      "animationDelay": 180,
+      "section": {
+        "backgroundSource": "image",
+        "paddingTop": "8rem",
+        "paddingBottom": "8rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "lead",
+      "align": "left",
+      "text": "<p>Ideal para perfis e especiais de comportamento. Mistura caos visual controlado com blocos que mergulham na história de cada personagem.</p>",
+      "maxWidth": "760px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "character-presentation",
+      "shapeColor": "#f97316",
+      "nameColor": "#0f172a",
+      "textColor": "#f8fafc",
+      "backgroundColor": "#050816",
+      "personagens": [
+        {
+          "nome": "Lia Andrade",
+          "sobrenome": "fotógrafa documental",
+          "descricao": "<p>Fotógrafa que registrou 12 protestos em três continentes. Ganhou destaque por retratar personagens invisibilizados.</p>",
+          "foto": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80",
+          "fotoMobile": "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=60"
+        },
+        {
+          "nome": "Ravi Monteiro",
+          "sobrenome": "programador cívico",
+          "descricao": "<p>Criou uma plataforma de dados abertos que ajudou a desvendar irregularidades em contratos municipais.</p>",
+          "foto": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=1200&q=80",
+          "fotoMobile": "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=900&q=60"
+        },
+        {
+          "nome": "Amara Dias",
+          "sobrenome": "defensora de direitos",
+          "descricao": "<p>Conduziu mutirões jurídicos que atenderam 3,5 mil pessoas em dois anos. Referência em advocacy comunitário.</p>",
+          "foto": "https://images.unsplash.com/photo-1524503033411-c9566986fc8f?auto=format&fit=crop&w=1200&q=80",
+          "fotoMobile": "https://images.unsplash.com/photo-1524503033411-c9566986fc8f?auto=format&fit=crop&w=900&q=60"
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(7, 11, 26, 0.78)",
+        "paddingTop": "4rem",
+        "paddingBottom": "4rem"
+      }
+    },
+    {
+      "type": "curiosidades",
+      "shapeColor": "#f97316",
+      "nameColor": "#0f172a",
+      "textColor": "#f8fafc",
+      "backgroundColor": "#111827",
+      "quoteColor": "#fbbf24",
+      "personagens": [
+        {
+          "nome": "Lia diz",
+          "descricao": "“Eu busco a centelha que ninguém vê nas ruas.”",
+          "foto": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+          "frase": "“Fotografar é organizar o caos sem perder a emoção.”"
+        },
+        {
+          "nome": "Ravi fala",
+          "descricao": "“As planilhas também contam histórias, basta decifrá-las.”",
+          "foto": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+          "frase": "“Código é ferramenta social.”"
+        },
+        {
+          "nome": "Amara lembra",
+          "descricao": "“Eu cresci vendo vizinhos perderem tudo por falta de orientação.”",
+          "foto": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80",
+          "frase": "“Direito humano também é sobre presença.”"
+        }
+      ],
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(9, 12, 28, 0.92)",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "video",
+      "src": "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
+      "srcMobile": "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
+      "poster": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+      "posterMobile": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1000&q=60",
+      "caption": "Material de arquivo ou teaser da série documental.",
+      "controls": true,
+      "autoplay": false,
+      "loop": false,
+      "muted": false,
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "transparent",
+        "paddingTop": "3rem",
+        "paddingBottom": "3rem"
+      }
+    },
+    {
+      "type": "texto",
+      "variant": "body",
+      "align": "left",
+      "text": "<ul><li>Troque as fotos pelos retratos oficiais.</li><li>Use o bloco de curiosidades para revelar bastidores ou frases marcantes.</li><li>Finalize com vídeos, galerias ou depoimentos em áudio.</li></ul>",
+      "maxWidth": "760px",
+      "horizontalPosition": "center",
+      "section": {
+        "backgroundSource": "color",
+        "backgroundColor": "rgba(7, 11, 26, 0.72)",
+        "paddingTop": "2rem",
+        "paddingBottom": "5rem"
+      }
+    }
+  ],
+  "credits": {
+    "enabled": true,
+    "title": "Equipe do especial",
+    "backgroundColor": "rgba(5, 8, 22, 0.92)",
+    "textColor": "#f8fafc",
+    "titleColor": "#f97316",
+    "borderColor": "rgba(249, 115, 22, 0.35)",
+    "groups": [
+      {
+        "title": "Texto & Reportagem",
+        "items": [
+          "Reportagem / Substituir",
+          "Produção / Substituir"
+        ]
+      },
+      {
+        "title": "Visual & Motion",
+        "items": [
+          "Direção criativa / Substituir",
+          "Motion / Substituir"
+        ]
+      }
+    ],
+    "notes": "Atualize conforme a ficha técnica do projeto."
+  }
+}

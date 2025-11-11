@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "O que são os 'pontos de não retorno' e por que eles colocam o planeta em risco?",
+      "tema": "A ciência do aquecimento global",
+      "data": "07/08/2025",
+      "numero_do_video": "6",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/07/o-que-sao-os-pontos-de-nao-retorno-e-por-que-eles-colocam-o-planeta-em-risco.ghtml",
+      "id_inutil": "13814563",
+      "id_video": "13820507",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820507.jpg"
+    },
+    {
+      "titulo": "Por que limitar o aquecimento a 1,5°C é a meta perseguida?",
+      "tema": "Entenda o clima",
+      "data": "08/08/2025",
+      "numero_do_video": "7",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/08/por-que-limitar-o-aquecimento-a-15c-e-a-meta-perseguida.ghtml",
+      "id_inutil": "13814574",
+      "id_video": "13820534",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820534.jpg"
+    },
+    {
+      "titulo": "Como a roupa que você usa causa impacto no meio ambiente?",
+      "tema": "Clima, comida e consumo",
+      "data": "09/08/2025",
+      "numero_do_video": "8",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/09/como-a-roupa-que-voce-usa-causa-impacto-no-meio-ambiente.ghtml",
+      "id_inutil": "13814587",
+      "id_video": "13820540",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820540.jpg"
+    },
+    {
+      "titulo": "O desmatamento é o maior vilão climático do Brasil?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "10/08/2025",
+      "numero_do_video": "9",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/10/o-desmatamento-e-o-maior-vilao-climatico-do-brasil.ghtml",
+      "id_inutil": "13827395",
+      "id_video": "13827827",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827827.jpg"
+    },
+    {
+      "titulo": "Quais doenças podem crescer com o aquecimento global?",
+      "tema": "O planeta em transformação",
+      "data": "11/08/2025",
+      "numero_do_video": "10",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/11/quais-doencas-podem-crescer-com-o-aquecimento-global.ghtml",
+      "id_inutil": "13827399",
+      "id_video": "13827828",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827828.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 2
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13820507_5",
+        "index": 5,
+        "globoId": "13820507",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que são os 'pontos de não retorno' e por que eles colocam o planeta em risco?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820507.jpg",
+        "tag": "A ciência do aquecimento global",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a ciencia do aquecimento global",
+            "label": "A ciência do aquecimento global",
+            "value": "A ciência do aquecimento global",
+            "normalized": "a ciencia do aquecimento global",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a ciencia do aquecimento global"
+        ],
+        "section": {
+          "value": "A ciência do aquecimento global",
+          "label": "A ciência do aquecimento global",
+          "normalized": "a ciencia do aquecimento global",
+          "anchor": "a_ciencia_do_aquecimento_global"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que sao os 'pontos de nao retorno' e por que eles colocam o planeta em risco?",
+          "a ciencia do aquecimento global"
+        ],
+        "row": {
+          "titulo": "O que são os 'pontos de não retorno' e por que eles colocam o planeta em risco?",
+          "tema": "A ciência do aquecimento global",
+          "data": "07/08/2025",
+          "numero_do_video": "6",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/07/o-que-sao-os-pontos-de-nao-retorno-e-por-que-eles-colocam-o-planeta-em-risco.ghtml",
+          "id_inutil": "13814563",
+          "id_video": "13820507",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820507.jpg"
+        }
+      },
+      {
+        "uuid": "13820534_6",
+        "index": 6,
+        "globoId": "13820534",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que limitar o aquecimento a 1,5°C é a meta perseguida?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820534.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que limitar o aquecimento a 1,5°c e a meta perseguida?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "Por que limitar o aquecimento a 1,5°C é a meta perseguida?",
+          "tema": "Entenda o clima",
+          "data": "08/08/2025",
+          "numero_do_video": "7",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/08/por-que-limitar-o-aquecimento-a-15c-e-a-meta-perseguida.ghtml",
+          "id_inutil": "13814574",
+          "id_video": "13820534",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820534.jpg"
+        }
+      },
+      {
+        "uuid": "13820540_7",
+        "index": 7,
+        "globoId": "13820540",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como a roupa que você usa causa impacto no meio ambiente?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820540.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como a roupa que voce usa causa impacto no meio ambiente?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Como a roupa que você usa causa impacto no meio ambiente?",
+          "tema": "Clima, comida e consumo",
+          "data": "09/08/2025",
+          "numero_do_video": "8",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/09/como-a-roupa-que-voce-usa-causa-impacto-no-meio-ambiente.ghtml",
+          "id_inutil": "13814587",
+          "id_video": "13820540",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13820540.jpg"
+        }
+      },
+      {
+        "uuid": "13827827_8",
+        "index": 8,
+        "globoId": "13827827",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O desmatamento é o maior vilão climático do Brasil?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827827.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o desmatamento e o maior vilao climatico do brasil?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "O desmatamento é o maior vilão climático do Brasil?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "10/08/2025",
+          "numero_do_video": "9",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/10/o-desmatamento-e-o-maior-vilao-climatico-do-brasil.ghtml",
+          "id_inutil": "13827395",
+          "id_video": "13827827",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827827.jpg"
+        }
+      },
+      {
+        "uuid": "13827828_9",
+        "index": 9,
+        "globoId": "13827828",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quais doenças podem crescer com o aquecimento global?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827828.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quais doencas podem crescer com o aquecimento global?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Quais doenças podem crescer com o aquecimento global?",
+          "tema": "O planeta em transformação",
+          "data": "11/08/2025",
+          "numero_do_video": "10",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/11/quais-doencas-podem-crescer-com-o-aquecimento-global.ghtml",
+          "id_inutil": "13827399",
+          "id_video": "13827828",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13827828.jpg"
+        }
+      }
+    ]
+  }
+}

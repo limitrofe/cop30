@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "Quem é o responsável por fazer a COP dar certo?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "27/08/2025",
+      "numero_do_video": "26",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/27/quem-e-o-responsavel-por-fazer-a-cop-dar-certo.ghtml",
+      "id_inutil": "13871802",
+      "id_video": "13871844",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13871844.jpg"
+    },
+    {
+      "titulo": "A carne vai ficar mais cara com o aquecimento global?",
+      "tema": "Clima, comida e consumo",
+      "data": "28/08/2025",
+      "numero_do_video": "27",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/28/carne-custo-aquecimento-global-entenda.ghtml",
+      "id_inutil": "13875004",
+      "id_video": "13874986",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13874986.jpg"
+    },
+    {
+      "titulo": "Por que proteger territórios indígenas é importante para o equilíbrio do clima?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "29/08/2025",
+      "numero_do_video": "28",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/29/por-que-proteger-territorios-indigenas-e-importante-para-o-equilibrio-do-clima.ghtml",
+      "id_inutil": "13875809",
+      "id_video": "13875812",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13875812.jpg"
+    },
+    {
+      "titulo": "O que é o mercado de carbono e como ele funciona?",
+      "tema": "Transição energética e economia verde",
+      "data": "30/08/2025",
+      "numero_do_video": "29",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/30/o-que-e-e-como-funciona-o-mercado-de-carbono.ghtml",
+      "id_inutil": "13879780",
+      "id_video": "13879772",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13879772.jpg"
+    },
+    {
+      "titulo": "Quais são os principais eventos paralelos da COP?",
+      "tema": "A COP30 e os seus desafios",
+      "data": "31/08/2025",
+      "numero_do_video": "30",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/31/quais-sao-os-principais-eventos-paralelos-da-cop.ghtml",
+      "id_inutil": "13881279",
+      "id_video": "13881285",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13881285.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 6
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13871844_25",
+        "index": 25,
+        "globoId": "13871844",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quem é o responsável por fazer a COP dar certo?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13871844.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quem e o responsavel por fazer a cop dar certo?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Quem é o responsável por fazer a COP dar certo?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "27/08/2025",
+          "numero_do_video": "26",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/27/quem-e-o-responsavel-por-fazer-a-cop-dar-certo.ghtml",
+          "id_inutil": "13871802",
+          "id_video": "13871844",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13871844.jpg"
+        }
+      },
+      {
+        "uuid": "13874986_26",
+        "index": 26,
+        "globoId": "13874986",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "A carne vai ficar mais cara com o aquecimento global?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13874986.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "a carne vai ficar mais cara com o aquecimento global?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "A carne vai ficar mais cara com o aquecimento global?",
+          "tema": "Clima, comida e consumo",
+          "data": "28/08/2025",
+          "numero_do_video": "27",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/28/carne-custo-aquecimento-global-entenda.ghtml",
+          "id_inutil": "13875004",
+          "id_video": "13874986",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13874986.jpg"
+        }
+      },
+      {
+        "uuid": "13875812_27",
+        "index": 27,
+        "globoId": "13875812",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que proteger territórios indígenas é importante para o equilíbrio do clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13875812.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que proteger territorios indigenas e importante para o equilibrio do clima?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Por que proteger territórios indígenas é importante para o equilíbrio do clima?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "29/08/2025",
+          "numero_do_video": "28",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/29/por-que-proteger-territorios-indigenas-e-importante-para-o-equilibrio-do-clima.ghtml",
+          "id_inutil": "13875809",
+          "id_video": "13875812",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13875812.jpg"
+        }
+      },
+      {
+        "uuid": "13879772_28",
+        "index": 28,
+        "globoId": "13879772",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é o mercado de carbono e como ele funciona?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13879772.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e o mercado de carbono e como ele funciona?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "O que é o mercado de carbono e como ele funciona?",
+          "tema": "Transição energética e economia verde",
+          "data": "30/08/2025",
+          "numero_do_video": "29",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/30/o-que-e-e-como-funciona-o-mercado-de-carbono.ghtml",
+          "id_inutil": "13879780",
+          "id_video": "13879772",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13879772.jpg"
+        }
+      },
+      {
+        "uuid": "13881285_29",
+        "index": 29,
+        "globoId": "13881285",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Quais são os principais eventos paralelos da COP?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13881285.jpg",
+        "tag": "A COP30 e os seus desafios",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::a cop30 e os seus desafios",
+            "label": "A COP30 e os seus desafios",
+            "value": "A COP30 e os seus desafios",
+            "normalized": "a cop30 e os seus desafios",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::a cop30 e os seus desafios"
+        ],
+        "section": {
+          "value": "A COP30 e os seus desafios",
+          "label": "A COP30 e os seus desafios",
+          "normalized": "a cop30 e os seus desafios",
+          "anchor": "a_cop30_e_os_seus_desafios"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "quais sao os principais eventos paralelos da cop?",
+          "a cop30 e os seus desafios"
+        ],
+        "row": {
+          "titulo": "Quais são os principais eventos paralelos da COP?",
+          "tema": "A COP30 e os seus desafios",
+          "data": "31/08/2025",
+          "numero_do_video": "30",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/31/quais-sao-os-principais-eventos-paralelos-da-cop.ghtml",
+          "id_inutil": "13881279",
+          "id_video": "13881285",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13881285.jpg"
+        }
+      }
+    ]
+  }
+}

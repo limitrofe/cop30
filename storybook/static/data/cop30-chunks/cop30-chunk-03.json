@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "O que é o Protocolo de Kyoto?",
+      "tema": "Entenda o clima",
+      "data": "12/08/2025",
+      "numero_do_video": "11",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/12/o-que-e-o-protocolo-de-kyoto.ghtml",
+      "id_inutil": "13833786",
+      "id_video": "13833786",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13833786.jpg"
+    },
+    {
+      "titulo": "Qual a diferença entre carbono zero e carbono neutro?",
+      "tema": "Entenda o clima",
+      "data": "13/08/2025",
+      "numero_do_video": "12",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/08/13/-diferenca-entro-e-carbono-neutro-e-carbono-zero-entenda.ghtml",
+      "id_inutil": "13836219",
+      "id_video": "13836222",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836222.jpg"
+    },
+    {
+      "titulo": "A desertificação está avançando no Brasil? Qual a relação com o clima?",
+      "tema": "Clima, comida e consumo",
+      "data": "14/08/2025",
+      "numero_do_video": "13",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/14/entenda-desertificacao-avancando-no-brasil-relacao-com-o-clima.ghtml#:~:text=Cientistas%20afirmam%20que%20a%20crise,n%C3%A3o%20%C3%A9%20uma%20seca%20passageira",
+      "id_inutil": "13836210",
+      "id_video": "13836217",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836217.jpg"
+    },
+    {
+      "titulo": "Boi com chip: como saber se a carne está livre de desmatamento?",
+      "tema": "Clima, comida e consumo",
+      "data": "15/08/2025",
+      "numero_do_video": "14",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/15/boi-com-chip-como-saber-se-a-carne-esta-livre-de-desmatamento.ghtml",
+      "id_inutil": "13836242",
+      "id_video": "13836232",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836232.jpg"
+    },
+    {
+      "titulo": "O que o clima tem a ver com a conta de luz?",
+      "tema": "Transição energética e economia verde",
+      "data": "16/08/2025",
+      "numero_do_video": "15",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/16/conta-de-luz-mais-cara-entenda-como-a-mudanca-do-clima-afeta-o-seu-bolso.ghtml#:~:text=Se%20voc%C3%AA%20percebeu%20que%20a,e%20o%20quanto%20ela%20custa.",
+      "id_inutil": "13836238",
+      "id_video": "13836239",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836239.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 3
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13833786_10",
+        "index": 10,
+        "globoId": "13833786",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é o Protocolo de Kyoto?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13833786.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e o protocolo de kyoto?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "O que é o Protocolo de Kyoto?",
+          "tema": "Entenda o clima",
+          "data": "12/08/2025",
+          "numero_do_video": "11",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/12/o-que-e-o-protocolo-de-kyoto.ghtml",
+          "id_inutil": "13833786",
+          "id_video": "13833786",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13833786.jpg"
+        }
+      },
+      {
+        "uuid": "13836222_11",
+        "index": 11,
+        "globoId": "13836222",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Qual a diferença entre carbono zero e carbono neutro?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836222.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "qual a diferenca entre carbono zero e carbono neutro?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "Qual a diferença entre carbono zero e carbono neutro?",
+          "tema": "Entenda o clima",
+          "data": "13/08/2025",
+          "numero_do_video": "12",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/08/13/-diferenca-entro-e-carbono-neutro-e-carbono-zero-entenda.ghtml",
+          "id_inutil": "13836219",
+          "id_video": "13836222",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836222.jpg"
+        }
+      },
+      {
+        "uuid": "13836217_12",
+        "index": 12,
+        "globoId": "13836217",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "A desertificação está avançando no Brasil? Qual a relação com o clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836217.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "a desertificacao esta avancando no brasil? qual a relacao com o clima?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "A desertificação está avançando no Brasil? Qual a relação com o clima?",
+          "tema": "Clima, comida e consumo",
+          "data": "14/08/2025",
+          "numero_do_video": "13",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/14/entenda-desertificacao-avancando-no-brasil-relacao-com-o-clima.ghtml#:~:text=Cientistas%20afirmam%20que%20a%20crise,n%C3%A3o%20%C3%A9%20uma%20seca%20passageira",
+          "id_inutil": "13836210",
+          "id_video": "13836217",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836217.jpg"
+        }
+      },
+      {
+        "uuid": "13836232_13",
+        "index": 13,
+        "globoId": "13836232",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Boi com chip: como saber se a carne está livre de desmatamento?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836232.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "boi com chip: como saber se a carne esta livre de desmatamento?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Boi com chip: como saber se a carne está livre de desmatamento?",
+          "tema": "Clima, comida e consumo",
+          "data": "15/08/2025",
+          "numero_do_video": "14",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/15/boi-com-chip-como-saber-se-a-carne-esta-livre-de-desmatamento.ghtml",
+          "id_inutil": "13836242",
+          "id_video": "13836232",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836232.jpg"
+        }
+      },
+      {
+        "uuid": "13836239_14",
+        "index": 14,
+        "globoId": "13836239",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que o clima tem a ver com a conta de luz?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836239.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que o clima tem a ver com a conta de luz?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "O que o clima tem a ver com a conta de luz?",
+          "tema": "Transição energética e economia verde",
+          "data": "16/08/2025",
+          "numero_do_video": "15",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/08/16/conta-de-luz-mais-cara-entenda-como-a-mudanca-do-clima-afeta-o-seu-bolso.ghtml#:~:text=Se%20voc%C3%AA%20percebeu%20que%20a,e%20o%20quanto%20ela%20custa.",
+          "id_inutil": "13836238",
+          "id_video": "13836239",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13836239.jpg"
+        }
+      }
+    ]
+  }
+}

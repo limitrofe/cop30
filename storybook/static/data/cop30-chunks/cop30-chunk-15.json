@@ -1,0 +1,370 @@
+{
+  "rows": [
+    {
+      "titulo": "Como o Reino Unido acabou com usinas movidas por carvão?",
+      "tema": "Transição energética e economia verde",
+      "data": "11/10/2025",
+      "numero_do_video": "71",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/11/como-o-reino-unido-acabou-com-usinas-movidas-por-carvao.ghtml",
+      "id_inutil": "13997780",
+      "id_video": "13997787",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13997787.jpg"
+    },
+    {
+      "titulo": "Entregar áreas degradadas ao agronegócio pode conter o desmatamento?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "12/10/2025",
+      "numero_do_video": "72",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/12/entenda-se-entregar-areas-degradadas-ao-agronegocio-funciona-para-conter-o-desmatamento.ghtml",
+      "id_inutil": "14003166",
+      "id_video": "14003127",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14003127.jpg"
+    },
+    {
+      "titulo": "Como a floresta é capaz de gerar fonte de renda?",
+      "tema": "Biomas e o equilíbrio do planeta",
+      "data": "13/10/2025",
+      "numero_do_video": "73",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/13/como-a-floresta-e-capaz-de-gerar-fonte-de-renda.ghtml#:~:text=%2D%2D%3A%2D%2D-,Como%20a%20floresta%20%C3%A9%20capaz%20de%20gerar%20fonte%20de%20renda,produ%C3%A7%C3%A3o%20do%20fruto%20no%20Brasil.",
+      "id_inutil": "14001262",
+      "id_video": "14001263",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14001263.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Excesso de energia pode provocar apagão?",
+      "tema": "Transição energética e economia verde",
+      "data": "14/10/2025",
+      "numero_do_video": "74",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/14/para-evitar-apagao-brasil-corta-energia-limpa-e-aciona-termeletricas-entenda-o-paradoxo-chamado-curtailment.ghtml",
+      "id_inutil": "14009327",
+      "id_video": "14009331",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009331.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    },
+    {
+      "titulo": "Vale a pena investir em energia solar para uso doméstico?",
+      "tema": "Transição energética e economia verde",
+      "data": "15/10/2025",
+      "numero_do_video": "75",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/15/vale-a-pena-investir-em-energia-solar-para-uso-domestico.ghtml",
+      "id_inutil": "14009362",
+      "id_video": "14009351",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009351.jpg",
+      "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 15
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13997787_70",
+        "index": 70,
+        "globoId": "13997787",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como o Reino Unido acabou com usinas movidas por carvão?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13997787.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como o reino unido acabou com usinas movidas por carvao?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Como o Reino Unido acabou com usinas movidas por carvão?",
+          "tema": "Transição energética e economia verde",
+          "data": "11/10/2025",
+          "numero_do_video": "71",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/11/como-o-reino-unido-acabou-com-usinas-movidas-por-carvao.ghtml",
+          "id_inutil": "13997780",
+          "id_video": "13997787",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13997787.jpg"
+        }
+      },
+      {
+        "uuid": "14003127_71",
+        "index": 71,
+        "globoId": "14003127",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Entregar áreas degradadas ao agronegócio pode conter o desmatamento?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14003127.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "entregar areas degradadas ao agronegocio pode conter o desmatamento?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Entregar áreas degradadas ao agronegócio pode conter o desmatamento?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "12/10/2025",
+          "numero_do_video": "72",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/noticia/2025/10/12/entenda-se-entregar-areas-degradadas-ao-agronegocio-funciona-para-conter-o-desmatamento.ghtml",
+          "id_inutil": "14003166",
+          "id_video": "14003127",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14003127.jpg"
+        }
+      },
+      {
+        "uuid": "14001263_72",
+        "index": 72,
+        "globoId": "14001263",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Como a floresta é capaz de gerar fonte de renda?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14001263.jpg",
+        "tag": "Biomas e o equilíbrio do planeta",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::biomas e o equilibrio do planeta",
+            "label": "Biomas e o equilíbrio do planeta",
+            "value": "Biomas e o equilíbrio do planeta",
+            "normalized": "biomas e o equilibrio do planeta",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::biomas e o equilibrio do planeta"
+        ],
+        "section": {
+          "value": "Biomas e o equilíbrio do planeta",
+          "label": "Biomas e o equilíbrio do planeta",
+          "normalized": "biomas e o equilibrio do planeta",
+          "anchor": "biomas_e_o_equilibrio_do_planeta"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "como a floresta e capaz de gerar fonte de renda?",
+          "biomas e o equilibrio do planeta"
+        ],
+        "row": {
+          "titulo": "Como a floresta é capaz de gerar fonte de renda?",
+          "tema": "Biomas e o equilíbrio do planeta",
+          "data": "13/10/2025",
+          "numero_do_video": "73",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/13/como-a-floresta-e-capaz-de-gerar-fonte-de-renda.ghtml#:~:text=%2D%2D%3A%2D%2D-,Como%20a%20floresta%20%C3%A9%20capaz%20de%20gerar%20fonte%20de%20renda,produ%C3%A7%C3%A3o%20do%20fruto%20no%20Brasil.",
+          "id_inutil": "14001262",
+          "id_video": "14001263",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14001263.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14009331_73",
+        "index": 73,
+        "globoId": "14009331",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Excesso de energia pode provocar apagão?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009331.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "excesso de energia pode provocar apagao?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Excesso de energia pode provocar apagão?",
+          "tema": "Transição energética e economia verde",
+          "data": "14/10/2025",
+          "numero_do_video": "74",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/14/para-evitar-apagao-brasil-corta-energia-limpa-e-aciona-termeletricas-entenda-o-paradoxo-chamado-curtailment.ghtml",
+          "id_inutil": "14009327",
+          "id_video": "14009331",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009331.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      },
+      {
+        "uuid": "14009351_74",
+        "index": 74,
+        "globoId": "14009351",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Vale a pena investir em energia solar para uso doméstico?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009351.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "vale a pena investir em energia solar para uso domestico?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Vale a pena investir em energia solar para uso doméstico?",
+          "tema": "Transição energética e economia verde",
+          "data": "15/10/2025",
+          "numero_do_video": "75",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/10/15/vale-a-pena-investir-em-energia-solar-para-uso-domestico.ghtml",
+          "id_inutil": "14009362",
+          "id_video": "14009351",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/14009351.jpg",
+          "coluna": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/"
+        }
+      }
+    ]
+  }
+}

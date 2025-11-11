@@ -1,0 +1,364 @@
+{
+  "rows": [
+    {
+      "titulo": "Combustíveis fósseis: quais os argumentos para abandonar o uso?",
+      "tema": "Transição energética e economia verde",
+      "data": "21/09/2025",
+      "numero_do_video": "51",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/21/o-mundo-pode-abandonar-os-combustiveis-fosseis-entenda-os-argumentos.ghtml",
+      "id_inutil": "13938736",
+      "id_video": "13938743",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13938743.jpg"
+    },
+    {
+      "titulo": "Por que a falta de saneamento básico é também um problema climático?",
+      "tema": "O planeta em transformação",
+      "data": "22/09/2025",
+      "numero_do_video": "52",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/22/por-que-a-falta-de-saneamento-basico-e-tambem-um-problema-climatico.ghtml",
+      "id_inutil": "13941264",
+      "id_video": "13941245",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941245.jpg"
+    },
+    {
+      "titulo": "O que é mitigação das mudanças climáticas e o que você pode fazer?",
+      "tema": "Entenda o clima",
+      "data": "23/09/2025",
+      "numero_do_video": "53",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/23/o-que-e-mitigacao-das-mudancas-climaticas-e-o-que-voce-pode-fazer.ghtml",
+      "id_inutil": "13941588",
+      "id_video": "13941589",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941589.jpg"
+    },
+    {
+      "titulo": "Por que a polinização está em risco e o que isso significa para a nossa comida?",
+      "tema": "Clima, comida e consumo",
+      "data": "24/09/2025",
+      "numero_do_video": "54",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/24/por-que-a-polinizacao-esta-em-risco-e-o-que-isso-significa-para-a-nossa-comida.ghtml",
+      "id_inutil": "13954005",
+      "id_video": "13954045",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954045.jpg"
+    },
+    {
+      "titulo": "Por que a dengue é a primeira doença com impacto ampliado por causa da crise do clima?",
+      "tema": "O planeta em transformação",
+      "data": "25/09/2025",
+      "numero_do_video": "55",
+      "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/25/por-que-a-dengue-e-a-primeira-doenca-com-impacto-ampliado-por-causa-da-crise-do-clima.ghtml#:~:text=Com%20o%20calor%2C%20o%20ciclo,ampliando%20o%20risco%20de%20surtos.",
+      "id_inutil": "13950832",
+      "id_video": "13950845",
+      "status_materia": "Publicada",
+      "status_video": "Publicado",
+      "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13950845.jpg"
+    }
+  ],
+  "meta": {
+    "sheetId": null,
+    "sheetName": "COP30",
+    "url": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/data/cop30-final.csv",
+    "headerLookup": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "": "coluna",
+      "coluna": "coluna"
+    },
+    "headerMap": {
+      "titulo": "titulo",
+      "tema": "tema",
+      "data": "data",
+      "numero_do_video": "numero_do_video",
+      "links_relacionados": "links_relacionados",
+      "id_inutil": "id_inutil",
+      "id_video": "id_video",
+      "status_materia": "status_materia",
+      "status_video": "status_video",
+      "thumb": "thumb",
+      "coluna": "coluna"
+    },
+    "chunkSize": 5,
+    "chunkTotal": 20,
+    "totalRows": 100,
+    "chunkIndex": 11
+  },
+  "precomputed": {
+    "videos": [
+      {
+        "uuid": "13938743_50",
+        "index": 50,
+        "globoId": "13938743",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Combustíveis fósseis: quais os argumentos para abandonar o uso?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13938743.jpg",
+        "tag": "Transição energética e economia verde",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::transicao energetica e economia verde",
+            "label": "Transição energética e economia verde",
+            "value": "Transição energética e economia verde",
+            "normalized": "transicao energetica e economia verde",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::transicao energetica e economia verde"
+        ],
+        "section": {
+          "value": "Transição energética e economia verde",
+          "label": "Transição energética e economia verde",
+          "normalized": "transicao energetica e economia verde",
+          "anchor": "transicao_energetica_e_economia_verde"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "combustiveis fosseis: quais os argumentos para abandonar o uso?",
+          "transicao energetica e economia verde"
+        ],
+        "row": {
+          "titulo": "Combustíveis fósseis: quais os argumentos para abandonar o uso?",
+          "tema": "Transição energética e economia verde",
+          "data": "21/09/2025",
+          "numero_do_video": "51",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/21/o-mundo-pode-abandonar-os-combustiveis-fosseis-entenda-os-argumentos.ghtml",
+          "id_inutil": "13938736",
+          "id_video": "13938743",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13938743.jpg"
+        }
+      },
+      {
+        "uuid": "13941245_51",
+        "index": 51,
+        "globoId": "13941245",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a falta de saneamento básico é também um problema climático?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941245.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a falta de saneamento basico e tambem um problema climatico?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Por que a falta de saneamento básico é também um problema climático?",
+          "tema": "O planeta em transformação",
+          "data": "22/09/2025",
+          "numero_do_video": "52",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/22/por-que-a-falta-de-saneamento-basico-e-tambem-um-problema-climatico.ghtml",
+          "id_inutil": "13941264",
+          "id_video": "13941245",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941245.jpg"
+        }
+      },
+      {
+        "uuid": "13941589_52",
+        "index": 52,
+        "globoId": "13941589",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "O que é mitigação das mudanças climáticas e o que você pode fazer?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941589.jpg",
+        "tag": "Entenda o clima",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::entenda o clima",
+            "label": "Entenda o clima",
+            "value": "Entenda o clima",
+            "normalized": "entenda o clima",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::entenda o clima"
+        ],
+        "section": {
+          "value": "Entenda o clima",
+          "label": "Entenda o clima",
+          "normalized": "entenda o clima",
+          "anchor": "entenda_o_clima"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "o que e mitigacao das mudancas climaticas e o que voce pode fazer?",
+          "entenda o clima"
+        ],
+        "row": {
+          "titulo": "O que é mitigação das mudanças climáticas e o que você pode fazer?",
+          "tema": "Entenda o clima",
+          "data": "23/09/2025",
+          "numero_do_video": "53",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/23/o-que-e-mitigacao-das-mudancas-climaticas-e-o-que-voce-pode-fazer.ghtml",
+          "id_inutil": "13941588",
+          "id_video": "13941589",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13941589.jpg"
+        }
+      },
+      {
+        "uuid": "13954045_53",
+        "index": 53,
+        "globoId": "13954045",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a polinização está em risco e o que isso significa para a nossa comida?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954045.jpg",
+        "tag": "Clima, comida e consumo",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::clima, comida e consumo",
+            "label": "Clima, comida e consumo",
+            "value": "Clima, comida e consumo",
+            "normalized": "clima, comida e consumo",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::clima, comida e consumo"
+        ],
+        "section": {
+          "value": "Clima, comida e consumo",
+          "label": "Clima, comida e consumo",
+          "normalized": "clima, comida e consumo",
+          "anchor": "clima_comida_e_consumo"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a polinizacao esta em risco e o que isso significa para a nossa comida?",
+          "clima, comida e consumo"
+        ],
+        "row": {
+          "titulo": "Por que a polinização está em risco e o que isso significa para a nossa comida?",
+          "tema": "Clima, comida e consumo",
+          "data": "24/09/2025",
+          "numero_do_video": "54",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/24/por-que-a-polinizacao-esta-em-risco-e-o-que-isso-significa-para-a-nossa-comida.ghtml",
+          "id_inutil": "13954005",
+          "id_video": "13954045",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13954045.jpg"
+        }
+      },
+      {
+        "uuid": "13950845_54",
+        "index": 54,
+        "globoId": "13950845",
+        "globoIdDesktop": null,
+        "globoIdMobile": null,
+        "title": "Por que a dengue é a primeira doença com impacto ampliado por causa da crise do clima?",
+        "subtitle": "",
+        "description": "",
+        "thumbnail": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13950845.jpg",
+        "tag": "O planeta em transformação",
+        "link": "",
+        "publishedAtRaw": null,
+        "publishedAtISO": "",
+        "publishedAtDisplay": "",
+        "filters": [
+          {
+            "id": "tema::o planeta em transformacao",
+            "label": "O planeta em transformação",
+            "value": "O planeta em transformação",
+            "normalized": "o planeta em transformacao",
+            "columnKey": "tema",
+            "columnOriginal": "tema"
+          }
+        ],
+        "filterIds": [
+          "tema::o planeta em transformacao"
+        ],
+        "section": {
+          "value": "O planeta em transformação",
+          "label": "O planeta em transformação",
+          "normalized": "o planeta em transformacao",
+          "anchor": "o_planeta_em_transformacao"
+        },
+        "highlight": false,
+        "searchTokens": [
+          "por que a dengue e a primeira doenca com impacto ampliado por causa da crise do clima?",
+          "o planeta em transformacao"
+        ],
+        "row": {
+          "titulo": "Por que a dengue é a primeira doença com impacto ampliado por causa da crise do clima?",
+          "tema": "O planeta em transformação",
+          "data": "25/09/2025",
+          "numero_do_video": "55",
+          "links_relacionados": "https://g1.globo.com/meio-ambiente/cop-30/noticia/2025/09/25/por-que-a-dengue-e-a-primeira-doenca-com-impacto-ampliado-por-causa-da-crise-do-clima.ghtml#:~:text=Com%20o%20calor%2C%20o%20ciclo,ampliando%20o%20risco%20de%20surtos.",
+          "id_inutil": "13950832",
+          "id_video": "13950845",
+          "status_materia": "Publicada",
+          "status_video": "Publicado",
+          "thumb": "https://s3.glbimg.com/v1/AUTH_e03f7a1106bb438e970511f892f07c35/g1/videos-cop30-e-o-nosso-futuro/img/thumbs/13950845.jpg"
+        }
+      }
+    ]
+  }
+}
